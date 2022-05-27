@@ -6,7 +6,9 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace FinalProject.PlusExam.Controllers
-{
+{/// <summary>
+/// ////////////////
+/// </summary>
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
