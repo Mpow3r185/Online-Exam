@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tahaluf.PlusExam.Core\Tahaluf.PlusExam.Core.csproj" />
+    <ProjectReference Include="..\Tahaluf.PlusExam.Infra\Tahaluf.PlusExam.Infra.csproj" />
+  </ItemGroup>
+
+
+</Project>
