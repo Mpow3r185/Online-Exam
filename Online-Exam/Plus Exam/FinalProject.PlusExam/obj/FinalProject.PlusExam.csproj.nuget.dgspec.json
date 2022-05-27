@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mahmoud Hamarsheh\\source\\repos\\FinalProject.PlusExam\\Online-Exam\\FinalProject.PlusExam\\FinalProject.PlusExam.csproj": {}
+    "C:\\Users\\Mahmoud Hamarsheh\\Source\\Repos\\Online-Exam\\Online-Exam\\Plus Exam\\FinalProject.PlusExam\\FinalProject.PlusExam.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mahmoud Hamarsheh\\source\\repos\\FinalProject.PlusExam\\Online-Exam\\FinalProject.PlusExam\\FinalProject.PlusExam.csproj": {
+    "C:\\Users\\Mahmoud Hamarsheh\\Source\\Repos\\Online-Exam\\Online-Exam\\Plus Exam\\FinalProject.PlusExam\\FinalProject.PlusExam.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mahmoud Hamarsheh\\source\\repos\\FinalProject.PlusExam\\Online-Exam\\FinalProject.PlusExam\\FinalProject.PlusExam.csproj",
+        "projectUniqueName": "C:\\Users\\Mahmoud Hamarsheh\\Source\\Repos\\Online-Exam\\Online-Exam\\Plus Exam\\FinalProject.PlusExam\\FinalProject.PlusExam.csproj",
         "projectName": "FinalProject.PlusExam",
-        "projectPath": "C:\\Users\\Mahmoud Hamarsheh\\source\\repos\\FinalProject.PlusExam\\Online-Exam\\FinalProject.PlusExam\\FinalProject.PlusExam.csproj",
+        "projectPath": "C:\\Users\\Mahmoud Hamarsheh\\Source\\Repos\\Online-Exam\\Online-Exam\\Plus Exam\\FinalProject.PlusExam\\FinalProject.PlusExam.csproj",
         "packagesPath": "C:\\Users\\Mahmoud Hamarsheh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mahmoud Hamarsheh\\source\\repos\\FinalProject.PlusExam\\Online-Exam\\FinalProject.PlusExam\\obj\\",
+        "outputPath": "C:\\Users\\Mahmoud Hamarsheh\\Source\\Repos\\Online-Exam\\Online-Exam\\Plus Exam\\FinalProject.PlusExam\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Mahmoud Hamarsheh\\AppData\\Roaming\\NuGet\\NuGet.Config",
