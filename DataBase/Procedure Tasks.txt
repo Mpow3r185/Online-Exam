@@ -1,0 +1,4 @@
+Al-Hameed: Course, Exam, Account
+Yazeed: Question, QuestionOption, Result
+Mahmoud: Ivoice, Certificate, CreditCard
+Haneen: PhoneNumber, Score, CorrectAns
