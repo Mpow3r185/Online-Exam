@@ -117,6 +117,11 @@ CREATE TABLE Account
   boD DATE,
   address VARCHAR(255),
   
+  status VARCHAR(5)
+  DEFAULT ('OK')
+  CHECK(status IN ('OK', 'BLOCK'))
+  NOT NULL,
+  
   roleName VARCHAR(7)
   DEFAULT('Student')
   NOT NULL
