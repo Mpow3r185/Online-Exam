@@ -44,18 +44,6 @@ CREATE OR REPLACE PACKAGE AccountPackage AS
     -- Get Emails
     PROCEDURE GetEmails;
     
-    -- Get Accounts By Username Procedure
-    PROCEDURE GetAccountsByUsername(uName IN account.username%type);
-    
-    -- Get Accounts By Email Procedure
-    PROCEDURE GetAccountsByEmail(mail IN account.email%type);
-    
-    -- Get Accounts By Full Name Procedure
-    PROCEDURE GetAccountsByFullName(fName IN account.fullName%type);
-    
-    -- Get Accounts By Role Name Procedure
-    PROCEDURE GetAccountsByRoleName(rName IN account.roleName%type);
-    
     -- Get Accounts By UserName, Email, Full Name and Role Name Procedure
     PROCEDURE SearchAccount(
         uName IN account.username%type,
