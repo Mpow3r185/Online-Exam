@@ -19,7 +19,7 @@ namespace Tahaluf.PlusExam.Infra.Commom
             _Configuration = configuration;
         }
 
-        public DbConnection Coonection
+        public DbConnection Connection
         {
             get
             {

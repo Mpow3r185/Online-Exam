@@ -24,7 +24,7 @@ namespace Tahaluf.PlusExam.Infra.Repository
             p.Add("OContent", questionOption.OptionContent, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("OQuestionId", questionOption.QuestionId, dbType: DbType.Int32, direction: ParameterDirection.Input);
            
-            var result = _dbContext.Coonection.ExecuteAsync("QuestionOptionPackage.CreateQuestionOption", p, commandType: CommandType.StoredProcedure);
+            var result = _dbContext.Connection.ExecuteAsync("QuestionOptionPackage.CreateQuestionOption", p, commandType: CommandType.StoredProcedure);
             return true;
         }
 
@@ -33,13 +33,13 @@ namespace Tahaluf.PlusExam.Infra.Repository
             var p = new DynamicParameters();
             p.Add("Oid", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
-            var result = _dbContext.Coonection.ExecuteAsync("QuestionOptionPackage.DeleteQuestionOption", p, commandType: CommandType.StoredProcedure);
+            var result = _dbContext.Connection.ExecuteAsync("QuestionOptionPackage.DeleteQuestionOption", p, commandType: CommandType.StoredProcedure);
             return true;
         }
 
         public List<QuestionOption> GetAllQuestionOption()
         {
-            IEnumerable<QuestionOption> result = _dbContext.Coonection.Query<QuestionOption>("QuestionOptionPackage.GetAllQuestionOption", commandType: CommandType.StoredProcedure);
+            IEnumerable<QuestionOption> result = _dbContext.Connection.Query<QuestionOption>("QuestionOptionPackage.GetAllQuestionOption", commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
 
@@ -50,7 +50,7 @@ namespace Tahaluf.PlusExam.Infra.Repository
             p.Add("OContent", questionOption.OptionContent, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("OQuestionId", questionOption.QuestionId, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
-            var result = _dbContext.Coonection.ExecuteAsync("QuestionOptionPackage.UpdateQuestionOption", p, commandType: CommandType.StoredProcedure);
+            var result = _dbContext.Connection.ExecuteAsync("QuestionOptionPackage.UpdateQuestionOption", p, commandType: CommandType.StoredProcedure);
             return true;
         }
     }

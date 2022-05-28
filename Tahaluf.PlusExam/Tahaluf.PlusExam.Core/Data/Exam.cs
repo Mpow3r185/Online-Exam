@@ -4,7 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
-using static Tahaluf.PlusExam.Core.Data.Enums;
+using Tahaluf.PlusExam.Core.Data;
+using Tahaluf.PlusExam.Core.DTO;
 
 namespace Tahaluf.PlusExam.Core.Data
 {
@@ -26,7 +27,7 @@ namespace Tahaluf.PlusExam.Core.Data
         public string Description { get; set; }
 
         [Required, NotNull, MaxLength(12)]
-        public ExamLevels ExamLevel { get; set; }
+        public string ExamLevel { get; set; }
         
         public decimal SuccessMark { get; set; }
 
@@ -39,7 +40,7 @@ namespace Tahaluf.PlusExam.Core.Data
         public DateTime EndDate { get; set; }
 
         [MaxLength(7)]
-        public StatusOptions Status { get; set; }
+        public string Status { get; set; }
 
         public DateTime CreationDate { get; set; }
 
@@ -47,7 +48,7 @@ namespace Tahaluf.PlusExam.Core.Data
         public virtual Course Course { get; set; }
 
 
-        //public ICollection<Question> Questions { get; set; }
+        public ICollection<Question> Questions { get; set; }
         //public ICollection<Invoice> Invoices { get; set; }
         //public ICollection<Certificate> Certificates { get; set; }
         //public ICollection<Score> Scores { get; set; }

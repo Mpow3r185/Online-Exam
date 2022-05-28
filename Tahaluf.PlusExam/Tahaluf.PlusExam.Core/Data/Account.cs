@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using Tahaluf.PlusExam.Core.DTO;
+using System.Collections.Generic;
 
 namespace Tahaluf.PlusExam.Core.Data
 {
@@ -31,7 +32,7 @@ namespace Tahaluf.PlusExam.Core.Data
         public string Address { get; set; }
 
         [MinLength(2), MaxLength(5)]
-        public AccountStatusOptions Status { get; set; }
+        public string Status { get; set; }
 
         [MinLength(5), MaxLength(7)]
         public string Rolename { get; set; }
@@ -40,7 +41,7 @@ namespace Tahaluf.PlusExam.Core.Data
         public string ProfilePicture { get; set; }
 
 
-        //public ICollection<Result> Results { get; set; }
+        public ICollection<Result> Results { get; set; }
         //public ICollection<Invoice> Invoices { get; set; }
         //public ICollection<Certificate> Certificates { get; set; }
         //public ICollection<Creditcard> Creditcards {get; set; }

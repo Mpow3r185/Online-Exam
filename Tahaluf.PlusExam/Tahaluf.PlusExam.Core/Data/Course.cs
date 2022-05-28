@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
-using static Tahaluf.PlusExam.Core.Data.Enums;
+using Tahaluf.PlusExam.Core.Data;
+using Tahaluf.PlusExam.Core.DTO;
 
 namespace Tahaluf.PlusExam.Core.Data
 {
@@ -19,7 +20,7 @@ namespace Tahaluf.PlusExam.Core.Data
         public string Description { get; set; }
 
         [MaxLength(7)]
-        public StatusOptions Status { get; set; }
+        public string Status { get; set; }
 
         [MaxLength(255)]
         public string CourseImage { get; set; }

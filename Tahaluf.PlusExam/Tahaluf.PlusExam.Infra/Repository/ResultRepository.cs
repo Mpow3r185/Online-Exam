@@ -24,7 +24,7 @@ namespace Tahaluf.PlusExam.Infra.Repository
             p.Add("RQuestionOptionId", result.QuestionOptionId, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("RAccountId", result.AccountId, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
-            var QResult = _dbContext.Coonection.ExecuteAsync("ResultPackage.CreateResult", p, commandType: CommandType.StoredProcedure);
+            var QResult = _dbContext.Connection.ExecuteAsync("ResultPackage.CreateResult", p, commandType: CommandType.StoredProcedure);
             return true;
         }
 
@@ -33,13 +33,13 @@ namespace Tahaluf.PlusExam.Infra.Repository
             var p = new DynamicParameters();
             p.Add("Rid", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
-            var result = _dbContext.Coonection.ExecuteAsync("ResultPackage.DeleteResult", p, commandType: CommandType.StoredProcedure);
+            var result = _dbContext.Connection.ExecuteAsync("ResultPackage.DeleteResult", p, commandType: CommandType.StoredProcedure);
             return true;
         }
 
         public List<Result> GetAllResult()
         {
-            IEnumerable<Result> result = _dbContext.Coonection.Query<Result>("ResultPackage.GetAllResult", commandType: CommandType.StoredProcedure);
+            IEnumerable<Result> result = _dbContext.Connection.Query<Result>("ResultPackage.GetAllResult", commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
 
@@ -50,7 +50,7 @@ namespace Tahaluf.PlusExam.Infra.Repository
             p.Add("RQuestionOptionId", result.QuestionOptionId, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("RAccountId", result.AccountId, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
-            var QResult = _dbContext.Coonection.ExecuteAsync("ResultPackage.UpdateResult", p, commandType: CommandType.StoredProcedure);
+            var QResult = _dbContext.Connection.ExecuteAsync("ResultPackage.UpdateResult", p, commandType: CommandType.StoredProcedure);
             return true;
         }
     }
