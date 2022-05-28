@@ -49,7 +49,15 @@ namespace Tahaluf.PlusExam.API
             services.AddScoped<ICreditCardRepository, CreditCardRepository>();
             // Invoice Repository
             services.AddScoped<IInvoiceRepository, InvoiceRepository>();
-
+            //Phone Number Repository
+            services.AddScoped<IPhoneNumberRepository, PhoneNumberRepository>();
+            //Score Repository
+            services.AddScoped<IScoreRepository, ScoreRepository>();
+            //Correct Answer Repository
+            services.AddScoped<ICorrectAnswerRepository, CorrectAnswerRepository>();
+            
+            
+            
             // Question Service
             services.AddScoped<IQuestionService, QuestionService>();
             // QuestionOption Service
@@ -64,6 +72,12 @@ namespace Tahaluf.PlusExam.API
             services.AddScoped<ICreditCardService, CreditCardService>();
             // Invoice Service
             services.AddScoped<IInvoiceService, InvoiceService>();
+            //Phone Number Service
+            services.AddScoped<IPhoneNumberService, PhoneNumberService>();
+            //Score Service
+            services.AddScoped<IScoreService, ScoreService>();
+            //Correct Answer Service
+            services.AddScoped<ICorrectAnswerService, CorrectAnswerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
