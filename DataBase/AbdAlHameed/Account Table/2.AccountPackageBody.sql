@@ -21,15 +21,16 @@ create or replace PACKAGE BODY AccountPackage AS
         sex IN account.gender%type,
         birthOfDate IN account.bod%type,
         addr IN account.address%type,
+        st IN account.status%type,
         rName IN account.roleName%type,
         profileImg IN account.profilePicture%type) AS
         BEGIN
             INSERT INTO Account
             (username, password, email, fullName, gender,
-            bod, address, roleName, profilePicture)
+            bod, address, status, roleName, profilePicture)
 
             VALUES(uName, passw, mail, fName, sex, birthOfDate,
-                   addr, rName, profileImg);
+                   addr, st, rName, profileImg);
 
         commit;
         END CreateAccount;
@@ -44,6 +45,7 @@ create or replace PACKAGE BODY AccountPackage AS
         sex IN account.gender%type,
         birthOfDate IN account.bod%type,
         addr IN account.address%type,
+        st IN account.status%type,
         rName IN account.roleName%type,
         profileImg IN account.profilePicture%type) AS
         BEGIN
@@ -55,6 +57,7 @@ create or replace PACKAGE BODY AccountPackage AS
                 gender = sex,
                 bod = birthOfDate,
                 address = addr,
+                status = st,
                 roleName = rName,
                 profilePicture = profileImg
             WHERE id = accid;
@@ -123,7 +126,30 @@ create or replace PACKAGE BODY AccountPackage AS
 
         DBMS_SQL.RETURN_RESULT(ref_cursor);
     END SearchAccount;
-
+    
+    -- Get Block Accounts Procedure
+    PROCEDURE GetBlockAccounts AS
+        ref_cursor SYS_REFCURSOR;
+    BEGIN
+        OPEN ref_cursor FOR
+        SELECT *
+        FROM Account
+        WHERE status = 'BLOCK';
+        
+        DBMS_SQL.RETURN_RESULT(ref_cursor);
+    END GetBlockAccounts;
+    
+    -- Get Blocked Usernames
+    PROCEDURE GetBlockedUsernames AS
+        ref_cursor SYS_REFCURSOR;
+    BEGIN
+        OPEN ref_cursor FOR
+        SELECT username
+        FROM Account
+        WHERE status = 'BLOCK';
+        
+        DBMS_SQL.RETURN_RESULT(ref_cursor);
+    END GetBlockedUsernames;
 END AccountPackage;
 
 -- End Code

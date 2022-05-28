@@ -13,6 +13,7 @@ create or replace PACKAGE AccountPackage AS
         sex IN account.gender%type,
         birthOfDate IN account.bod%type,
         addr IN account.address%type,
+        st IN account.status%type,
         rName IN account.roleName%type,
         profileImg IN account.profilePicture%type);
 
@@ -26,6 +27,7 @@ create or replace PACKAGE AccountPackage AS
         sex IN account.gender%type,
         birthOfDate IN account.bod%type,
         addr IN account.address%type,
+        st IN account.status%type,
         rName IN account.roleName%type,
         profileImg IN account.profilePicture%type);
 
@@ -48,6 +50,12 @@ create or replace PACKAGE AccountPackage AS
         mail IN account.email%type,
         fName IN account.fullName%type,
         rName IN account.roleName%type);
+        
+    -- Get Block Accounts Procedure
+    PROCEDURE GetBlockAccounts;
+    
+    -- Get Blocked Usernames
+    PROCEDURE GetBlockedUsernames;
 
 END AccountPackage;
 

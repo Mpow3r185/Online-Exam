@@ -9,6 +9,7 @@ DECLARE
   SEX VARCHAR2(6);
   BIRTHOFDATE DATE;
   ADDR VARCHAR2(255);
+  ST VARCHAR(5);
   RNAME VARCHAR2(7);
   PROFILEIMG VARCHAR2(255);
 BEGIN
@@ -19,6 +20,7 @@ BEGIN
   SEX := 'N/A';
   BIRTHOFDATE := NULL;
   ADDR := NULL;
+  ST := 'OK';
   RNAME := 'Student';
   PROFILEIMG := 'test.png';
 
@@ -30,6 +32,7 @@ BEGIN
     SEX => SEX,
     BIRTHOFDATE => BIRTHOFDATE,
     ADDR => ADDR,
+    ST => ST,
     RNAME => RNAME,
     PROFILEIMG => PROFILEIMG
   );
@@ -75,6 +78,7 @@ DECLARE
   SEX VARCHAR2(6);
   BIRTHOFDATE DATE;
   ADDR VARCHAR2(255);
+  ST VARCHAR(5);
   RNAME VARCHAR2(7);
   PROFILEIMG VARCHAR2(255);
 BEGIN
@@ -86,6 +90,7 @@ BEGIN
   SEX := 'Male';
   BIRTHOFDATE := NULL;
   ADDR := NULL;
+  ST := 'OK';
   RNAME := 'Admin';
   PROFILEIMG := 'ss.png';
 
@@ -98,6 +103,7 @@ BEGIN
     SEX => SEX,
     BIRTHOFDATE => BIRTHOFDATE,
     ADDR => ADDR,
+    ST => ST,
     RNAME => RNAME,
     PROFILEIMG => PROFILEIMG
   );
@@ -136,6 +142,20 @@ BEGIN
   ACCOUNTPACKAGE.DELETEACCOUNT(
     ACCID => ACCID
   );
+--rollback; 
+END;
+/
+
+-- Get Block Accounts Procedure Test
+BEGIN
+  ACCOUNTPACKAGE.GETBLOCKACCOUNTS();
+--rollback; 
+END;
+/
+
+-- Get Blocked Usernames
+BEGIN
+  ACCOUNTPACKAGE.GETBLOCKEDUSERNAMES();
 --rollback; 
 END;
 /
