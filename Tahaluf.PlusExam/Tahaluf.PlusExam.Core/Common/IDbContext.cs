@@ -7,6 +7,6 @@ namespace Tahaluf.PlusExam.Core.Common
 {
     public interface IDbContext
     {
-        public DbConnection Coonection { get; }
+        public DbConnection Connection { get; }
     }
 }

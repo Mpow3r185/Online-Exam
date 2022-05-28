@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\Yazeed\\.nuget\\packages\\": {}
+    "C:\\Users\\Mahmoud Hamarsheh\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\source\\repos\\API Projects\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj",
+      "projectUniqueName": "C:\\Users\\Mahmoud Hamarsheh\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj",
       "projectName": "Tahaluf.PlusExam.Core",
-      "projectPath": "D:\\Projects\\source\\repos\\API Projects\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj",
-      "packagesPath": "C:\\Users\\Yazeed\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\source\\repos\\API Projects\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\obj\\",
+      "projectPath": "C:\\Users\\Mahmoud Hamarsheh\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj",
+      "packagesPath": "C:\\Users\\Mahmoud Hamarsheh\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Mahmoud Hamarsheh\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Yazeed\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Mahmoud Hamarsheh\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -60,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.407\\RuntimeIdentifierGraph.json"
       }
     }
   }
