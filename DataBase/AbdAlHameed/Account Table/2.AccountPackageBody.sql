@@ -29,8 +29,8 @@ create or replace PACKAGE BODY AccountPackage AS
             (username, password, email, fullName, gender,
             bod, address, status, roleName, profilePicture)
 
-            VALUES(uName, passw, mail, fName, sex, birthOfDate,
-                   addr, st, rName, profileImg);
+            VALUES(LOWER(uName), passw, LOWER(mail), fName, sex, birthOfDate,
+                   addr, UPPER(st), rName, profileImg);
 
         commit;
         END CreateAccount;
@@ -50,14 +50,14 @@ create or replace PACKAGE BODY AccountPackage AS
         profileImg IN account.profilePicture%type) AS
         BEGIN
             UPDATE Account SET 
-                username = uName,
+                username = LOWER(uName),
                 password = passw,
-                email = mail,
+                email = LOWER(mail),
                 fullName = fName,
                 gender = sex,
                 bod = birthOfDate,
                 address = addr,
-                status = st,
+                status = UPPER(st),
                 roleName = rName,
                 profilePicture = profileImg
             WHERE id = accid;
@@ -150,6 +150,35 @@ create or replace PACKAGE BODY AccountPackage AS
         
         DBMS_SQL.RETURN_RESULT(ref_cursor);
     END GetBlockedUsernames;
+    
+    -- Block User By Id, Username Or Email Procedure
+    PROCEDURE BlockUser(
+        accid IN account.id%type,
+        uName IN account.username%type,
+        mail IN account.email%type) AS
+    BEGIN
+        UPDATE Account SET status = 'BLOCK'
+        WHERE (accid IS  NULL OR id = accid)
+        AND (uName IS NULL OR username = uName)
+        AND (mail IS  NULL OR email = mail);
+        
+        commit;
+    END BlockUser;
+    
+    -- Unblock User By Id, Username Or Email Procedure
+    PROCEDURE UnblockUser(
+        accid IN account.id%type,
+        uName IN account.username%type,
+        mail IN account.email%type) AS
+    BEGIN
+        UPDATE Account SET status = 'OK'
+        WHERE (accid IS  NULL OR id = accid)
+        AND (uName IS NULL OR username = uName)
+        AND (mail IS  NULL OR email = mail);
+        
+        commit;
+    END UnblockUser;
+    
 END AccountPackage;
 
 -- End Code

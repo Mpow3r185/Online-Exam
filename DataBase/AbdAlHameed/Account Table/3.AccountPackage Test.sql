@@ -82,10 +82,10 @@ DECLARE
   RNAME VARCHAR2(7);
   PROFILEIMG VARCHAR2(255);
 BEGIN
-  ACCID := 2;
-  UNAME := 'testtest';
+  ACCID := 5;
+  UNAME := 'TESTTEST';
   PASSW := '1234567890';
-  MAIL := 'lol@lol.com';
+  MAIL := 'LOL@lol.com';
   FNAME := 'Ahmad Mohammed';
   SEX := 'Male';
   BIRTHOFDATE := NULL;
@@ -153,9 +153,47 @@ BEGIN
 END;
 /
 
--- Get Blocked Usernames
+-- Get Blocked Usernames Procedure Test
 BEGIN
   ACCOUNTPACKAGE.GETBLOCKEDUSERNAMES();
+--rollback; 
+END;
+/
+
+-- Block User Procedure Test
+DECLARE
+  ACCID NUMBER;
+  UNAME VARCHAR2(12);
+  MAIL VARCHAR2(320);
+BEGIN
+  ACCID := 1;
+  UNAME := NULL;
+  MAIL := NULL;
+
+  ACCOUNTPACKAGE.BLOCKUSER(
+    ACCID => ACCID,
+    UNAME => UNAME,
+    MAIL => MAIL
+  );
+--rollback; 
+END;
+/
+
+-- Unblock User Procedure Test
+DECLARE
+  ACCID NUMBER;
+  UNAME VARCHAR2(12);
+  MAIL VARCHAR2(320);
+BEGIN
+  ACCID := 1;
+  UNAME := NULL;
+  MAIL := NULL;
+
+  ACCOUNTPACKAGE.UNBLOCKUSER(
+    ACCID => ACCID,
+    UNAME => UNAME,
+    MAIL => MAIL
+  );
 --rollback; 
 END;
 /

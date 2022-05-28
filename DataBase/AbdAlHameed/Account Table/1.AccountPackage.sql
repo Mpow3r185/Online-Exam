@@ -56,6 +56,18 @@ create or replace PACKAGE AccountPackage AS
     
     -- Get Blocked Usernames
     PROCEDURE GetBlockedUsernames;
+    
+    -- Block User By Id, Username Or Email Procedure
+    PROCEDURE BlockUser(
+        accid IN account.id%type,
+        uName IN account.username%type,
+        mail IN account.email%type);
+        
+    -- Unblock User By Id, Username Or Email Procedure
+    PROCEDURE UnblockUser(
+        accid IN account.id%type,
+        uName IN account.username%type,
+        mail IN account.email%type);
 
 END AccountPackage;
 
