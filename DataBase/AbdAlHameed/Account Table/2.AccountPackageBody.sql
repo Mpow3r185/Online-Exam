@@ -1,6 +1,4 @@
--- Start Code
-
-CREATE OR REPLACE PACKAGE BODY AccountPackage AS
+create or replace PACKAGE BODY AccountPackage AS
     
     -- CRUD Procedures
     -- Get Accounts Procedure
@@ -10,10 +8,10 @@ CREATE OR REPLACE PACKAGE BODY AccountPackage AS
         OPEN ref_cursor FOR
         SELECT *
         FROM Account;
-        
+
         DBMS_SQL.RETURN_RESULT(ref_cursor);
     END GetAccounts;
-    
+
     -- Create Account Procedure
     PROCEDURE CreateAccount(
         uName IN account.username%type,
@@ -29,13 +27,13 @@ CREATE OR REPLACE PACKAGE BODY AccountPackage AS
             INSERT INTO Account
             (username, password, email, fullName, gender,
             bod, address, roleName, profilePicture)
-            
+
             VALUES(uName, passw, mail, fName, sex, birthOfDate,
                    addr, rName, profileImg);
-        
+
         commit;
         END CreateAccount;
-    
+
     -- Update Account Procedure
     PROCEDURE UpdateAccount(
         accid IN account.id%type,
@@ -60,19 +58,19 @@ CREATE OR REPLACE PACKAGE BODY AccountPackage AS
                 roleName = rName,
                 profilePicture = profileImg
             WHERE id = accid;
-            
+
             commit;
         END UpdateAccount;
-        
+
     -- Delete Account Procedure
     PROCEDURE DeleteAccount(accid IN account.id%type) AS
     BEGIN
         DELETE Account WHERE id = accid;
-        
+
         commit;
     END DeleteAccount;
     -- CRUD Procedures
-    
+
     -- Get Usernames Procedure
     PROCEDURE GetUsernames AS
         ref_cursor SYS_REFCURSOR;
@@ -80,10 +78,10 @@ CREATE OR REPLACE PACKAGE BODY AccountPackage AS
         OPEN ref_cursor FOR
         SELECT username
         FROM Account;
-        
+
         DBMS_SQL.RETURN_RESULT(ref_cursor);
     END GetUsernames;
-    
+
     -- Get Full Names Procedure
     PROCEDURE GetFullNames AS
         ref_cursor SYS_REFCURSOR;
@@ -91,10 +89,10 @@ CREATE OR REPLACE PACKAGE BODY AccountPackage AS
         OPEN ref_cursor FOR
         SELECT fullName
         FROM Account;
-    
+
         DBMS_SQL.RETURN_RESULT(ref_cursor);
     END GetFullNames;
-    
+
     -- Get Emails
     PROCEDURE GetEmails AS
         ref_cursor SYS_REFCURSOR;
@@ -102,65 +100,17 @@ CREATE OR REPLACE PACKAGE BODY AccountPackage AS
         OPEN ref_cursor FOR
         SELECT email
         FROM Account;
-        
+
         DBMS_SQL.RETURN_RESULT(ref_cursor);
     END GetEmails;
-    
-    -- Get Accounts By Username Procedure
-    PROCEDURE GetAccountsByUsername(uName IN account.username%type) AS
-        ref_cursor SYS_REFCURSOR;
-    BEGIN
-        OPEN ref_cursor FOR
-        SELECT *
-        FROM Account
-        WHERE username LIKE '%' || uName || '%';
-        
-        DBMS_SQL.RETURN_RESULT(ref_cursor);
-    END GetAccountsByUsername;
-    
-    -- Get Accounts By Email Procedure
-    PROCEDURE GetAccountsByEmail(mail IN account.email%type) AS
-        ref_cursor SYS_REFCURSOR;
-    BEGIN
-        OPEN ref_cursor FOR
-        SELECT *
-        FROM Account
-        WHERE email LIKE '%' || mail || '%';
-        
-        DBMS_SQL.RETURN_RESULT(ref_cursor);
-    END GetAccountsByEmail;
-    
-    -- Get Accounts By Full Name Procedure
-    PROCEDURE GetAccountsByFullName(fName IN account.fullName%type) AS
-        ref_cursor SYS_REFCURSOR;
-    BEGIN
-        OPEN ref_cursor FOR
-        SELECT *
-        FROM Account
-        WHERE fullName LIKE '%' || fName || '%';
-        
-        DBMS_SQL.RETURN_RESULT(ref_cursor);
-    END GetAccountsByFullName;
-    
-    -- Get Accounts By Role Name Procedure
-    PROCEDURE GetAccountsByRoleName(rName IN account.roleName%type) AS
-        ref_cursor SYS_REFCURSOR;
-    BEGIN
-        OPEN ref_cursor FOR
-        SELECT *
-        FROM Account
-        WHERE roleName LIKE '%' || rName || '%';
-        
-        DBMS_SQL.RETURN_RESULT(ref_cursor);
-    END GetAccountsByRoleName;
-    
+
     -- Get Accounts By UserName, Email, Full Name and Role Name Procedure
     PROCEDURE SearchAccount(
         uName IN account.username%type,
         mail IN account.email%type,
         fName IN account.fullName%type,
         rName IN account.roleName%type) AS
-        
+
         ref_cursor SYS_REFCURSOR;
     BEGIN
         OPEN ref_cursor FOR
@@ -170,7 +120,7 @@ CREATE OR REPLACE PACKAGE BODY AccountPackage AS
         AND (mail IS NULL OR email LIKE '%' || mail || '%')
         AND (fName IS NULL OR fullName LIKE '%' || fName || '%')
         AND (rName IS NULL OR roleName LIKE '%' || rName || '%');
-        
+
         DBMS_SQL.RETURN_RESULT(ref_cursor);
     END SearchAccount;
 
