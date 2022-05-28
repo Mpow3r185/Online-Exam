@@ -11,7 +11,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Tahaluf.PlusExam.Core.Common;
+using Tahaluf.PlusExam.Core.RepositoryInterface;
+using Tahaluf.PlusExam.Core.ServiceInterface;
 using Tahaluf.PlusExam.Infra.Commom;
+using Tahaluf.PlusExam.Infra.Repository;
+using Tahaluf.PlusExam.Infra.Service;
 
 namespace Tahaluf.PlusExam.API
 {
@@ -30,6 +34,20 @@ namespace Tahaluf.PlusExam.API
             services.AddControllers();
 
             services.AddScoped<IDbContext, DbContext>();
+
+            // Question Repository
+            services.AddScoped<IQuestionRepository, QuestionRepository>();
+            //QuestionOption Repository
+            services.AddScoped<IQuestionOptionRepository, QuestionOptionRepository>();
+            //Result Repository
+            services.AddScoped<IResultRepository, ResultRepository>();
+
+            // Question Service
+            services.AddScoped<IQuestionService, QuestionService>();
+            //QuestionOption Service
+            services.AddScoped<IQuestionOptionService, QuestionOptionService>();
+            //Result Service
+            services.AddScoped<IResultService, ResultService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

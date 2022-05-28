@@ -5,10 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
     <Folder Include="DTO\" />
-    <Folder Include="ServiceInterface\" />
-    <Folder Include="RepositoryInterface\" />
   </ItemGroup>
 
 </Project>
