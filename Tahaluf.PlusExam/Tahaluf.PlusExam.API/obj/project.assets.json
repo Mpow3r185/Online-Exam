@@ -2583,24 +2583,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dabda\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Mahmoud Hamarsheh\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dabda\\OneDrive\\Desktop\\T\\Tahaluf.PlusExam\\Tahaluf.PlusExam.API\\Tahaluf.PlusExam.API.csproj",
+      "projectUniqueName": "C:\\Users\\Mahmoud Hamarsheh\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.API\\Tahaluf.PlusExam.API.csproj",
       "projectName": "Tahaluf.PlusExam.API",
-      "projectPath": "C:\\Users\\dabda\\OneDrive\\Desktop\\T\\Tahaluf.PlusExam\\Tahaluf.PlusExam.API\\Tahaluf.PlusExam.API.csproj",
-      "packagesPath": "C:\\Users\\dabda\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dabda\\OneDrive\\Desktop\\T\\Tahaluf.PlusExam\\Tahaluf.PlusExam.API\\obj\\",
+      "projectPath": "C:\\Users\\Mahmoud Hamarsheh\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.API\\Tahaluf.PlusExam.API.csproj",
+      "packagesPath": "C:\\Users\\Mahmoud Hamarsheh\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Mahmoud Hamarsheh\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.API\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\dabda\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Mahmoud Hamarsheh\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2614,11 +2609,11 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\dabda\\OneDrive\\Desktop\\T\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj": {
-              "projectPath": "C:\\Users\\dabda\\OneDrive\\Desktop\\T\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj"
+            "C:\\Users\\Mahmoud Hamarsheh\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj": {
+              "projectPath": "C:\\Users\\Mahmoud Hamarsheh\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj"
             },
-            "C:\\Users\\dabda\\OneDrive\\Desktop\\T\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\Tahaluf.PlusExam.Infra.csproj": {
-              "projectPath": "C:\\Users\\dabda\\OneDrive\\Desktop\\T\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\Tahaluf.PlusExam.Infra.csproj"
+            "C:\\Users\\Mahmoud Hamarsheh\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\Tahaluf.PlusExam.Infra.csproj": {
+              "projectPath": "C:\\Users\\Mahmoud Hamarsheh\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\Tahaluf.PlusExam.Infra.csproj"
             }
           }
         }
@@ -2650,7 +2645,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.407\\RuntimeIdentifierGraph.json"
       }
     }
   }
