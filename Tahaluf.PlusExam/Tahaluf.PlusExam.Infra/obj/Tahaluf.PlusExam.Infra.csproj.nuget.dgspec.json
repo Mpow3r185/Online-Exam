@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dabda\\OneDrive\\Desktop\\GIT\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\Tahaluf.PlusExam.Infra.csproj": {}
+    "C:\\Users\\dabda\\OneDrive\\Desktop\\Test\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\Tahaluf.PlusExam.Infra.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dabda\\OneDrive\\Desktop\\GIT\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj": {
+    "C:\\Users\\dabda\\OneDrive\\Desktop\\Test\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dabda\\OneDrive\\Desktop\\GIT\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj",
+        "projectUniqueName": "C:\\Users\\dabda\\OneDrive\\Desktop\\Test\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj",
         "projectName": "Tahaluf.PlusExam.Core",
-        "projectPath": "C:\\Users\\dabda\\OneDrive\\Desktop\\GIT\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj",
+        "projectPath": "C:\\Users\\dabda\\OneDrive\\Desktop\\Test\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj",
         "packagesPath": "C:\\Users\\dabda\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dabda\\OneDrive\\Desktop\\GIT\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\obj\\",
+        "outputPath": "C:\\Users\\dabda\\OneDrive\\Desktop\\Test\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -62,14 +62,14 @@
         }
       }
     },
-    "C:\\Users\\dabda\\OneDrive\\Desktop\\GIT\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\Tahaluf.PlusExam.Infra.csproj": {
+    "C:\\Users\\dabda\\OneDrive\\Desktop\\Test\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\Tahaluf.PlusExam.Infra.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dabda\\OneDrive\\Desktop\\GIT\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\Tahaluf.PlusExam.Infra.csproj",
+        "projectUniqueName": "C:\\Users\\dabda\\OneDrive\\Desktop\\Test\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\Tahaluf.PlusExam.Infra.csproj",
         "projectName": "Tahaluf.PlusExam.Infra",
-        "projectPath": "C:\\Users\\dabda\\OneDrive\\Desktop\\GIT\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\Tahaluf.PlusExam.Infra.csproj",
+        "projectPath": "C:\\Users\\dabda\\OneDrive\\Desktop\\Test\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\Tahaluf.PlusExam.Infra.csproj",
         "packagesPath": "C:\\Users\\dabda\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dabda\\OneDrive\\Desktop\\GIT\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\obj\\",
+        "outputPath": "C:\\Users\\dabda\\OneDrive\\Desktop\\Test\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -90,8 +90,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\dabda\\OneDrive\\Desktop\\GIT\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj": {
-                "projectPath": "C:\\Users\\dabda\\OneDrive\\Desktop\\GIT\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj"
+              "C:\\Users\\dabda\\OneDrive\\Desktop\\Test\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj": {
+                "projectPath": "C:\\Users\\dabda\\OneDrive\\Desktop\\Test\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj"
               }
             }
           }
