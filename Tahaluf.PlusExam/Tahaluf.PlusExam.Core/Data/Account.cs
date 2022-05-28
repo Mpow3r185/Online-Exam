@@ -6,6 +6,9 @@ using System.Collections.Generic;
 
 namespace Tahaluf.PlusExam.Core.Data
 {
+    /// <summary>
+    /// /////////
+    /// </summary>
     public class Account
     {
         [Key]
