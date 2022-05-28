@@ -44,58 +44,6 @@ BEGIN
 END;
 /
 
--- Get Accounts By Email Procedure Test
-DECLARE
-  MAIL VARCHAR2(320);
-BEGIN
-  MAIL := 'tes';
-
-  ACCOUNTPACKAGE.GETACCOUNTSBYEMAIL(
-    MAIL => MAIL
-  );
---rollback; 
-END;
-/
-
--- Get Accounts By Full Name Procedure Test
-DECLARE
-  FNAME VARCHAR2(60);
-BEGIN
-  FNAME := 'e';
-
-  ACCOUNTPACKAGE.GETACCOUNTSBYFULLNAME(
-    FNAME => FNAME
-  );
---rollback; 
-END;
-/
-
--- Get Accounts By Role Name Procedure Test
-DECLARE
-  RNAME VARCHAR2(7);
-BEGIN
-  RNAME := 'u';
-
-  ACCOUNTPACKAGE.GETACCOUNTSBYROLENAME(
-    RNAME => RNAME
-  );
---rollback; 
-END;
-/
-
--- Get Accounts By Username Procedure Test
-DECLARE
-  UNAME VARCHAR2(12);
-BEGIN
-  UNAME := 'min';
-
-  ACCOUNTPACKAGE.GETACCOUNTSBYUSERNAME(
-    UNAME => UNAME
-  );
---rollback; 
-END;
-/
-
 -- Get Emails Procedure Test
 BEGIN
   ACCOUNTPACKAGE.GETEMAILS();
