@@ -1,0 +1,16 @@
+C:\Users\Yazeed\Source\Repos\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.Infra\bin\Debug\netcoreapp3.1\Tahaluf.PlusExam.Infra.deps.json
+C:\Users\Yazeed\Source\Repos\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.Infra\bin\Debug\netcoreapp3.1\Tahaluf.PlusExam.Infra.runtimeconfig.json
+C:\Users\Yazeed\Source\Repos\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.Infra\bin\Debug\netcoreapp3.1\Tahaluf.PlusExam.Infra.runtimeconfig.dev.json
+C:\Users\Yazeed\Source\Repos\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.Infra\bin\Debug\netcoreapp3.1\Tahaluf.PlusExam.Infra.dll
+C:\Users\Yazeed\Source\Repos\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.Infra\bin\Debug\netcoreapp3.1\Tahaluf.PlusExam.Infra.pdb
+C:\Users\Yazeed\Source\Repos\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.Infra\bin\Debug\netcoreapp3.1\Tahaluf.PlusExam.Core.dll
+C:\Users\Yazeed\Source\Repos\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.Infra\bin\Debug\netcoreapp3.1\Tahaluf.PlusExam.Core.pdb
+C:\Users\Yazeed\Source\Repos\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.Infra\obj\Debug\netcoreapp3.1\Tahaluf.PlusExam.Infra.csproj.AssemblyReference.cache
+C:\Users\Yazeed\Source\Repos\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.Infra\obj\Debug\netcoreapp3.1\Tahaluf.PlusExam.Infra.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Yazeed\Source\Repos\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.Infra\obj\Debug\netcoreapp3.1\Tahaluf.PlusExam.Infra.AssemblyInfoInputs.cache
+C:\Users\Yazeed\Source\Repos\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.Infra\obj\Debug\netcoreapp3.1\Tahaluf.PlusExam.Infra.AssemblyInfo.cs
+C:\Users\Yazeed\Source\Repos\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.Infra\obj\Debug\netcoreapp3.1\Tahaluf.PlusExam.Infra.csproj.CoreCompileInputs.cache
+C:\Users\Yazeed\Source\Repos\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.Infra\obj\Debug\netcoreapp3.1\Tahaluf.PlusExam.Infra.csproj.CopyComplete
+C:\Users\Yazeed\Source\Repos\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.Infra\obj\Debug\netcoreapp3.1\Tahaluf.PlusExam.Infra.dll
+C:\Users\Yazeed\Source\Repos\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.Infra\obj\Debug\netcoreapp3.1\Tahaluf.PlusExam.Infra.pdb
+C:\Users\Yazeed\Source\Repos\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.Infra\obj\Debug\netcoreapp3.1\Tahaluf.PlusExam.Infra.genruntimeconfig.cache

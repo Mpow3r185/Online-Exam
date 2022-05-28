@@ -1,0 +1,10 @@
+C:\Users\Yazeed\Source\Repos\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.Core\bin\Debug\netcoreapp3.1\Tahaluf.PlusExam.Core.deps.json
+C:\Users\Yazeed\Source\Repos\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.Core\bin\Debug\netcoreapp3.1\Tahaluf.PlusExam.Core.dll
+C:\Users\Yazeed\Source\Repos\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.Core\bin\Debug\netcoreapp3.1\Tahaluf.PlusExam.Core.pdb
+C:\Users\Yazeed\Source\Repos\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.Core\obj\Debug\netcoreapp3.1\Tahaluf.PlusExam.Core.csproj.AssemblyReference.cache
+C:\Users\Yazeed\Source\Repos\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.Core\obj\Debug\netcoreapp3.1\Tahaluf.PlusExam.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Yazeed\Source\Repos\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.Core\obj\Debug\netcoreapp3.1\Tahaluf.PlusExam.Core.AssemblyInfoInputs.cache
+C:\Users\Yazeed\Source\Repos\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.Core\obj\Debug\netcoreapp3.1\Tahaluf.PlusExam.Core.AssemblyInfo.cs
+C:\Users\Yazeed\Source\Repos\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.Core\obj\Debug\netcoreapp3.1\Tahaluf.PlusExam.Core.csproj.CoreCompileInputs.cache
+C:\Users\Yazeed\Source\Repos\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.Core\obj\Debug\netcoreapp3.1\Tahaluf.PlusExam.Core.dll
+C:\Users\Yazeed\Source\Repos\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.Core\obj\Debug\netcoreapp3.1\Tahaluf.PlusExam.Core.pdb
