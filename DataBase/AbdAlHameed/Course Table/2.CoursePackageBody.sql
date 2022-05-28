@@ -23,7 +23,7 @@ CREATE OR REPLACE PACKAGE BODY CoursePackage AS
     BEGIN
         INSERT INTO Course
         (courseName, description, status, courseimage)
-        VALUES(cName, des, st, cImage);
+        VALUES(cName, des, UPPER(st), cImage);
         
         commit;
     END CreateCourse;
@@ -39,7 +39,7 @@ CREATE OR REPLACE PACKAGE BODY CoursePackage AS
             UPDATE Course
             SET courseName = cName,
                 description = des,
-                status = st,
+                status = UPPER(st),
                 courseImage = cImage
             WHERE id = cid;
         
