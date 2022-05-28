@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\source\\repos\\API Projects\\Tahaluf.PlusExam\\Tahaluf.PlusExam.API\\Tahaluf.PlusExam.API.csproj": {}
+    "C:\\Users\\Yazeed\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.API\\Tahaluf.PlusExam.API.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\source\\repos\\API Projects\\Tahaluf.PlusExam\\Tahaluf.PlusExam.API\\Tahaluf.PlusExam.API.csproj": {
+    "C:\\Users\\Yazeed\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.API\\Tahaluf.PlusExam.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\source\\repos\\API Projects\\Tahaluf.PlusExam\\Tahaluf.PlusExam.API\\Tahaluf.PlusExam.API.csproj",
+        "projectUniqueName": "C:\\Users\\Yazeed\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.API\\Tahaluf.PlusExam.API.csproj",
         "projectName": "Tahaluf.PlusExam.API",
-        "projectPath": "D:\\Projects\\source\\repos\\API Projects\\Tahaluf.PlusExam\\Tahaluf.PlusExam.API\\Tahaluf.PlusExam.API.csproj",
+        "projectPath": "C:\\Users\\Yazeed\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.API\\Tahaluf.PlusExam.API.csproj",
         "packagesPath": "C:\\Users\\Yazeed\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\source\\repos\\API Projects\\Tahaluf.PlusExam\\Tahaluf.PlusExam.API\\obj\\",
+        "outputPath": "C:\\Users\\Yazeed\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Yazeed\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,11 +28,11 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\Projects\\source\\repos\\API Projects\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj": {
-                "projectPath": "D:\\Projects\\source\\repos\\API Projects\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj"
+              "C:\\Users\\Yazeed\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj": {
+                "projectPath": "C:\\Users\\Yazeed\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj"
               },
-              "D:\\Projects\\source\\repos\\API Projects\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\Tahaluf.PlusExam.Infra.csproj": {
-                "projectPath": "D:\\Projects\\source\\repos\\API Projects\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\Tahaluf.PlusExam.Infra.csproj"
+              "C:\\Users\\Yazeed\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\Tahaluf.PlusExam.Infra.csproj": {
+                "projectPath": "C:\\Users\\Yazeed\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\Tahaluf.PlusExam.Infra.csproj"
               }
             }
           }
@@ -68,14 +68,14 @@
         }
       }
     },
-    "D:\\Projects\\source\\repos\\API Projects\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj": {
+    "C:\\Users\\Yazeed\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\source\\repos\\API Projects\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj",
+        "projectUniqueName": "C:\\Users\\Yazeed\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj",
         "projectName": "Tahaluf.PlusExam.Core",
-        "projectPath": "D:\\Projects\\source\\repos\\API Projects\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj",
+        "projectPath": "C:\\Users\\Yazeed\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj",
         "packagesPath": "C:\\Users\\Yazeed\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\source\\repos\\API Projects\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\obj\\",
+        "outputPath": "C:\\Users\\Yazeed\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Yazeed\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -122,14 +122,14 @@
         }
       }
     },
-    "D:\\Projects\\source\\repos\\API Projects\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\Tahaluf.PlusExam.Infra.csproj": {
+    "C:\\Users\\Yazeed\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\Tahaluf.PlusExam.Infra.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\source\\repos\\API Projects\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\Tahaluf.PlusExam.Infra.csproj",
+        "projectUniqueName": "C:\\Users\\Yazeed\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\Tahaluf.PlusExam.Infra.csproj",
         "projectName": "Tahaluf.PlusExam.Infra",
-        "projectPath": "D:\\Projects\\source\\repos\\API Projects\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\Tahaluf.PlusExam.Infra.csproj",
+        "projectPath": "C:\\Users\\Yazeed\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\Tahaluf.PlusExam.Infra.csproj",
         "packagesPath": "C:\\Users\\Yazeed\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\source\\repos\\API Projects\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\obj\\",
+        "outputPath": "C:\\Users\\Yazeed\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Yazeed\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -146,8 +146,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\Projects\\source\\repos\\API Projects\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj": {
-                "projectPath": "D:\\Projects\\source\\repos\\API Projects\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj"
+              "C:\\Users\\Yazeed\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj": {
+                "projectPath": "C:\\Users\\Yazeed\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj"
               }
             }
           }
@@ -183,6 +183,10 @@
             "Microsoft.Extensions.Configuration.Abstractions": {
               "target": "Package",
               "version": "[5.0.0, )"
+            },
+            "Oracle.ManagedDataAccess.Core": {
+              "target": "Package",
+              "version": "[3.21.4, )"
             }
           },
           "imports": [

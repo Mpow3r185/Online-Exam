@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\source\\repos\\API Projects\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj",
+      "projectUniqueName": "C:\\Users\\Yazeed\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj",
       "projectName": "Tahaluf.PlusExam.Core",
-      "projectPath": "D:\\Projects\\source\\repos\\API Projects\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj",
+      "projectPath": "C:\\Users\\Yazeed\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj",
       "packagesPath": "C:\\Users\\Yazeed\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\source\\repos\\API Projects\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\obj\\",
+      "outputPath": "C:\\Users\\Yazeed\\Source\\Repos\\Online-Exam\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Yazeed\\AppData\\Roaming\\NuGet\\NuGet.Config",
