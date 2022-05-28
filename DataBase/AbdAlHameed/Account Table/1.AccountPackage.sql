@@ -35,15 +35,6 @@ CREATE OR REPLACE PACKAGE AccountPackage AS
     PROCEDURE DeleteAccount(accid IN account.id%type);
     -- CRUD Procedures
     
-    -- Get Usernames Procedure
-    PROCEDURE GetUsernames;
-    
-    -- Get Full Names Procedure
-    PROCEDURE GetFullNames;
-    
-    -- Get Emails
-    PROCEDURE GetEmails;
-    
     -- Get Accounts By UserName, Email, Full Name and Role Name Procedure
     PROCEDURE SearchAccount(
         uName IN account.username%type,
