@@ -16,9 +16,9 @@ namespace Tahaluf.PlusExam.Core.Data
         public string Status { get; set; }
         
         public int? ExamId { get; set; }
-        //[ForeignKey("ExamId")]
-        //public virtual Exam exam { get; set; }
+        [ForeignKey("ExamId")]
+        public virtual Exam Exam { get; set; }
 
-        public ICollection<QuestionOption> questionOptions { get; set; }
+        public ICollection<QuestionOption> QuestionOptions { get; set; }
     }
 }

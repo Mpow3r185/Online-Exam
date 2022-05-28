@@ -16,7 +16,7 @@ namespace Tahaluf.PlusExam.Core.Data
         [ForeignKey("QuestionId")]
         public virtual Question Question { get; set; }
 
-        public ICollection<Result> results { get; set; }
+        public ICollection<Result> Results { get; set; }
         //public ICollection<CorrectAnswer> correctAnswer { get; set; }
     }
 }

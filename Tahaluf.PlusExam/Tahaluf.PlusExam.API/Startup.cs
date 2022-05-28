@@ -37,17 +37,21 @@ namespace Tahaluf.PlusExam.API
 
             // Question Repository
             services.AddScoped<IQuestionRepository, QuestionRepository>();
-            //QuestionOption Repository
+            // QuestionOption Repository
             services.AddScoped<IQuestionOptionRepository, QuestionOptionRepository>();
-            //Result Repository
+            // Result Repository
             services.AddScoped<IResultRepository, ResultRepository>();
+            // Course Repository
+            services.AddScoped<ICourseRepository, CourseRepository>();
 
             // Question Service
             services.AddScoped<IQuestionService, QuestionService>();
-            //QuestionOption Service
+            // QuestionOption Service
             services.AddScoped<IQuestionOptionService, QuestionOptionService>();
-            //Result Service
+            // Result Service
             services.AddScoped<IResultService, ResultService>();
+            // Course Service
+            services.AddScoped<ICourseService, CourseService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

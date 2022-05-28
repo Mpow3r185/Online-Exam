@@ -16,8 +16,8 @@ namespace Tahaluf.PlusExam.Core.Data
         public virtual QuestionOption questionOption { get; set; }
         
         public int? AccountId { get; set; }
-        //[ForeignKey("AccountId")]
-        //public virtual Account account { get; set; }
+        [ForeignKey("AccountId")]
+        public virtual Account accounts { get; set; }
 
 
     }

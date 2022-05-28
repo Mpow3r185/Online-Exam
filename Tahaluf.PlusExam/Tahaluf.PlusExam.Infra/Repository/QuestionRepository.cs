@@ -27,7 +27,7 @@ namespace Tahaluf.PlusExam.Infra.Repository
             p.Add("QStatues", question.Status, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("QExamId", question.ExamId, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
-            var result = _dbContext.Coonection.ExecuteAsync("QuestionPackage.CreateQuestion", p, commandType: CommandType.StoredProcedure);
+            var result = _dbContext.Connection.ExecuteAsync("QuestionPackage.CreateQuestion", p, commandType: CommandType.StoredProcedure);
             return true;
         }
 
@@ -36,13 +36,13 @@ namespace Tahaluf.PlusExam.Infra.Repository
             var p = new DynamicParameters();
             p.Add("Qid", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
            
-            var result = _dbContext.Coonection.ExecuteAsync("QuestionPackage.DeleteQuestion", p, commandType: CommandType.StoredProcedure);
+            var result = _dbContext.Connection.ExecuteAsync("QuestionPackage.DeleteQuestion", p, commandType: CommandType.StoredProcedure);
             return true;
         }
 
         public List<Question> GetAllQuestion()
         {
-            IEnumerable<Question> result = _dbContext.Coonection.Query<Question>("QuestionPackage.GetAllQuestion", commandType: CommandType.StoredProcedure);
+            IEnumerable<Question> result = _dbContext.Connection.Query<Question>("QuestionPackage.GetAllQuestion", commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
 
@@ -56,7 +56,7 @@ namespace Tahaluf.PlusExam.Infra.Repository
             p.Add("QStatues", question.Status, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("QExamId", question.ExamId, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
-            var result = _dbContext.Coonection.ExecuteAsync("QuestionPackage.UpdateQuestion", p, commandType: CommandType.StoredProcedure);
+            var result = _dbContext.Connection.ExecuteAsync("QuestionPackage.UpdateQuestion", p, commandType: CommandType.StoredProcedure);
             return true;
         }
     }
