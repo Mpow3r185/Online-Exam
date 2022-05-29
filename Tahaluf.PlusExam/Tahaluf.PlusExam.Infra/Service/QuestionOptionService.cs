@@ -28,7 +28,7 @@ namespace Tahaluf.PlusExam.Infra.Service
 
         public List<QuestionOption> GetAllQuestionOption()
         {
-            return _questionOptionRepository.QuestionsOptions();
+            return _questionOptionRepository.GetQuestionsOptions();
         }
 
         public bool UpdateQuestionOption(QuestionOption questionOption)

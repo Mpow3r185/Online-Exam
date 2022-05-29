@@ -13,41 +13,32 @@ namespace Tahaluf.PlusExam.Infra.Repository
 {
     public class AccountRepository : IAccountRepository
     {
+        #region Fields
         private readonly IDbContext dbContext;
+        #endregion Fields
 
+        #region Constructor
         public AccountRepository(IDbContext _dbContext)
         {
             dbContext = _dbContext;
         }
+        #endregion Constructor
 
-        public bool BlockUser(UniqueAccountData uniqueAccountData)
+        #region CRUD_Operation
+
+        #region GetAccounts
+        public List<Account> GetAccounts()
         {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("accid",
-                uniqueAccountData.Id,
-                dbType: DbType.Int32,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("uName",
-                uniqueAccountData.Username,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("mail",
-                uniqueAccountData.Email,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-
-            dbContext.Connection.ExecuteAsync(
-                "AccountPackage.BlockUser", parameters,
-                commandType: CommandType.StoredProcedure);
-
-            return true;
+            return dbContext.Connection.Query<Account>(
+                "AccountPackage.GetAccounts",
+                commandType: CommandType.StoredProcedure).ToList();
         }
+        #endregion GetAccounts
 
+        #region CreateAccount
         public bool CreateAccount(Account account)
         {
+            #region DynamicParameters
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("uName",
                 account.Username,
@@ -98,7 +89,7 @@ namespace Tahaluf.PlusExam.Infra.Repository
                 account.ProfilePicture,
                 dbType: DbType.String,
                 direction: ParameterDirection.Input);
-
+            #endregion DynamicParameters
 
             dbContext.Connection.ExecuteAsync(
                 "AccountPackage.CreateAccount", parameters,
@@ -106,7 +97,78 @@ namespace Tahaluf.PlusExam.Infra.Repository
 
             return true;
         }
+        #endregion CreateAccount
 
+        #region UpdateAccount
+        public bool UpdateAccount(Account account)
+        {
+            #region DynamicParameters
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("accid",
+                account.Id,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("uName",
+                account.Username,
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("passw",
+                account.Password,
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("mail",
+                account.Email,
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("fName",
+                account.Fullname,
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("sex",
+                account.Gender,
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("birthOfDate",
+                account.Bod,
+                dbType: DbType.DateTime,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("addr",
+                account.Address,
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("st",
+                account.Status,
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("rName",
+                account.Rolename,
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("profileImg",
+                account.ProfilePicture,
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
+            #endregion DynamicParameters
+
+            dbContext.Connection.ExecuteAsync(
+                "AccountPackage.UpdateAccount", parameters,
+                commandType: CommandType.StoredProcedure);
+
+            return true;
+        }
+        #endregion UpdateAccount
+
+        #region DeleteAccount
         public bool DeleteAccount(int accid)
         {
             DynamicParameters parameters = new DynamicParameters();
@@ -122,12 +184,34 @@ namespace Tahaluf.PlusExam.Infra.Repository
 
             return true;
         }
+        #endregion DeleteAccount
 
-        public List<Account> GetAccounts()
+        #endregion CRUD_Operation
+
+        public bool BlockUser(UniqueAccountData uniqueAccountData)
         {
-            return dbContext.Connection.Query<Account>(
-                "AccountPackage.GetAccounts",
-                commandType: CommandType.StoredProcedure).ToList();
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("accid",
+                uniqueAccountData.Id,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("uName",
+                uniqueAccountData.Username,
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("mail",
+                uniqueAccountData.Email,
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
+
+
+            dbContext.Connection.ExecuteAsync(
+                "AccountPackage.BlockUser", parameters,
+                commandType: CommandType.StoredProcedure);
+
+            return true;
         }
 
         public List<Account> GetBlockAccounts()
@@ -220,70 +304,6 @@ namespace Tahaluf.PlusExam.Infra.Repository
             return true;
         }
 
-        public bool UpdateAccount(Account account)
-        {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("accid",
-                account.Id,
-                dbType: DbType.Int32,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("uName",
-                account.Username,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("passw",
-                account.Password,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("mail",
-                account.Email,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("fName",
-                account.Fullname,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("sex",
-                account.Gender,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("birthOfDate",
-                account.Bod,
-                dbType: DbType.DateTime,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("addr",
-                account.Address,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("st",
-                account.Status,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("rName",
-                account.Rolename,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("profileImg",
-                account.ProfilePicture,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-
-            dbContext.Connection.ExecuteAsync(
-                "AccountPackage.UpdateAccount", parameters,
-                commandType: CommandType.StoredProcedure);
-
-            return true;
-        }
+        
     }
 }

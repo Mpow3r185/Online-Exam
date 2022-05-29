@@ -12,52 +12,121 @@ namespace Tahaluf.PlusExam.Infra.Repository
 {
     public class ScoreRepository : IScoreRepository
     {
+        #region Fields
         private readonly IDbContext _dbContext;
+        #endregion Fields
+
+        #region Constructor
         public ScoreRepository(IDbContext DbContext)
         {
             _dbContext = DbContext;
         }
+        #endregion Constructor
 
-        // Get All Scores
+        #region CRUD_Operation
+
+        #region GetScores
+        // Get Scores
         public List<Score> GetScores()
         {
-            IEnumerable<Score> result = _dbContext.Connection.Query<Score>("ScorePackage.GetAll", commandType: CommandType.StoredProcedure);
-            return result.ToList();
+            return _dbContext.Connection.Query<Score>(
+                "ScorePackage.GetAll",
+                commandType: CommandType.StoredProcedure).ToList();
         }
+        #endregion GetScores
 
-        // Create
+        #region CreateScore
+        // Create Score
         public bool CreateScore(Score score)
         {
-            var p = new DynamicParameters();
-            p.Add("SCGRADE", score.Grade, dbType: DbType.Double, direction: ParameterDirection.Input);
-            p.Add("SCSTATUS", score.Status, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("EXID", score.ExamId, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            p.Add("ACCID", score.AccountId, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            var result = _dbContext.Connection.ExecuteAsync("ScorePackage.CreateScore", p, commandType: CommandType.StoredProcedure);
+            #region DynamicParameters
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("SCGRADE",
+                score.Grade, 
+                dbType: DbType.Double, 
+                direction: ParameterDirection.Input);
+
+            parameters.Add("SCSTATUS",
+                score.Status,
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("EXID",
+                score.ExamId, 
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("ACCID",
+                score.AccountId,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+            #endregion DynamicParameters
+
+            _dbContext.Connection.ExecuteAsync(
+                "ScorePackage.CreateScore", parameters,
+                commandType: CommandType.StoredProcedure);
+            
             return true;
         }
+        #endregion CreateScore
 
-        //Update
+        #region UpdateScore
+        // Update Score
         public bool UpdateScore(Score score)
         {
-            var p = new DynamicParameters();
-            p.Add("SCOREID", score.Id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            p.Add("SCGRADE", score.Grade, dbType: DbType.Double, direction: ParameterDirection.Input);
-            p.Add("SCSTATUS", score.Status, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("EXID", score.ExamId, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            p.Add("ACCID", score.AccountId, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            var result = _dbContext.Connection.ExecuteAsync("ScorePackage.UpdateScore", p, commandType: CommandType.StoredProcedure);
+            #region DynamicParameters
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("SCOREID", 
+                score.Id, 
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("SCGRADE", 
+                score.Grade, 
+                dbType: DbType.Double,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("SCSTATUS",
+                score.Status, dbType: DbType.String,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("EXID",
+                score.ExamId,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("ACCID",
+                score.AccountId, 
+                dbType: DbType.Int32, 
+                direction: ParameterDirection.Input);
+            #endregion DynamicParameters
+
+            _dbContext.Connection.ExecuteAsync(
+                "ScorePackage.UpdateScore", parameters, 
+                commandType: CommandType.StoredProcedure);
+            
             return true;
         }
+        #endregion UpdateScore
 
-        //Delete
+        #region DeleteScore
+        // Delete Score
         public bool DeleteScore(int id)
         {
-            var p = new DynamicParameters();
-            p.Add("SCOREID", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            var result = _dbContext.Connection.ExecuteAsync("ScorePackage.DeleteScore", p, commandType: CommandType.StoredProcedure);
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("SCOREID", 
+                id,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            _dbContext.Connection.ExecuteAsync(
+                "ScorePackage.DeleteScore", parameters, 
+                commandType: CommandType.StoredProcedure);
+            
             return true;
         }
+        #endregion DeleteScore
 
+        #endregion CRUD_Operation
     }
 }

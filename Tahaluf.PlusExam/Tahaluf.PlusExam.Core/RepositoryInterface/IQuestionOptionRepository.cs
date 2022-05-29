@@ -8,7 +8,7 @@ namespace Tahaluf.PlusExam.Core.RepositoryInterface
     public interface IQuestionOptionRepository
     {
         // Get QuestionsOptions
-        List<QuestionOption> QuestionsOptions();
+        List<QuestionOption> GetQuestionsOptions();
 
         // Create QuestionsOptions
         bool CreateQuestionOption(QuestionOption questionOption);

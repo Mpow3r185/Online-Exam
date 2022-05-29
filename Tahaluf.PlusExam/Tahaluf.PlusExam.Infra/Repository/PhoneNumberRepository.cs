@@ -12,48 +12,102 @@ namespace Tahaluf.PlusExam.Infra.Repository
 {
     public class PhoneNumberRepository : IPhoneNumberRepository
     {
+        #region Fields
         private readonly IDbContext _dbContext;
+        #endregion Fields
+
+        #region Constructor
         public PhoneNumberRepository(IDbContext DbContext)
         {
             _dbContext = DbContext;
         }
-        // Get All Phone Numbers
+        #endregion Constructor
+
+        #region CRUD_Operation
+
+        #region GetPhoneNumbers
+        // Get Phone Numbers
         public List<PhoneNumber> GetPhoneNumbers()
         {
-            IEnumerable<PhoneNumber> result = _dbContext.Connection.Query<PhoneNumber>("PhoneNumberPackage.GetAll", commandType: CommandType.StoredProcedure);
-            return result.ToList();
+            return _dbContext.Connection.Query<PhoneNumber>(
+                "PhoneNumberPackage.GetAll", 
+                commandType: CommandType.StoredProcedure).ToList();
         }
+        #endregion GetPhoneNumbers
 
-        // Create
+        #region CreatePhoneNumber
+        // Create Phone Number
         public bool CreatePhoneNumber(PhoneNumber phoneNumber)
         {
-            var p = new DynamicParameters();
-            p.Add("PHNUM", phoneNumber.PhoneNum, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("ACCID", phoneNumber.AccountId, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            var result = _dbContext.Connection.ExecuteAsync("PhoneNumberPackage.CreatePhoneNumber", p, commandType: CommandType.StoredProcedure);
+            #region DynamicParameters
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("PHNUM", 
+                phoneNumber.PhoneNum, 
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("ACCID",
+                phoneNumber.AccountId, 
+                dbType: DbType.Int32, 
+                direction: ParameterDirection.Input);
+            #endregion DynamicParameters
+
+            _dbContext.Connection.ExecuteAsync(
+                "PhoneNumberPackage.CreatePhoneNumber", parameters, 
+                commandType: CommandType.StoredProcedure);
+
             return true;
         }
+        #endregion CreatePhoneNumber
 
-        //Update 
+        #region UpdatePhoneNumber
+        // Update Phone Number
         public bool UpdatePhoneNumber(PhoneNumber phoneNumber)
         {
-            var p = new DynamicParameters();
-            p.Add("PHNUMID", phoneNumber.Id, DbType.Int32, direction: ParameterDirection.Input);
-            p.Add("PHNUM", phoneNumber.PhoneNum, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("ACCID", phoneNumber.AccountId, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            var result = _dbContext.Connection.ExecuteAsync("PhoneNumberPackage.UpdatePhoneNumber", p, commandType: CommandType.StoredProcedure);
+            #region DynamicParameters
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("PHNUMID", 
+                phoneNumber.Id,
+                DbType.Int32, 
+                direction: ParameterDirection.Input);
+
+            parameters.Add("PHNUM",
+                phoneNumber.PhoneNum, 
+                dbType: DbType.String, 
+                direction: ParameterDirection.Input);
+
+            parameters.Add("ACCID", 
+                phoneNumber.AccountId, 
+                dbType: DbType.Int32, 
+                direction: ParameterDirection.Input);
+            #endregion DynamicParameters
+
+            _dbContext.Connection.ExecuteAsync(
+                "PhoneNumberPackage.UpdatePhoneNumber", parameters, 
+                commandType: CommandType.StoredProcedure);
+
             return true;
         }
+        #endregion UpdatePhoneNumber
 
-        //Delete
+        #region DeletePhoneNumber
+        // Delete Phone Number
         public bool DeletePhoneNumber(int id)
         {
-            var p = new DynamicParameters();
-            p.Add("PHNUMID", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            var result = _dbContext.Connection.ExecuteAsync("PhoneNumberPackage.DeletePhoneNumber", p, commandType: CommandType.StoredProcedure);
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("PHNUMID", 
+                id, 
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            _dbContext.Connection.ExecuteAsync(
+                "PhoneNumberPackage.DeletePhoneNumber", parameters,
+                commandType: CommandType.StoredProcedure);
+
             return true;
         }
+        #endregion DeletePhoneNumber
 
-       
+        #endregion CRUD_Operation
     }
 }

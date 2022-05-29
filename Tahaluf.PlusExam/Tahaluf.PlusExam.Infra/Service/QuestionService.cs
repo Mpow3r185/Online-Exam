@@ -29,7 +29,7 @@ namespace Tahaluf.PlusExam.Infra.Service
 
         public List<Question> GetAllQuestion()
         {
-            return _questionRepository.Questions();
+            return _questionRepository.GetQuestions();
         }
 
         public bool UpdateQuestion(Question question)

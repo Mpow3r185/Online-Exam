@@ -13,15 +13,23 @@ namespace Tahaluf.PlusExam.Infra.Repository
 {
     public class CourseRepository : ICourseRepository
     {
+        #region Fields
         private readonly IDbContext dbContext;
+        #endregion Fields
 
+        #region Constructor
         public CourseRepository(IDbContext _dbContext)
         {
             dbContext = _dbContext;
         }
+        #endregion Constructor
 
+        #region CRUD_Operation
+
+        #region CreateCourse
         public bool CreateCourse(Course course)
         {
+            #region DynamicParameters
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("cName",
                 course.CourseName,
@@ -42,6 +50,7 @@ namespace Tahaluf.PlusExam.Infra.Repository
                 course.CourseImage,
                 dbType: DbType.String,
                 direction: ParameterDirection.Input);
+            #endregion DynamicParameters
 
             dbContext.Connection.ExecuteAsync(
                 "CoursePackage.CreateCourse", parameters,
@@ -49,7 +58,9 @@ namespace Tahaluf.PlusExam.Infra.Repository
 
             return true;
         }
+        #endregion CreateCourse
 
+        #region DeleteCourse
         public bool DeleteCourse(int cid)
         {
             DynamicParameters parameters = new DynamicParameters();
@@ -64,41 +75,21 @@ namespace Tahaluf.PlusExam.Infra.Repository
 
             return true;
         }
+        #endregion DeleteCourse
 
+        #region GetCourses
         public List<Course> GetCourses()
         {
             return dbContext.Connection.Query<Course>(
                 "CoursePackage.GetCourses",
                 commandType : CommandType.StoredProcedure).ToList();
         }
+        #endregion GetCourses
 
-        public List<string> GetCoursesNames()
-        {
-            return dbContext.Connection.Query<string>(
-                "CoursePackage.GetCoursesNames",
-                commandType: CommandType.StoredProcedure).ToList();
-        }
-
-        public List<Course> SearchCourse(CourseFilter courseFilter)
-        {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("cid",
-                courseFilter.Cid,
-                dbType : DbType.Int32,
-                direction : ParameterDirection.Input);
-
-            parameters.Add("cName",
-                courseFilter.CName,
-                dbType : DbType.String,
-                direction : ParameterDirection.Input);
-
-            return dbContext.Connection.Query<Course>(
-                "CoursePackage.SearchCourse", parameters,
-                commandType: CommandType.StoredProcedure).ToList();
-        }
-
+        #region UpdateCourse
         public bool UpdateCourse(Course course)
         {
+            #region DynamicParameters
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("cid",
                 course.Id,
@@ -124,12 +115,41 @@ namespace Tahaluf.PlusExam.Infra.Repository
                 course.CourseImage,
                 dbType: DbType.String,
                 direction: ParameterDirection.Input);
+            #endregion DynamicParameters
 
             dbContext.Connection.ExecuteAsync(
                 "CoursePackage.UpdateCourse", parameters,
                 commandType: CommandType.StoredProcedure);
 
             return true;
+        }
+        #endregion UpdateCourse
+
+        #endregion CRUD_Operation
+
+        public List<string> GetCoursesNames()
+        {
+            return dbContext.Connection.Query<string>(
+                "CoursePackage.GetCoursesNames",
+                commandType: CommandType.StoredProcedure).ToList();
+        }
+
+        public List<Course> SearchCourse(CourseFilter courseFilter)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("cid",
+                courseFilter.Cid,
+                dbType : DbType.Int32,
+                direction : ParameterDirection.Input);
+
+            parameters.Add("cName",
+                courseFilter.CName,
+                dbType : DbType.String,
+                direction : ParameterDirection.Input);
+
+            return dbContext.Connection.Query<Course>(
+                "CoursePackage.SearchCourse", parameters,
+                commandType: CommandType.StoredProcedure).ToList();
         }
     }
 }

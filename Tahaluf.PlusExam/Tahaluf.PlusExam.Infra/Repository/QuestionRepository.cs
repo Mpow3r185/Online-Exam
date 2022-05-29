@@ -12,52 +12,128 @@ namespace Tahaluf.PlusExam.Infra.Repository
 {
     public class QuestionRepository : IQuestionRepository
     {
+        #region Fields
         private readonly IDbContext _dbContext;
+        #endregion Fields
+
+        #region Constructor
         public QuestionRepository(IDbContext DbContext)
         {
             _dbContext = DbContext;
         }
+        #endregion Constructor
 
+        #region CRUD_Operation
+
+        #region CreateQuestion
         public bool CreateQuestion(Question question)
         {
-            var p = new DynamicParameters();
-            p.Add("QContent", question.QuestionContent, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("QType", question.Type, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("QScore", question.Score, dbType: DbType.Double, direction: ParameterDirection.Input);
-            p.Add("QStatues", question.Status, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("QExamId", question.ExamId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            #region DynamicParameters
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("QContent",
+                question.QuestionContent,
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
 
-            var result = _dbContext.Connection.ExecuteAsync("QuestionPackage.CreateQuestion", p, commandType: CommandType.StoredProcedure);
+            parameters.Add("QType",
+                question.Type, 
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("QScore",
+                question.Score,
+                dbType: DbType.Double,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("QStatues",
+                question.Status, 
+                dbType: DbType.String, 
+                direction: ParameterDirection.Input);
+
+            parameters.Add("QExamId",
+                question.ExamId,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+            #endregion DynamicParameters
+
+            _dbContext.Connection.ExecuteAsync(
+                "QuestionPackage.CreateQuestion", parameters, 
+                commandType: CommandType.StoredProcedure);
+            
             return true;
         }
+        #endregion CreateQuestion
 
+        #region DeleteQuestion
         public bool DeleteQuestion(int id)
         {
-            var p = new DynamicParameters();
-            p.Add("Qid", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("Qid",
+                id, 
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
            
-            var result = _dbContext.Connection.ExecuteAsync("QuestionPackage.DeleteQuestion", p, commandType: CommandType.StoredProcedure);
+            _dbContext.Connection.ExecuteAsync(
+                "QuestionPackage.DeleteQuestion", parameters,
+                commandType: CommandType.StoredProcedure);
+
             return true;
         }
+        #endregion DeleteQuestion
 
-        public List<Question> Questions()
+        #region GetQuestions
+        public List<Question> GetQuestions()
         {
-            IEnumerable<Question> result = _dbContext.Connection.Query<Question>("QuestionPackage.GetAllQuestion", commandType: CommandType.StoredProcedure);
-            return result.ToList();
+            return _dbContext.Connection.Query<Question>(
+                "QuestionPackage.GetAllQuestion",
+                commandType: CommandType.StoredProcedure).ToList();
         }
+        #endregion GetQuestions
 
+        #region UpdateQuestion
         public bool UpdateQuestion(Question question)
         {
-            var p = new DynamicParameters();
-            p.Add("Qid", question.Id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            p.Add("QContent", question.QuestionContent, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("QType", question.Type, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("QScore", question.Score, dbType: DbType.Double, direction: ParameterDirection.Input);
-            p.Add("QStatues", question.Status, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("QExamId", question.ExamId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            #region DynamicParameters
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("Qid", 
+                question.Id, 
+                dbType: DbType.Int32, 
+                direction: ParameterDirection.Input);
 
-            var result = _dbContext.Connection.ExecuteAsync("QuestionPackage.UpdateQuestion", p, commandType: CommandType.StoredProcedure);
+            parameters.Add("QContent",
+                question.QuestionContent,
+                dbType: DbType.String, 
+                direction: ParameterDirection.Input);
+
+            parameters.Add("QType", 
+                question.Type, 
+                dbType: DbType.String, 
+                direction: ParameterDirection.Input);
+
+            parameters.Add("QScore", 
+                question.Score, 
+                dbType: DbType.Double,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("QStatues", 
+                question.Status, 
+                dbType: DbType.String, 
+                direction: ParameterDirection.Input);
+
+            parameters.Add("QExamId",
+                question.ExamId, 
+                dbType: DbType.Int32, 
+                direction: ParameterDirection.Input);
+            #endregion DynamicParameters
+
+            _dbContext.Connection.ExecuteAsync(
+                "QuestionPackage.UpdateQuestion", parameters,
+                commandType: CommandType.StoredProcedure);
+
             return true;
         }
+        #endregion UpdateQuestion
+
+        #endregion CRUD_Operation
     }
 }

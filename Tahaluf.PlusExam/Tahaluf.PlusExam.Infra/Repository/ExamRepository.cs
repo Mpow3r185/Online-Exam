@@ -13,15 +13,23 @@ namespace Tahaluf.PlusExam.Infra.Repository
 {
     public class ExamRepository : IExamRepository
     {
+        #region Fields
         private readonly IDbContext dbContext;
+        #endregion Fields
 
+        #region Constructor
         public ExamRepository(IDbContext _dbContext)
         {
             dbContext = _dbContext;
         }
+        #endregion Constructor
 
+        #region CRUD_Operation
+
+        #region CreateExam
         public bool CreateExam(Exam exam)
         {
+            #region DynamicParameters
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("cid",
                 exam.CourseId,
@@ -77,7 +85,7 @@ namespace Tahaluf.PlusExam.Infra.Repository
                 exam.CreationDate,
                 dbType: DbType.DateTime,
                 direction: ParameterDirection.Input);
-
+            #endregion DynamicParameters
 
             dbContext.Connection.ExecuteAsync(
                 "ExamPackage.CreateExam", parameters,
@@ -85,7 +93,9 @@ namespace Tahaluf.PlusExam.Infra.Repository
 
             return true;
         }
+        #endregion CreateExam
 
+        #region DeleteExam
         public bool DeleteExam(int exid)
         {
             DynamicParameters parameters = new DynamicParameters();
@@ -100,60 +110,21 @@ namespace Tahaluf.PlusExam.Infra.Repository
 
             return true;
         }
+        #endregion DeleteExam
 
+        #region GetExams
         public List<Exam> GetExams()
         {
             return dbContext.Connection.Query<Exam>(
                 "ExamPackage.GetExams",
                 commandType: CommandType.StoredProcedure).ToList();
         }
+        #endregion GetExams
 
-        public List<Exam> SearchExam(ExamFilter examFilter)
-        {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("exTitle",
-                examFilter.ExTitle,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("exLevel",
-                examFilter.ExLevel,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("succMark",
-                examFilter.SuccMark,
-                dbType: DbType.Decimal,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("price",
-                examFilter.Price,
-                dbType: DbType.Decimal,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("stDate",
-                examFilter.StDate,
-                dbType: DbType.DateTime,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("enDate",
-                examFilter.EnDate,
-                dbType: DbType.DateTime,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("createDate",
-                examFilter.CreateDate,
-                dbType: DbType.DateTime,
-                direction: ParameterDirection.Input);
-
-
-            return dbContext.Connection.Query<Exam>(
-                "ExamPackage.SearchExam", parameters,
-                commandType: CommandType.StoredProcedure).ToList();
-        }
-
+        #region UpdateExam
         public bool UpdateExam(Exam exam)
         {
+            #region DynamicParameters
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("exid",
                 exam.Id,
@@ -214,13 +185,61 @@ namespace Tahaluf.PlusExam.Infra.Repository
                 exam.CreationDate,
                 dbType: DbType.DateTime,
                 direction: ParameterDirection.Input);
-
+            #endregion DynamicParameters
 
             dbContext.Connection.ExecuteAsync(
                 "ExamPackage.UpdateExam", parameters,
                 commandType: CommandType.StoredProcedure);
 
             return true;
+        }
+        #endregion UpdateExam
+
+        #endregion CRUD_Operation
+
+        public List<Exam> SearchExam(ExamFilter examFilter)
+        {
+            #region DynamicParameters
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("exTitle",
+                examFilter.ExTitle,
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("exLevel",
+                examFilter.ExLevel,
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("succMark",
+                examFilter.SuccMark,
+                dbType: DbType.Decimal,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("price",
+                examFilter.Price,
+                dbType: DbType.Decimal,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("stDate",
+                examFilter.StDate,
+                dbType: DbType.DateTime,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("enDate",
+                examFilter.EnDate,
+                dbType: DbType.DateTime,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("createDate",
+                examFilter.CreateDate,
+                dbType: DbType.DateTime,
+                direction: ParameterDirection.Input);
+            #endregion DynamicParameters
+
+            return dbContext.Connection.Query<Exam>(
+                "ExamPackage.SearchExam", parameters,
+                commandType: CommandType.StoredProcedure).ToList();
         }
     }
 }
