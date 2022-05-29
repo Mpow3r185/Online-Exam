@@ -27,7 +27,7 @@ namespace Tahaluf.PlusExam.Infra.Service
 
         public List<Score> GetAll()
         {
-            return _scoreRepository.GetAll();
+            return _scoreRepository.GetScores();
         }
 
         public bool UpdateScore(Score score)

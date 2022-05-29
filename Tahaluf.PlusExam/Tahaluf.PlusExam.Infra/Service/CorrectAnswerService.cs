@@ -27,7 +27,7 @@ namespace Tahaluf.PlusExam.Infra.Service
 
         public List<CorrectAnswer> GetAll()
         {
-            return _correctAnswerRepository.GetAll();
+            return _correctAnswerRepository.GetCorrectAnswers();
         }
 
         public bool UpdateCorrectAnswer(CorrectAnswer correctAnswer)

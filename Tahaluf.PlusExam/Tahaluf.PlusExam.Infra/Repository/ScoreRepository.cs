@@ -19,7 +19,7 @@ namespace Tahaluf.PlusExam.Infra.Repository
         }
 
         // Get All Scores
-        public List<Score> GetAll()
+        public List<Score> GetScores()
         {
             IEnumerable<Score> result = _dbContext.Connection.Query<Score>("ScorePackage.GetAll", commandType: CommandType.StoredProcedure);
             return result.ToList();

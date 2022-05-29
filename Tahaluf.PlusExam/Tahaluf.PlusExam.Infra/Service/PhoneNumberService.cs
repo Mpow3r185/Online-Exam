@@ -28,7 +28,7 @@ namespace Tahaluf.PlusExam.Infra.Service
 
         public List<PhoneNumber> GetAll()
         {
-            return _phoneNumberRepository.GetAll();
+            return _phoneNumberRepository.GetPhoneNumbers();
         }
 
         public bool UpdatePhoneNumber(PhoneNumber phoneNumber)

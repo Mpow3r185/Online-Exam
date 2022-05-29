@@ -7,13 +7,16 @@ namespace Tahaluf.PlusExam.Core.ServiceInterface
 {
     public interface IScoreService
     {
-        //Get All Scores
-        List<Score> GetAll();
-        //Create
+        // Get Scores
+        List<Score> GetScores();
+
+        // Create Score
         bool CreateScore(Score score);
-        //Update
+
+        // Update Score
         bool UpdateScore(Score score);
-        //Delete
+
+        // Delete Score
         bool DeleteScore(int id);
     }
 }

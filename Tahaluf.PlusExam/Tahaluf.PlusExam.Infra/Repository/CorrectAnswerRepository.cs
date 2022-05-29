@@ -19,7 +19,7 @@ namespace Tahaluf.PlusExam.Infra.Repository
         }
 
         // Get All Correct Answers
-        public List<CorrectAnswer> GetAll()
+        public List<CorrectAnswer> GetCorrectAnswers()
         {
             IEnumerable<CorrectAnswer> result = _dbContext.Connection.Query<CorrectAnswer>("CorrectAnswerPackage.GetAll", commandType: CommandType.StoredProcedure);
             return result.ToList();

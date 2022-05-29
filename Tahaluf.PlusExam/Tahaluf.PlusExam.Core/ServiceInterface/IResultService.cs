@@ -7,13 +7,16 @@ namespace Tahaluf.PlusExam.Core.ServiceInterface
 {
     public interface IResultService
     {
-        //Get All Result
-        List<Result> GetAllResult();
-        //Create
+        // Get Results
+        List<Result> GetResults();
+
+        // Create Result
         bool CreateResult(Result result);
-        //Update
+
+        // Update Result
         bool UpdateResult(Result result);
-        //Delete
+
+        // Delete Result
         bool DeleteResult(int id);
     }
 }

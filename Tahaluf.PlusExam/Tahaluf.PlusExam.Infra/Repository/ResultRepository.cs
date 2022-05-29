@@ -37,7 +37,7 @@ namespace Tahaluf.PlusExam.Infra.Repository
             return true;
         }
 
-        public List<Result> GetAllResult()
+        public List<Result> GetResults()
         {
             IEnumerable<Result> result = _dbContext.Connection.Query<Result>("ResultPackage.GetAllResult", commandType: CommandType.StoredProcedure);
             return result.ToList();

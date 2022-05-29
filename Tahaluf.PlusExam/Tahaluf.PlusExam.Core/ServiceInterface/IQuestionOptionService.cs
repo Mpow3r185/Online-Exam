@@ -7,13 +7,16 @@ namespace Tahaluf.PlusExam.Core.ServiceInterface
 {
     public interface IQuestionOptionService
     {
-        //Get All QuestionOption
-        List<QuestionOption> GetAllQuestionOption();
-        //Create
+        // Get QuestionsOptions
+        List<QuestionOption> QuestionsOptions();
+
+        // Create QuestionsOptions
         bool CreateQuestionOption(QuestionOption questionOption);
-        //Update
+
+        // Update QuestionsOptions
         bool UpdateQuestionOption(QuestionOption questionOption);
-        //Delete
+
+        // Delete QuestionsOptions
         bool DeleteQuestionOption(int id);
     }
 }

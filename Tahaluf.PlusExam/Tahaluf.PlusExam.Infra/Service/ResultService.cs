@@ -28,7 +28,7 @@ namespace Tahaluf.PlusExam.Infra.Service
 
         public List<Result> GetAllResult()
         {
-            return _resultRepository.GetAllResult();
+            return _resultRepository.GetResults();
         }
 
         public bool UpdateResult(Result result)

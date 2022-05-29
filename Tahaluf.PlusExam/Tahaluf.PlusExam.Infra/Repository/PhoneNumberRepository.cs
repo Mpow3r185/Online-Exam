@@ -18,7 +18,7 @@ namespace Tahaluf.PlusExam.Infra.Repository
             _dbContext = DbContext;
         }
         // Get All Phone Numbers
-        public List<PhoneNumber> GetAll()
+        public List<PhoneNumber> GetPhoneNumbers()
         {
             IEnumerable<PhoneNumber> result = _dbContext.Connection.Query<PhoneNumber>("PhoneNumberPackage.GetAll", commandType: CommandType.StoredProcedure);
             return result.ToList();

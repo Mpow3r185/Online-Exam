@@ -40,7 +40,7 @@ namespace Tahaluf.PlusExam.Infra.Repository
             return true;
         }
 
-        public List<Question> GetAllQuestion()
+        public List<Question> Questions()
         {
             IEnumerable<Question> result = _dbContext.Connection.Query<Question>("QuestionPackage.GetAllQuestion", commandType: CommandType.StoredProcedure);
             return result.ToList();

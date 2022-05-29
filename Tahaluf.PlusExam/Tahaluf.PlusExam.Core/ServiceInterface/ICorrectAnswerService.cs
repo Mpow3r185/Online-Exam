@@ -7,13 +7,16 @@ namespace Tahaluf.PlusExam.Core.ServiceInterface
 {
     public interface ICorrectAnswerService
     {
-        //Get All Correct Answers
+        // Get Correct Answers
         List<CorrectAnswer> GetCorrectAnswers();
-        //Create
+
+        // Create Correct Answer
         bool CreateCorrectAnswer(CorrectAnswer correctAnswer);
-        //Update
+
+        // Update Correct Answer
         bool UpdateCorrectAnswer(CorrectAnswer correctAnswer);
-        //Delete
+
+        // Delete Correct Answer
         bool DeleteCorrectAnswer(int id);
     }
 }
