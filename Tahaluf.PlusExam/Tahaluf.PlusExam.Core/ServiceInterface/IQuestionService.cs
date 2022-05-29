@@ -8,7 +8,7 @@ namespace Tahaluf.PlusExam.Core.ServiceInterface
     public interface IQuestionService
     {
         // Get Questions
-        List<Question> Questions();
+        List<Question> GetQuestions();
 
         // Create Question
         bool CreateQuestion(Question question);

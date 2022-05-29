@@ -9,31 +9,52 @@ namespace Tahaluf.PlusExam.Infra.Service
 {
     public class AccountService : IAccountService
     {
+        #region Fields
         private readonly IAccountRepository accountRepository;
+        #endregion Fields
 
+        #region Constructor
         public AccountService(IAccountRepository _accountRepository)
         {
             accountRepository = _accountRepository;
         }
+        #endregion Constructor
 
-        public bool BlockUser(UniqueAccountData uniqueAccountData)
-        {
-            return accountRepository.BlockUser(uniqueAccountData);
-        }
+        #region CRUD_Operation
 
+        #region CreateAccount
         public bool CreateAccount(Account account)
         {
             return accountRepository.CreateAccount(account);
         }
+        #endregion CreateAccount
 
+        #region DeleteAccount
         public bool DeleteAccount(int accid)
         {
             return accountRepository.DeleteAccount(accid);
         }
+        #endregion DeleteAccount
 
+        #region GetAccounts
         public List<Account> GetAccounts()
         {
             return accountRepository.GetAccounts();
+        }
+        #endregion GetAccounts
+
+        #region UpdateAccount
+        public bool UpdateAccount(Account account)
+        {
+            return accountRepository.UpdateAccount(account);
+        }
+        #endregion UpdateAccount
+
+        #endregion CRUD_Operation
+
+        public bool BlockUser(UniqueAccountData uniqueAccountData)
+        {
+            return accountRepository.BlockUser(uniqueAccountData);
         }
 
         public List<Account> GetBlockAccounts()
@@ -69,11 +90,6 @@ namespace Tahaluf.PlusExam.Infra.Service
         public bool UnblockUser(UniqueAccountData uniqueAccountData)
         {
             return accountRepository.UnblockUser(uniqueAccountData);
-        }
-
-        public bool UpdateAccount(Account account)
-        {
-            return accountRepository.UpdateAccount(account);
         }
     }
 }

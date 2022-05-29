@@ -9,41 +9,57 @@ namespace Tahaluf.PlusExam.Infra.Service
 {
     public class CourseService : ICourseService
     {
+        #region Fields
         private readonly ICourseRepository courseRepository;
+        #endregion Fields
 
+        #region Constructor
         public CourseService(ICourseRepository _courseRepository)
         {
             courseRepository = _courseRepository;
         }
+        #endregion Constructor
 
+        #region CRUD_Operation
+
+        #region CreateCourse
         public bool CreateCourse(Course course)
         {
             return courseRepository.CreateCourse(course);
         }
+        #endregion CreateCourse
 
+        #region DeleteCourse
         public bool DeleteCourse(int cid)
         {
             return courseRepository.DeleteCourse(cid);
         }
+        #endregion DeleteCourse
 
+        #region GetCourses
         public List<Course> GetCourses()
         {
             return courseRepository.GetCourses();
         }
+        #endregion GetCourses
 
-        public List<string> GetCoursesNames()
+        #region UpdateCourse
+        public bool UpdateCourse(Course course)
         {
-            return courseRepository.GetCoursesNames();
+            return courseRepository.UpdateCourse(course);
         }
+        #endregion UpdateCourse
+
+        #endregion CRUD_Operation
 
         public List<Course> SearchCourse(CourseFilter courseFilter)
         {
             return courseRepository.SearchCourse(courseFilter);
         }
 
-        public bool UpdateCourse(Course course)
+        public List<string> GetCoursesNames()
         {
-            return courseRepository.UpdateCourse(course);
+            return courseRepository.GetCoursesNames();
         }
     }
 }

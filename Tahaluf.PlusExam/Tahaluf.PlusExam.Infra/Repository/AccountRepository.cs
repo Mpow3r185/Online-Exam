@@ -303,7 +303,5 @@ namespace Tahaluf.PlusExam.Infra.Repository
 
             return true;
         }
-
-        
     }
 }
