@@ -6,25 +6,35 @@ using Tahaluf.PlusExam.Core.ServiceInterface;
 
 namespace Tahaluf.PlusExam.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class CorrectAnswerController : ControllerBase
     {
+        #region Fiels
         private readonly ICorrectAnswerService _correctAnswerService;
+        #endregion Fiels
 
+        #region Constructor
         public CorrectAnswerController(ICorrectAnswerService correctAnswerService)
         {
             _correctAnswerService = correctAnswerService;
         }
-        //Get All Correct Answer
+        #endregion Constructor
+
+        #region CRUD_Operation
+
+        #region GetCorrectAnswers
+        // Get All Correct Answer
         [HttpGet]
         [ProducesResponseType(typeof(List<CorrectAnswer>), StatusCodes.Status200OK)]
-        public List<CorrectAnswer> GetAll()
+        public List<CorrectAnswer> GetCorrectAnswers()
         {
-            return _correctAnswerService.GetAll();
+            return _correctAnswerService.GetCorrectAnswers();
         }
+        #endregion GetCorrectAnswers
 
-        //Create
+        #region CreateCorrectAnswer
+        // Create Correct Answer
         [HttpPost]
         [ProducesResponseType(typeof(CorrectAnswer), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -32,8 +42,10 @@ namespace Tahaluf.PlusExam.API.Controllers
         {
             return _correctAnswerService.CreateCorrectAnswer(correctAnswer);
         }
+        #endregion CreateCorrectAnswer
 
-        //Update
+        #region UpdateCorrectAnswer
+        // Update Correct Answer
         [HttpPut]
         [ProducesResponseType(typeof(List<CorrectAnswer>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -41,13 +53,18 @@ namespace Tahaluf.PlusExam.API.Controllers
         {
             return _correctAnswerService.UpdateCorrectAnswer(correctAnswer);
         }
+        #endregion UpdateCorrectAnswer
 
-        //Delete
+        #region DeleteCorrectAnswer
+        // Delete Correct Answer
         [HttpDelete]
         [Route("delete/{id}")]
         public bool DeleteCorrectAnswer(int id)
         {
             return _correctAnswerService.DeleteCorrectAnswer(id);
         }
+        #endregion DeleteCorrectAnswer
+
+        #endregion CRUD_Operation
     }
 }

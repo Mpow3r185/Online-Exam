@@ -8,7 +8,7 @@ namespace Tahaluf.PlusExam.Core.ServiceInterface
     public interface ICorrectAnswerService
     {
         //Get All Correct Answers
-        List<CorrectAnswer> GetAll();
+        List<CorrectAnswer> GetCorrectAnswers();
         //Create
         bool CreateCorrectAnswer(CorrectAnswer correctAnswer);
         //Update

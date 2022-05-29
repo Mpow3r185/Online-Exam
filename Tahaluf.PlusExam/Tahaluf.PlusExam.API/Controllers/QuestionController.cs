@@ -6,27 +6,35 @@ using Tahaluf.PlusExam.Core.ServiceInterface;
 
 namespace Tahaluf.PlusExam.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class QuestionController : ControllerBase
     {
+        #region Fields
         private readonly IQuestionService _questionService;
+        #endregion Fields
 
+        #region Constructor
         public QuestionController(IQuestionService questionService)
         {
             _questionService = questionService;
         }
+        #endregion Constructor
 
+        #region CRUD_Operation
 
-        //Get All Question
+        #region GetQuestions
+        //Get All Questions
         [HttpGet]
         [ProducesResponseType(typeof(List<Question>), StatusCodes.Status200OK)]
-        public List<Question> GetAllQuestion()
+        public List<Question> GetQuestions()
         {
-            return _questionService.GetAllQuestion();
+            return _questionService.GetQuestions();
         }
+        #endregion GetQuestions
 
-        //Create
+        #region CreateQuestion
+        // Create Question
         [HttpPost]
         [ProducesResponseType(typeof(Question), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -34,8 +42,10 @@ namespace Tahaluf.PlusExam.API.Controllers
         {
             return _questionService.CreateQuestion(question);
         }
+        #endregion CreateQuestion
 
-        //Update
+        #region UpdateQuestion
+        // Update Question
         [HttpPut]
         [ProducesResponseType(typeof(List<Question>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -43,13 +53,18 @@ namespace Tahaluf.PlusExam.API.Controllers
         {
             return _questionService.UpdateQuestion(question);
         }
+        #endregion UpdateQuestion
 
-        //Delete
+        #region DeleteQuestion
+        // Delete Question
         [HttpDelete]
-        [Route("delete/{id}")]
+        [Route("DeleteQuestion/{id}")]
         public bool DeleteQuestion(int id)
         {
             return _questionService.DeleteQuestion(id);
         }
+        #endregion DeleteQuestion
+
+        #endregion CRUD_Operation
     }
 }

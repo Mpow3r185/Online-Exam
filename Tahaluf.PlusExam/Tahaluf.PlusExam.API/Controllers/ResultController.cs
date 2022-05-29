@@ -6,26 +6,35 @@ using Tahaluf.PlusExam.Core.ServiceInterface;
 
 namespace Tahaluf.PlusExam.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ResultController : ControllerBase
     {
+        #region Fields
         private readonly IResultService _resultService;
+        #endregion Field
 
+        #region Constructor
         public ResultController(IResultService resultService)
         {
             _resultService = resultService;
         }
+        #endregion Constructor
 
-        //Get All Result
+        #region CRUD_Operation
+
+        #region GetResults
+        // Get Results
         [HttpGet]
         [ProducesResponseType(typeof(List<Result>), StatusCodes.Status200OK)]
-        public List<Result> GetAllResult()
+        public List<Result> GetResults()
         {
-            return _resultService.GetAllResult();
+            return _resultService.GetResults();
         }
+        #endregion GetResults
 
-        //Create
+        #region CreateResult
+        // Create Result
         [HttpPost]
         [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -33,8 +42,10 @@ namespace Tahaluf.PlusExam.API.Controllers
         {
             return _resultService.CreateResult(result);
         }
+        #endregion CreateResult
 
-        //Update
+        #region UpdateResult
+        // Update Result
         [HttpPut]
         [ProducesResponseType(typeof(List<Result>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -42,13 +53,18 @@ namespace Tahaluf.PlusExam.API.Controllers
         {
             return _resultService.UpdateResult(result);
         }
+        #endregion UpdateResult
 
-        //Delete
+        #region DeleteResult
+        // Delete Result
         [HttpDelete]
-        [Route("delete/{id}")]
+        [Route("DeleteResult/{id}")]
         public bool DeleteResult(int id)
         {
             return _resultService.DeleteResult(id);
         }
+        #endregion DeleteResult
+
+        #endregion CRUD_Operation
     }
 }

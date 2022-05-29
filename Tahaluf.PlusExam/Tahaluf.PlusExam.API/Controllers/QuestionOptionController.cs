@@ -6,28 +6,35 @@ using Tahaluf.PlusExam.Core.ServiceInterface;
 
 namespace Tahaluf.PlusExam.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class QuestionOptionController : ControllerBase
     {
-
+        #region Fields
         private readonly IQuestionOptionService _questionOptionService;
+        #endregion Fields
 
+        #region Constructor
         public QuestionOptionController(IQuestionOptionService questionOptionService)
         {
             _questionOptionService = questionOptionService;
         }
+        #endregion Constructor
 
+        #region CRUD_Operation
 
-        //Get All QuestionOption
+        #region GetQuestionsOptions
+        // Get QuestionsOptions
         [HttpGet]
         [ProducesResponseType(typeof(List<QuestionOption>), StatusCodes.Status200OK)]
-        public List<QuestionOption> GetAllQuestionOption()
+        public List<QuestionOption> GetQuestionsOptions()
         {
-            return _questionOptionService.GetAllQuestionOption();
+            return _questionOptionService.GetQuestionsOptions();
         }
+        #endregion GetQuestionsOptions
 
-        //Create
+        #region CreateQuestionOption
+        // Create QuestionOption
         [HttpPost]
         [ProducesResponseType(typeof(QuestionOption), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -35,8 +42,10 @@ namespace Tahaluf.PlusExam.API.Controllers
         {
             return _questionOptionService.CreateQuestionOption(questionOption);
         }
+        #endregion CreateQuestionOption
 
-        //Update
+        #region UpdateQuestionOption
+        // Update QuestionOption
         [HttpPut]
         [ProducesResponseType(typeof(List<QuestionOption>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -44,13 +53,18 @@ namespace Tahaluf.PlusExam.API.Controllers
         {
             return _questionOptionService.UpdateQuestionOption(questionOption);
         }
+        #endregion UpdateQuestionOption
 
-        //Delete
+        #region DeleteQuestionOption
+        // Delete QuestionOption
         [HttpDelete]
-        [Route("delete/{id}")]
+        [Route("DeleteQuestionOption/{id}")]
         public bool DeleteQuestionOption(int id)
         {
             return _questionOptionService.DeleteQuestionOption(id);
         }
+        #endregion DeleteQuestionOption
+
+        #endregion CRUD_Operation
     }
 }
