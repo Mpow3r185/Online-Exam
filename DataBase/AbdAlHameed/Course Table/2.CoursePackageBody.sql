@@ -10,10 +10,10 @@ CREATE OR REPLACE PACKAGE BODY CoursePackage AS
         OPEN ref_cursor FOR
         SELECT *
         FROM Course;
-    
+
         DBMS_SQL.RETURN_RESULT(ref_cursor);
     END GetCourses;
-    
+
     -- Create Course Procedure
     PROCEDURE CreateCourse(
         cName IN Course.courseName%type,
@@ -24,10 +24,10 @@ CREATE OR REPLACE PACKAGE BODY CoursePackage AS
         INSERT INTO Course
         (courseName, description, status, courseimage)
         VALUES(cName, des, UPPER(st), cImage);
-        
+
         commit;
     END CreateCourse;
-    
+
     -- Update Course Procedure
     PROCEDURE UpdateCourse(
         cid IN Course.id%type,
@@ -42,19 +42,19 @@ CREATE OR REPLACE PACKAGE BODY CoursePackage AS
                 status = UPPER(st),
                 courseImage = cImage
             WHERE id = cid;
-        
+
         commit;
         END UpdateCourse;
-    
+
     -- Delete Course Procedure
     PROCEDURE DeleteCourse(cid IN Course.id%type) AS
     BEGIN
         DELETE FROM Course WHERE id = cid;
-        
+
         commit;
     END DeleteCourse;
     -- CRUD Procedures
-    
+
     -- Get Courses Names
     PROCEDURE GetCoursesNames AS
         ref_cursor SYS_REFCURSOR;
@@ -62,34 +62,26 @@ CREATE OR REPLACE PACKAGE BODY CoursePackage AS
         OPEN ref_cursor FOR
         SELECT courseName
         FROM Course;
-    
+
         DBMS_SQL.RETURN_RESULT(ref_cursor);
     END GetCoursesNames;
-    
-    -- Get Course By Course Id
-    PROCEDURE GetCourseById(cid IN Course.id%type) AS
+
+    -- Search Course Procedure
+    PROCEDURE SearchCourse(
+        cid IN Course.id%type,
+        cName IN Course.courseName%type) AS
+
         ref_cursor SYS_REFCURSOR;
     BEGIN
         OPEN ref_cursor FOR
         SELECT *
         FROM Course
-        WHERE id = cid;
-        
+        WHERE (cid IS NULL OR id = cid)
+        AND (cName IS NULL OR courseName LIKE '%' || cName || '%');
+
         DBMS_SQL.RETURN_RESULT(ref_cursor);
-    END GetCourseById;
-    
-    -- Search Course By Name
-    PROCEDURE GetCourseByName(cName IN Course.courseName%type) AS
-        ref_cursor SYS_REFCURSOR;
-    BEGIN
-        OPEN ref_cursor FOR
-        SELECT *
-        FROM Course
-        WHERE courseName LIKE '%' || cName || '%';
-        
-        DBMS_SQL.RETURN_RESULT(ref_cursor);
-    END GetCourseByName;
-    
+    END SearchCourse;
+
 END CoursePackage;
 
 -- End Code

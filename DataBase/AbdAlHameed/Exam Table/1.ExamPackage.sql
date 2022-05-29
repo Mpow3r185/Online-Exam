@@ -5,7 +5,7 @@ CREATE OR REPLACE PACKAGE ExamPackage AS
     -- CRUD Procedures
     -- Get Exams Procedure
     PROCEDURE GetExams;
-    
+
     -- Create Exam Procedure
     PROCEDURE CreateExam(
        cid IN exam.courseId%type,
@@ -19,7 +19,7 @@ CREATE OR REPLACE PACKAGE ExamPackage AS
        enDate IN exam.endDate%type,
        st IN exam.status%type,
        createDate IN exam.creationDate%type);
-       
+
     -- Update Exam Procedure
     PROCEDURE UpdateExam(
        exid IN exam.id%type,
@@ -34,11 +34,11 @@ CREATE OR REPLACE PACKAGE ExamPackage AS
        enDate IN exam.endDate%type,
        st IN exam.status%type,
        createDate IN exam.creationDate%type);
-       
+
     -- Delete Exam Procedure
     PROCEDURE DeleteExam(exid IN exam.id%type);
     -- CRUD Procedures
-    
+
     -- Search Exam Procedure
     PROCEDURE SearchExam(
         exTitle IN exam.title%type,
@@ -48,7 +48,7 @@ CREATE OR REPLACE PACKAGE ExamPackage AS
         stDate IN exam.startDate%type,
         enDate IN exam.endDate%type,
         createDate IN exam.creationDate%type);
-    
+
 END ExamPackage;
 
 -- End Code

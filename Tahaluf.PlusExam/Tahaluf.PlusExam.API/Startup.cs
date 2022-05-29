@@ -49,15 +49,18 @@ namespace Tahaluf.PlusExam.API
             services.AddScoped<ICreditCardRepository, CreditCardRepository>();
             // Invoice Repository
             services.AddScoped<IInvoiceRepository, InvoiceRepository>();
-            //Phone Number Repository
+            // Phone Number Repository
             services.AddScoped<IPhoneNumberRepository, PhoneNumberRepository>();
-            //Score Repository
+            // Score Repository
             services.AddScoped<IScoreRepository, ScoreRepository>();
-            //Correct Answer Repository
+            // CorrectAnswer Repository
             services.AddScoped<ICorrectAnswerRepository, CorrectAnswerRepository>();
-            
-            
-            
+            // Exam Repository
+            services.AddScoped<IExamRepository, ExamRepository>();
+            // Account Repository
+            services.AddScoped<IAccountRepository, AccountRepository>();
+
+
             // Question Service
             services.AddScoped<IQuestionService, QuestionService>();
             // QuestionOption Service
@@ -72,12 +75,16 @@ namespace Tahaluf.PlusExam.API
             services.AddScoped<ICreditCardService, CreditCardService>();
             // Invoice Service
             services.AddScoped<IInvoiceService, InvoiceService>();
-            //Phone Number Service
+            // Phone Number Service
             services.AddScoped<IPhoneNumberService, PhoneNumberService>();
-            //Score Service
+            // Score Service
             services.AddScoped<IScoreService, ScoreService>();
-            //Correct Answer Service
+            // CorrectAnswer Service
             services.AddScoped<ICorrectAnswerService, CorrectAnswerService>();
+            // Exam Service
+            services.AddScoped<IExamService, ExamService>();
+            // Account Service
+            services.AddScoped<IAccountService, AccountService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

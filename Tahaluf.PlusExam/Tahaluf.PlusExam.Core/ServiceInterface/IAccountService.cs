@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Tahaluf.PlusExam.Core.Data;
+using Tahaluf.PlusExam.Core.DTO;
 
 namespace Tahaluf.PlusExam.Core.RepositoryInterface
 {
@@ -29,11 +30,7 @@ namespace Tahaluf.PlusExam.Core.RepositoryInterface
         List<string> GetEmails();
 
         // Search Account
-        List<Account> SearchAccount(
-            string uName,
-            string mail,
-            string fName,
-            string rName);
+        List<Account> SearchAccount(AccountFilter accountFilter);
 
         // Get Block Accounts
         List<Account> GetBlockAccounts();
@@ -42,15 +39,9 @@ namespace Tahaluf.PlusExam.Core.RepositoryInterface
         List<string> GetBlockedUsernames();
 
         // Block User
-        bool BlockUser(
-            int? accid,
-            string uName,
-            string mail);
+        bool BlockUser(UniqueAccountData uniqueAccountData);
 
         // Unblock User
-        bool UnblockUser(
-            int? accid,
-            string uName,
-            string mail);
+        bool UnblockUser(UniqueAccountData uniqueAccountData);
     }
 }
