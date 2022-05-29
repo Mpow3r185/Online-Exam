@@ -9,36 +9,56 @@ using Tahaluf.PlusExam.Core.ServiceInterface;
 
 namespace Tahaluf.PlusExam.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class CertificateController : ControllerBase
     {
+        #region Fields
         private readonly ICertificateService certificateService;
+        #endregion Fields
 
+        #region Constructor
         public CertificateController(ICertificateService _certificateService)
         {
             certificateService = _certificateService;
         }
+        #endregion Constructor
+
+        #region CRUD_Operation
+
+        #region GetCertificates
         [HttpGet]
         public List<Certificate> GetCertificates()
         {
             return certificateService.GetCertificates();
         }
+        #endregion GetCertificates
+
+        #region CreateCertificate
         [HttpPost]
         public bool CreateCertificate(Certificate certificate)
         {
             return certificateService.CreateCertificate(certificate);
         }
+        #endregion CreateCertificate
+
+        #region UpdateCertificate
         [HttpPut]
         public bool UpdateCertificate(Certificate certificate)
         {
             return certificateService.UpdateCertificate(certificate);
         }
+        #endregion UpdateCertificate
+
+        #region DeleteCertificate
         [HttpDelete]
-        [Route("Delete/{id}")]
+        [Route("DeleteCertificate/{id}")]
         public bool DeleteCertificate(int id)
         {
             return certificateService.DeleteCertificate(id);
         }
+        #endregion DeleteCertificate
+
+        #endregion CRUD_Operation
     }
 }

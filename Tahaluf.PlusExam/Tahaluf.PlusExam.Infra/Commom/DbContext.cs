@@ -25,7 +25,6 @@ namespace Tahaluf.PlusExam.Infra.Commom
             {
                 if (_dbConnection == null)
                 {
-                    //connect
                     _dbConnection = new OracleConnection(_Configuration["ConnectionStrings:DBConnectionString"]);
                     _dbConnection.Open();
                 }

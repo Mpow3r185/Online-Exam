@@ -42,10 +42,10 @@ namespace Tahaluf.PlusExam.Core.Data
 
 
         public ICollection<Result> Results { get; set; }
-        //public ICollection<Invoice> Invoices { get; set; }
-        //public ICollection<Certificate> Certificates { get; set; }
-        //public ICollection<Creditcard> Creditcards {get; set; }
-        //public ICollection<Phonenumber> Phonenumbers { get; set; }
-        //public ICollection<Score> Scores { get; set; }
+        public ICollection<Invoice> Invoices { get; set; }
+        public ICollection<Certificate> Certificates { get; set; }
+        public ICollection<CreditCard> Creditcards { get; set; }
+        public ICollection<PhoneNumber> Phonenumbers { get; set; }
+        public ICollection<Score> Scores { get; set; }
     }
 }

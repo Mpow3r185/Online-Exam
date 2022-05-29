@@ -17,6 +17,6 @@ namespace Tahaluf.PlusExam.Core.Data
         public virtual Question Question { get; set; }
 
         public ICollection<Result> Results { get; set; }
-        //public ICollection<CorrectAnswer> correctAnswer { get; set; }
+        public ICollection<CorrectAnswer> CorrectAnswer { get; set; }
     }
 }

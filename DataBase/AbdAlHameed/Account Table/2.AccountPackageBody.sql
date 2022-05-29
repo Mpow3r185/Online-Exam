@@ -1,4 +1,6 @@
-create or replace PACKAGE BODY AccountPackage AS
+-- Start Code
+
+CREATE OR REPLACE PACKAGE BODY AccountPackage AS
     
     -- CRUD Procedures
     -- Get Accounts Procedure
@@ -126,7 +128,7 @@ create or replace PACKAGE BODY AccountPackage AS
 
         DBMS_SQL.RETURN_RESULT(ref_cursor);
     END SearchAccount;
-    
+
     -- Get Block Accounts Procedure
     PROCEDURE GetBlockAccounts AS
         ref_cursor SYS_REFCURSOR;
@@ -135,10 +137,10 @@ create or replace PACKAGE BODY AccountPackage AS
         SELECT *
         FROM Account
         WHERE status = 'BLOCK';
-        
+
         DBMS_SQL.RETURN_RESULT(ref_cursor);
     END GetBlockAccounts;
-    
+
     -- Get Blocked Usernames
     PROCEDURE GetBlockedUsernames AS
         ref_cursor SYS_REFCURSOR;
@@ -147,10 +149,10 @@ create or replace PACKAGE BODY AccountPackage AS
         SELECT username
         FROM Account
         WHERE status = 'BLOCK';
-        
+
         DBMS_SQL.RETURN_RESULT(ref_cursor);
     END GetBlockedUsernames;
-    
+
     -- Block User By Id, Username Or Email Procedure
     PROCEDURE BlockUser(
         accid IN account.id%type,
@@ -161,10 +163,10 @@ create or replace PACKAGE BODY AccountPackage AS
         WHERE (accid IS  NULL OR id = accid)
         AND (uName IS NULL OR username = uName)
         AND (mail IS  NULL OR email = mail);
-        
+
         commit;
     END BlockUser;
-    
+
     -- Unblock User By Id, Username Or Email Procedure
     PROCEDURE UnblockUser(
         accid IN account.id%type,
@@ -175,10 +177,28 @@ create or replace PACKAGE BODY AccountPackage AS
         WHERE (accid IS  NULL OR id = accid)
         AND (uName IS NULL OR username = uName)
         AND (mail IS  NULL OR email = mail);
-        
+
         commit;
     END UnblockUser;
     
+    -- Login Procedure
+    PROCEDURE Login(
+        uName IN account.username%type,
+        mail IN account.email%type,
+        passw IN account.password%type) AS
+        
+            ref_cursor SYS_REFCURSOR;
+        BEGIN
+            OPEN ref_cursor FOR
+            SELECT *
+            FROM Account
+            WHERE ((uName IS NULL AND mail IS NOT NULL AND email = mail)
+            OR (uName IS NOT NULL AND mail IS NULL AND username = uName))
+            AND password = passw;
+            
+            DBMS_SQL.RETURN_RESULT(ref_cursor);
+        END Login;
+
 END AccountPackage;
 
 -- End Code

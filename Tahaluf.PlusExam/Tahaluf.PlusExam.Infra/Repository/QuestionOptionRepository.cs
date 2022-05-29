@@ -12,46 +12,98 @@ namespace Tahaluf.PlusExam.Infra.Repository
 {
     public class QuestionOptionRepository : IQuestionOptionRepository
     {
+        #region Fields
         private readonly IDbContext _dbContext;
+        #endregion Fields
+
+        #region Constructor
         public QuestionOptionRepository(IDbContext DbContext)
         {
             _dbContext = DbContext;
         }
+        #endregion Constructor
 
+        #region CRUD_Operation
+
+        #region CreateQuestionOption
         public bool CreateQuestionOption(QuestionOption questionOption)
         {
-            var p = new DynamicParameters();
-            p.Add("OContent", questionOption.OptionContent, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("OQuestionId", questionOption.QuestionId, dbType: DbType.Int32, direction: ParameterDirection.Input);
-           
-            var result = _dbContext.Connection.ExecuteAsync("QuestionOptionPackage.CreateQuestionOption", p, commandType: CommandType.StoredProcedure);
+            #region DynamicParameters
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("OContent", 
+                questionOption.OptionContent,
+                dbType: DbType.String, 
+                direction: ParameterDirection.Input);
+
+            parameters.Add("OQuestionId",
+                questionOption.QuestionId,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+            #endregion DynamicParameters
+
+            _dbContext.Connection.ExecuteAsync(
+                "QuestionOptionPackage.CreateQuestionOption", parameters,
+                commandType: CommandType.StoredProcedure);
+            
             return true;
         }
+        #endregion CreateQuestionOption
 
+        #region DeleteQuestionOption
         public bool DeleteQuestionOption(int id)
         {
-            var p = new DynamicParameters();
-            p.Add("Oid", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("Oid",
+                id, 
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
 
-            var result = _dbContext.Connection.ExecuteAsync("QuestionOptionPackage.DeleteQuestionOption", p, commandType: CommandType.StoredProcedure);
+            _dbContext.Connection.ExecuteAsync(
+                "QuestionOptionPackage.DeleteQuestionOption", parameters,
+                commandType: CommandType.StoredProcedure);
+            
             return true;
         }
+        #endregion DeleteQuestionOption
 
-        public List<QuestionOption> GetAllQuestionOption()
+        #region GetQuestionsOptions
+        public List<QuestionOption> GetQuestionsOptions()
         {
-            IEnumerable<QuestionOption> result = _dbContext.Connection.Query<QuestionOption>("QuestionOptionPackage.GetAllQuestionOption", commandType: CommandType.StoredProcedure);
-            return result.ToList();
+            return _dbContext.Connection.Query<QuestionOption>(
+                "QuestionOptionPackage.GetAllQuestionOption",
+                commandType: CommandType.StoredProcedure).ToList();
         }
+        #endregion GetQuestionsOptions
 
+        #region UpdateQuestionOption
         public bool UpdateQuestionOption(QuestionOption questionOption)
         {
-            var p = new DynamicParameters();
-            p.Add("Oid", questionOption.Id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            p.Add("OContent", questionOption.OptionContent, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("OQuestionId", questionOption.QuestionId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            #region DynamicParameters
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("Oid",
+                questionOption.Id,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
 
-            var result = _dbContext.Connection.ExecuteAsync("QuestionOptionPackage.UpdateQuestionOption", p, commandType: CommandType.StoredProcedure);
+            parameters.Add("OContent",
+                questionOption.OptionContent,
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("OQuestionId",
+                questionOption.QuestionId, 
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+            #endregion DynamicParameters
+
+            _dbContext.Connection.ExecuteAsync(
+                "QuestionOptionPackage.UpdateQuestionOption", parameters,
+                commandType: CommandType.StoredProcedure);
+            
             return true;
         }
+        #endregion UpdateQuestionOption
+
+        #endregion CRUD_Operation
     }
 }

@@ -9,31 +9,47 @@ namespace Tahaluf.PlusExam.Infra.Service
 {
     public class QuestionOptionService : IQuestionOptionService
     {
+        #region Fields
         private readonly IQuestionOptionRepository _questionOptionRepository;
+        #endregion Fields
 
+        #region Constructor
         public QuestionOptionService(IQuestionOptionRepository questionOptionRepository)
         {
             _questionOptionRepository = questionOptionRepository;
         }
+        #endregion Constructor
 
+        #region CRUD_Operation
+
+        #region CreateQuestionOption
         public bool CreateQuestionOption(QuestionOption questionOption)
         {
             return _questionOptionRepository.CreateQuestionOption(questionOption);
         }
+        #endregion CreateQuestionOption
 
+        #region DeleteQuestionOption
         public bool DeleteQuestionOption(int id)
         {
             return _questionOptionRepository.DeleteQuestionOption(id);
         }
+        #endregion DeleteQuestionOption
 
-        public List<QuestionOption> GetAllQuestionOption()
+        #region GetQuestionsOptions
+        public List<QuestionOption> GetQuestionsOptions()
         {
-            return _questionOptionRepository.GetAllQuestionOption();
+            return _questionOptionRepository.GetQuestionsOptions();
         }
+        #endregion GetQuestionsOptions
 
+        #region UpdateQuestionOption
         public bool UpdateQuestionOption(QuestionOption questionOption)
         {
             return _questionOptionRepository.UpdateQuestionOption(questionOption);
         }
+        #endregion UpdateQuestionOption
+
+        #endregion CRUD_Operation
     }
 }

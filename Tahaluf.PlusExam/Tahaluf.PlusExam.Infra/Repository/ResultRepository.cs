@@ -12,46 +12,98 @@ namespace Tahaluf.PlusExam.Infra.Repository
 {
     public class ResultRepository : IResultRepository
     {
+        #region Fields
         private readonly IDbContext _dbContext;
+        #endregion Fields
+
+        #region Constructor
         public ResultRepository(IDbContext DbContext)
         {
             _dbContext = DbContext;
         }
+        #endregion Constructor
 
+        #region CRUD_Operation
+
+        #region CreateResult
         public bool CreateResult(Result result)
         {
-            var p = new DynamicParameters();
-            p.Add("RQuestionOptionId", result.QuestionOptionId, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            p.Add("RAccountId", result.AccountId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            #region DynamicParameters
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("RQuestionOptionId",
+                result.QuestionOptionId, 
+                dbType: DbType.Int32, 
+                direction: ParameterDirection.Input);
 
-            var QResult = _dbContext.Connection.ExecuteAsync("ResultPackage.CreateResult", p, commandType: CommandType.StoredProcedure);
+            parameters.Add("RAccountId",
+                result.AccountId, 
+                dbType: DbType.Int32, 
+                direction: ParameterDirection.Input);
+            #endregion DynamicParameters
+
+            _dbContext.Connection.ExecuteAsync(
+                "ResultPackage.CreateResult", parameters,
+                commandType: CommandType.StoredProcedure);
+            
             return true;
         }
+        #endregion CreateResult
 
+        #region DeleteResult
         public bool DeleteResult(int id)
         {
-            var p = new DynamicParameters();
-            p.Add("Rid", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("Rid",
+                id,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
 
-            var result = _dbContext.Connection.ExecuteAsync("ResultPackage.DeleteResult", p, commandType: CommandType.StoredProcedure);
+            _dbContext.Connection.ExecuteAsync(
+                "ResultPackage.DeleteResult", parameters,
+                commandType: CommandType.StoredProcedure);
+            
             return true;
         }
+        #endregion DeleteResult
 
-        public List<Result> GetAllResult()
+        #region GetResults
+        public List<Result> GetResults()
         {
-            IEnumerable<Result> result = _dbContext.Connection.Query<Result>("ResultPackage.GetAllResult", commandType: CommandType.StoredProcedure);
-            return result.ToList();
+            return _dbContext.Connection.Query<Result>(
+                "ResultPackage.GetAllResult", 
+                commandType: CommandType.StoredProcedure).ToList();
         }
+        #endregion GetResults
 
+        #region UpdateResult
         public bool UpdateResult(Result result)
         {
-            var p = new DynamicParameters();
-            p.Add("Rid", result.AccountId, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            p.Add("RQuestionOptionId", result.QuestionOptionId, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            p.Add("RAccountId", result.AccountId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            #region DynamicParameters
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("Rid",
+                result.AccountId,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
 
-            var QResult = _dbContext.Connection.ExecuteAsync("ResultPackage.UpdateResult", p, commandType: CommandType.StoredProcedure);
+            parameters.Add("RQuestionOptionId",
+                result.QuestionOptionId,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("RAccountId",
+                result.AccountId, 
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+            #endregion DynamicParameters
+
+            _dbContext.Connection.ExecuteAsync(
+                "ResultPackage.UpdateResult", parameters,
+                commandType: CommandType.StoredProcedure);
+            
             return true;
         }
+        #endregion UpdateResult
+
+        #endregion CRUD_Operation
     }
 }

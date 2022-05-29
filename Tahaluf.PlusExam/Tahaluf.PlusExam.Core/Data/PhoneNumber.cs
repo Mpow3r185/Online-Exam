@@ -14,8 +14,8 @@ namespace Tahaluf.PlusExam.Core.Data
         public string PhoneNum { get; set; }
         [Required]
         public int AccountId { get; set; }
-        //[ForeignKey("AccountId")]
-        //public virtual Account Account { get; set; }
+        [ForeignKey("AccountId")]
+        public virtual Account Account { get; set; }
 
     }
 }

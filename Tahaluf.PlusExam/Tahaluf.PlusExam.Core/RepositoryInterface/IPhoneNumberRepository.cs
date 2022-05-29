@@ -7,13 +7,16 @@ namespace Tahaluf.PlusExam.Core.RepositoryInterface
 {
     public interface IPhoneNumberRepository
     {
-        //Get All Phone Numbers
-        List<PhoneNumber> GetAll();
-        //Create
+        //Get Phone Numbers
+        List<PhoneNumber> GetPhoneNumbers();
+
+        // Create Phone Number
         bool CreatePhoneNumber(PhoneNumber phoneNumber);
-        //Update
+
+        // Update Phone Number
         bool UpdatePhoneNumber(PhoneNumber phoneNumber);
-        //Delete
+
+        // Delete Phone Number
         bool DeletePhoneNumber(int id);
     }
 }

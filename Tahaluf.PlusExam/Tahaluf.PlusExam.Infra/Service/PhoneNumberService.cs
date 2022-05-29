@@ -9,31 +9,47 @@ namespace Tahaluf.PlusExam.Infra.Service
 {
     public class PhoneNumberService : IPhoneNumberService
     {
+        #region Fields
         private readonly IPhoneNumberRepository _phoneNumberRepository;
+        #endregion Fields
+
+        #region Constructor
         public PhoneNumberService(IPhoneNumberRepository phoneNumberRepository)
         {
             _phoneNumberRepository = phoneNumberRepository;
-          
         }
+        #endregion Constructor
 
+        #region CRUD_Operation
+
+        #region CreatePhoneNumber
         public bool CreatePhoneNumber(PhoneNumber phoneNumber)
         {
             return _phoneNumberRepository.CreatePhoneNumber(phoneNumber);
         }
+        #endregion CreatePhoneNumber
 
+        #region DeletePhoneNumber
         public bool DeletePhoneNumber(int id)
         {
             return _phoneNumberRepository.DeletePhoneNumber(id);
         }
+        #endregion DeletePhoneNumber
 
-        public List<PhoneNumber> GetAll()
+        #region GetPhoneNumbers
+        public List<PhoneNumber> GetPhoneNumbers()
         {
-            return _phoneNumberRepository.GetAll();
+            return _phoneNumberRepository.GetPhoneNumbers();
         }
+        #endregion GetPhoneNumbers
 
+        #region UpdatePhoneNumber
         public bool UpdatePhoneNumber(PhoneNumber phoneNumber)
         {
             return _phoneNumberRepository.UpdatePhoneNumber(phoneNumber);
         }
+        #endregion UpdatePhoneNumber
+
+        #endregion CRUD_Operation
     }
 }

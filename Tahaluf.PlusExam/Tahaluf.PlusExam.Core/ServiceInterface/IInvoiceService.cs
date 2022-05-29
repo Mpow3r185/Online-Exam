@@ -7,9 +7,16 @@ namespace Tahaluf.PlusExam.Core.ServiceInterface
 {
     public interface IInvoiceService
     {
+        // Get Invoices
         List<Invoice> GetInvoices();
+
+        // Create Invoice
         bool CreateInvoice(Invoice invoice);
+
+        // Update Invoice
         bool UpdateInvoice(Invoice invoice);
+
+        // Delete Invoice
         bool DeleteInvoice(int id);
     }
 }

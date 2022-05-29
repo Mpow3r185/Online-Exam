@@ -7,13 +7,16 @@ namespace Tahaluf.PlusExam.Core.RepositoryInterface
 {
     public interface IQuestionOptionRepository
     {
-        //Get All QuestionOption
-        List<QuestionOption> GetAllQuestionOption();
-        //Create
+        // Get QuestionsOptions
+        List<QuestionOption> GetQuestionsOptions();
+
+        // Create QuestionsOptions
         bool CreateQuestionOption(QuestionOption questionOption);
-        //Update
+
+        // Update QuestionsOptions
         bool UpdateQuestionOption(QuestionOption questionOption);
-        //Delete
+
+        // Delete QuestionsOptions
         bool DeleteQuestionOption(int id);
     }
 }

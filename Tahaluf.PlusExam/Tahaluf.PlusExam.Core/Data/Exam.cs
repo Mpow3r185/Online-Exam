@@ -49,8 +49,8 @@ namespace Tahaluf.PlusExam.Core.Data
 
 
         public ICollection<Question> Questions { get; set; }
-        //public ICollection<Invoice> Invoices { get; set; }
-        //public ICollection<Certificate> Certificates { get; set; }
-        //public ICollection<Score> Scores { get; set; }
+        public ICollection<Invoice> Invoices { get; set; }
+        public ICollection<Certificate> Certificates { get; set; }
+        public ICollection<Score> Scores { get; set; }
     }
 }

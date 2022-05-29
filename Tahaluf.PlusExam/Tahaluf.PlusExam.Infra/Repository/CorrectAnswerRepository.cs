@@ -12,48 +12,88 @@ namespace Tahaluf.PlusExam.Infra.Repository
 {
     public class CorrectAnswerRepository : ICorrectAnswerRepository
     {
+        #region Fields
         private readonly IDbContext _dbContext;
+        #endregion Fields
+
+        #region Constructor
         public CorrectAnswerRepository(IDbContext DbContext)
         {
             _dbContext = DbContext;
         }
+        #endregion Constructor
 
-        // Get All Correct Answers
-        public List<CorrectAnswer> GetAll()
+        #region CRUD_Operation
+
+        #region GetCorrectAnswers
+        // Get Correct Answers
+        public List<CorrectAnswer> GetCorrectAnswers()
         {
-            IEnumerable<CorrectAnswer> result = _dbContext.Connection.Query<CorrectAnswer>("CorrectAnswerPackage.GetAll", commandType: CommandType.StoredProcedure);
-            return result.ToList();
+            return _dbContext.Connection.Query<CorrectAnswer>(
+                "CorrectAnswerPackage.GetAll",
+                commandType: CommandType.StoredProcedure).ToList();
         }
+        #endregion GetCorrectAnswers
 
-        // Create
+        #region CreateCorrectAnswer
+        // Create CorrectAnswer
         public bool CreateCorrectAnswer(CorrectAnswer correctAnswer)
         {
-            var p = new DynamicParameters();
-            p.Add("QOID", correctAnswer.QuestionOptionId, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            var result = _dbContext.Connection.ExecuteAsync("CorrectAnswerPackage.CreateCorrectAnswer", p, commandType: CommandType.StoredProcedure);
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("QOID", 
+                correctAnswer.QuestionOptionId, 
+                dbType: DbType.Int32, 
+                direction: ParameterDirection.Input);
+
+            _dbContext.Connection.ExecuteAsync(
+                "CorrectAnswerPackage.CreateCorrectAnswer", parameters,
+                commandType: CommandType.StoredProcedure);
+
             return true;
         }
+        #endregion CreateCorrectAnswer
 
-        //Update
+        #region UpdateCorrectAnswer
+        // Update CorrectAnswer
         public bool UpdateCorrectAnswer(CorrectAnswer correctAnswer)
         {
-            var p = new DynamicParameters();
-            p.Add("CANSWERID", correctAnswer.Id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            p.Add("QOID", correctAnswer.QuestionOptionId, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            var result = _dbContext.Connection.ExecuteAsync("CorrectAnswerPackage.UpdateCorrectAnswer", p, commandType: CommandType.StoredProcedure);
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("CANSWERID", 
+                correctAnswer.Id, 
+                dbType: DbType.Int32, 
+                direction: ParameterDirection.Input);
+
+            parameters.Add("QOID", 
+                correctAnswer.QuestionOptionId, 
+                dbType: DbType.Int32, 
+                direction: ParameterDirection.Input);
+
+            _dbContext.Connection.ExecuteAsync(
+                "CorrectAnswerPackage.UpdateCorrectAnswer", parameters,
+                commandType: CommandType.StoredProcedure);
+
             return true;
         }
+        #endregion UpdateCorrectAnswer
 
-        //Delete
+        #region DeleteCorrectAnswer
+        // Delete CorrectAnswer
         public bool DeleteCorrectAnswer(int id)
         {
-            var p = new DynamicParameters();
-            p.Add("CANSWERID", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            var result = _dbContext.Connection.ExecuteAsync("CorrectAnswerPackage.DeleteCorrectAnswer", p, commandType: CommandType.StoredProcedure);
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("CANSWERID",
+                id, 
+                dbType: DbType.Int32, 
+                direction: ParameterDirection.Input);
+
+            _dbContext.Connection.ExecuteAsync(
+                "CorrectAnswerPackage.DeleteCorrectAnswer", parameters,
+                commandType: CommandType.StoredProcedure);
+
             return true;
         }
+        #endregion DeleteCorrectAnswer
 
-        
-
+        #endregion CRUD_Operation
     }
 }
