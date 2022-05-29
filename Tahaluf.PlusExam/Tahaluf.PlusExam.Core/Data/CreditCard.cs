@@ -13,7 +13,7 @@ namespace Tahaluf.PlusExam.Core.Data
         public int CardNumber { get; set; }
         public float Balance { get; set; }
 
-        public int? AccountId { get; set; }
+        public int AccountId { get; set; }
         [ForeignKey("AccountId")]
          public virtual Account Account{ get; set; }
 
