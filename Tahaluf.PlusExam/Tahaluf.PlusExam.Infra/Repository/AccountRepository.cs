@@ -303,5 +303,23 @@ namespace Tahaluf.PlusExam.Infra.Repository
 
             return true;
         }
+        
+        public Account UserLogin(UserInfoDTO userInfoDTO)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("uName",
+                userInfoDTO.Username,
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
+            parameters.Add("passw",
+                            userInfoDTO.Password,
+                            dbType: DbType.String,
+                            direction: ParameterDirection.Input); 
+            IEnumerable<Account> result = dbContext.Connection.Query<Account>(
+                "AccountPackage.Login", parameters,
+                commandType: CommandType.StoredProcedure);
+            return result.FirstOrDefault();
+
+        }
     }
 }
