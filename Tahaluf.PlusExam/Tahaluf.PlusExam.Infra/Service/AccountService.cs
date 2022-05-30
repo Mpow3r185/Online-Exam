@@ -1,5 +1,8 @@
-﻿using System;
+using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
 using System.Text;
 using Tahaluf.PlusExam.Core.Data;
 using Tahaluf.PlusExam.Core.DTO;
