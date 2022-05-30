@@ -91,5 +91,34 @@ namespace Tahaluf.PlusExam.Infra.Service
         {
             return accountRepository.UnblockUser(uniqueAccountData);
         }
+        
+        public string UserLogin(UserInfoDTO userInfoDTO)
+        {
+            var LoginResult = accountRepository.UserLogin(userInfoDTO);
+
+            if (LoginResult != null)
+            {
+                var TokenHandler = new JwtSecurityTokenHandler();
+                var TokenKey = Encoding.ASCII.GetBytes("SECRET USED TO SIGN AND VERIFY JWT TOKENS, IT CAN BE ANY STRING ,JWT SECRET KEY IN SIGNATURE");
+
+                var TokenDes = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(new Claim[]
+                    {
+                        new Claim(ClaimTypes.Name,LoginResult.Username),
+                        new Claim(ClaimTypes.Role,LoginResult.Rolename)
+                    }),
+                    Expires = DateTime.UtcNow.AddDays(1),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(TokenKey),
+                    SecurityAlgorithms.HmacSha256Signature)
+                };
+                var token = TokenHandler.CreateToken(TokenDes);
+                return TokenHandler.WriteToken(token);
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }
