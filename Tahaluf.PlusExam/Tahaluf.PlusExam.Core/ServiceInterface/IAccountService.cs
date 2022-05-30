@@ -54,5 +54,9 @@ namespace Tahaluf.PlusExam.Core.RepositoryInterface
 
         // Unblock User
         bool UnblockUser(UniqueAccountData uniqueAccountData);
+        
+        
+        // User Login
+        public string UserLogin(UserInfoDTO userInfoDTO);
     }
 }
