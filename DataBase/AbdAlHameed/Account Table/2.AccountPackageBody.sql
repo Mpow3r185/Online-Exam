@@ -183,8 +183,7 @@ CREATE OR REPLACE PACKAGE BODY AccountPackage AS
     
     -- Login Procedure
     PROCEDURE Login(
-        uName IN account.username%type,
-        mail IN account.email%type,
+        uName IN VARCHAR,
         passw IN account.password%type) AS
         
             ref_cursor SYS_REFCURSOR;
@@ -192,8 +191,7 @@ CREATE OR REPLACE PACKAGE BODY AccountPackage AS
             OPEN ref_cursor FOR
             SELECT *
             FROM Account
-            WHERE ((uName IS NULL AND mail IS NOT NULL AND email = mail)
-            OR (uName IS NOT NULL AND mail IS NULL AND username = uName))
+            WHERE (email = uName OR username = uName)
             AND password = passw;
             
             DBMS_SQL.RETURN_RESULT(ref_cursor);

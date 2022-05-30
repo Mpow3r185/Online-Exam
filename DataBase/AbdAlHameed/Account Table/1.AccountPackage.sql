@@ -73,8 +73,7 @@ CREATE OR REPLACE PACKAGE AccountPackage AS
         
     -- Login Procedure
     PROCEDURE Login(
-        uName IN account.username%type,
-        mail IN account.email%type,
+        uName IN VARCHAR,
         passw IN account.password%type);
 
 END AccountPackage;
