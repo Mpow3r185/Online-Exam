@@ -130,6 +130,21 @@ namespace Tahaluf.PlusExam.API.Controllers
             return accountService.UnblockUser(uniqueAccountData);
         }
         #endregion UnblockUser
+        
+        [HttpPost]
+        [Route("login")]
+        public IActionResult UserLogin(UserInfoDTO userInfoDTO)
+        {
+            var token = accountService.UserLogin(userInfoDTO);
+            if (token != null)
+            {
+                return Ok(token);
+            }
+            else
+            {
+                return Unauthorized("Username or Password is incorrect");
+            }
+        }
 
     }
 }
