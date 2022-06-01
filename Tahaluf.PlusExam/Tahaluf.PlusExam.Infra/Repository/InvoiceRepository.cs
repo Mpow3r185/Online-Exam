@@ -115,5 +115,14 @@ namespace Tahaluf.PlusExam.Infra.Repository
         #endregion DeleteInvoice
 
         #endregion CRUD_Operation
+        
+         #region FinancialMatters
+        public List<FinancialDTO> FinancialMatters()
+        {
+            IEnumerable<FinancialDTO> result = dbContext.Connection.Query<FinancialDTO>("InvoicePackage.ObtainsFinancial", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+        #endregion FinancialMatters
+        
     }
 }
