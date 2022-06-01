@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using Tahaluf.PlusExam.Core.Data;
 using Tahaluf.PlusExam.Core.DTO;
 using Tahaluf.PlusExam.Core.RepositoryInterface;
@@ -131,6 +133,7 @@ namespace Tahaluf.PlusExam.API.Controllers
         }
         #endregion UnblockUser
         
+        #region UserLogin
         [HttpPost]
         [Route("login")]
         public IActionResult UserLogin(UserInfoDTO userInfoDTO)
@@ -145,6 +148,34 @@ namespace Tahaluf.PlusExam.API.Controllers
                 return Unauthorized("Username or Password is incorrect");
             }
         }
+        
+        #endregion UserLogin
+        
+        #region UploadImage
+        [HttpPost]
+        [Route("Upload")]
+        public Account UploadImage()
+        {
+            try
+            {
+                var image = Request.Form.Files[0];
+                var imageName = Guid.NewGuid() + "_" + image.FileName;
+                var fullPath = Path.Combine("Image", imageName);
+                using (var stream = new FileStream(fullPath, FileMode.Create))
+                {
+                    image.CopyTo(stream);
+                }
+                Account account = new Account();
+                account.ProfilePicture = imageName;
+                return account;
+            }
+
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+        #endregion UploadImage
 
     }
 }
