@@ -9,7 +9,7 @@ using Tahaluf.PlusExam.Core.RepositoryInterface;
 
 namespace Tahaluf.PlusExam.API.Controllers
 {
-    [Route("[controller]")]
+    [Route("[api/controller]")]
     [ApiController]
     public class AccountController : ControllerBase
     {
