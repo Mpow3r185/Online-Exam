@@ -51,5 +51,13 @@ namespace Tahaluf.PlusExam.Infra.Service
         #endregion DeleteInvoice
 
         #endregion CRUD_Operation
+        
+        #region Financial_Matters
+        public List<FinancialDTO> FinancialMatters()
+        {
+            return invoiceRepository.FinancialMatters();
+        }
+        #endregion Financial_Matters
+        
     }
 }
