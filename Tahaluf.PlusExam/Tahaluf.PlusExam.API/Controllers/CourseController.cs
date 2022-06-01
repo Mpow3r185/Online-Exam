@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using Tahaluf.PlusExam.Core.Data;
 using Tahaluf.PlusExam.Core.DTO;
 using Tahaluf.PlusExam.Core.RepositoryInterface;
@@ -76,5 +78,34 @@ namespace Tahaluf.PlusExam.API.Controllers
             return courseService.SearchCourse(courseFilter);
         }
         #endregion SearchCourse
+        
+        #region UploadImage
+        [HttpPost]
+        [Route("Upload")]
+        public Course UploadImage()
+        {
+            try
+            {
+                var image = Request.Form.Files[0];
+                var imageName = Guid.NewGuid() + "_" + image.FileName;
+                var fullPath = Path.Combine("Image", imageName);
+                using (var stream = new FileStream(fullPath, FileMode.Create))
+                {
+                    image.CopyTo(stream);
+                }
+
+                Course course = new Course();
+                course.CourseImage = imageName;
+                return course;
+
+            }
+
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+        #endregion UploadImage
+        
     }
 }
