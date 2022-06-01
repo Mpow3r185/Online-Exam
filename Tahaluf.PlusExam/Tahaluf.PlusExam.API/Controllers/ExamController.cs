@@ -60,7 +60,7 @@ namespace Tahaluf.PlusExam.API.Controllers
         #endregion CRUD_Operation
 
         #region SearchExam
-        [HttpGet]
+        [HttpPost]
         [Route("searchExam")]
         public List<Exam> SearchExam(ExamFilter examFilter)
         {
