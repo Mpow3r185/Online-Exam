@@ -60,5 +60,15 @@ namespace Tahaluf.PlusExam.API.Controllers
         #endregion DeleteInvoice
 
         #endregion CRUD_Operation
+        
+        #region Financial_Matters
+        [HttpGet]
+        [Route("FinancialMatters")]
+        public List<FinancialDTO> FinancialMatters()
+        {
+            return InvoiceService.FinancialMatters();
+        }
+        #endregion Financial_Matters
+        
     }
 }
