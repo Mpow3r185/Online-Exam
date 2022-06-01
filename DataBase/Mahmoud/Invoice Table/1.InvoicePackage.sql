@@ -19,6 +19,9 @@ CREATE OR REPLACE PACKAGE InvoicePackage AS
         
     -- Delete Invoice Procedure
     PROCEDURE DeleteInvoice(invoiceID IN invoice.id%type);
+    
+     --Obtains Financial
+    PROCEDURE ObtainsFinancial;
 
 END InvoicePackage;
 
