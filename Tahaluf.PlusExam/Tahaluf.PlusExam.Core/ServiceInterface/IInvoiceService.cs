@@ -18,5 +18,8 @@ namespace Tahaluf.PlusExam.Core.ServiceInterface
 
         // Delete Invoice
         bool DeleteInvoice(int id);
+        
+        //Financial Matters
+        List<FinancialDTO> FinancialMatters();
     }
 }
