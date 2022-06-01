@@ -21,7 +21,7 @@ namespace Tahaluf.PlusExam.Core.RepositoryInterface
         bool DeleteCourse(int cid);
 
         // Get Courses Names
-        List<string> GetCoursesNames()
+        List<string> GetCoursesNames();
 
         // Search Course
         List<Course> SearchCourse(CourseFilter courseFilter);
