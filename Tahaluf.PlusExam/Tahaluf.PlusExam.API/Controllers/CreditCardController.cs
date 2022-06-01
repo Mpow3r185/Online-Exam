@@ -9,7 +9,7 @@ using Tahaluf.PlusExam.Core.ServiceInterface;
 
 namespace Tahaluf.PlusExam.API.Controllers
 {
-    [Route("[controller]")]
+    [Route("[api/controller]")]
     [ApiController]
     public class CreditCardController : ControllerBase
     {
