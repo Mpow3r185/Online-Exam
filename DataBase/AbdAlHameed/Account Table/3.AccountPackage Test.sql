@@ -200,21 +200,19 @@ END;
 
 -- Login Procedure Test
 DECLARE
-  UNAME VARCHAR2(12);
-  MAIL VARCHAR2(320);
+  UNAME VARCHAR2(200);
   PASSW VARCHAR2(15);
 BEGIN
-  UNAME := 'admin';
-  MAIL := NULL;
+  UNAME := 'admin@admin.com';
   PASSW := '12345678';
 
   ACCOUNTPACKAGE.LOGIN(
     UNAME => UNAME,
-    MAIL => MAIL,
     PASSW => PASSW
   );
 --rollback; 
 END;
+
 /
 
 -- End Code

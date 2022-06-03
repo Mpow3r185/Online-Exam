@@ -48,6 +48,16 @@ CREATE OR REPLACE PACKAGE ExamPackage AS
         stDate IN exam.startDate%type,
         enDate IN exam.endDate%type,
         createDate IN exam.creationDate%type);
+        
+    -- Buy Exam Procedure
+    PROCEDURE BuyExam(
+        accid IN account.id%type,
+        exid IN exam.id%type);
+        
+    -- Enter Exam Procedure
+    PROCEDURE EnterExam(
+        accid account.id%type,
+        exid exam.id%type);
 
 END ExamPackage;
 

@@ -47,5 +47,17 @@ CREATE OR REPLACE PACKAGE BODY InvoicePackage AS
     BEGIN
         DELETE from Invoice WHERE id = invoiceID;
         commit;
-END DeleteInvoice;
+    END DeleteInvoice;
+
+     --Obtains Financial
+    PROCEDURE ObtainsFinancial AS O_all sys_refcursor;
+    BEGIN
+        open O_all for
+        select SUM(E.cost) as Profit,CAST(AVG(E.cost) AS DECIMAL(10,2))  As AVGOfProfit,COUNT(I.id) as NumberOfInvoice 
+        from Invoice I
+        JOIN Exam E
+        on I.examid = E.id;
+        DBMS_SQL.RETURN_RESULT(O_all);
+    END ObtainsFinancial;
+
 END InvoicePackage;

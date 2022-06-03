@@ -111,6 +111,47 @@ CREATE OR REPLACE PACKAGE BODY ExamPackage AS
 
             DBMS_SQL.RETURN_RESULT(ref_cursor);
         END SearchExam;
+        
+    -- Buy Exam Procedure
+    PROCEDURE BuyExam(
+        accid IN account.id%type,
+        exid IN exam.id%type) AS
+        
+            accBalance creditCard.balance%type;
+            examPrice exam.cost%type;
+        BEGIN
+            SELECT balance
+            INTO accBalance
+            FROM creditCard
+            WHERE accountId = accid;
+            
+            SELECT cost
+            INTO examPrice
+            FROM exam
+            WHERE id = exid;
+            
+            IF accBalance >= examPrice THEN 
+                InvoicePackage.CreateInvoice(CURRENT_TIMESTAMP,exid, accid); -- Create invoice
+            
+                CreditCardPackage.UpdateBalance(accid, accBalance - examPrice); -- Pay for the exam
+            END IF;
+            
+        END BuyExam;
+    
+    -- Enter Exam Procedure
+    PROCEDURE EnterExam(
+        accid account.id%type,
+        exid exam.id%type) AS 
+        
+        ref_cursor SYS_REFCURSOR;
+    BEGIN
+        OPEN ref_cursor FOR
+        SELECT examId, accountId
+        FROM Invoice
+        WHERE examId = exid AND accountId = accid;
+    
+        DBMS_SQL.RETURN_RESULT(ref_cursor);
+    END EnterExam;
 
 END ExamPackage;
 

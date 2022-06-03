@@ -12,6 +12,7 @@ CREATE OR REPLACE PACKAGE BODY CreditCardPackage AS
         DBMS_SQL.RETURN_RESULT(ref_cursor);
     END GetCreditCards;
     
+    
     -- Create CreditCard Procedure
     PROCEDURE CreateCreditCard(
         card_number IN Creditcard.cardnumber%type,
@@ -23,6 +24,7 @@ CREATE OR REPLACE PACKAGE BODY CreditCardPackage AS
             VALUES(card_number, amount, acc_id);
         commit;
         END CreateCreditCard;
+    
     
     -- Update CreditCard Procedure
     PROCEDURE UpdateCreditCard(
@@ -40,10 +42,26 @@ CREATE OR REPLACE PACKAGE BODY CreditCardPackage AS
             commit;
         END UpdateCreditCard;
         
+        
     -- Delete CreditCard Procedure
     PROCEDURE DeleteCreditCard(card_id IN CreditCard.id%type) AS
     BEGIN
         DELETE from CreditCard WHERE id = card_id;
         commit;
-END DeleteCreditCard;
+    END DeleteCreditCard;
+    -- CRUD Procedures
+    
+    
+    -- Update Balance Procedure
+    PROCEDURE UpdateBalance(
+        accid IN account.id%type,
+        newBalance IN creditCard.balance%type) AS
+    BEGIN
+        UPDATE creditCard SET 
+        balance = newBalance
+        WHERE accountId = accid;
+        
+        COMMIT;
+    END UpdateBalance;
+    
 END CreditCardPackage;
