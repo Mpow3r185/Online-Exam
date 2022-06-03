@@ -20,5 +20,6 @@ namespace Tahaluf.PlusExam.Core.Data
         public virtual Exam Exam { get; set; }
 
         public ICollection<QuestionOption> QuestionOptions { get; set; }
+        public ICollection<FillResult> FillResult { get; set; }
     }
 }
