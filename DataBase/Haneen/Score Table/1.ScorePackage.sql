@@ -24,4 +24,10 @@ PROCEDURE CREATESCORE(
 -- DELETE SCORE
 PROCEDURE DELETESCORE(SCOREID SCORE.ID%TYPE);
 
+
+-- Calculate Score Procedure
+PROCEDURE CalculateScore(
+    accid IN account.id%type,
+    exid IN exam.id%type);
+
 END SCOREPACKAGE;

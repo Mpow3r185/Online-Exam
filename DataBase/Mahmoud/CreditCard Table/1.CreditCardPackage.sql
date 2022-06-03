@@ -19,6 +19,12 @@ CREATE OR REPLACE PACKAGE CreditCardPackage AS
         
     -- Delete CreditCard Procedure
     PROCEDURE DeleteCreditCard(card_id IN CreditCard.id%type);
+    -- CRUD Procedures
+    
+    -- Update Balance Procedure
+    PROCEDURE UpdateBalance(
+        accid IN account.id%type,
+        newBalance IN creditCard.balance%type);
 
 END CreditCardPackage;
 
