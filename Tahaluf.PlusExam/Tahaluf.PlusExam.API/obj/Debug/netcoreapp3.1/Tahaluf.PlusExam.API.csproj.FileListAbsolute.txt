@@ -280,3 +280,4 @@ C:\Users\dabda\OneDrive\Desktop\GIT\Tahaluf.PlusExam\Tahaluf.PlusExam.API\obj\De
 C:\Users\dabda\OneDrive\Desktop\GIT\Tahaluf.PlusExam\Tahaluf.PlusExam.API\obj\Debug\netcoreapp3.1\Tahaluf.PlusExam.API.RazorTargetAssemblyInfo.cache
 C:\Users\dabda\OneDrive\Desktop\GIT\Tahaluf.PlusExam\Tahaluf.PlusExam.API\obj\Debug\netcoreapp3.1\Tahaluf.PlusExam.API.csproj.CopyComplete
 C:\Users\dabda\OneDrive\Desktop\GIT\Tahaluf.PlusExam\Tahaluf.PlusExam.API\obj\Debug\netcoreapp3.1\Tahaluf.PlusExam.API.genruntimeconfig.cache
+C:\Users\dabda\OneDrive\Desktop\GIT\Tahaluf.PlusExam\Tahaluf.PlusExam.API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll

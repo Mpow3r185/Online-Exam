@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Tahaluf.PlusExam.Core.Data;
+using Tahaluf.PlusExam.Core.DTO;
 using Tahaluf.PlusExam.Core.ServiceInterface;
 
 namespace Tahaluf.PlusExam.API.Controllers

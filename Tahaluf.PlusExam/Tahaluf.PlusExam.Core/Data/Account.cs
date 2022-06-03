@@ -47,5 +47,6 @@ namespace Tahaluf.PlusExam.Core.Data
         public ICollection<CreditCard> Creditcards { get; set; }
         public ICollection<PhoneNumber> Phonenumbers { get; set; }
         public ICollection<Score> Scores { get; set; }
+        public ICollection<FillResult> FillResults { get; set; }
     }
 }
