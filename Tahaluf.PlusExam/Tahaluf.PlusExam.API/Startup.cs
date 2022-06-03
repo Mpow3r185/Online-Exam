@@ -64,6 +64,8 @@ namespace Tahaluf.PlusExam.API
             services.AddScoped<IAccountRepository, AccountRepository>();
             //Home Page Repository 
             services.AddScoped<IHomePageRepository, HomePageRepository>();
+            // Report Repository
+            services.AddScoped<IReportRepository, ReportRepository>();
 
 
             // Question Service
@@ -90,8 +92,11 @@ namespace Tahaluf.PlusExam.API
             services.AddScoped<IExamService, ExamService>();
             // Account Service
             services.AddScoped<IAccountService, AccountService>();
-             //Home Page Service
+            //Home Page Service
             services.AddScoped<IHomePageService, HomePageService>();
+            // Report Service 
+            services.AddScoped<IReportService, ReportService>();
+            
             
             //Configure Jwt Authentication
             services.AddAuthentication(opt =>
