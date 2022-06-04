@@ -5,11 +5,13 @@
 DROP PACKAGE AccountPackage;
 DROP PACKAGE ExamPackage;
 DROP PACKAGE CoursePackage;
+DROP PACKAGE FillResultPackage;
 
 -- Haneen Packages
 DROP PACKAGE CorrectAnswerPackage;
 DROP PACKAGE PhoneNumberPackage;
 DROP PACKAGE ScorePackage;
+DROP PACKAGE ReportPackage;
 
 -- Mahmoud Packages
 DROP PACKAGE CertificatePackage;
