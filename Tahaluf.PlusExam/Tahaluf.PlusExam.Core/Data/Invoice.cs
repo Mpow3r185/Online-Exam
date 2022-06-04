@@ -19,6 +19,5 @@ namespace Tahaluf.PlusExam.Core.Data
         public int AccountId { get; set; }
         [ForeignKey("AccountId")]
         public virtual Account Account{ get; set; }
-
     }
 }
