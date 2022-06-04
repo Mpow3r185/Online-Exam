@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Tahaluf.PlusExam.Core.Data;
@@ -59,6 +59,7 @@ namespace Tahaluf.PlusExam.API.Controllers
 
         #region GetAnswerByQuestionIdAndAccountId
         [HttpGet]
+        [Route("AnswerByQIdAndAccId")]
         public string GetAnswerByQuestionIdAndAccountId(FillResult fillResult)
         {
             return fillResultService.GetAnswerByQuestionIdAndAccountId(fillResult);
