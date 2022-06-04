@@ -1,0 +1,217 @@
+1- Q1 CRUD operations in DB are :
+	a. DDL Commands
+	b. DML Commands		OK				
+	c. TCL Commands
+	d. DCL Commands
+
+2- Q2 (U) in CRUD operations in DB is :
+	a. Create
+	b. Update	OK     
+	c. Unset
+	d. Unread
+
+3- Q3  ...... is an Application Programming Interface (API) development tool used to build, test and modify APIs:
+	a. GUI
+	b. ASP.NET
+	c. Postman	OK
+	d. MVC
+
+4- Q4 Types of HTTP methods :
+	a. Get
+	b. Post
+	c. Put
+	d. Delete
+	e. Patch
+	f. All of the above OK
+
+5- Q5 The ...... file is a configuration file used to store configuration settings like any application scope global variables ,database connections strings
+	a. appsettings.json OK
+	b. Program.cs
+	c. Controller
+	d. Startup.cs
+
+6- Q6 ...... handles incoming HTTP requests from the server and send response to the caller
+	a. Model
+	b. View
+	c. Controller OK
+	d. None of the above
+
+7- Q7 ...... creates an abstraction between the business logic and domain entities of an application ?
+	a. Repository layer OK
+	b. Service layer
+	c. Domain layer
+	d. UI layer
+
+8- Q8 Use ...... APIs to create new resources ?
+	a. Get
+	b. Post		OK
+	c. Put
+	d. Delete
+
+9- Q9 What is the datatype of ("12.2") ?
+	a. String	OK
+	b. Flaot	
+	c. Char
+	d. Bool
+
+10- Q10 What is the datatype of (10.0) ?
+	a. Int
+	b. Bool
+	c. Float	OK
+	d. String
+
+11- Q11 Which of the following is a programming language ?
+	a. HTML
+	b. Postman
+	c. CSS
+	d. C#	OK
+
+12- Q12 ...... is a combination of SQL along with the procedural features of programming languages. It was developed by Oracle Corporation in the early 90's to enhance the capabilities of SQL
+	a.SQL
+	b.PL/SQL  ok
+
+13- Q13 ...... is commonly referred to as a collection of items stored at contiguous memory locations
+	a. Array  OK
+	b. List
+	c. Stack
+	d. Queue
+
+14- Q14 Recursion refers to a function calling itself based on a terminating condition. 
+	a. True OK
+	b. False
+
+15- Q15 A real-world entity having a particular state and behavior. We can define it as an instance of a class is ?
+	a. Class
+	b. Object   OK
+	c. Struct
+	d. Enum
+
+16- Q16 What is the logical entity that defines the blueprint from which an object can be created or instantiated ?
+	a.Class		OK
+	b. Object
+	c. Struct
+	d. Enum
+
+17- Q17 A concept that refers to an object gaining all the properties and behaviors of a parent object. It provides code reusability is :
+	a. Polymorphism
+	b. Inheritance		OK
+	c. Encapsulation
+	d. Abstraction
+
+18 Q18 A concept that hides the internal details of an application and only shows the functionality. In Java, we use abstract class and interface to achieve abstraction :
+	a. Polymorphism
+	b. Inheritance		
+	c. Encapsulation
+	d. Abstraction		OK
+
+19- Q19  A concept that refers to the wrapping of code and data together into a single unit :
+	a. Polymorphism
+	b. Inheritance		
+	c. Encapsulation	OK
+	d. Abstraction	
+
+20- Q20 The conditional operator ?: ,also known as the :
+	a. Ternary Operator OK
+	b. Boolean Operator
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+21- Q21 C# is a Programming Language 
+	a. True  ok
+	b. False
+
+22- Q22 HTML is a Programming Language 
+	a. True  
+	b. False  OK
+
+23- Q23 C++ is a Programming Language 
+	a. True  ok
+	b. False
+
+24- Q24 Java is a Programming Language 
+	a. True  ok
+	b. False
+
+25- Q25 CSS is a Programming Language 
+	a. True  
+	b. False  ok
+
+26- Q26 Python is a Programming Language 
+	a. True  ok
+	b. False
+
+27- Q27 MVC is a Programming Language 
+	a. True  
+	b. False  ok
+
+28- Q28 C is a Programming Language 
+	a. True  ok
+	b. False
+
+29- Q29 SQL is a Structured Query Language 
+	a. True  ok
+	b. False
+
+30- Q30 Pascal is a Programming Language 
+	a. True  ok
+	b. False
+
+31- Q31 HTML is the standard markup language for documents designed to be displayed in a web browser
+	a. True  ok
+	b. False
+
+32- Q32 TypeScript is a programming language developed and maintained by Microsoft
+	a. True  ok
+	b. False
+
+33- Q33 This Code in c# cout<<"Hello World"<<endl;
+	a. True  
+	b. False   ok
+
+34- Q34 Bootstrap is a free and open source front end development framework for the creation of websites and web apps
+	a. True  ok
+	b. False
+
+35- Q35 Angular is a platform and framework for building single-page client applications using HTML and TypeScript 
+	a. True  ok
+	b. False
+
+36- Q36 React. js is an open-source JavaScript library that is used for building user interfaces specifically for single-page applications 
+	a. True  ok
+	b. False
+
+37- Q37 Pascal is not a Programming Language 
+	a. True  
+	b. False  ok
+
+38- Q38 VueJS is primarily used to build web interfaces and one-page applications
+	a. True  ok
+	b. False
+
+39- Q39 Angular attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching. 
+	a. True  
+	b. False OK
+
+40- Q40 PHP: Hypertext Preprocessor
+	a. True  ok
+	b. False
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+41- Q41 
+
+42- Q42
+
+43- Q43
+
+44- Q44
+
+45- Q45
+
+46- Q46
+
+47- Q47
+
+48- Q48
+
+49- Q49
+
+50- Q50
