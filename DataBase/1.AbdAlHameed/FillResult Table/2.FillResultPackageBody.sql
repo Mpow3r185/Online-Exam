@@ -2,54 +2,42 @@
 
 CREATE OR REPLACE PACKAGE BODY FillResultPackage AS
 
-    -- CRUD Operations
-    -- Get Fill Results Procedure
-    PROCEDURE GetFillResults AS
+    -- FillResult CRUD Operations
+    PROCEDURE FillResultCRUD(
+        func IN VARCHAR DEFAULT NULL,
+        frid IN fillResult.Id%type DEFAULT NULL,
+        ans IN fillResult.answer%type DEFAULT NULL,
+        qid IN fillResult.questionId%type DEFAULT NULL,
+        accid IN fillResult.accountId%type DEFAULT NULL) AS
+        
         ref_cursor SYS_REFCURSOR;
     BEGIN
-        OPEN ref_cursor FOR
-        SELECT *
-        FROM FillResult;
+        IF func = 'CREATE' THEN
+            INSERT INTO FillResult (answer, questionId, accountId)
+            VALUES(ans, qid, accid);
+            
+            COMMIT;
+        ELSIF func = 'UPDATE' THEN
+            UPDATE FillResult
+            SET answer = ans,
+                questionId = qid,
+                accountId = accid
+            WHERE id = frid;
         
-        DBMS_SQL.RETURN_RESULT(ref_cursor);
-    END GetFillResults;
+            COMMIT;
+        ELSIF func = 'DELETE' THEN
+            DELETE FROM FillResult WHERE id = frid;
     
-    -- Create Fill Result Procedure
-    PROCEDURE CreateFillResult(
-        ans IN fillResult.answer%type,
-        qid IN fillResult.questionId%type,
-        accid IN fillResult.accountId%type) AS
-    BEGIN
-        INSERT INTO FillResult (answer, questionId, accountId)
-        VALUES(ans, qid, accid);
-        
-        COMMIT;
-    END CreateFillResult;
-        
-    -- Update Fill Result Procedure
-    PROCEDURE UpdateFillResult(
-        frid IN fillResult.Id%type,
-        ans IN fillResult.answer%type,
-        qid IN fillResult.questionId%type,
-        accid IN fillResult.accountId%type) AS
-    BEGIN
-        UPDATE FillResult
-        SET answer = ans,
-            questionId = qid,
-            accountId = accid
-        WHERE id = frid;
+            COMMIT;
+        ELSE
+            OPEN ref_cursor FOR
+            SELECT *
+            FROM FillResult;
+            
+            DBMS_SQL.RETURN_RESULT(ref_cursor);
+        END IF;
     
-        COMMIT;
-    END UpdateFillResult;
-        
-    -- Delete Fill Result Procedure
-    PROCEDURE DeleteFillResult(frid IN fillResult.Id%type) AS
-    BEGIN
-        DELETE FROM FillResult WHERE id = frid;
-    
-        COMMIT;
-    END DeleteFillResult;
-    -- CRUD Operations
+    END FillResultCRUD;
     
     -- Get Answer By QuestionId And Account Id
     PROCEDURE GetAnswerByQuestionIdAndAccountId(

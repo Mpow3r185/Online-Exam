@@ -2,55 +2,32 @@
 
 CREATE OR REPLACE PACKAGE BODY AccountPackage AS
     
-    -- CRUD Procedures
-    -- Get Accounts Procedure
-    PROCEDURE GetAccounts AS
+    -- Account CRUD Operations
+    PROCEDURE AccountCRUD(
+        func IN VARCHAR DEFAULT NULL,
+        accid IN account.id%type DEFAULT NULL,
+        uName IN account.username%type DEFAULT NULL,
+        passw IN account.password%type DEFAULT NULL,
+        mail IN account.email%type DEFAULT NULL,
+        fName IN account.fullName%type DEFAULT NULL,
+        sex IN account.gender%type DEFAULT NULL,
+        birthOfDate IN account.bod%type DEFAULT NULL,
+        addr IN account.address%type DEFAULT NULL,
+        st IN account.status%type DEFAULT NULL,
+        rName IN account.roleName%type DEFAULT NULL,
+        profileImg IN account.profilePicture%type DEFAULT NULL) AS
+        
         ref_cursor SYS_REFCURSOR;
     BEGIN
-        OPEN ref_cursor FOR
-        SELECT *
-        FROM Account;
-
-        DBMS_SQL.RETURN_RESULT(ref_cursor);
-    END GetAccounts;
-
-    -- Create Account Procedure
-    PROCEDURE CreateAccount(
-        uName IN account.username%type,
-        passw IN account.password%type,
-        mail IN account.email%type,
-        fName IN account.fullName%type,
-        sex IN account.gender%type,
-        birthOfDate IN account.bod%type,
-        addr IN account.address%type,
-        st IN account.status%type,
-        rName IN account.roleName%type,
-        profileImg IN account.profilePicture%type) AS
-        BEGIN
+        IF func = 'CREATE' THEN
             INSERT INTO Account
             (username, password, email, fullName, gender,
             bod, address, status, roleName, profilePicture)
-
             VALUES(LOWER(uName), passw, LOWER(mail), fName, sex, birthOfDate,
                    addr, UPPER(st), rName, profileImg);
 
-        commit;
-        END CreateAccount;
-
-    -- Update Account Procedure
-    PROCEDURE UpdateAccount(
-        accid IN account.id%type,
-        uName IN account.username%type,
-        passw IN account.password%type,
-        mail IN account.email%type,
-        fName IN account.fullName%type,
-        sex IN account.gender%type,
-        birthOfDate IN account.bod%type,
-        addr IN account.address%type,
-        st IN account.status%type,
-        rName IN account.roleName%type,
-        profileImg IN account.profilePicture%type) AS
-        BEGIN
+            COMMIT;            
+        ELSIF func = 'UPDATE' THEN
             UPDATE Account SET 
                 username = LOWER(uName),
                 password = passw,
@@ -64,17 +41,19 @@ CREATE OR REPLACE PACKAGE BODY AccountPackage AS
                 profilePicture = profileImg
             WHERE id = accid;
 
-            commit;
-        END UpdateAccount;
+            COMMIT;
+        ELSIF func = 'DELETE' THEN
+            DELETE Account WHERE id = accid;
 
-    -- Delete Account Procedure
-    PROCEDURE DeleteAccount(accid IN account.id%type) AS
-    BEGIN
-        DELETE Account WHERE id = accid;
-
-        commit;
-    END DeleteAccount;
-    -- CRUD Procedures
+            COMMIT;
+        ELSE
+            OPEN ref_cursor FOR
+            SELECT *
+            FROM Account;
+            
+            DBMS_SQL.RETURN_RESULT(ref_cursor);
+        END IF;
+    END AccountCRUD;
 
     -- Get Usernames Procedure
     PROCEDURE GetUsernames AS
@@ -111,10 +90,10 @@ CREATE OR REPLACE PACKAGE BODY AccountPackage AS
 
     -- Get Accounts By UserName, Email, Full Name and Role Name Procedure
     PROCEDURE SearchAccount(
-        uName IN account.username%type,
-        mail IN account.email%type,
-        fName IN account.fullName%type,
-        rName IN account.roleName%type) AS
+        uName IN account.username%type DEFAULT NULL,
+        mail IN account.email%type DEFAULT NULL,
+        fName IN account.fullName%type DEFAULT NULL,
+        rName IN account.roleName%type DEFAULT NULL) AS
 
         ref_cursor SYS_REFCURSOR;
     BEGIN
@@ -129,8 +108,8 @@ CREATE OR REPLACE PACKAGE BODY AccountPackage AS
         DBMS_SQL.RETURN_RESULT(ref_cursor);
     END SearchAccount;
 
-    -- Get Block Accounts Procedure
-    PROCEDURE GetBlockAccounts AS
+    -- Get Blocked Accounts Procedure
+    PROCEDURE GetBlockedAccounts AS
         ref_cursor SYS_REFCURSOR;
     BEGIN
         OPEN ref_cursor FOR
@@ -139,7 +118,7 @@ CREATE OR REPLACE PACKAGE BODY AccountPackage AS
         WHERE status = 'BLOCK';
 
         DBMS_SQL.RETURN_RESULT(ref_cursor);
-    END GetBlockAccounts;
+    END GetBlockedAccounts;
 
     -- Get Blocked Usernames
     PROCEDURE GetBlockedUsernames AS

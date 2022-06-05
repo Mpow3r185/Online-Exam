@@ -2,33 +2,25 @@
 
 CREATE OR REPLACE PACKAGE BODY ExamPackage AS
 
-    -- CRUD Procedures
-    -- Get Exams Procedure
-    PROCEDURE GetExams AS
+    -- Exam CRUD Operations
+    PROCEDURE ExamCRUD(
+        func IN VARCHAR DEFAULT NULL,
+        exid IN exam.id%type DEFAULT NULL,
+        cid IN exam.courseId%type DEFAULT NULL,
+        exTitle IN exam.title%type DEFAULT NULL,
+        passc IN exam.passcode%type DEFAULT NULL,
+        des IN exam.description%type DEFAULT NULL,
+        exLevel IN exam.examLevel%type DEFAULT NULL,
+        succMark IN exam.successMark%type DEFAULT NULL,
+        price IN exam.cost%type DEFAULT NULL,
+        stDate IN exam.startDate%type DEFAULT NULL,
+        enDate IN exam.endDate%type DEFAULT NULL,
+        st IN exam.status%type DEFAULT NULL,
+        createDate IN exam.creationDate%type DEFAULT NULL) AS
+        
         ref_cursor SYS_REFCURSOR;
     BEGIN
-        OPEN ref_cursor FOR
-        SELECT *
-        FROM Exam;
-
-        DBMS_SQL.RETURN_RESULT(ref_cursor);
-    END GetExams;
-
-    -- Create Exam Procedure
-    PROCEDURE CreateExam(
-       cid IN exam.courseId%type,
-       exTitle IN exam.title%type,
-       passc IN exam.passcode%type,
-       des IN exam.description%type,
-       exLevel IN exam.examLevel%type,
-       succMark IN exam.successMark%type,
-       price IN exam.cost%type,
-       stDate IN exam.startDate%type,
-       enDate IN exam.endDate%type,
-       st IN exam.status%type,
-       createDate IN exam.creationDate%type) AS
-
-       BEGIN
+        IF func = 'CREATE' THEN
             INSERT INTO Exam
             (courseId, title, passcode, description, examLevel,
             successMark, cost, startDate, endDate, status, creationDate)
@@ -36,25 +28,8 @@ CREATE OR REPLACE PACKAGE BODY ExamPackage AS
             VALUES(cid, exTitle, UPPER(passc), des, exLevel, succMark,
                    price, stDate, enDate, UPPER(st), createDate);
 
-            commit;
-       END CreateExam;
-
-    -- Update Exam Procedure
-    PROCEDURE UpdateExam(
-       exid IN exam.id%type,
-       cid IN exam.courseId%type,
-       exTitle IN exam.title%type,
-       passc IN exam.passcode%type,
-       des IN exam.description%type,
-       exLevel IN exam.examLevel%type,
-       succMark IN exam.successMark%type,
-       price IN exam.cost%type,
-       stDate IN exam.startDate%type,
-       enDate IN exam.endDate%type,
-       st IN exam.status%type,
-       createDate IN exam.creationDate%type) AS
-
-       BEGIN
+            COMMIT;
+        ELSIF func = 'UPDATE' THEN
             UPDATE Exam SET
                 courseId = cid,
                 title = exTitle,
@@ -69,27 +44,30 @@ CREATE OR REPLACE PACKAGE BODY ExamPackage AS
                 creationDate = createDate
             WHERE id = exid;
 
-            commit;
-       END UpdateExam;
+            COMMIT;
+        ELSIF func = 'DELETE' THEN
+            DELETE FROM Exam WHERE id = exid;
 
-    -- Delete Exam Procedure
-    PROCEDURE DeleteExam(exid IN exam.id%type) AS
-    BEGIN
-        DELETE FROM Exam WHERE id = exid;
-
-        commit;
-    END DeleteExam;
-    -- CRUD Procedures
+            COMMIT;
+        ELSE
+            OPEN ref_cursor FOR
+            SELECT *
+            FROM Exam;
+    
+            DBMS_SQL.RETURN_RESULT(ref_cursor);
+        END IF;
+        
+    END ExamCRUD;
 
     -- Search Exam Procedure
     PROCEDURE SearchExam(
-        exTitle IN exam.title%type,
-        exLevel IN exam.examLevel%type,
-        succMark IN exam.successMark%type,
-        price IN exam.cost%type,
-        stDate IN exam.startDate%type,
-        enDate IN exam.endDate%type,
-        createDate IN exam.creationDate%type) AS 
+        exTitle IN exam.title%type DEFAULT NULL,
+        exLevel IN exam.examLevel%type DEFAULT NULL,
+        succMark IN exam.successMark%type DEFAULT NULL,
+        price IN exam.cost%type DEFAULT NULL,
+        stDate IN exam.startDate%type DEFAULT NULL,
+        enDate IN exam.endDate%type DEFAULT NULL,
+        createDate IN exam.creationDate%type DEFAULT NULL) AS 
 
             ref_cursor SYS_REFCURSOR;
         BEGIN

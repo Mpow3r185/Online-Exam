@@ -2,40 +2,20 @@
 
 CREATE OR REPLACE PACKAGE AccountPackage AS
     
-    -- CRUD Procedures
-    -- Get Accounts Procedure
-    PROCEDURE GetAccounts;
-
-    -- Create Account Procedure
-    PROCEDURE CreateAccount(
-        uName IN account.username%type,
-        passw IN account.password%type,
-        mail IN account.email%type,
-        fName IN account.fullName%type,
-        sex IN account.gender%type,
-        birthOfDate IN account.bod%type,
-        addr IN account.address%type,
-        st IN account.status%type,
-        rName IN account.roleName%type,
-        profileImg IN account.profilePicture%type);
-
-    -- Update Account Procedure
-    PROCEDURE UpdateAccount(
-        accid IN account.id%type,
-        uName IN account.username%type,
-        passw IN account.password%type,
-        mail IN account.email%type,
-        fName IN account.fullName%type,
-        sex IN account.gender%type,
-        birthOfDate IN account.bod%type,
-        addr IN account.address%type,
-        st IN account.status%type,
-        rName IN account.roleName%type,
-        profileImg IN account.profilePicture%type);
-
-    -- Delete Account Procedure
-    PROCEDURE DeleteAccount(accid IN account.id%type);
-    -- CRUD Procedures
+    -- Account CRUD Operations
+    PROCEDURE AccountCRUD(
+        func IN VARCHAR DEFAULT NULL,
+        accid IN account.id%type DEFAULT NULL,
+        uName IN account.username%type DEFAULT NULL,
+        passw IN account.password%type DEFAULT NULL,
+        mail IN account.email%type DEFAULT NULL,
+        fName IN account.fullName%type DEFAULT NULL,
+        sex IN account.gender%type DEFAULT NULL,
+        birthOfDate IN account.bod%type DEFAULT NULL,
+        addr IN account.address%type DEFAULT NULL,
+        st IN account.status%type DEFAULT NULL,
+        rName IN account.roleName%type DEFAULT NULL,
+        profileImg IN account.profilePicture%type DEFAULT NULL);
 
     -- Get Usernames Procedure
     PROCEDURE GetUsernames;
@@ -48,13 +28,13 @@ CREATE OR REPLACE PACKAGE AccountPackage AS
 
     -- Get Accounts By UserName, Email, Full Name and Role Name Procedure
     PROCEDURE SearchAccount(
-        uName IN account.username%type,
-        mail IN account.email%type,
-        fName IN account.fullName%type,
-        rName IN account.roleName%type);
+        uName IN account.username%type DEFAULT NULL,
+        mail IN account.email%type DEFAULT NULL,
+        fName IN account.fullName%type DEFAULT NULL,
+        rName IN account.roleName%type DEFAULT NULL);
 
-    -- Get Block Accounts Procedure
-    PROCEDURE GetBlockAccounts;
+    -- Get Blocked Accounts Procedure
+    PROCEDURE GetBlockedAccounts;
 
     -- Get Blocked Usernames
     PROCEDURE GetBlockedUsernames;
