@@ -132,7 +132,7 @@ namespace Tahaluf.PlusExam.API.Controllers
             return accountService.UnblockUser(uniqueAccountData);
         }
         #endregion UnblockUser
-        
+
         #region UserLogin
         [HttpPost]
         [Route("login")]
@@ -148,9 +148,9 @@ namespace Tahaluf.PlusExam.API.Controllers
                 return Unauthorized("Username or Password is incorrect");
             }
         }
-        
+
         #endregion UserLogin
-        
+
         #region UploadImage
         [HttpPost]
         [Route("Upload")]
