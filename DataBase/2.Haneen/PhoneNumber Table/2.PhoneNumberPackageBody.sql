@@ -1,51 +1,44 @@
---   PHONE NUMBER PACKAGE BODY 
-CREATE OR REPLACE PACKAGE BODY PHONENUMBERPACKAGE AS
-----------------------------------------------------
---  GET ALL
 
-PROCEDURE GETALL AS
-C_ALL SYS_REFCURSOR;
-BEGIN
-OPEN C_ALL FOR
-SELECT * FROM PHONENUMBER;
-DBMS_SQL.RETURN_RESULT(C_ALL);
-END GETALL;
-----------------------------------------------------
--- UPDATE PHONE NUMBER
+--   Phone Number Package BODY
 
-PROCEDURE UPDATEPHONENUMBER(
-    PHNUMID PHONENUMBER.ID%TYPE,
-    PHNUM PHONENUMBER.PHONENUM%TYPE,
-    ACCID PHONENUMBER.ACCOUNTID%TYPE
-    ) AS
-BEGIN
-UPDATE PHONENUMBER SET
-    PHONENUM = PHNUM,
-    ACCOUNTID   = ACCID
-    WHERE ID    = PHNUMID;
-COMMIT;
-END UPDATEPHONENUMBER;
-----------------------------------------------------
--- CREATE PHONE NUMBER
+CREATE OR REPLACE PACKAGE BODY PhoneNumberPackage AS
 
-PROCEDURE CREATEPHONENUMBER(
-    PHNUM PHONENUMBER.PHONENUM%TYPE,
-    ACCID PHONENUMBER.ACCOUNTID%TYPE
-    ) AS
-BEGIN
-    INSERT INTO PHONENUMBER (PHONENUM,ACCOUNTID)
-    VALUES (PHNUM,ACCID);
-COMMIT;
-END CREATEPHONENUMBER;
-----------------------------------------------------
+    -- Phone Number CRUD Operations
+    PROCEDURE PhoneNumberCRUD(
+        func IN VARCHAR DEFAULT NULL,
+        phNumId PhoneNumber.ID%TYPE DEFAULT NULL,
+        PhNum PhoneNumber.PHONENUM%TYPE DEFAULT NULL,
+        accId PHONENUMBER.ACCOUNTID%TYPE DEFAULT NULL )
+    AS
+        C_ALL SYS_REFCURSOR;
+    BEGIN
+        If func = 'CREATE' THEN
+            INSERT INTO PhoneNumber(PHONENUM,ACCOUNTID)
+            VALUES (PhNum,accId);
+        
+            COMMIT; 
+        
+        ELSIF func = 'UPDATE' THEN
+            UPDATE PhoneNumber SET
+            PHONENUM = PHNUM,
+            ACCOUNTID   = ACCID
+            WHERE ID    = PHNUMID;
+    
+            COMMIT;
+            
+        ELSIF func = 'DELETE' THEN
+            DELETE FROM PHONENUMBER 
+            WHERE ID = PHNUMID;
+        
+            COMMIT;
+        
+        ELSE 
+            OPEN C_ALL FOR
+            SELECT * 
+            FROM PhoneNumber;
+        
+            DBMS_SQL.RETURN_RESULT(C_ALL);
+        END IF;        
+    END  PhoneNumberCRUD;       
 
-----------------------------------------------------
-
-PROCEDURE DELETEPHONENUMBER(PHNUMID PHONENUMBER.ID%TYPE) AS
-BEGIN
-    DELETE FROM PHONENUMBER 
-    WHERE ID = PHNUMID;
-COMMIT;
-END DELETEPHONENUMBER;
-------------------------------------------------------
-END PHONENUMBERPACKAGE;
+END PhoneNumberPackage;
