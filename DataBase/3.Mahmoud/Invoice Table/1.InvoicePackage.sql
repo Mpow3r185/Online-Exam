@@ -1,27 +1,13 @@
-CREATE OR REPLACE PACKAGE InvoicePackage AS
+create or replace PACKAGE InvoicePackage AS
     
     -- CRUD Procedures
-    -- Get Invoices Procedure
-    PROCEDURE GetInvoices;
-    
-    -- Create Invoice Procedure
-    PROCEDURE CreateInvoice(
-        createDate IN invoice.creationdate%type,
-        exam_id IN invoice.examid%type,
-        acc_id IN invoice.accountid%type);
-    
-    -- Update Invoice Procedure
-    PROCEDURE UpdateInvoice (
-        invoiceID IN invoice.ID%type,
-        createDate IN invoice.creationdate%type,
-        exam_id IN invoice.examid%type,
-        acc_id IN invoice.accountid%type);
-        
-    -- Delete Invoice Procedure
-    PROCEDURE DeleteInvoice(invoiceID IN invoice.id%type);
-    
-     --Obtains Financial
+    PROCEDURE InvoiceCRUD (
+    func IN VARCHAR DEFAULT NULL,
+        invoiceID IN invoice.ID%type DEFAULT NULL,
+        createDate IN invoice.creationdate%type DEFAULT NULL,
+        exam_id IN invoice.examid%type DEFAULT NULL,
+        acc_id IN invoice.accountid%type DEFAULT NULL);
+
     PROCEDURE ObtainsFinancial;
 
 END InvoicePackage;
-
