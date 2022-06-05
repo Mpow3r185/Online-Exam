@@ -1,58 +1,47 @@
 --   SCORE PACKAGE BODY
 
 CREATE OR REPLACE PACKAGE BODY SCOREPACKAGE AS
-----------------------------------------------------
---  GET ALL
 
-PROCEDURE GETALL AS
-C_ALL SYS_REFCURSOR;
-BEGIN
-OPEN C_ALL FOR
-SELECT * FROM SCORE;
-DBMS_SQL.RETURN_RESULT(C_ALL);
-END GETALL;
-----------------------------------------------------
--- UPDATE SCORE
-
-PROCEDURE UPDATESCORE(
-    SCOREID SCORE.ID%TYPE,
-    SCGRADE SCORE.GRADE%TYPE,
-    SCSTATUS SCORE.STATUS%TYPE,
-    EXID SCORE.EXAMID%TYPE,
-    ACCID SCORE.ACCOUNTID%TYPE
-    ) AS
-BEGIN
-UPDATE SCORE SET
-    GRADE     = SCGRADE,
-    STATUS    = SCSTATUS,
-    EXAMID    = EXID,
-    ACCOUNTID = ACCID
-    WHERE ID  = SCOREID;
-COMMIT;
-END UPDATESCORE;
-----------------------------------------------------
--- CREATE SCORE
-
-PROCEDURE CREATESCORE(
-    SCGRADE SCORE.GRADE%TYPE,
-    SCSTATUS SCORE.STATUS%TYPE,
-    EXID SCORE.EXAMID%TYPE,
-    ACCID SCORE.ACCOUNTID%TYPE
-    ) AS
-BEGIN
-    INSERT INTO SCORE (GRADE,STATUS,EXAMID,ACCOUNTID)
-    VALUES (SCGRADE,SCSTATUS,EXID,ACCID);
-COMMIT;
-END CREATESCORE;
-----------------------------------------------------
--- DELETE SCORE
-
-PROCEDURE DELETESCORE(SCOREID SCORE.ID%TYPE) AS
-BEGIN
-    DELETE FROM SCORE 
-    WHERE ID = SCOREID;
-COMMIT;
-END DELETESCORE;
+PROCEDURE ScoreCRUD(
+    func IN VARCHAR DEFAULT NULL,
+    SCOREID SCORE.ID%TYPE DEFAULT NULL,
+    SCGRADE SCORE.GRADE%TYPE DEFAULT NULL,
+    SCSTATUS SCORE.STATUS%TYPE DEFAULT NULL,
+    EXID SCORE.EXAMID%TYPE DEFAULT NULL,
+    ACCID SCORE.ACCOUNTID%TYPE DEFAULT NULL)
+    AS
+        C_ALL SYS_REFCURSOR;
+    BEGIN
+        If func = 'CREATE' THEN
+            INSERT INTO SCORE (GRADE,STATUS,EXAMID,ACCOUNTID)
+            VALUES (SCGRADE,SCSTATUS,EXID,ACCID);
+        
+            COMMIT; 
+        
+        ELSIF func = 'UPDATE' THEN
+            UPDATE SCORE SET
+            GRADE     = SCGRADE,
+            STATUS    = SCSTATUS,
+            EXAMID    = EXID,
+            ACCOUNTID = ACCID
+            WHERE ID  = SCOREID;
+    
+            COMMIT;
+            
+        ELSIF func = 'DELETE' THEN
+            DELETE FROM SCORE 
+            WHERE ID = SCOREID;
+        
+            COMMIT;
+        
+        ELSE 
+            OPEN C_ALL FOR
+            SELECT * 
+            FROM Score;
+        
+            DBMS_SQL.RETURN_RESULT(C_ALL);
+        END IF;        
+    END  ScoreCRUD; 
 
 ----------------------------------------------------
 -- Calculate Score Procedure
@@ -114,7 +103,7 @@ BEGIN
     END IF;
     
     -- Create Score
-    ScorePackage.CreateScore(totalMark, st, exid, accid);
+    ScorePackage.ScoreCRUD('Create',totalMark, st, exid, accid);
 
 END CalculateScore;
 
