@@ -1,49 +1,45 @@
-CREATE OR REPLACE PACKAGE BODY CertificatePackage AS
+create or replace PACKAGE BODY CertificatePackage AS
     
-    -- CRUD Procedures
-    -- Get Certificates Procedure
-    PROCEDURE GetCertificates AS
+    -- CRUD Procedures    
+    PROCEDURE CertificateCRUD(
+        func IN VARCHAR DEFAULT NULL,
+        CertificateID IN Certificate.ID%type DEFAULT NULL,
+        createDate IN Certificate.creatiodate%type DEFAULT NULL,
+        exam_id IN Certificate.examid%type DEFAULT NULL,
+        acc_id IN Certificate.accountid%type DEFAULT NULL) AS
+        
         ref_cursor SYS_REFCURSOR;
     BEGIN
-        OPEN ref_cursor FOR
-        SELECT *
-        FROM Certificate;
-        
-        DBMS_SQL.RETURN_RESULT(ref_cursor);
-    END GetCertificates;
-    
-    -- Create Certificate Procedure
-    PROCEDURE CreateCertificate(
-        createDate IN Certificate.creatiodate%type,
-        exam_id IN Certificate.examid%type,
-        acc_id IN Certificate.accountid%type) AS
-        BEGIN
+    -- Create 
+        IF func = 'CREATE' THEN
             INSERT INTO Certificate
             (CreatioDate, ExamId, AccountId)
             VALUES(createDate, exam_id, acc_id);
-        commit;
-        END CreateCertificate;
-    
-    -- Update Certificate Procedure
-    PROCEDURE UpdateCertificate(
-        CertificateID IN Certificate.ID%type,
-        createDate IN Certificate.creatiodate%type,
-        exam_id IN Certificate.examid%type,
-        acc_id IN Certificate.accountid%type) AS
-        BEGIN
+
+        COMMIT;
+    -- Update 
+    ELSIF func = 'UPDATE' THEN
             UPDATE Certificate SET 
                 CreatioDate = createDate,
                 examid = exam_id,
                 accountid = acc_id
-               
             WHERE id = CertificateID;
-            commit;
-        END UpdateCertificate;
-        
-    -- Delete Certificate Procedure
-    PROCEDURE DeleteCertificate(CertificateID IN Certificate.id%type) AS
-    BEGIN
+
+            COMMIT;
+
+
+    -- Delete 
+    ELSIF func = 'DELETE' THEN
         DELETE from Certificate WHERE id = CertificateID;
-        commit;
-END DeleteCertificate;
+
+        COMMIT;
+    ELSE
+    -- Get
+        OPEN ref_cursor FOR
+        SELECT *
+        FROM Certificate;
+
+        DBMS_SQL.RETURN_RESULT(ref_cursor);
+    END IF;
+END CertificateCRUD;
 END CertificatePackage;
