@@ -7,7 +7,10 @@ using System.Text;
 using Tahaluf.PlusExam.Core.Common;
 using Tahaluf.PlusExam.Core.Data;
 using Tahaluf.PlusExam.Core.DTO;
+using Tahaluf.PlusExam.Core.GenericInterface;
 using Tahaluf.PlusExam.Core.RepositoryInterface;
+using Tahaluf.PlusExam.Infra.Commom;
+using Tahaluf.PlusExam.Infra.Generic;
 
 namespace Tahaluf.PlusExam.Infra.Repository
 {
@@ -15,11 +18,13 @@ namespace Tahaluf.PlusExam.Infra.Repository
     {
         #region Fields
         private readonly IDbContext dbContext;
+        private readonly IGenericCRUD<Account> genericCRUD;
         #endregion Fields
 
         #region Constructor
         public AccountRepository(IDbContext _dbContext)
         {
+            genericCRUD = new GenericCRUD<Account>(_dbContext);
             dbContext = _dbContext;
         }
         #endregion Constructor
@@ -30,7 +35,7 @@ namespace Tahaluf.PlusExam.Infra.Repository
         public List<Account> GetAccounts()
         {
             return dbContext.Connection.Query<Account>(
-                "AccountPackage.GetAccounts",
+                "AccountPackage.AccountCRUD",
                 commandType: CommandType.StoredProcedure).ToList();
         }
         #endregion GetAccounts
@@ -38,64 +43,7 @@ namespace Tahaluf.PlusExam.Infra.Repository
         #region CreateAccount
         public bool CreateAccount(Account account)
         {
-            #region DynamicParameters
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("uName",
-                account.Username,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("passw",
-                account.Password,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("mail",
-                account.Email,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("fName",
-                account.Fullname,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("sex",
-                account.Gender,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("birthOfDate",
-                account.Bod,
-                dbType: DbType.DateTime,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("addr",
-                account.Address,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("st",
-                account.Status,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("rName",
-                account.Rolename,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("profileImg",
-                account.ProfilePicture,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-            #endregion DynamicParameters
-
-            dbContext.Connection.ExecuteAsync(
-                "AccountPackage.CreateAccount", parameters,
-                commandType: CommandType.StoredProcedure);
-
-            return true;
+            return genericCRUD.Create(account);
         }
         #endregion CreateAccount
 
@@ -303,7 +251,7 @@ namespace Tahaluf.PlusExam.Infra.Repository
 
             return true;
         }
-        
+
         public Account UserLogin(UserInfoDTO userInfoDTO)
         {
             DynamicParameters parameters = new DynamicParameters();
@@ -314,7 +262,7 @@ namespace Tahaluf.PlusExam.Infra.Repository
             parameters.Add("passw",
                             userInfoDTO.Password,
                             dbType: DbType.String,
-                            direction: ParameterDirection.Input); 
+                            direction: ParameterDirection.Input);
             IEnumerable<Account> result = dbContext.Connection.Query<Account>(
                 "AccountPackage.Login", parameters,
                 commandType: CommandType.StoredProcedure);

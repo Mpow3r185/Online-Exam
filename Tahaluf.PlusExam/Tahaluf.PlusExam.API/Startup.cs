@@ -68,6 +68,8 @@ namespace Tahaluf.PlusExam.API
             services.AddScoped<IReportRepository, ReportRepository>();
             // Fill Result Repository
             services.AddScoped<IFillResultRepository, FillResultRepository>();
+            // CRUD Repository
+            //services.AddScoped<IGenericCRUDRepository<dynamic>, GenericCRUDRepository<dynamic>>();
 
 
             // Question Service
@@ -100,6 +102,8 @@ namespace Tahaluf.PlusExam.API
             services.AddScoped<IReportService, ReportService>();
             // Fill Result Service
             services.AddScoped<IFillResultService, FillResultService>();
+            // CRUD Service
+            //services.AddScoped<IGenericCRUDService<dynamic>, GenericCRUDService<dynamic>>();
 
             //Configure Jwt Authentication
             services.AddAuthentication(opt =>
