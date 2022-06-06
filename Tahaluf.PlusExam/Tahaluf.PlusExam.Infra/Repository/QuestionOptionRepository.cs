@@ -13,13 +13,13 @@ namespace Tahaluf.PlusExam.Infra.Repository
     public class QuestionOptionRepository : IQuestionOptionRepository
     {
         #region Fields
-        private readonly IDbContext _dbContext;
+         private readonly IGenericCRUD<QuestionOption> genericCRUD;
         #endregion Fields
 
         #region Constructor
         public QuestionOptionRepository(IDbContext DbContext)
         {
-            _dbContext = DbContext;
+            genericCRUD = new GenericCRUD<QuestionOption>(DbContext);
         }
         #endregion Constructor
 
@@ -28,79 +28,28 @@ namespace Tahaluf.PlusExam.Infra.Repository
         #region CreateQuestionOption
         public bool CreateQuestionOption(QuestionOption questionOption)
         {
-            #region DynamicParameters
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("OContent", 
-                questionOption.OptionContent,
-                dbType: DbType.String, 
-                direction: ParameterDirection.Input);
-
-            parameters.Add("OQuestionId",
-                questionOption.QuestionId,
-                dbType: DbType.Int32,
-                direction: ParameterDirection.Input);
-            #endregion DynamicParameters
-
-            _dbContext.Connection.ExecuteAsync(
-                "QuestionOptionPackage.CreateQuestionOption", parameters,
-                commandType: CommandType.StoredProcedure);
-            
-            return true;
+            return genericCRUD.Create(questionOption);
         }
         #endregion CreateQuestionOption
 
         #region DeleteQuestionOption
         public bool DeleteQuestionOption(int id)
         {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("Oid",
-                id, 
-                dbType: DbType.Int32,
-                direction: ParameterDirection.Input);
-
-            _dbContext.Connection.ExecuteAsync(
-                "QuestionOptionPackage.DeleteQuestionOption", parameters,
-                commandType: CommandType.StoredProcedure);
-            
-            return true;
+            return genericCRUD.Delete(id);
         }
         #endregion DeleteQuestionOption
 
         #region GetQuestionsOptions
         public List<QuestionOption> GetQuestionsOptions()
         {
-            return _dbContext.Connection.Query<QuestionOption>(
-                "QuestionOptionPackage.GetAllQuestionOption",
-                commandType: CommandType.StoredProcedure).ToList();
+           return genericCRUD.GetAll();
         }
         #endregion GetQuestionsOptions
 
         #region UpdateQuestionOption
         public bool UpdateQuestionOption(QuestionOption questionOption)
         {
-            #region DynamicParameters
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("Oid",
-                questionOption.Id,
-                dbType: DbType.Int32,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("OContent",
-                questionOption.OptionContent,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("OQuestionId",
-                questionOption.QuestionId, 
-                dbType: DbType.Int32,
-                direction: ParameterDirection.Input);
-            #endregion DynamicParameters
-
-            _dbContext.Connection.ExecuteAsync(
-                "QuestionOptionPackage.UpdateQuestionOption", parameters,
-                commandType: CommandType.StoredProcedure);
-            
-            return true;
+            return genericCRUD.Update(questionOption);
         }
         #endregion UpdateQuestionOption
 
