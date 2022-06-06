@@ -5,42 +5,40 @@
 */
 
 CREATE OR REPLACE PACKAGE Body QuestionPackage AS
-    --Body For Get All Question
-    PROCEDURE GetAllQuestion AS Q_all sys_refcursor;
+   --Body For Question CRUD operation
+    PROCEDURE QuestionCRUD(
+                func IN VARCHAR DEFAULT NULL,
+                Qid Question.id%TYPE DEFAULT NULL, 
+		QContent Question.questioncontent%TYPE DEFAULT NULL,
+		QType Question.type%TYPE DEFAULT NULL,
+		QScore Question.score%TYPE DEFAULT NULL, 
+	        QStatues Question.status%TYPE DEFAULT NULL, 
+	        QExamId Question.examid%TYPE DEFAULT NULL) AS Q_all sys_refcursor;
     BEGIN
-        open Q_all for
-        select * from Question;
-        DBMS_SQL.RETURN_RESULT(Q_all);
-    END GetAllQuestion;
-
-    --Body For Update Question
-    PROCEDURE UpdateQuestion(
-			Qid Question.id%TYPE, 
-			QContent Question.questioncontent%TYPE,
-			QType Question.type%TYPE ,
-			QScore Question.score%TYPE, 
-			QStatues Question.status%TYPE, 
-			QExamId Question.examid%TYPE
-			) AS        
-    BEGIN
-    UPDATE Question SET Questioncontent = QContent, Type=QType, Score=QScore, Status=QStatues, Examid=QExamId
-    WHERE Id = Qid;
-    COMMIT;
-    END UpdateQuestion;
-
-    --Body For Create Question
-    PROCEDURE CreateQuestion(QContent Question.questioncontent%TYPE,QType Question.type%TYPE ,QScore Question.score%TYPE, QStatues Question.status%TYPE, QExamId Question.examid%TYPE) AS
-    BEGIN
-    INSERT INTO Question(Questioncontent, Type, Score, Status, Examid)
-    VALUES (QContent , QType , QScore , QStatues, QExamId);
-    COMMIT;
-    END CreateQuestion;
-    
-    --Body For Delete Question
-    PROCEDURE DeleteQuestion(Qid Question.id%TYPE) AS
-    BEGIN
-    DELETE Question WHERE Id=Qid;
-    COMMIT;
-    END DeleteQuestion;
+        -- Create
+        IF func = 'CREATE' THEN
+            INSERT INTO Question(Questioncontent, Type, Score, Status, Examid)
+            VALUES (QContent , QType , QScore , QStatues, QExamId);
+            COMMIT;
+            
+        -- Update    
+        ELSIF func = 'UPDATE' THEN    
+            UPDATE Question SET Questioncontent = QContent, Type=QType, Score=QScore, Status=QStatues, Examid=QExamId
+            WHERE Id = Qid;
+            COMMIT;
+           
+        --Delete    
+        ELSIF func = 'DELETE' THEN  
+            DELETE Question WHERE Id=Qid;
+            COMMIT;
+         
+        -- Get All 
+        ELSE    
+            open Q_all for
+            select * from Question;
+            DBMS_SQL.RETURN_RESULT(Q_all);
+            
+        END IF;
+    END QuestionCRUD;
     
 END QuestionPackage;
