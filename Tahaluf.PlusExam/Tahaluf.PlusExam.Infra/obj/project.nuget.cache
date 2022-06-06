@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ekak66IruACKjF9ITNew5KkJdhEPhY+ir5qD2k0az3t77jyqZ+f79OonHmLuKGld97gttLIE/I+GiRUuQ1pU5w==",
+  "dgSpecHash": "/vfIg9ESsD6cKXT0lMI2kYrXG+NKaLGdkiBhsIe6ovbZEvkaWvmWPZ6i47WEKIa8HO371X/gUmcjcnk3qAgDdA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\dabda\\OneDrive\\Desktop\\GitHub\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\Tahaluf.PlusExam.Infra.csproj",
+  "projectFilePath": "C:\\Users\\dabda\\OneDrive\\Desktop\\GIT\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Infra\\Tahaluf.PlusExam.Infra.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dabda\\.nuget\\packages\\azure.core\\1.6.0\\azure.core.1.6.0.nupkg.sha512",
     "C:\\Users\\dabda\\.nuget\\packages\\azure.identity\\1.3.0\\azure.identity.1.3.0.nupkg.sha512",

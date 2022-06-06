@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Hu1SEzvqFwJDR5KOt1er9OFQ+jDUcBMYM7DfdZve98t4Eg6/DQwqziX0PRAxQnNGfaHqirfBW95Mcc3+C4/SKw==",
+  "dgSpecHash": "wdioKBvP/ME0kNPLZ3G74VEGtlCPfepE0M+M1CIF+fqIR40ijHh8jsaLjeOEN42teQD0lPPW0jhe2CMBAwxFcg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\dabda\\OneDrive\\Desktop\\GitHub\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj",
+  "projectFilePath": "C:\\Users\\dabda\\OneDrive\\Desktop\\GIT\\Tahaluf.PlusExam\\Tahaluf.PlusExam.Core\\Tahaluf.PlusExam.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dabda\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\dabda\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

@@ -34,9 +34,7 @@ namespace Tahaluf.PlusExam.Infra.Repository
         #region GetAccounts
         public List<Account> GetAccounts()
         {
-            return dbContext.Connection.Query<Account>(
-                "AccountPackage.AccountCRUD",
-                commandType: CommandType.StoredProcedure).ToList();
+            return genericCRUD.GetAll();
         }
         #endregion GetAccounts
 
@@ -50,87 +48,14 @@ namespace Tahaluf.PlusExam.Infra.Repository
         #region UpdateAccount
         public bool UpdateAccount(Account account)
         {
-            #region DynamicParameters
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("accid",
-                account.Id,
-                dbType: DbType.Int32,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("uName",
-                account.Username,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("passw",
-                account.Password,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("mail",
-                account.Email,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("fName",
-                account.Fullname,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("sex",
-                account.Gender,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("birthOfDate",
-                account.Bod,
-                dbType: DbType.DateTime,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("addr",
-                account.Address,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("st",
-                account.Status,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("rName",
-                account.Rolename,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("profileImg",
-                account.ProfilePicture,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-            #endregion DynamicParameters
-
-            dbContext.Connection.ExecuteAsync(
-                "AccountPackage.UpdateAccount", parameters,
-                commandType: CommandType.StoredProcedure);
-
-            return true;
+            return genericCRUD.Update(account);
         }
         #endregion UpdateAccount
 
         #region DeleteAccount
         public bool DeleteAccount(int accid)
         {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("accid",
-                accid,
-                dbType: DbType.Int32,
-                direction: ParameterDirection.Input);
-
-
-            dbContext.Connection.ExecuteAsync(
-                "AccountPackage.DeleteAccount", parameters,
-                commandType: CommandType.StoredProcedure);
-
-            return true;
+            return genericCRUD.Delete(accid);
         }
         #endregion DeleteAccount
 
