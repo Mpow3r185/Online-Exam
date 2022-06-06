@@ -1,4 +1,4 @@
-﻿using Dapper;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,22 +6,28 @@ using System.Linq;
 using System.Text;
 using Tahaluf.PlusExam.Core.Common;
 using Tahaluf.PlusExam.Core.Data;
+using Tahaluf.PlusExam.Core.GenericInterface;
 using Tahaluf.PlusExam.Core.RepositoryInterface;
+using Tahaluf.PlusExam.Infra.Generic;
 
 namespace Tahaluf.PlusExam.Infra.Repository
 {
     public class PhoneNumberRepository : IPhoneNumberRepository
     {
         #region Fields
-        private readonly IDbContext _dbContext;
+        private readonly IDbContext dbContext;
+        private readonly IGenericCRUD<PhoneNumber> genericCRUD;
         #endregion Fields
 
+
         #region Constructor
-        public PhoneNumberRepository(IDbContext DbContext)
+        public PhoneNumberRepository(IDbContext _dbContext)
         {
-            _dbContext = DbContext;
+            genericCRUD = new GenericCRUD<PhoneNumber>(_dbContext);
+            dbContext = _dbContext;
         }
         #endregion Constructor
+
 
         #region CRUD_Operation
 
@@ -29,9 +35,7 @@ namespace Tahaluf.PlusExam.Infra.Repository
         // Get Phone Numbers
         public List<PhoneNumber> GetPhoneNumbers()
         {
-            return _dbContext.Connection.Query<PhoneNumber>(
-                "PhoneNumberPackage.GetAll", 
-                commandType: CommandType.StoredProcedure).ToList();
+            return genericCRUD.GetAll();
         }
         #endregion GetPhoneNumbers
 
@@ -39,24 +43,8 @@ namespace Tahaluf.PlusExam.Infra.Repository
         // Create Phone Number
         public bool CreatePhoneNumber(PhoneNumber phoneNumber)
         {
-            #region DynamicParameters
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("PHNUM", 
-                phoneNumber.PhoneNum, 
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
+            return genericCRUD.Create(phoneNumber);
 
-            parameters.Add("ACCID",
-                phoneNumber.AccountId, 
-                dbType: DbType.Int32, 
-                direction: ParameterDirection.Input);
-            #endregion DynamicParameters
-
-            _dbContext.Connection.ExecuteAsync(
-                "PhoneNumberPackage.CreatePhoneNumber", parameters, 
-                commandType: CommandType.StoredProcedure);
-
-            return true;
         }
         #endregion CreatePhoneNumber
 
@@ -64,29 +52,7 @@ namespace Tahaluf.PlusExam.Infra.Repository
         // Update Phone Number
         public bool UpdatePhoneNumber(PhoneNumber phoneNumber)
         {
-            #region DynamicParameters
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("PHNUMID", 
-                phoneNumber.Id,
-                DbType.Int32, 
-                direction: ParameterDirection.Input);
-
-            parameters.Add("PHNUM",
-                phoneNumber.PhoneNum, 
-                dbType: DbType.String, 
-                direction: ParameterDirection.Input);
-
-            parameters.Add("ACCID", 
-                phoneNumber.AccountId, 
-                dbType: DbType.Int32, 
-                direction: ParameterDirection.Input);
-            #endregion DynamicParameters
-
-            _dbContext.Connection.ExecuteAsync(
-                "PhoneNumberPackage.UpdatePhoneNumber", parameters, 
-                commandType: CommandType.StoredProcedure);
-
-            return true;
+            return genericCRUD.Update(phoneNumber);
         }
         #endregion UpdatePhoneNumber
 
@@ -94,17 +60,7 @@ namespace Tahaluf.PlusExam.Infra.Repository
         // Delete Phone Number
         public bool DeletePhoneNumber(int id)
         {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("PHNUMID", 
-                id, 
-                dbType: DbType.Int32,
-                direction: ParameterDirection.Input);
-
-            _dbContext.Connection.ExecuteAsync(
-                "PhoneNumberPackage.DeletePhoneNumber", parameters,
-                commandType: CommandType.StoredProcedure);
-
-            return true;
+            return genericCRUD.Delete(id);
         }
         #endregion DeletePhoneNumber
 
