@@ -9,22 +9,10 @@
 */
 
 CREATE OR REPLACE PACKAGE ResultPackage AS
-    --Get All Result
-    PROCEDURE GetAllResult;
-	
-    --Update Result
-    PROCEDURE UpdateResult(
-			Rid Result.id%TYPE, 
-			RQuestionOptionId Result.questionoptionid%TYPE, 
-			RAccountId Result.accountid%TYPE
-			);
-			
-    --Create Result
-    PROCEDURE CreateResult(
-			RQuestionOptionId Result.questionoptionid%TYPE, 
-			RAccountId Result.accountid%TYPE
-			);
-			
-    --Delete Result
-    PROCEDURE DeleteResult(Rid Result.id%TYPE);
+    --Result CRUD operation
+    PROCEDURE ResultCRUD(
+            func IN VARCHAR DEFAULT NULL,
+            Rid Result.id%TYPE DEFAULT NULL, 
+	    RQuestionOptionId Result.questionoptionid%TYPE DEFAULT NULL, 
+	    RAccountId Result.accountid%TYPE DEFAULT NULL);
 END ResultPackage;
