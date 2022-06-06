@@ -1,4 +1,4 @@
-﻿using Dapper;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,7 +6,9 @@ using System.Linq;
 using System.Text;
 using Tahaluf.PlusExam.Core.Common;
 using Tahaluf.PlusExam.Core.Data;
+using Tahaluf.PlusExam.Core.GenericInterface;
 using Tahaluf.PlusExam.Core.RepositoryInterface;
+using Tahaluf.PlusExam.Infra.Generic;
 
 namespace Tahaluf.PlusExam.Infra.Repository
 {
@@ -14,11 +16,13 @@ namespace Tahaluf.PlusExam.Infra.Repository
     {
         #region Fields
         private readonly IDbContext dbContext;
+        private readonly IGenericCRUD<Certificate> genericCRUD;
         #endregion Fields
 
         #region Constructor
         public CertificateRepository(IDbContext _dbContext)
         {
+            genericCRUD = new GenericCRUD<Certificate>(_dbContext);
             dbContext = _dbContext;
         }
         #endregion Constructor
@@ -28,89 +32,30 @@ namespace Tahaluf.PlusExam.Infra.Repository
         #region GetCertificates
         public List<Certificate> GetCertificates()
         {
-            return dbContext.Connection.Query<Certificate>(
-                "CertificatePackage.GetCertificates",
-                commandType: CommandType.StoredProcedure).ToList();
+            return genericCRUD.GetAll();
         }
         #endregion GetCertificates
 
         #region CreateCertificate
         public bool CreateCertificate(Certificate certificate)
-        {
-            #region DynamicParameters
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("createDate",
-                certificate.CreatioDate, 
-                dbType: DbType.DateTime, 
-                direction: ParameterDirection.Input);
+        { 
 
-            parameters.Add("exam_id", 
-                certificate.ExamId, 
-                dbType: DbType.Int32,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("acc_id", 
-                certificate.AccountId, 
-                dbType: DbType.Int32, 
-                direction: ParameterDirection.Input);
-            #endregion DynamicParameters
-
-            dbContext.Connection.ExecuteAsync(
-                "CertificatePackage.CreateCertificate", parameters, 
-                commandType: CommandType.StoredProcedure);
-
-            return true;
+            return genericCRUD.Create(certificate);
         }
         #endregion CreateCertificate
 
         #region UpdateCertificate
         public bool UpdateCertificate(Certificate certificate)
         {
-            #region DynamicParameters
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("CertificateID", 
-                certificate.Id, 
-                dbType: DbType.Int32, 
-                direction: ParameterDirection.Input);
 
-            parameters.Add("createDate", 
-                certificate.CreatioDate, 
-                dbType: DbType.DateTime, 
-                direction: ParameterDirection.Input);
-
-            parameters.Add("exam_id", 
-                certificate.ExamId, 
-                dbType: DbType.Int32, 
-                direction: ParameterDirection.Input);
-
-            parameters.Add("acc_id", 
-                certificate.AccountId, 
-                dbType: DbType.Int32, 
-                direction: ParameterDirection.Input);
-            #endregion DynamicParameters
-
-            dbContext.Connection.ExecuteAsync(
-                "CertificatePackage.UpdateCertificate", parameters, 
-                commandType: CommandType.StoredProcedure);
-
-            return true;
+            return genericCRUD.Update(certificate);
         }
         #endregion UpdateCertificate
 
         #region DeleteCertificate
         public bool DeleteCertificate(int id)
         {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("CertificateID", 
-                id, 
-                dbType: DbType.Int32, 
-                direction: ParameterDirection.Input);
-
-            dbContext.Connection.ExecuteAsync(
-                "CertificatePackage.DeleteCertificate", parameters, 
-                commandType: CommandType.StoredProcedure);
-
-            return true;
+            return genericCRUD.Delete(id);
         }
         #endregion DeleteCertificate
 
