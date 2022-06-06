@@ -176,6 +176,52 @@ namespace Tahaluf.PlusExam.Infra.Generic
 
                         return true;
                     }
+                // Phone Number Table
+                case "PhoneNumber":
+                    {
+                        DynamicParameters phoneNumberDynamicParameters = GeneratePhoneNumberParameters(entity);
+                        phoneNumberDynamicParameters.Add("func",
+                                "CREATE",
+                                dbType: DbType.String,
+                                direction: ParameterDirection.Input);
+
+                        dbContext.Connection.ExecuteAsync(
+                            "PhoneNumberPackage.PhoneNumberCRUD", phoneNumberDynamicParameters,
+                            commandType: CommandType.StoredProcedure);
+
+                        return true;
+                    }
+                // Score Table
+                case "Score":
+                    {
+                        DynamicParameters scoreDynamicParameters = GenerateScoreParameters(entity);
+                        scoreDynamicParameters.Add("func",
+                                "CREATE",
+                                dbType: DbType.String,
+                                direction: ParameterDirection.Input);
+
+                        dbContext.Connection.ExecuteAsync(
+                            "ScorePackage.ScoreCRUD", scoreDynamicParameters,
+                            commandType: CommandType.StoredProcedure);
+
+                        return true;
+                    }
+                // Correct Answer Table
+                case "CorrectAnswer":
+                    {
+                        DynamicParameters correctAnswerDynamicParameters = GenerateCorrectAnswerParameters(entity);
+                        correctAnswerDynamicParameters.Add("func",
+                                "CREATE",
+                                dbType: DbType.String,
+                                direction: ParameterDirection.Input);
+
+                        dbContext.Connection.ExecuteAsync(
+                            "CorrectAnswerPackage.CorrectAnswerCRUD", correctAnswerDynamicParameters,
+                            commandType: CommandType.StoredProcedure);
+
+                        return true;
+                    }
+
             }
             return true;
         }
@@ -383,6 +429,67 @@ namespace Tahaluf.PlusExam.Infra.Generic
 
                         return true;
                     }
+                // Phone Number Table
+                case "PhoneNumber":
+                    {
+                        DynamicParameters phoneNumberDynamicParameters = new DynamicParameters();
+                        phoneNumberDynamicParameters.Add("func",
+                                "DELETE",
+                                dbType: DbType.String);
+
+                        phoneNumberDynamicParameters.Add("PHNUMID",
+                                id,
+                                dbType: DbType.Int32,
+                                direction: ParameterDirection.Input);
+
+                        dbContext.Connection.ExecuteAsync(
+                            "PhoneNumberPackage.PhoneNumberCRUD",
+                            phoneNumberDynamicParameters,
+                            commandType: CommandType.StoredProcedure);
+
+                        return true;
+                    }
+                // Score Table
+                case "Score":
+                    {
+                        DynamicParameters scoreDynamicParameters = new DynamicParameters();
+                        scoreDynamicParameters.Add("func",
+                                "DELETE",
+                                dbType: DbType.String);
+
+                        scoreDynamicParameters.Add("SCOREID",
+                                id,
+                                dbType: DbType.Int32,
+                                direction: ParameterDirection.Input);
+
+                        dbContext.Connection.ExecuteAsync(
+                            "ScorePackage.ScoreCRUD",
+                            scoreDynamicParameters,
+                            commandType: CommandType.StoredProcedure);
+
+                        return true;
+                    }
+                // Correct Answer Table
+                case "CorrectAnswer":
+                    {
+                        DynamicParameters correctAnswerDynamicParameters = new DynamicParameters();
+                        correctAnswerDynamicParameters.Add("func",
+                                "DELETE",
+                                dbType: DbType.String);
+
+                        correctAnswerDynamicParameters.Add("CANSWERID",
+                                id,
+                                dbType: DbType.Int32,
+                                direction: ParameterDirection.Input);
+
+                        dbContext.Connection.ExecuteAsync(
+                            "CorrectAnswerPackage.CorrectAnswerCRUD",
+                            correctAnswerDynamicParameters,
+                            commandType: CommandType.StoredProcedure);
+
+                        return true;
+                    }
+
             }
 
             return true;
@@ -466,6 +573,27 @@ namespace Tahaluf.PlusExam.Infra.Generic
                     {
                         return dbContext.Connection.Query<Invoice>(
                             "InvoicePackage.InvoiceCRUD",
+                            commandType: CommandType.StoredProcedure).ToList();
+                    }
+                // Phone Number Table
+                case "PhoneNumber":
+                    {
+                        return dbContext.Connection.Query<PhoneNumber>(
+                            "PhoneNumberPackage.PhoneNumberCRUD",
+                            commandType: CommandType.StoredProcedure).ToList();
+                    }
+                // Score Table
+                case "Score":
+                    {
+                        return dbContext.Connection.Query<Score>(
+                            "ScorePackage.ScoreCRUD",
+                            commandType: CommandType.StoredProcedure).ToList();
+                    }
+                // Correct Answer Table
+                case "CorrectAnswer":
+                    {
+                        return dbContext.Connection.Query<CorrectAnswer>(
+                            "CorrectAnswerPackage.CorrectAnswerCRUD",
                             commandType: CommandType.StoredProcedure).ToList();
                     }
             }
@@ -619,6 +747,48 @@ namespace Tahaluf.PlusExam.Infra.Generic
 
                         dbContext.Connection.ExecuteAsync(
                             "InvoicePackage.InvoiceCRUD", invoiceDynamicParameters,
+                            commandType: CommandType.StoredProcedure);
+
+                        return true;
+                    }
+                // Phone Number Table
+                case "PhoneNumber":
+                    {
+                        DynamicParameters phoneNumberDynamicParameters = GeneratePhoneNumberParameters(entity);
+                        phoneNumberDynamicParameters.Add("func",
+                            "UPDATE",
+                            dbType: DbType.String);
+
+                        dbContext.Connection.ExecuteAsync(
+                            "PhoneNumberPackage.PhoneNumberCRUD", phoneNumberDynamicParameters,
+                            commandType: CommandType.StoredProcedure);
+
+                        return true;
+                    }
+                // Score Table
+                case "Score":
+                    {
+                        DynamicParameters scoreDynamicParameters = GenerateScoreParameters(entity);
+                        scoreDynamicParameters.Add("func",
+                            "UPDATE",
+                            dbType: DbType.String);
+
+                        dbContext.Connection.ExecuteAsync(
+                            "ScorePackage.ScoreCRUD", scoreDynamicParameters,
+                            commandType: CommandType.StoredProcedure);
+
+                        return true;
+                    }
+                // Correct Answer Table
+                case "CorrectAnswer":
+                    {
+                        DynamicParameters correctAnswerDynamicParameters = GenerateCorrectAnswerParameters(entity);
+                        correctAnswerDynamicParameters.Add("func",
+                            "UPDATE",
+                            dbType: DbType.String);
+
+                        dbContext.Connection.ExecuteAsync(
+                            "CorrectAnswerPackage.CorrectAnswerCRUD", correctAnswerDynamicParameters,
                             commandType: CommandType.StoredProcedure);
 
                         return true;
@@ -939,6 +1109,7 @@ namespace Tahaluf.PlusExam.Infra.Generic
 
             return parameters;
         }
+
         // Dynamic Parameters For Certificate table
         private DynamicParameters GenerateCreditCardParameters(dynamic creditCard)
         {
@@ -990,6 +1161,82 @@ namespace Tahaluf.PlusExam.Infra.Generic
 
             parameters.Add("acc_id",
                 invoice.AccountId,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+            #endregion DynamicParameters
+
+            return parameters;
+        }
+
+
+        // Dynamic Parameters For Phone Number tabel 
+        private DynamicParameters GeneratePhoneNumberParameters(dynamic phoneNumber)
+        {
+            #region DynamicParameters
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("PHNUMID",
+                phoneNumber.Id,
+                DbType.Int32,
+                direction: ParameterDirection.Input);
+            parameters.Add("PHNUM",
+                phoneNumber.PhoneNum,
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("ACCID",
+                phoneNumber.AccountId,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+            #endregion DynamicParameters
+
+            return parameters;
+        }
+
+        // Dynamic Parameters For Score tabel 
+        private DynamicParameters GenerateScoreParameters(dynamic score)
+        {
+            #region DynamicParameters
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("SCOREID",
+                score.Id,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("SCGRADE",
+                score.Grade,
+                dbType: DbType.Double,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("SCSTATUS",
+                score.Status, dbType: DbType.String,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("EXID",
+                score.ExamId,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("ACCID",
+                score.AccountId,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+            #endregion DynamicParameters
+
+            return parameters;
+        }
+
+        // Dynamic Parameters For Correct Answer tabel 
+        private DynamicParameters GenerateCorrectAnswerParameters(dynamic correctAnswer)
+        {
+            #region DynamicParameters
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("CANSWERID",
+                correctAnswer.Id,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("QOID",
+                correctAnswer.QuestionOptionId,
                 dbType: DbType.Int32,
                 direction: ParameterDirection.Input);
             #endregion DynamicParameters
