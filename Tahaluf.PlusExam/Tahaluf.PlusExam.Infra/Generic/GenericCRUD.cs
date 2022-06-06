@@ -1,4 +1,4 @@
-﻿using Dapper;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -127,6 +127,51 @@ namespace Tahaluf.PlusExam.Infra.Generic
 
                         dbContext.Connection.ExecuteAsync(
                             "FillResultPackage.FillResultCRUD", fillResultDynamicParameters,
+                            commandType: CommandType.StoredProcedure);
+
+                        return true;
+                    }
+                // Certificate Table
+                case "Certificate":
+                    {
+                        DynamicParameters certificateDynamicParameters = GenerateCertificateParameters(entity);
+                        certificateDynamicParameters.Add("func",
+                            "CREATE",
+                            dbType: DbType.String,
+                            direction: ParameterDirection.Input);
+
+                        dbContext.Connection.ExecuteAsync(
+                            "CertificatePackage.CertificateCRUD", certificateDynamicParameters,
+                            commandType: CommandType.StoredProcedure);
+
+                        return true;
+                    }
+                // CreditCard Table
+                case "CreditCard":
+                    {
+                        DynamicParameters creditCardDynamicParameters = GenerateCreditCardParameters(entity);
+                        creditCardDynamicParameters.Add("func",
+                            "CREATE",
+                            dbType: DbType.String,
+                            direction: ParameterDirection.Input);
+
+                        dbContext.Connection.ExecuteAsync(
+                            "CreditCardPackage.CreditCardCRUD", creditCardDynamicParameters,
+                            commandType: CommandType.StoredProcedure);
+
+                        return true;
+                    }
+                // Invoice Table
+                case "Invoice":
+                    {
+                        DynamicParameters invoiceDynamicParameters = GenerateInvoiceParameters(entity);
+                        invoiceDynamicParameters.Add("func",
+                            "CREATE",
+                            dbType: DbType.String,
+                            direction: ParameterDirection.Input);
+
+                        dbContext.Connection.ExecuteAsync(
+                            "InvoicePackage.InvoiceCRUD", invoiceDynamicParameters,
                             commandType: CommandType.StoredProcedure);
 
                         return true;
@@ -278,7 +323,68 @@ namespace Tahaluf.PlusExam.Infra.Generic
 
                         return true;
                     }
+                // Certificate Table
+                case "Certificate":
+                    {
+                        DynamicParameters certificateDynamicParameters = new DynamicParameters();
+                        certificateDynamicParameters.Add("func",
+                                "DELETE",
+                                dbType: DbType.String);
+
+                        certificateDynamicParameters.Add("CertificateID",
+                                id,
+                                dbType: DbType.Int32,
+                                direction: ParameterDirection.Input);
+
+                        dbContext.Connection.ExecuteAsync(
+                            "CertificatePackage.CertificateCRUD",
+                            certificateDynamicParameters,
+                            commandType: CommandType.StoredProcedure);
+
+                        return true;
+                    }
+                // CreditCard Table
+                case "CreditCard":
+                    {
+                        DynamicParameters creditCardDynamicParameters = new DynamicParameters();
+                        creditCardDynamicParameters.Add("func",
+                                "DELETE",
+                                dbType: DbType.String);
+
+                        creditCardDynamicParameters.Add("card_id",
+                                id,
+                                dbType: DbType.Int32,
+                                direction: ParameterDirection.Input);
+
+                        dbContext.Connection.ExecuteAsync(
+                            "CreditCardPackage.CreditCardCRUD",
+                            creditCardDynamicParameters,
+                            commandType: CommandType.StoredProcedure);
+
+                        return true;
+                    }
+                // Invoice Table
+                case "Invoice":
+                    {
+                        DynamicParameters invoiceDynamicParameters = new DynamicParameters();
+                        invoiceDynamicParameters.Add("func",
+                                "DELETE",
+                                dbType: DbType.String);
+
+                        invoiceDynamicParameters.Add("invoiceID",
+                                id,
+                                dbType: DbType.Int32,
+                                direction: ParameterDirection.Input);
+
+                        dbContext.Connection.ExecuteAsync(
+                            "InvoicePackage.InvoiceCRUD",
+                            invoiceDynamicParameters,
+                            commandType: CommandType.StoredProcedure);
+
+                        return true;
+                    }
             }
+
             return true;
         }
 
@@ -339,6 +445,27 @@ namespace Tahaluf.PlusExam.Infra.Generic
                     {
                         return dbContext.Connection.Query<FillResult>(
                             "FillResultPackage.FillResultCRUD",
+                            commandType: CommandType.StoredProcedure).ToList();
+                    }
+                // Certificate Table
+                case "Certificate":
+                    {
+                        return dbContext.Connection.Query<Certificate>(
+                            "CertificatePackage.CertificateCRUD",
+                            commandType: CommandType.StoredProcedure).ToList();
+                    }
+                // CreditCard Table
+                case "CreditCard":
+                    {
+                        return dbContext.Connection.Query<CreditCard>(
+                            "CreditCardPackage.CreditCardCRUD",
+                            commandType: CommandType.StoredProcedure).ToList();
+                    }
+                // Invoice Table
+                case "Invoice":
+                    {
+                        return dbContext.Connection.Query<Invoice>(
+                            "InvoicePackage.InvoiceCRUD",
                             commandType: CommandType.StoredProcedure).ToList();
                     }
             }
@@ -428,7 +555,7 @@ namespace Tahaluf.PlusExam.Infra.Generic
                 // Exam Table
                 case "Exam":
                     {
-                        DynamicParameters examDynamicParameters = GenerateCourseParameters(entity);
+                        DynamicParameters examDynamicParameters = GenerateExamParameters(entity);
                         examDynamicParameters.Add("func",
                             "UPDATE",
                             dbType: DbType.String);
@@ -443,13 +570,55 @@ namespace Tahaluf.PlusExam.Infra.Generic
                 // FillResult Table
                 case "FillResult":
                     {
-                        DynamicParameters fillResultDynamicParameters = GenerateCourseParameters(entity);
+                        DynamicParameters fillResultDynamicParameters = GenerateFillResultParameters(entity);
                         fillResultDynamicParameters.Add("func",
                             "UPDATE",
                             dbType: DbType.String);
 
                         dbContext.Connection.ExecuteAsync(
                             "FillResultPackage.FillResultCRUD", fillResultDynamicParameters,
+                            commandType: CommandType.StoredProcedure);
+
+                        return true;
+                    }
+                // Certificate Table
+                case "Certificate":
+                    {
+                        DynamicParameters certificateDynamicParameters = GenerateCertificateParameters(entity);
+                        certificateDynamicParameters.Add("func",
+                            "UPDATE",
+                            dbType: DbType.String);
+
+                        dbContext.Connection.ExecuteAsync(
+                            "CertificatePackage.CertificateCRUD", certificateDynamicParameters,
+                            commandType: CommandType.StoredProcedure);
+
+                        return true;
+                    }
+                // CreditCard Table
+                case "CreditCard":
+                    {
+                        DynamicParameters creditCardDynamicParameters = GenerateCreditCardParameters(entity);
+                        creditCardDynamicParameters.Add("func",
+                            "UPDATE",
+                            dbType: DbType.String);
+
+                        dbContext.Connection.ExecuteAsync(
+                            "CreditCardPackage.CreditCardCRUD", creditCardDynamicParameters,
+                            commandType: CommandType.StoredProcedure);
+
+                        return true;
+                    }
+                // Invoice Table
+                case "Invoice":
+                    {
+                        DynamicParameters invoiceDynamicParameters = GenerateInvoiceParameters(entity);
+                        invoiceDynamicParameters.Add("func",
+                            "UPDATE",
+                            dbType: DbType.String);
+
+                        dbContext.Connection.ExecuteAsync(
+                            "InvoicePackage.InvoiceCRUD", invoiceDynamicParameters,
                             commandType: CommandType.StoredProcedure);
 
                         return true;
@@ -741,5 +910,91 @@ namespace Tahaluf.PlusExam.Infra.Generic
             return parameters;
         }
 
+        // Dynamic Parameters For Certificate table
+        private DynamicParameters GenerateCertificateParameters(dynamic certificate)
+        {
+            #region DynamicParameters
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("CertificateID",
+                certificate.Id,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("createDate",
+                    certificate.CreatioDate,
+                    dbType: DbType.DateTime,
+                    direction: ParameterDirection.Input);
+
+            parameters.Add("exam_id",
+                certificate.ExamId,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("acc_id",
+                certificate.AccountId,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            #endregion DynamicParameters
+
+            return parameters;
+        }
+        // Dynamic Parameters For Certificate table
+        private DynamicParameters GenerateCreditCardParameters(dynamic creditCard)
+        {
+            #region DynamicParameters
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("card_id",
+                creditCard.Id,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("card_number",
+                creditCard.CardNumber,
+                dbType: DbType.Int64,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("amount",
+                creditCard.Balance,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("acc_id",
+                creditCard.AccountId,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+            #endregion DynamicParameters
+
+            return parameters;
+        }
+
+        // Dynamic Parameters For Invoice table
+        private DynamicParameters GenerateInvoiceParameters(dynamic invoice)
+        {
+            #region DynamicParameters
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("invoiceID",
+                invoice.Id,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("createDate",
+                invoice.CreatioDate,
+                dbType: DbType.DateTime,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("exam_id",
+                invoice.ExamId,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("acc_id",
+                invoice.AccountId,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+            #endregion DynamicParameters
+
+            return parameters;
+        }
     }
 }
