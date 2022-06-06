@@ -13,13 +13,13 @@ namespace Tahaluf.PlusExam.Infra.Repository
     public class QuestionRepository : IQuestionRepository
     {
         #region Fields
-        private readonly IDbContext _dbContext;
+         private readonly IGenericCRUD<Question> genericCRUD;
         #endregion Fields
 
         #region Constructor
         public QuestionRepository(IDbContext DbContext)
         {
-            _dbContext = DbContext;
+            genericCRUD = new GenericCRUD<Question>(DbContext);  
         }
         #endregion Constructor
 
@@ -28,109 +28,28 @@ namespace Tahaluf.PlusExam.Infra.Repository
         #region CreateQuestion
         public bool CreateQuestion(Question question)
         {
-            #region DynamicParameters
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("QContent",
-                question.QuestionContent,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("QType",
-                question.Type, 
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("QScore",
-                question.Score,
-                dbType: DbType.Double,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("QStatues",
-                question.Status, 
-                dbType: DbType.String, 
-                direction: ParameterDirection.Input);
-
-            parameters.Add("QExamId",
-                question.ExamId,
-                dbType: DbType.Int32,
-                direction: ParameterDirection.Input);
-            #endregion DynamicParameters
-
-            _dbContext.Connection.ExecuteAsync(
-                "QuestionPackage.CreateQuestion", parameters, 
-                commandType: CommandType.StoredProcedure);
-            
-            return true;
+            return genericCRUD.Create(question);
         }
         #endregion CreateQuestion
 
         #region DeleteQuestion
         public bool DeleteQuestion(int id)
         {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("Qid",
-                id, 
-                dbType: DbType.Int32,
-                direction: ParameterDirection.Input);
-           
-            _dbContext.Connection.ExecuteAsync(
-                "QuestionPackage.DeleteQuestion", parameters,
-                commandType: CommandType.StoredProcedure);
-
-            return true;
+            return genericCRUD.Delete(id);
         }
         #endregion DeleteQuestion
 
         #region GetQuestions
         public List<Question> GetQuestions()
         {
-            return _dbContext.Connection.Query<Question>(
-                "QuestionPackage.GetAllQuestion",
-                commandType: CommandType.StoredProcedure).ToList();
+            return genericCRUD.GetAll();
         }
         #endregion GetQuestions
 
         #region UpdateQuestion
         public bool UpdateQuestion(Question question)
         {
-            #region DynamicParameters
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("Qid", 
-                question.Id, 
-                dbType: DbType.Int32, 
-                direction: ParameterDirection.Input);
-
-            parameters.Add("QContent",
-                question.QuestionContent,
-                dbType: DbType.String, 
-                direction: ParameterDirection.Input);
-
-            parameters.Add("QType", 
-                question.Type, 
-                dbType: DbType.String, 
-                direction: ParameterDirection.Input);
-
-            parameters.Add("QScore", 
-                question.Score, 
-                dbType: DbType.Double,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("QStatues", 
-                question.Status, 
-                dbType: DbType.String, 
-                direction: ParameterDirection.Input);
-
-            parameters.Add("QExamId",
-                question.ExamId, 
-                dbType: DbType.Int32, 
-                direction: ParameterDirection.Input);
-            #endregion DynamicParameters
-
-            _dbContext.Connection.ExecuteAsync(
-                "QuestionPackage.UpdateQuestion", parameters,
-                commandType: CommandType.StoredProcedure);
-
-            return true;
+            return genericCRUD.Update(question);
         }
         #endregion UpdateQuestion
 
