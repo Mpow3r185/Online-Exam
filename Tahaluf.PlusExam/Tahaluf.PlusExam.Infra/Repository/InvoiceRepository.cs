@@ -1,4 +1,4 @@
-﻿using Dapper;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,7 +7,9 @@ using System.Text;
 using Tahaluf.PlusExam.Core.Common;
 using Tahaluf.PlusExam.Core.Data;
 using Tahaluf.PlusExam.Core.DTO;
+using Tahaluf.PlusExam.Core.GenericInterface;
 using Tahaluf.PlusExam.Core.RepositoryInterface;
+using Tahaluf.PlusExam.Infra.Generic;
 
 namespace Tahaluf.PlusExam.Infra.Repository
 {
@@ -15,11 +17,13 @@ namespace Tahaluf.PlusExam.Infra.Repository
     {
         #region Fields
         private readonly IDbContext dbContext;
+        private readonly IGenericCRUD<Invoice> genericCRUD;
         #endregion Fields
 
         #region Constructor
         public InvoiceRepository(IDbContext _dbContext)
         {
+            genericCRUD = new GenericCRUD<Invoice>(_dbContext);
             dbContext = _dbContext;
         }
         #endregion Constructor
@@ -29,89 +33,28 @@ namespace Tahaluf.PlusExam.Infra.Repository
         #region GetInvoices
         public List<Invoice> GetInvoices()
         {
-            return dbContext.Connection.Query<Invoice>(
-                "InvoicePackage.GetInvoices", 
-                commandType: CommandType.StoredProcedure).ToList();
+            return genericCRUD.GetAll();
         }
         #endregion GetInvoices
 
         #region CreateInvoice
         public bool CreateInvoice(Invoice invoice)
         {
-            #region DynamicParameters
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("createDate", 
-                invoice.CreatioDate, 
-                dbType: DbType.DateTime, 
-                direction: ParameterDirection.Input);
-
-            parameters.Add("exam_id", 
-                invoice.ExamId, 
-                dbType: DbType.Int32,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("acc_id", 
-                invoice.AccountId, 
-                dbType: DbType.Int32, 
-                direction: ParameterDirection.Input);
-            #endregion DynamicParameters
-
-            dbContext.Connection.ExecuteAsync(
-                "InvoicePackage.CreateInvoice", parameters, 
-                commandType: CommandType.StoredProcedure);
-
-            return true;
+            return genericCRUD.Create(invoice);
         }
         #endregion CreateInvoice
 
         #region UpdateInvoice
         public bool UpdateInvoice(Invoice invoice)
         {
-            #region DynamicParameters
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("invoiceID", 
-                invoice.Id, 
-                dbType: DbType.Int32, 
-                direction: ParameterDirection.Input);
-
-            parameters.Add("createDate", 
-                invoice.CreatioDate, 
-                dbType: DbType.DateTime, 
-                direction: ParameterDirection.Input);
-
-            parameters.Add("exam_id", 
-                invoice.ExamId, 
-                dbType: DbType.Int32, 
-                direction: ParameterDirection.Input);
-
-            parameters.Add("acc_id", 
-                invoice.AccountId, 
-                dbType: DbType.Int32, 
-                direction: ParameterDirection.Input);
-            #endregion DynamicParameters
-
-            dbContext.Connection.ExecuteAsync(
-                "InvoicePackage.UpdateInvoice", parameters, 
-                commandType: CommandType.StoredProcedure);
-
-            return true;
+            return genericCRUD.Update(invoice);
         }
         #endregion UpdateInvoice
 
         #region DeleteInvoice
         public bool DeleteInvoice(int id)
         {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("invoiceID", 
-                id, 
-                dbType: DbType.Int32, 
-                direction: ParameterDirection.Input);
-
-            dbContext.Connection.ExecuteAsync(
-                "InvoicePackage.DeleteInvoice", parameters, 
-                commandType: CommandType.StoredProcedure);
-
-            return true;
+            return genericCRUD.Delete(id);
         }
         #endregion DeleteInvoice
 
