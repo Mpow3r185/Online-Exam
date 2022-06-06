@@ -6,7 +6,9 @@ using System.Linq;
 using System.Text;
 using Tahaluf.PlusExam.Core.Common;
 using Tahaluf.PlusExam.Core.Data;
+using Tahaluf.PlusExam.Core.GenericInterface;
 using Tahaluf.PlusExam.Core.RepositoryInterface;
+using Tahaluf.PlusExam.Infra.Generic;
 
 namespace Tahaluf.PlusExam.Infra.Repository
 {

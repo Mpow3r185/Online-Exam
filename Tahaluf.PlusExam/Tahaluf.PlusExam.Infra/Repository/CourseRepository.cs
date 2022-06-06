@@ -7,19 +7,23 @@ using System.Text;
 using Tahaluf.PlusExam.Core.Common;
 using Tahaluf.PlusExam.Core.Data;
 using Tahaluf.PlusExam.Core.DTO;
+using Tahaluf.PlusExam.Core.GenericInterface;
 using Tahaluf.PlusExam.Core.RepositoryInterface;
+using Tahaluf.PlusExam.Infra.Generic;
 
 namespace Tahaluf.PlusExam.Infra.Repository
 {
     public class CourseRepository : ICourseRepository
     {
         #region Fields
+        private readonly IGenericCRUD<Course> genericCRUD;
         private readonly IDbContext dbContext;
         #endregion Fields
 
         #region Constructor
         public CourseRepository(IDbContext _dbContext)
         {
+            genericCRUD = new GenericCRUD<Course>(_dbContext);
             dbContext = _dbContext;
         }
         #endregion Constructor
@@ -29,99 +33,28 @@ namespace Tahaluf.PlusExam.Infra.Repository
         #region CreateCourse
         public bool CreateCourse(Course course)
         {
-            #region DynamicParameters
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("cName",
-                course.CourseName,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("des",
-                course.Description,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("st",
-                course.Status,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("cImage",
-                course.CourseImage,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-            #endregion DynamicParameters
-
-            dbContext.Connection.ExecuteAsync(
-                "CoursePackage.CreateCourse", parameters,
-                commandType: CommandType.StoredProcedure);
-
-            return true;
+            return genericCRUD.Create(course);
         }
         #endregion CreateCourse
 
         #region DeleteCourse
         public bool DeleteCourse(int cid)
         {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("cid",
-                cid,
-                dbType: DbType.Int32,
-                direction: ParameterDirection.Input);
-
-            dbContext.Connection.ExecuteAsync(
-                "CoursePackage.DeleteCourse", parameters,
-                commandType: CommandType.StoredProcedure);
-
-            return true;
+            return genericCRUD.Delete(cid);
         }
         #endregion DeleteCourse
 
         #region GetCourses
         public List<Course> GetCourses()
         {
-            return dbContext.Connection.Query<Course>(
-                "CoursePackage.GetCourses",
-                commandType : CommandType.StoredProcedure).ToList();
+            return genericCRUD.GetAll();
         }
         #endregion GetCourses
 
         #region UpdateCourse
         public bool UpdateCourse(Course course)
         {
-            #region DynamicParameters
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("cid",
-                course.Id,
-                dbType: DbType.Int32,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("cName",
-                course.CourseName,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("des",
-                course.Description,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("st",
-                course.Status,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("cImage",
-                course.CourseImage,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-            #endregion DynamicParameters
-
-            dbContext.Connection.ExecuteAsync(
-                "CoursePackage.UpdateCourse", parameters,
-                commandType: CommandType.StoredProcedure);
-
-            return true;
+            return genericCRUD.Update(course);
         }
         #endregion UpdateCourse
 

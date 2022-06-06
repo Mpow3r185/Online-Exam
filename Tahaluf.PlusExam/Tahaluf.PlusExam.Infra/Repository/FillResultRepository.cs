@@ -6,19 +6,23 @@ using System.Linq;
 using System.Text;
 using Tahaluf.PlusExam.Core.Common;
 using Tahaluf.PlusExam.Core.Data;
+using Tahaluf.PlusExam.Core.GenericInterface;
 using Tahaluf.PlusExam.Core.RepositoryInterface;
+using Tahaluf.PlusExam.Infra.Generic;
 
 namespace Tahaluf.PlusExam.Infra.Repository
 {
     public class FillResultRepository : IFillResultRepository
     {
         #region Fields
+        private readonly IGenericCRUD<FillResult> genericCRUD;
         private readonly IDbContext dbContext;
         #endregion Fields
 
         #region Constructor
         public FillResultRepository(IDbContext _dbContext)
         {
+            genericCRUD = new GenericCRUD<FillResult>(_dbContext);
             dbContext = _dbContext;
         }
         #endregion Constructor
@@ -28,9 +32,7 @@ namespace Tahaluf.PlusExam.Infra.Repository
         #region GetFillResults
         public List<FillResult> GetFillResults()
         {
-            return dbContext.Connection.Query<FillResult>(
-                "FillResultPackage.GetFillResults",
-                commandType: CommandType.StoredProcedure).ToList();
+            return genericCRUD.GetAll();
         }
 
         #endregion GetFillResults
@@ -38,82 +40,21 @@ namespace Tahaluf.PlusExam.Infra.Repository
         #region CreateFillResult
         public bool CreateFillResult(FillResult fillResult)
         {
-            #region DynamicParameters
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("ans",
-                fillResult.Answer,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("qid",
-                fillResult.QuestionId,
-                dbType: DbType.Int32,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("accid",
-                fillResult.AccountId,
-                dbType: DbType.Int32,
-                direction: ParameterDirection.Input);
-            #endregion DynamicParameters
-
-            dbContext.Connection.ExecuteAsync(
-                "FillResultPackage.CreateFillResult", parameters,
-                commandType: CommandType.StoredProcedure);
-
-            return true;
+            return genericCRUD.Create(fillResult);
         }
         #endregion CreateFillResult
 
         #region UpdateFillResult
         public bool UpdateFillResult(FillResult fillResult)
         {
-            #region DynamicParameters
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("frid",
-                fillResult.Id,
-                dbType: DbType.Int32,
-                direction: ParameterDirection.Input);
-            
-            parameters.Add("ans",
-                fillResult.Answer,
-                dbType: DbType.String,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("qid",
-                fillResult.QuestionId,
-                dbType: DbType.Int32,
-                direction: ParameterDirection.Input);
-
-            parameters.Add("accid",
-                fillResult.AccountId,
-                dbType: DbType.Int32,
-                direction: ParameterDirection.Input);
-            #endregion DynamicParameters
-
-            dbContext.Connection.ExecuteAsync(
-                "FillResultPackage.UpdateFillResult", parameters,
-                commandType: CommandType.StoredProcedure);
-
-            return true;
+            return genericCRUD.Update(fillResult);
         }
         #endregion UpdateFillResult
 
         #region DeleteFillResult
         public bool DeleteFillResult(int frid)
         {
-            #region DynamicParameters
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("frid",
-                frid,
-                dbType: DbType.Int32,
-                direction: ParameterDirection.Input);
-            #endregion DynamicParameters
-
-            dbContext.Connection.ExecuteAsync(
-                "FillResultPackage.DeleteFillResult", parameters,
-                commandType: CommandType.StoredProcedure);
-
-            return true;
+            return genericCRUD.Delete(frid);
         }
         #endregion DeleteFillResult
 
