@@ -1150,7 +1150,7 @@ namespace Tahaluf.PlusExam.Infra.Generic
                 direction: ParameterDirection.Input);
 
             parameters.Add("createDate",
-                invoice.CreatioDate,
+                invoice.CreationDate,
                 dbType: DbType.DateTime,
                 direction: ParameterDirection.Input);
 

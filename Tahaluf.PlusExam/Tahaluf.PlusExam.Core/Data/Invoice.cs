@@ -10,7 +10,7 @@ namespace Tahaluf.PlusExam.Core.Data
     {
         [Key]
         public int Id { get; set; }
-        public DateTime CreatioDate { get; set; }
+        public DateTime CreationDate { get; set; }
 
         public int? ExamId { get; set; }
         [ForeignKey("ExamId")]
