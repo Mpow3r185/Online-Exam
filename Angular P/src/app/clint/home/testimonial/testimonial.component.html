@@ -1,0 +1,18 @@
+<div class="background">
+    <div class="testimonials-container">
+        <header>
+            <h2>Client</h2>
+            <h1>Testimonials</h1>
+        </header>
+        <div class="testimonials">
+            <img src="https://localhost:44359/{{testimonialInfo.profilePic}}" class="person-img">
+            <h2 class="person-name">{{testimonialInfo.username}}</h2>
+            <h3 class="person-job">{{testimonialInfo.title}}</h3>
+            <p class="person-text text-center">{{testimonialInfo.massege}}</p>
+        </div>
+
+        <nav class="imgs-nav">
+            <img *ngFor="let testData of homeService.testimonialData" src="https://localhost:44359/{{testData.profilePic}}" [hidden]="!testData.isActive" class="wrapper-img rounded-circle" (click)="getData(testData.id)">
+        </nav>
+    </div>
+</div>

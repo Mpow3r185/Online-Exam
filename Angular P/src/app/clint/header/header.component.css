@@ -1,0 +1,118 @@
+.hero-wrap {
+    width: 100%;
+    height: 700px;
+    position: inherit;
+    background:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.0)), url('../../../assets/images/Online_examination_system_banner.jpeg') top center no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 0
+}
+
+.hero-wrap .overlay,
+.hero-wrap .overlay-2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: '';
+    opacity: 1;
+    background: #fff;
+    background: rgba(255, 255, 255, .71);
+    background: -moz-linear-gradient(top, rgba(255, 255, 255, .71) 0%, rgba(255, 255, 255, 0) 50%, white 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, .71)), color-stop(50%, rgba(255, 255, 255, 0)), color-stop(100%, white));
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, .71) 0%, rgba(255, 255, 255, 0) 50%, white 100%);
+    background: -o-linear-gradient(top, rgba(255, 255, 255, .71) 0%, rgba(255, 255, 255, 0) 50%, white 100%);
+    background: -ms-linear-gradient(top, rgba(255, 255, 255, .71) 0%, rgba(255, 255, 255, 0) 50%, white 100%);
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, .71)), color-stop(50%, rgba(255, 255, 255, 0)), to(white));
+    background: linear-gradient(to bottom, rgba(255, 255, 255, .71) 0%, rgba(255, 255, 255, 0) 50%, white 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff', GradientType=0);
+    height: 700px;
+    z-index: -1
+}
+
+.hero-wrap .overlay-2 {
+    z-index: -2;
+    background: #f9f9f9;
+    background: #f9f9f9;
+    background: -moz-linear-gradient(left, #f9f9f9 0%, rgba(252, 252, 252, 0.9) 36%, rgba(212, 201, 104, .55) 50%, rgba(255, 255, 255, 0) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, #f9f9f9), color-stop(36%, rgba(252, 252, 252, 0.9)), color-stop(50%, rgba(252, 252, 252, 0.9)), color-stop(100%, rgba(255, 255, 255, 0)));
+    background: -webkit-linear-gradient(left, #f9f9f9 0%, rgba(252, 252, 252, 0.9) 36%, rgba(252, 252, 252, 0.9) 50%, rgba(255, 255, 255, 0) 100%);
+    background: -o-linear-gradient(left, #f9f9f9 0%, rgba(252, 252, 252, 0.9) 36%, rgba(252, 252, 252, 0.9) 50%, rgba(255, 255, 255, 0) 100%);
+    background: -ms-linear-gradient(left, #f9f9f9 0%, rgba(252, 252, 252, 0.9) 36%, rgba(252, 252, 252, 0.9) 50%, rgba(255, 255, 255, 0) 100%);
+    background: -webkit-gradient(linear, left top, right top, from(#f9f9f9), color-stop(36%, rgba(252, 252, 252, 0.9)), color-stop(50%, rgba(252, 252, 252, 0.9)), to(rgba(255, 255, 255, 0)));
+    background: linear-gradient(to right, #f9f9f9 0%, rgba(252, 252, 252, 0.9) 36%, rgba(252, 252, 252, 0.9) 50%, rgba(255, 255, 255, 0) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#d4c968', endColorstr='#ffffff', GradientType=1);
+    opacity: .7;
+    width: 50%
+}
+
+.slider-text .breadcrumbs span {
+    color: rgba(0, 0, 0, .7);
+}
+
+.slider-text .breadcrumbs span i {
+    color: rgba(0, 0, 0, .7);
+    font-size: 13px
+}
+
+.slider-text .breadcrumbs span a {
+    color: rgba(0, 0, 0, .7)
+}
+
+.slider-text .breadcrumbs span a:hover,
+.slider-text .breadcrumbs span a:focus {
+    color: #d70926
+}
+
+.slider-text .breadcrumbs span a:hover i,
+.slider-text .breadcrumbs span a:focus i {
+    color: #d70926
+}
+
+.hero-wrap.hero-wrap-2 {
+    height: 700px!important;
+    position: relative
+}
+
+.hero-wrap.hero-wrap-2 .overlay,
+.hero-wrap.hero-wrap-2 .overlay-2 {
+    width: 100%;
+    height: 700px
+}
+
+.hero-wrap.hero-wrap-2 .overlay-2 {
+    opacity: .4;
+    width: 50%
+}
+
+.hero-wrap.hero-wrap-2 .slider-text {
+    height: 700px!important
+}
+
+.slider-text {
+    height: 850px
+}
+
+.slider-text .bread {
+    font-weight: 600!important;
+    position: relative;
+    color: #d70926;
+}
+
+.ftco-animated {
+    -webkit-animation-duration: .5s;
+    animation-duration: .5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both
+}
+
+.slider-text .breadcrumbs {
+    font-size: 14px;
+    margin-bottom: 20px;
+    z-index: 99;
+    text-transform: uppercase;
+    font-weight: 500
+}

@@ -1,0 +1,67 @@
+<app-header pageName="Details"></app-header>
+
+<div class="card-wrapper my-5">
+    <div class="card-container">
+        <!-- card left -->
+        <div class="product-imgs">
+            <div class="img-display">
+                <div class="img-showcase">
+                    <img src="https://localhost:44359/resc/AdvsImg/{{adService.selectedAd.imageSrc[0]}}" alt="shoe image">
+                </div>
+            </div>
+
+            <div class="img-select">
+                <div class="col-4">
+                    <div *ngFor="let image of adService.selectedAd.imageSrc" class="img-item w-100">
+                        <a href="#" data-id="1">
+                            <img *ngIf="image != '' && image != adService.selectedAd.imageSrc[0]" src="https://localhost:44359/resc/AdvsImg/{{image}}" alt="shoe image">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- card right -->
+        <div class="product-content">
+            <h2 class="product-title">{{adService.selectedAd.advTitle}}</h2>
+            <h4 class="ml-2">{{adService.selectedAd.categoryName}}</h4>
+
+            <div class="product-price">
+                <p class="price"> Price: <span>${{adService.selectedAd.price}}</span></p>
+                <p class="price">Status:
+                    <span *ngIf="adService.selectedAd.status == 1">For Rent</span>
+                    <span *ngIf="adService.selectedAd.status == 0">For Sale</span>
+                </p>
+            </div>
+
+            <div class="product-detail">
+                <h2>Description: </h2>
+                <p>{{adService.selectedAd.description}}</p>
+                <ul *ngIf="adService.selectedAd.categoryName == 'Apartment'">
+                    <li>Floor: <span>{{adService.selectedAd.floor}}</span></li>
+                    <li>Number Of Bathrooms: <span>{{adService.selectedAd.numOfBathrooms}}</span></li>
+                    <li>Number Of Rooms: <span>{{adService.selectedAd.numOfRooms}}</span></li>
+                    <li>Number Of Floors: <span>{{adService.selectedAd.numOfRooms}}</span></li>
+                    <li>Furnished:
+                        <span *ngIf="adService.selectedAd.furnished == 1">Furnished</span>
+                        <span *ngIf="adService.selectedAd.furnished == 0">Unfurnished</span>
+                    </li>
+                </ul>
+
+                <ul>
+                    <li *ngIf="adService.selectedAd.categoryName == 'Building'">Number of Floor: <span>{{adService.selectedAd.numOfFloor}}</span></li>
+                    <li>Age: <span>{{adService.selectedAd.age}} year</span></li>
+                    <li>SurfaceArea: <span>{{adService.selectedAd.surfaceArea}}</span></li>
+                    <li *ngIf="adService.selectedAd.categoryName == 'Building' || adService.selectedAd.categoryName == 'Commercial'">Land Area: <span>{{adService.selectedAd.landArea}}</span></li>
+                </ul>
+            </div>
+
+            <div class="purchase-info">
+                <button type="button" class="btn" *ngIf="adService.selectedAd.status == 1">Rent now</button>
+                <button type="button" class="btn" *ngIf="adService.selectedAd.status == 0">Sale now</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

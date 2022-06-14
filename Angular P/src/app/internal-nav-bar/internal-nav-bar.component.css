@@ -1,0 +1,39 @@
+.mat-stroked-button {
+    color: rgba(255, 255, 255, .5) !important;
+    padding: .5rem 1rem !important;
+}
+
+.logo::before {
+    content: '';
+    position: absolute;
+    top: 45px;
+    height: 5px;
+    width: 120px;
+    background-color: tomato;
+}
+
+
+.ftco-navbar-light {
+    background: transparent!important;
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    z-index: 3
+}
+
+.collapse:not(.show) {
+    display: none
+}
+
+.navbar-collapse {
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+   
+}

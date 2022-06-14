@@ -1,0 +1,65 @@
+<div class="dark-edition">
+    <div class="sidebar" data-color="purple" data-background-color="black" data-image="/assets/admin-dashboard/img/sidebar-1.jpg">
+        <!--
+    Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+    Tip 2: you can also add an image using data-image tag
+-->
+        <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
+          Real Estate Investments
+    </a></div>
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/admin/dashboard">
+                        <i class="material-icons">dashboard</i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/admin/adminProfile">
+                        <i class="material-icons">person</i>
+                        <p>User Profile</p>
+                    </a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/admin/users">
+                        <i class="fas fa-users"></i>
+                        <p>All Users</p>
+                    </a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/admin/advertisement">
+                        <i class="fas fa-ad"></i>
+                        <p>All Advertisement</p>
+                    </a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/admin/contactMassage">
+                        <i class="material-icons">library_books</i>
+                        <p>Contact Massage</p>
+                    </a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/admin/rentReport">
+                        <i class="fas fa-file-chart-line"></i>
+                        <p>Rent Report</p>
+                    </a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/admin/saleReport">
+                        <i class="fas fa-file-chart-line"></i>
+                        <p>Sales Report</p>
+                    </a>
+                </li>
+
+                <li class="nav-item" routerLinkActive="active">
+                    <button type="button" class="d-block log-out-btn" mat-button (click)="logOut()">
+                      <i class="fas fa-sign-out-alt"></i>
+                        <span>Log Out</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
