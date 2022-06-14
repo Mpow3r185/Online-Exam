@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../service/user.service';
 
@@ -20,6 +20,16 @@ export class InternalNavBarComponent implements OnInit {
   logOut() {
     localStorage.clear();
     this.router.navigate(['/auth/login']);
+  }
+
+  isScrolled: boolean = false;
+  @HostListener('document:scroll')
+  changeNavbarBehavior() {
+    if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
+      this.isScrolled = true;
+    } else {
+      this.isScrolled = false;
+    }
   }
 
 }

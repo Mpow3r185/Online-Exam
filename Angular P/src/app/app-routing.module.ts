@@ -1,13 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthorizationGuard } from './authorization.guard';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: NavBarComponent,
-  },
   {
     path: 'auth',
     loadChildren: () =>
@@ -16,7 +11,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'client',
+    path: '',
     loadChildren: () => import('./clint/clint.module').then(
       (m) => m.ClintModule,
     )

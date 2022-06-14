@@ -3,14 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastNoAnimationModule, ToastrModule } from 'ngx-toastr';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SharedModule } from './shared/shared/shared.module';
 
 @NgModule({
-  declarations: [AppComponent, NavBarComponent, SpinnerComponent],
+  declarations: [AppComponent, SpinnerComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

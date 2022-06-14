@@ -4,12 +4,11 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { AllAdvertisementComponent } from './all-advertisement/all-advertisement.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { DetailsComponent } from './details/details.component';
-import { GalleryComponent } from './gallery/gallery.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: HomeComponent,
   },
   {
@@ -19,10 +18,6 @@ const routes: Routes = [
   {
     path: 'aboutUs',
     component: AboutUsComponent,
-  },
-  {
-    path: 'gallery',
-    component: GalleryComponent,
   },
   {
     path: 'details/:adId/:categoryId',

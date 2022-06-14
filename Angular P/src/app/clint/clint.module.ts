@@ -15,7 +15,6 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ContactUsFormComponent } from './contact-us/contact-us-form/contact-us-form.component';
 import { ContactUsInfoCardComponent } from './contact-us/contact-us-info-card/contact-us-info-card.component';
 import { TestimonialComponent } from './home/testimonial/testimonial.component';
-import { GalleryComponent } from './gallery/gallery.component';
 import { DetailsComponent } from './details/details.component';
 import { HeaderComponent } from './header/header.component';
 import { TestimonialFormComponent } from './home/testimonial-form/testimonial-form.component';
@@ -34,7 +33,6 @@ import { AllAdvertisementCardComponent } from './all-advertisement/all-advertise
     ContactUsFormComponent,
     ContactUsInfoCardComponent,
     TestimonialComponent,
-    GalleryComponent,
     DetailsComponent,
     HeaderComponent,
     TestimonialFormComponent,
