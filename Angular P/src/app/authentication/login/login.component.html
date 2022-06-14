@@ -1,0 +1,82 @@
+<div class="form-container sign-in-container">
+    <form class="example-form" (submit)="chickAuthentication()" [formGroup]="authService.loginForm">
+        <h1>Sign in</h1>
+
+        <mat-form-field class="w-100 py-2" appearance="legacy">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput formControlName="email">
+            <mat-error *ngIf="authService.loginForm.controls.email.hasError('email') && !authService.loginForm.controls.email.hasError('required')">
+                Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="authService.loginForm.controls.email.hasError('required')">
+                Email is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-100 py-2 mb-3" appearance="legacy">
+            <mat-label>Enter your password</mat-label>
+            <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+            <button class="border-0 hide-password" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+            <mat-error *ngIf="authService.loginForm.controls.password.hasError('required')">
+                Password is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <div class="form-group">
+            <a routerLink="#">Forgot Password?</a>
+        </div>
+
+        <button style="cursor: pointer;">Sign In</button>
+        <button style="margin-top: 20px;cursor: pointer;">Sign with g-mail</button>
+    </form>
+</div>
+
+<!-- <div class="container-fluid">
+    <div class="row">
+        <div style="clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); background-color: #b5cdd4; position: absolute; left: 0; top: 0; height: 100%; width: 100%;">
+        </div>
+        <div class="col-4 border bg-white position-relative shadow-lg rounded-lg px-4 py-4" style="z-index: 1; left: 85px; top: 150px;">
+            <h4 class="text-center mb-4">Login</h4>
+            <form class="example-form" (submit)="chickAuthentication()" [formGroup]="registerForm">
+                <div class="col-12 px-0">
+                    <mat-form-field class="example-full-width w-100" appearance="legacy">
+                        <mat-label>Email</mat-label>
+                        <input type="email" matInput formControlName="email">
+                        <mat-error *ngIf="registerForm.controls.email.hasError('email') && !registerForm.controls.email.hasError('required')">
+                            Please enter a valid email address
+                        </mat-error>
+                        <mat-error *ngIf="registerForm.controls.email.hasError('required')">
+                            Email is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-12 px-0">
+                    <mat-form-field class="w-100" appearance="legacy">
+                        <mat-label>Enter your password</mat-label>
+                        <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+                        <button class="border-0" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                        <mat-error *ngIf="registerForm.controls.password.hasError('required')">
+                            Password is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="form-group">
+                    <a routerLink="#">Forgot Password?</a>
+                </div>
+                <div class="mt-1 form-group">
+                    <input type="submit" style="font-size: 15px;" class="btn rounded-pill btn-dark px-4">
+                </div>
+                <div class="form-group">
+                    Don’t have an account? <span (click)="onclick()" style="cursor: pointer;"> Sign Up</span>
+                </div>
+            </form>
+        </div>
+        <div style="clip-path: polygon(100% 0, 25% 0, 100% 100%); position: absolute; top: 0; background: url(assets/images/building.jpeg) no-repeat right / contain; height: 100%; width: 100%;">
+        </div>
+    </div>
+</div> -->

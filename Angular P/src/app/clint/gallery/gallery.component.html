@@ -1,0 +1,45 @@
+<section class="gallery bg-image">
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6);"></div>
+    <div class="container-box">
+        <div class="row">
+            <div class="gallery-filter">
+                <span class="filter-item active" (click)="filterGallery($event)" data-filter="all">all</span>
+                <span class="filter-item" (click)="filterGallery($event)" data-filter="Apartment">Apartment</span>
+                <span class="filter-item" (click)="filterGallery($event)" data-filter="Building">Building</span>
+                <span class="filter-item" (click)="filterGallery($event)" data-filter="Commercial">Commercial</span>
+            </div>
+        </div>
+
+        <div class="gallery-center">
+            <div class="gallery ">
+                <div *ngFor="let info of adService.data" class="gallery-item {{info.categoryName}} clipped-border">
+                    <img src="https://localhost:44359/resc/AdvsImg/{{info.imageSrc[0]}}" >
+                </div>
+                <!-- <div class="clipped-border gallery-item Apartment ">
+                    <img src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fbpucette.b.p.pic.centerblog.net%2Ffv86ll9r.jpg&f=1" id="clipped">
+                </div>
+                <div class="gallery-item Apartment clipped-border">
+                    <img src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fimagejournal.org%2Fwp-content%2Fuploads%2Fbb-plugin%2Fcache%2F23466317216_b99485ba14_o-panorama.jpg&f=1" id="clipped">
+                </div>
+                <div class=" gallery-item Building clipped-border">
+                    <img src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.lokeshdhakar.com%2Fprojects%2Flightbox2%2Fimages%2Fimage-4.jpg&f=1" id="clipped">
+                </div>
+                <div class="gallery-item Apartment clipped-border">
+                    <img src="https://images.pexels.com/photos/932638/pexels-photo-932638.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" id="clipped">
+                </div>
+                <div class="gallery-item Building clipped-border">
+                    <img src="assets/images/headphone-3.jpg" id="clipped">
+                </div>
+                <div class="gallery-item Commercial clipped-border">
+                    <img src="assets/images/headphone-3.jpg" id="clipped">
+                </div>
+                <div class="gallery-item Commercial clipped-border">
+                    <img src="assets/images/headphone-3.jpg" id="clipped">
+                </div>
+                <div class="gallery-item Building clipped-border">
+                    <img src="assets/images/headphone-3.jpg" id="clipped">
+                </div> -->
+            </div>
+        </div>
+    </div>
+</section>

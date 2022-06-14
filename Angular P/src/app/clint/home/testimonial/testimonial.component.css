@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.background {
+    width: 100%;
+    min-height: 100vh;
+    /* filter: brightness(40%); */
+    background: url(/assets/images/bcg-img.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.background::after {
+    content: '';
+    position: sticky;
+    left: 0;
+    /* top: 0; */
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.testimonials-container {
+    position: relative;
+    top: 0;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.testimonials-container header {
+    margin-bottom: 100px;
+    text-transform: uppercase;
+}
+
+.testimonials-container header h2 {
+    color: rgb(255, 158, 0);
+    text-align: center;
+}
+
+.testimonials {
+    border: 3px solid rgb(255, 158, 0);
+    border-radius: 10px;
+    width: 70%;
+    padding: 100px 30px 30px 30px;
+    background-color: rgba(0, 0, 0, .5);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.testimonials .person-img {
+    width: 15%;
+    border-radius: 100px;
+    border: 4px solid rgb(255, 158, 0);
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    transform: translateY(-50%);
+    transition: .2s;
+}
+
+.testimonials .person-name {
+    text-transform: capitalize;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.testimonials .person-job {
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    color: rgb(255, 158, 0);
+    letter-spacing: 2px;
+}
+
+.imgs-nav {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+}
+
+.imgs-nav .wrapper-img {
+    width: 20%;
+    margin: 20px 10px;
+    border: 2px solid rgb(255, 158, 0);
+    cursor: pointer;
+    transition: .3s;
+}
+
+.imgs-nav .wrapper-img:hover {
+    filter: brightness(50%);
+}

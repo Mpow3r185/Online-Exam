@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Feedback</h1>
+
+<div mat-dialog-content>
+    <form class="example-form" [formGroup]="homeService.testimonialForm">
+        <mat-form-field class="example-full-width w-100" appearance="fill">
+            <mat-label>Subject</mat-label>
+            <input type="text" formControlName="title" matInput>
+            <mat-error *ngIf="homeService.testimonialForm.controls.title.hasError('required')">
+                Subject is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-100" appearance="fill">
+            <mat-label>Message</mat-label>
+            <textarea matInput formControlName="massege"></textarea>
+            <mat-error *ngIf="homeService.testimonialForm.controls.massege.hasError('required')">
+                Message is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+    </form>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-stroked-button color="primary" mat-dialog-close mat-button>Cancel</button>
+    <button mat-button mat-raised-button color="primary" cdkFocusInitial (click)="sendData()">Ok</button>
+</div>

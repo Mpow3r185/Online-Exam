@@ -1,0 +1,41 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { AllAdvertisementComponent } from './all-advertisement/all-advertisement.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { DetailsComponent } from './details/details.component';
+import { GalleryComponent } from './gallery/gallery.component';
+import { HomeComponent } from './home/home.component';
+
+const routes: Routes = [
+  {
+    path: 'home',
+    component: HomeComponent,
+  },
+  {
+    path: 'contact',
+    component: ContactUsComponent,
+  },
+  {
+    path: 'aboutUs',
+    component: AboutUsComponent,
+  },
+  {
+    path: 'gallery',
+    component: GalleryComponent,
+  },
+  {
+    path: 'details/:adId/:categoryId',
+    component: DetailsComponent
+  },
+  {
+    path: 'advertisement',
+    component: AllAdvertisementComponent,
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class ClintRoutingModule {}

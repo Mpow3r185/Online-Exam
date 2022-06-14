@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+.center-text {
+    top: 100%;
+    position: absolute;
+    color: #000;
+    left: 0;
+    text-align: center;
+    right: 0;
+    margin: auto;
+    /* margin-bottom: 50%; */
+}
+
+.main input,
+.search-btn {
+    width: 75%;
+    border: none;
+    box-shadow: 5px 5px 15px #000;
+    border-right: 0px;
+    font-size: 18px;
+    padding: 12px;
+    /* background-color: transparent; */
+    color: rgb(34, 31, 31);
+    cursor: pointer;
+}
+
+.main button {
+    width: 25%;
+    background-color: rgb(238, 199, 199);
+    color: black;
+    transition: all 0.3s;
+    float: right;
+    border-left: 0px;
+}
+
+.main button:hover {
+    opacity: .8;
+}
+
+.main input:hover {
+    opacity: .8;
+}
+
+
+/* swiper-slide */
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* Website Features */
+
+.untree_co-section {
+    padding: 70px 0
+}
+
+.untree_co-section .heading {
+    font-size: 20px
+}
+
+.service {
+    text-align: center
+}
+
+.service .icon-wrap {
+    position: relative;
+    margin-bottom: 20px;
+    display: inline-block
+}
+
+.service .icon-wrap span {
+    font-size: 50px;
+    color: #12947f
+}
+
+.service .icon-wrap:before {
+    top: 0;
+    left: -10px;
+    width: 55px;
+    height: 55px;
+    position: absolute;
+    content: "";
+    background: rgba(18, 148, 127, .1);
+    border-radius: 50%
+}
+
+.service h3 {
+    font-size: 16px
+}
+
+.text-secondary {
+    color: #12947f!important;
+}
+
+.service h3 a {
+    color: #000
+}
+
+
+/* start OUR TEAM section */
+
+.team-area {
+    margin-bottom: 50px;
+}
+
+.section-title h2 {
+    text-transform: uppercase;
+}
+
+.section-title {
+    margin: 3% 0;
+}
+
+.section-title p {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.single-team {
+    padding-bottom: 70px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    box-shadow: 5px 5px 15px #000;
+}
+
+.team-img {
+    position: relative;
+    z-index: 5;
+    overflow: hidden;
+}
+
+.team-img img {
+    width: 100%;
+    transition: .3s;
+}
+
+.single-team:hover .team-img img {
+    transform: scale(1.1);
+}
+
+.team-content {
+    height: 80px;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    overflow: hidden;
+    bottom: 0;
+    transition: all .4s;
+    background: tomato;
+    z-index: 5;
+}
+
+.single-team:hover .team-content {
+    height: 150px;
+}
+
+.team-info {
+    padding: 5px 20px 5px 20px;
+    transition: all .5s;
+}
+
+.single-team:hover .team-content {
+    background: #000;
+}
+
+.single-team .team-content .team-info h3 {
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 16px;
+    margin: 5px;
+}
+
+.single-team:hover .team-info h3 {
+    color: tomato;
+}
+
+.team-info p {
+    margin-top: 15px;
+    color: #fff;
+}
+
+.single-team-text p {
+    margin-top: 5px;
+}
+
+.team-text {
+    color: #fff;
+    padding: 0 10px 5px;
+}
+
+
+/* ignore the code below */
+
+.link-area {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    padding: 15px;
+    border-radius: 40px;
+    background: tomato;
+    z-index: 10;
+}
+
+.link-area a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 25px;
+}
+
+
+/* Feedback btn */
+
+.feedback-btn {
+    border: none;
+    outline: none;
+    position: fixed;
+    font-size: 15px;
+    background-color: #2d88ff;
+    color: white;
+    z-index: 5;
+    top: 50px;
+    right: -27px;
+    transform: rotateZ( 90deg);
+}

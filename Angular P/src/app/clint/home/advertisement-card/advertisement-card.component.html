@@ -1,0 +1,23 @@
+<div class="property-wrap ftco-animate">
+
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+        <div class="carousel-inner">
+            <div *ngFor="let image of info.imageSrc" class="carousel-item active" data-interval="10000">
+                <img *ngIf="image != ''" height="300" src="https://localhost:44359/resc/AdvsImg/{{image}}" class="d-block w-100 " alt="...">
+            </div>
+        </div>
+    </div>
+
+    <div class="text" style="box-shadow: 5px 5px 15px #000; z-index: 5;">
+        <h3 class="cursor d-inline" (click)="openDetailsPage($event)">{{info.advTitle}}</h3>
+        <ul class="property_list">
+            <li><i class="fal fa-bed mr-2"></i>{{info.numOfRooms}}</li>
+            <li><i class="fal fa-bath mr-2"></i>{{info.numOfBathrooms}}</li>
+            <li><i class="fal fa-home mr-2"></i>{{info.landArea}} sqft</li>
+        </ul>
+        <p class="price"><span class="orig-price">{{info.price}}<small>/mo</small></span></p>
+        <!-- <a href="#" class="d-flex align-items-center justify-content-center btn-custom">
+            <span class="ion-ios-link"></span>
+        </a> -->
+    </div>
+</div>

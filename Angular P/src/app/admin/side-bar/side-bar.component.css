@@ -1,0 +1,10 @@
+@import '../../../assets/admin-dashboard/css/material-dashboard.css';
+@import '../../../assets/admin-dashboard/demo/demo.css';
+@import '../../../assets/admin-dashboard/css/material-dashboard.min.css';
+@import '../../../assets/admin-dashboard/css/material-dashboard.min.css';
+.log-out-btn {
+    color: #a9afbbd1;
+    margin: 10px 15px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+}

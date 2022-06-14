@@ -1,0 +1,19 @@
+<div class="dark-edition h-170">
+    <div class="wrapper">
+        <app-side-bar></app-side-bar>
+        <div class="main-panel">
+            <app-nav-bar></app-nav-bar>
+            <div class="content">
+                <div class="container-fluid">
+                    <h4>contact massages :</h4>
+                    <div class="row justify-content-center">
+                        <div *ngFor="let data of contactService.contactInfo | paginate: { itemsPerPage: 4, currentPage: page }" class="col-lg-5">
+                            <app-contact-massage-card class="w-100" [info]="data"></app-contact-massage-card>
+                        </div>
+                    </div>
+                    <pagination-controls [responsive]="true" class="text-center text-white" (pageChange)="page = $event"></pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

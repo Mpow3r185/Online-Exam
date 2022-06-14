@@ -1,0 +1,141 @@
+<div class="content dark-edition">
+    <div class="row">
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">person</i>
+                    </div>
+                    <p class="card-category">CLINET</p>
+                    <h3 class="card-title">{{numOfUser}}</h3>
+                </div>
+                <div class="card-footer"></div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                    <div class="card-icon">
+                        <i class="fas fa-file-chart-line"></i>
+                    </div>
+                    <p class="card-category">Total of seals</p>
+                    <h3 class="card-title">$34,245</h3>
+                </div>
+                <div class="card-footer">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-danger card-header-icon">
+                    <div class="card-icon">
+                        <i class="fas fa-ad"></i>
+                    </div>
+                    <p class="card-category">ADVERTISMENT</p>
+                    <h3 class="card-title">{{adService.adNumber}}</h3>
+                </div>
+                <div class="card-footer">
+
+                </div>
+            </div>
+        </div>
+        <!-- <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-info card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">info_outline</i>
+                    </div>
+                    <p class="card-category">OWNER</p>
+                    <h3 class="card-title">{{userService.numberOfOwner}}</h3>
+                </div>
+                <div class="card-footer">
+
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+    <div class="row">
+        <!-- Advertisement that does not Activate -->
+        <div class="col-lg-6 col-md-12">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">ADVERTISMENT</h4>
+                    <p class="card-category">IS VALLID/UNVALID</p>
+                </div>
+                <div class="card-body table-responsive">
+                    <table class="table table-hover">
+                        <thead class="text-warning">
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Category</th>
+                            <th>status</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let adInfo of adService.data">
+                                <td>{{adInfo.id}}</td>
+                                <td>{{adInfo.advTitle}}</td>
+                                <td>{{adInfo.price}} JOD</td>
+                                <td>{{adInfo.categoryName}}</td>
+                                <td><button class="btn shadow-lg btn-success" (click)="updateActiveStatus(adInfo.id)">accept</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonial that dose not Activate -->
+        <div class="col-lg-6 col-md-12">
+            <div class="card">
+                <div class="card-header card-header-tabs card-header-warning">
+                    <div class="nav-tabs-navigation">
+                        <div class="nav-tabs-wrapper">
+                            <!-- <span class="nav-tabs-title">testimonial:</span> -->
+                            <ul class="nav nav-tabs" data-tabs="tabs">
+                                <!-- <li class="nav-item"> -->
+                                <!-- <a class="nav-link active" href="#profile" data-toggle="tab">
+
+                        <div class="ripple-container"></div>
+                      </a> -->
+                                <!-- </li> -->
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#settings" data-toggle="tab">
+                                        <i class="material-icons">cloud</i> testimonial
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+
+                    <ul>
+                        <div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
+                            <ng-container *ngFor="let item of homeService.testimonialData">
+                                <li class="border-bottom py-2" *ngIf="!item.isActive">
+                                    <div class="media">
+                                        <img src="https://localhost:44359/{{item.profilePic}}" width="64" height="64" class="mr-3 rounded-circle" alt="...">
+                                        <div class="media-body">
+                                            <h4 class="mt-0">{{item.username}}</h4>
+                                            <h5 (click)="openDialog(item)" class="cursor">{{item.title}}</h5>
+                                        </div>
+                                        <button class="btn btn-success" (click)="activateTestimonial(item.id)">Accept</button>
+                                    </div>
+                                </li>
+                            </ng-container>
+                        </div>
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
