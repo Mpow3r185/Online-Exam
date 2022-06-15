@@ -32,6 +32,14 @@ img {
     border-style: none
 }
 
+.bgImage{
+    background:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.0)), url('../../../assets/images/aboutI.jpg') top center no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 @media (max-width:767.98px) {
     .img-2 {
         height: 600px;
