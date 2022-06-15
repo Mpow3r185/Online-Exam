@@ -64,16 +64,16 @@
 
 .slider-text .breadcrumbs span a:hover,
 .slider-text .breadcrumbs span a:focus {
-    color: #d70926
+    color: #001166;
 }
 
 .slider-text .breadcrumbs span a:hover i,
 .slider-text .breadcrumbs span a:focus i {
-    color: #d70926
+    color: #001166
 }
 
 .hero-wrap.hero-wrap-2 {
-    height: 700px!important;
+    height: 450px!important;
     position: relative
 }
 
@@ -89,17 +89,18 @@
 }
 
 .hero-wrap.hero-wrap-2 .slider-text {
-    height: 700px!important
+    height: 450px!important
 }
 
 .slider-text {
-    height: 850px
+    height: 450px
 }
 
 .slider-text .bread {
     font-weight: 600!important;
     position: relative;
-    color: #d70926;
+    color: #001166;
+    font-family: 'Nuosu SIL', serif;
 }
 
 .ftco-animated {
