@@ -1,27 +1,30 @@
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark" id="ftco-navbar" [class.header_change]="isScrolled"
-    [class.ftco_navbar_light]="!isScrolled">
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco_navbar_light" id="ftco-navbar">
     <div class="container">
         <div>
-            <img src="../../assets/images/Full-Logo.svg" width="82" height="82" />
+            <a routerLink="" routerLinkActive="router-link-active">
+                <img src="../../assets/images/Full-Logo.svg" width="82" height="82" />
+            </a>
         </div>
 
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
             aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="oi oi-menu"></span> Menu
+            <div class="slash" id="slash1"></div>
+            <div class="slash" id="slash2"></div>
+            <div class="slash" id="slash3"></div>
         </button>
         <div class="collapse navbar-collapse" id="ftco-nav">
-            <ul class="navbar-nav navbar font-weight-bold ml-auto">
-                <li class="nav-item"><a routerLinkActive="active" routerLink="/client/home"
+            <ul class="navbar-nav navbar font-weight-bold" style="margin-left: 30px;">
+                <li class="nav-item"><a routerLinkActive="active" routerLink=""
                         class="nav-link pls-pri-col link-font-size">Home</a></li>
-                <li class="nav-item"><a routerLink="/aboutUs" class="nav-link pls-pri-col link-font-size">About</a></li>
+                <li class="nav-item"><a routerLink="/aboutUs"
+                        class="under-line nav-link pls-pri-col link-font-size">About</a></li>
                 <li class="nav-item"><a routerLink="/gallery" class="nav-link pls-pri-col link-font-size">Courses</a>
                 </li>
                 <li class="nav-item"><a routerLink="/contact" class="nav-link pls-pri-col link-font-size">Contact</a>
                 </li>
 
-                <li class="nav-item" *ngIf="!accountStatus"><a routerLink="/auth/login"
-                        class="nav-link pls-pri-col link-font-size">Login</a></li>
+
                 <li class="nav-item" *ngIf="accountStatus && (userService.selectedUser != null)">
                     <div class="dropdown">
                         <a class="btn mat-stroked-button font-weight-normal pt-2 border-0 dropdown-toggle" href="#"
@@ -35,6 +38,16 @@
                             <button class="dropdown-item" (click)="logOut()">Log out</button>
                         </div>
                     </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="collapse navbar-collapse justify-content-end" id="ftco-nav">
+            <ul class="navbar-nav navbar font-weight-bold">
+                <li>
+                    <button class="sign-in-btn" routerLink="auth/login">
+                        Sign In
+                    </button>
                 </li>
             </ul>
         </div>

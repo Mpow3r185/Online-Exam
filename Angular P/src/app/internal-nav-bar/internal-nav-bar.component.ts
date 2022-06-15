@@ -8,8 +8,11 @@ import { UserService } from '../service/user.service';
   styleUrls: ['./internal-nav-bar.component.css']
 })
 export class InternalNavBarComponent implements OnInit {
+
+  isScrolled: boolean = false;
   accountStatus: boolean = false;
-  constructor(public userService: UserService, private router: Router) { }
+  
+  constructor(public userService: UserService, private router: Router) {    }
 
   async ngOnInit() {
     if (localStorage.getItem('token')) {
@@ -22,7 +25,7 @@ export class InternalNavBarComponent implements OnInit {
     this.router.navigate(['/auth/login']);
   }
 
-  isScrolled: boolean = false;
+  
   @HostListener('document:scroll')
   changeNavbarBehavior() {
     if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
@@ -31,5 +34,4 @@ export class InternalNavBarComponent implements OnInit {
       this.isScrolled = false;
     }
   }
-
 }

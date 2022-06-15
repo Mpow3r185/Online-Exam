@@ -4,7 +4,7 @@
 }
 
 .link-font-size {
-    font-size: 20px !important;
+    font-size: 18px !important;
 }
 
 .pls-pri-col {
@@ -15,25 +15,14 @@
     color: #000 !important;
 }
 
-.header_change {
-    background-color: rgba(0, 0, 0, 0.712)!important;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 2;
-    box-shadow: 1px 1px 20px #eee;
-    transition: 0.5s;
-}
-
 .ftco_navbar_light {
-    background-color: rgba(255, 255, 255, 0.712)!important;
+    background-color: #ffffff!important;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 2;
-    transition: 0.5s;
+    transition: 0.3s;
 }
 
 .collapse:not(.show) {
@@ -48,6 +37,58 @@
     flex-grow: 1;
     -webkit-box-align: center;
     -ms-flex-align: center;
-    align-items: center;
-   
+    align-items: center;  
+}
+
+.nav-item {
+    position: relative
+}
+
+.nav-item::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: #d70926;
+    width: 0%;
+    content: "";
+    height: 4px;
+    transition: all 0.3s;
+}
+  
+.nav-item:hover::after {
+    width: calc(100% - 10px);
+}
+
+ul li {
+    margin: 0 10px;
+}
+
+div.slash {
+    width: 30px;
+    height: 4px;
+    border-radius: 10px;
+    background-color: black;
+    margin: 4px 0;
+}
+
+button.sign-in-btn {
+    background-color: #fff;
+    color: #016;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 12px 20px;
+    transition: 0.5s;
+    border: none;
+    border: solid 0.2px #016;
+}
+
+button.sign-in-btn:hover {
+    background-color: #016;
+    color: #fff;
+    border: solid 0.2px #fff;
+
+    box-shadow: 1px 1px 10px 3px rgb(17, 39, 150);
 }
