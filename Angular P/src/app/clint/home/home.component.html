@@ -3,13 +3,13 @@
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner" style="height: 625px;">
             <div class="carousel-item active h-100">
-                <img src="/assets/images/Header-bg.png" class="d-block w-100 h-100" alt="...">
+                <div style="background-image: url('/assets/images/slider-2.jpg');" class="slider-image-st"></div>
                 <div class="center-text">
                     <h2 class="text-white"> Simplest Way to Find and buy a home</h2>
                 </div>
             </div>
             <div class="carousel-item h-100">
-                <img src="assets/images/living-room.png" class="d-block w-100 h-100" alt="...">
+                <div style="background-image: url('/assets/images/slider-1.jpg');" class="slider-image-st"></div>
                 <div class="center-text">
                     <h2 class="text-white"> Simplest Way to Find and buy a home</h2>
                 </div>
@@ -83,10 +83,11 @@
         </div>
     </div>
 
-    <div class="col-6 mb-5 mx-auto">
-        <div class="main">
-            <input type="text" class="rounded" name="Search" [(ngModel)]='search' name="search" placeholder="Search...">
-            <button class="rounded search-btn" type="button">SEARCH</button>
+    <div class="col-12 mb-5 d-flex">
+        <div class="main d-flex w-100 m-auto justify-content-center">
+            <input type="text" class="rounded d-flex w-50" name="Search" [(ngModel)]='search' name="search"
+                placeholder="Search...">
+            <button class="btn search-btn d-flex w-auto" type="button">SEARCH</button>
         </div>
     </div>
 
