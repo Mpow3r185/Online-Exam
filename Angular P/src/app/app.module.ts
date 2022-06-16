@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastNoAnimationModule, ToastrModule } from 'ngx-toastr';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SharedModule } from './shared/shared/shared.module';
+import { NgxScrollTopModule } from 'ngx-scrolltop';
 
 @NgModule({
   declarations: [AppComponent, SpinnerComponent],
@@ -16,7 +17,8 @@ import { SharedModule } from './shared/shared/shared.module';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     ToastNoAnimationModule.forRoot(),
-    SharedModule
+    SharedModule,
+    NgxScrollTopModule
   ],
   bootstrap: [AppComponent],
 })
