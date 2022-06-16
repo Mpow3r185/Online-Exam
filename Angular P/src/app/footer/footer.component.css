@@ -34,7 +34,7 @@
     margin-top: -19px;
     -webkit-transition-duration: 500ms;
     transition-duration: 500ms;
-    background-color: #947054;
+    background-color: #d70926;
     font-size: 13px;
     box-shadow: 0 0 5px rgba(255, 255, 255, .15)
 }
@@ -116,7 +116,7 @@ ol li {
     margin-bottom: 0;
     text-transform: uppercase;
     border-bottom: 2px solid;
-    border-color: #947054;
+    border-color: #d70926;
     line-height: 1.8;
     display: inline-block
 }
@@ -193,7 +193,7 @@ ol li {
 
 .footer-widget-area .useful-links-nav li a:hover,
 .footer-widget-area .useful-links-nav li a:focus {
-    color: #947054
+    color: #d70926
 }
 
 .footer-widget-area .featured-properties-slides {
@@ -216,7 +216,7 @@ ol li {
     margin-top: -19px;
     -webkit-transition-duration: 500ms;
     transition-duration: 500ms;
-    background-color: #947054;
+    background-color: #d70926;
     font-size: 13px;
     box-shadow: 0 0 5px rgba(255, 255, 255, .15)
 }
