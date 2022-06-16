@@ -17,6 +17,7 @@
 
 .ftco_navbar_light {
     background-color: #ffffff!important;
+    box-shadow: 1px 1px 10px 5px grey;
     position: fixed;
     top: 0;
     left: 0;
