@@ -22,6 +22,7 @@
         "@angular/router": "~12.2.0",
         "@types/fuzzy-search": "^2.1.1",
         "angular-animations": "^0.11.0",
+        "bootstrap-icons": "^1.8.3",
         "convertapi": "^1.11.1",
         "fuzzy-search": "^3.2.1",
         "jwt-decode": "^3.1.2",

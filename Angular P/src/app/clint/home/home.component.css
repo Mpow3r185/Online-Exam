@@ -97,7 +97,7 @@
 
 .service .icon-wrap span {
     font-size: 50px;
-    color: #12947f
+    color: #016
 }
 
 .service .icon-wrap:before {
@@ -116,7 +116,7 @@
 }
 
 .text-secondary {
-    color: #12947f!important;
+    color: #016!important;
 }
 
 .service h3 a {
@@ -258,4 +258,9 @@
     background-position: center;
     height: 800px;
     width: 100%;
+}
+
+.icon-wrap i {
+    font-size: 50px;
+    color: #016;
 }

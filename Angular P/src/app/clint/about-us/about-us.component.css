@@ -33,7 +33,7 @@ img {
 }
 
 .bgImage{
-    background:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.0)), url('../../../assets/images/aboutI.jpg') top center no-repeat;
+    background:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.0)), url('../../../assets/images/about-us.jpg') top center no-repeat;
     background-position: center;
     background-attachment: fixed;
     background-size: cover;
