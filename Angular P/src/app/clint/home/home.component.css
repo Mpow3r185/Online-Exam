@@ -101,10 +101,10 @@
 }
 
 .service .icon-wrap:before {
-    top: 0;
-    left: -10px;
-    width: 55px;
-    height: 55px;
+    top: 6px;
+    left: -9px;
+    width: 68px;
+    height: 68px;
     position: absolute;
     content: "";
     background: rgba(18, 148, 127, .1);

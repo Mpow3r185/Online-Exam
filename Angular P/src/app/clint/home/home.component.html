@@ -7,18 +7,14 @@
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner" style="height: 625px;">
-            <div class="carousel-item active">
-                <div class="overlay"></div>
-                <img class="d-block w-100" src="../../../assets/images/slider-1.jpg">
+            <div>
+                <div class="carousel-item" *ngFor="let img of sliderImages"
+                    [ngClass]="{'active': img.imagePath == sliderImages[0].imagePath}">
+                    <div class="overlay"></div>
+                    <img class="d-block w-100" src="../../../assets/images/{{ img.imagePath }}">
+                </div>
             </div>
-            <div class="carousel-item">
-                <div class="overlay"></div>
-                <img class="d-block w-100" src="../../../assets/images/slider-2.jpg">
-            </div>
-            <div class="carousel-item">
-                <div class="overlay"></div>
-                <img class="d-block w-100" src="../../../assets/images/slider-3.jpg">
-            </div>
+
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -30,8 +26,6 @@
         </a>
     </div>
 </header>
-
-<button type="button" *ngIf="accountStatus" (click)="openDialog()" class="feedback-btn">Feedback</button>
 
 <section>
     <div class="untree_co-section">
@@ -88,15 +82,15 @@
 <section class="container-fluid px-4 mt-5">
     <div class="row justify-content-center">
         <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-            <span class="subheading">What we offer</span>
-            <h2 class="mb-2">Exclusive Offer For You</h2>
+            <span class="subheading">Find Your Interest</span>
+            <h2 class="mb-2">Search For Courses Or Exams</h2>
         </div>
     </div>
 
     <div class="col-12 mb-5 d-flex">
         <div class="main d-flex w-100 m-auto justify-content-center">
             <input type="text" class="rounded d-flex w-50" name="Search" [(ngModel)]='search' name="search"
-                placeholder="Search...">
+                placeholder="ex: Angular">
             <button class="btn search-btn d-flex w-auto" type="button">SEARCH</button>
         </div>
     </div>
@@ -117,8 +111,7 @@
         <div class="row ">
             <div class="col-md-12 ">
                 <div class="section-title text-center ">
-                    <h2>Our Team</h2>
-                    <p>Meet Our telented Team Member</p>
+                    <h2>Our Popular Courses</h2>
                 </div>
             </div>
 

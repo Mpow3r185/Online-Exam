@@ -12,7 +12,7 @@ import { TestimonialFormComponent } from './testimonial-form/testimonial-form.co
 import { SpinnerComponent } from 'src/app/spinner/spinner.component';
 import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
-// import * as FuzzySearch from 'fuzzy-search';
+
 
 SwiperCore.use([Navigation]);
 SwiperCore.use([Autoplay]);
@@ -23,20 +23,34 @@ SwiperCore.use([EffectCoverflow, Pagination]);
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
+
 export class HomeComponent implements OnInit {
   loopStatues: boolean = false;
-  // searcher: any;
   search!: string;
   adData: any = [];
   accountStatus: boolean = false;
-  // search: FormControl = new FormControl();
+
+  sliderImages: any = [
+    {
+      imagePath: 'slider-1.jpg'
+    },
+    {
+      imagePath: 'slider-2.jpg'
+    },
+    {
+      imagePath: 'slider-3.jpg'
+    }
+  ]
+
   constructor(
     public adService: AdvertisementService,
     public homeService: HomeService,
     public dialog: MatDialog,
     public userService: UserService,
     private router: Router
-  ) {}
+  ) {
+    
+  }
 
   people = [{
     name: {
@@ -54,6 +68,8 @@ export class HomeComponent implements OnInit {
     if (localStorage.getItem('token')) {
     this.userService.getUserById();
     setTimeout(() => this.homeService.getFirstTestimonial(), 1500);
+
+    
     }
 
     let token = localStorage.getItem('token');
