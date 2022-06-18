@@ -27,3 +27,8 @@ a.course-title {
     transition: 0.3s;
     text-decoration: none !important;
 }
+
+.test:hover a{
+    
+    color:#d70926;
+}
