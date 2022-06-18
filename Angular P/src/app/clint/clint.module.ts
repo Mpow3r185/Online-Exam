@@ -41,7 +41,8 @@ import { CourseComponent } from './course/course.component';
     AllAdvertisementComponent,
     AllAdvertisementCardComponent,
     CourseCardComponent,
-    CourseComponent
+    CourseComponent,
+    ExamComponent
   ],
   imports: [
     ClintRoutingModule,
