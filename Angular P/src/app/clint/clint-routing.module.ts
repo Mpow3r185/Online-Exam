@@ -26,6 +26,10 @@ const routes: Routes = [
   {
     path: 'advertisement',
     component: AllAdvertisementComponent,
+  },
+  {
+    path:'course',
+    component:CourseComponent
   }
 ];
 
