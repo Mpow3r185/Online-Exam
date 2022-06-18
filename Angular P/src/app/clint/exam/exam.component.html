@@ -1,0 +1,228 @@
+<app-internal-nav-bar></app-internal-nav-bar>
+
+<app-header pageName="Exams"></app-header>
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <!-- Filter Button -->
+        <div class="filterBtn col-md-3">
+            <div class="container">
+                <button (click)="handleFilterFunctionality()">
+                    <i class="fas fa-filter"></i>
+                    Filter By
+                </button>
+            </div>
+        </div>
+
+        <!-- Our Exams -->
+        <div class="col-md-9">
+            <div class="container">
+                <p>
+                    Explore Our Exams to find your interests
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-start">
+        <!-- Filter -->
+        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3" id="filterSection">
+            <form>
+                <ul class="list-group">
+
+                    <!-- Filter By Date -->
+                    <li class="list-group-item" id="filterByDate" (click)="handleFilterByDate()">
+                        <div class="row justify-content-between">
+                            <div class="col-6 row justify-content-start">
+                                <div class="col-1">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <div class="col-2">
+                                    Date
+                                </div>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end align-self-center">
+                                <i class="fas fa-chevron-down mx-3" id="arrow-1"></i>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Filter By Date Details -->
+                    <li class="list-group-item" id="filterByDateDetails">
+                        <div class="row">
+                            <div class="container">
+                                <div class="form-group">
+
+                                    <!-- Start Date -->
+                                    <div class="col-12">
+                                        <label class="form-label" for="startDate">Start Date</label>
+                                        <input type="datetime-local" id="startDate" class="w-100" />
+                                    </div>
+
+                                    <hr />
+                                    <!-- End Date -->
+                                    <div class="col-12">
+                                        <label class="form-label" for="endDate">End Date</label>
+                                        <input type="datetime-local" id="endDate" class="w-100" />
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+
+                    <!-- Filter By Course Name -->
+                    <li class="list-group-item" id="filterByCourseName" (click)="handleFilterByCourseName()">
+                        <div class="row justify-content-between">
+                            <div class="col-6 row justify-content-start">
+                                <div class="col-1">
+                                    <i class="fas fa-chalkboard-teacher"></i>
+                                </div>
+                                <div class="col-2">
+                                    Course
+                                </div>
+                            </div>
+
+                            <div class="col-6 d-flex justify-content-end align-self-center">
+                                <i class="fas fa-chevron-down mx-3" id="arrow-2"></i>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Filter By Course Name Details -->
+                    <li class="list-group-item" id="filterByCourseNameDetails">
+                        <div class="row">
+                            <div class="container">
+                                <div class="form-group">
+
+                                    <!-- Course Name -->
+                                    <div class="col-12">
+                                        <label class="form-label" for="courseName">Course Name</label>
+                                        <input type="text" id="courseName" class="w-100" placeholder="ex: Math" />
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Filter By Exam Name -->
+                    <li class="list-group-item" id="filterByExamName" (click)="handleFilterByExamName()">
+                        <div class="row justify-content-between">
+                            <div class="col-6 row justify-content-start">
+                                <div class="col-1">
+                                    <i class="fas fa-file-excel"></i>
+                                </div>
+                                <div class="col-2">
+                                    Exam
+                                </div>
+                            </div>
+
+                            <div class="col-6 d-flex justify-content-end align-self-center">
+                                <i class="fas fa-chevron-down mx-3" id="arrow-3"></i>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Filter By Exam Name Details -->
+                    <li class="list-group-item" id="filterByExamNameDetails">
+                        <div class="row">
+                            <div class="container">
+                                <div class="form-group">
+
+                                    <!-- Exam Name -->
+                                    <div class="col-12">
+                                        <label class="form-label" for="examName">Exam Name</label>
+                                        <input type="text" id="examName" class="w-100" placeholder="ex: Math 102" />
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Filter By Exam Level -->
+                    <li class="list-group-item" id="filterByExamLevel" (click)="handleFilterByExamLevel()">
+                        <div class="row justify-content-between">
+                            <div class="col-6 row justify-content-start">
+                                <div class="col-1">
+                                    <i class="fa fa-bar-chart"></i>
+                                </div>
+                                <div class="col-2">
+                                    Level
+                                </div>
+                            </div>
+
+                            <div class="col-6 d-flex justify-content-end align-self-center">
+                                <i class="fas fa-chevron-down mx-3" id="arrow-5"></i>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Filter By Exam Level Details -->
+                    <li class="list-group-item" id="filterByExamLevelDetails">
+                        <div class="row">
+                            <div class="container">
+                                <div class="form-group">
+
+                                    <!-- Exam Level -->
+                                    <div class="col-12">
+
+                                        <!-- Beginner Level -->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="Beginner"
+                                                id="beginnerLvl">
+                                            <label class="form-check-label" for="beginnerLvl">
+                                                Beginner
+                                            </label>
+                                        </div>
+
+                                        <!-- Intermediate Level -->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="Intermediate"
+                                                id="intermediateLvl">
+                                            <label class="form-check-label" for="intermediateLvl">
+                                                Intermediate
+                                            </label>
+                                        </div>
+
+                                        <!-- Expert Level -->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="Expert"
+                                                id="expertLvl">
+                                            <label class="form-check-label" for="expertLvl">
+                                                Expert
+                                            </label>
+                                        </div>
+
+                                        <!-- Advanced Level -->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="Advanced"
+                                                id="advancedLvl">
+                                            <label class="form-check-label" for="advancedLvl">
+                                                Advanced
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="row justify-content-center mt-3 mb-3 btn-container">
+                    <input type="submit" value="Search" id="searchBtn" />
+                </div>
+            </form>
+        </div>
+
+        <!-- Courses -->
+        <div class="col-9" id="coursesSection" style="border: 1px solid rgb(76, 0, 255)">
+
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

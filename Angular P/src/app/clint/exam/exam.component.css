@@ -1,0 +1,81 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+button {
+    display: block;
+    margin: auto;
+    border: 1px solid #016;
+    border-radius: 5px;
+    background-color: #fff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    color: #016;
+    padding: 5px 10px;
+}
+
+p {
+    text-align: center;
+    font-size: 20px;
+}
+
+.close-filter {
+    display: none;
+}
+
+#coursesSection {
+    transition: 0.2s;
+}
+
+ul li {
+    cursor: pointer;
+    color: #016;
+}
+
+ul li i {
+    transition: 0.5s;
+}
+
+.rotate-180-deg {
+    transform: rotate(180deg);
+}
+
+form label {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-bottom: 0.2em;
+}
+
+#filterByDateDetails,
+#filterByCourseNameDetails,
+#filterByExamNameDetails,
+#filterByExamLevelDetails {
+    display: none;
+}
+
+#searchBtn {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 3px 10px;
+    background-color: #fff;
+    color: #016;
+    font-weight: bold;
+    border: 1px solid #016;
+    transition: 0.3s;
+}
+
+#searchBtn:hover {
+    background-color: #016;
+    color: #fff;
+
+    box-shadow: 1px 1px 10px 1px rgba(0, 17, 102, 0.486);
+}
+
+input {
+    padding: 3px 8px;
+}
