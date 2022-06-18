@@ -21,6 +21,8 @@ import { TestimonialFormComponent } from './home/testimonial-form/testimonial-fo
 import { UserService } from '../service/user.service';
 import { AllAdvertisementComponent } from './all-advertisement/all-advertisement.component';
 import { AllAdvertisementCardComponent } from './all-advertisement/all-advertisement-card/all-advertisement-card.component';
+import { CourseCardComponent } from './course/course-card/course-card.component';
+import { CourseComponent } from './course/course.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { AllAdvertisementCardComponent } from './all-advertisement/all-advertise
     TestimonialFormComponent,
     AllAdvertisementComponent,
     AllAdvertisementCardComponent,
+    CourseCardComponent,
+    CourseComponent
   ],
   imports: [
     ClintRoutingModule,
