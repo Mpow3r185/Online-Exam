@@ -1,0 +1,80 @@
+div.exam-card {
+    height: 520px;
+    border: 0.5px solid rgba(128, 128, 128, 0.452);
+    transition: 0.5s;
+    overflow: hidden;
+}
+
+div.exam-card:hover {
+    box-shadow: 3px 3px 10px 3px grey;
+}
+
+div.img-container {
+    width: 100%;
+    height: 220px;
+}
+
+div.img-inner-conatiner,
+div.exam-card,
+div.img-container {
+    border-radius: 5px;
+}
+
+div.a {
+    background-position: center;
+    background-size: cover;
+}
+
+i.primary {
+    color: #016;
+}
+
+i.secondary {
+    color: #fff;
+}
+
+h5 {
+    color: #d70926;
+}
+
+span {
+    font-weight: 600;
+}
+
+div.sh-card {
+    position: absolute;
+    left: 0;
+    top: -500px;
+    z-index: 1;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+    border-radius: 5px;
+}
+
+div.exam-card:hover div.sh-card {
+    top: 0;
+    opacity: 0.9;
+    visibility: visible;
+}
+
+span.dt-inf {
+    color: #fff;
+}
+
+button.dt-btn {
+    color: #000;
+    background-color: #fff;
+    border: 0.5px solid 000;
+    border-radius: 5px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 600;
+    padding: 2px 10px;
+    transition: 0.3s;
+}
+
+button.dt-btn:hover {
+    color: #fff;
+    background-color: #000;
+    border-color: #fff;
+}

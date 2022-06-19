@@ -1,0 +1,154 @@
+<!-- Exam Card -->
+<div class="exam-card col-12 mt-5">
+
+    <!-- Hover Card Container -->
+    <div class="w-100 h-100 sh-card" style="background-color: #000;">
+        <div class="row">
+            <div class="container p-3">
+                <!-- Exam Name -->
+                <div class="text-center mt-3" style="min-height:60px;">
+                    <h5 style="color:#fff" title="Exam Name">
+                        {{ examName }}
+                    </h5>
+                </div>
+
+                <!-- Course Name -->
+                <div class="text-center mt-1" style="min-height:20px;">
+                    <h6 style="color:#fff" title="Course Name">
+                        {{ courseName }}
+                    </h6>
+                </div>
+
+                <!-- Exam Description -->
+                <div class="text-center mt-1" style="min-height:220px; max-height:220px;">
+                    <p class="p-3" style="color:#fff; word-break: break-word;" title="Exam Description">
+                        {{ dsecription }}
+                    </p>
+                </div>
+
+                <!-- Separator -->
+                <hr style="background-color: #fff;" />
+
+                <!-- Details -->
+                <div class="container">
+
+                    <!-- Number of Users Registered -->
+                    <div class="row" title="Number of Registered Users">
+                        <i class="fa fa-users col-1 align-self-center secondary"></i>
+                        <span class="col-10 dt-inf">
+                            {{ numberOfUsersRegistered }}
+                        </span>
+                    </div>
+
+                    <!-- Success Mark -->
+                    <div class="row" title="Success Mark">
+                        <i class="fa fa-check-square-o col-1 align-self-center secondary"></i>
+                        <span class="col-10 dt-inf">
+                            {{ successMark }}
+                        </span>
+                    </div>
+
+                    <!-- Duration -->
+                    <div class="row" title="Exam Duration">
+                        <i class="fa fa-clock col-1 align-self-center secondary"></i>
+                        <span class="col-10 dt-inf">
+                            {{ duration }} minutes
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Separator -->
+                <hr style="background-color: #fff;" />
+
+                <!-- Details Button -->
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <button class="dt-btn" title="Press to See Details">
+                            See Details
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Container -->
+    <div class="row mb-3">
+        <div class="img-container">
+            <div class="w-100 h-100 a img-inner-conatiner"
+                style="background-image: url('../../../../assets/images/{{ examImage }}')"></div>
+        </div>
+    </div>
+
+    <!-- Card Content -->
+    <div class="row">
+        <div class="container">
+
+            <!-- Exam Name -->
+            <div style="min-height:60px;">
+                <h5>
+                    {{ examName }}
+                </h5>
+            </div>
+
+
+            <!-- Course Name -->
+            <div style="min-height:20px;">
+                <h6>
+                    {{ courseName }}
+                </h6>
+            </div>
+
+            <!-- Separator -->
+            <hr />
+
+            <!-- Exam Level -->
+            <div>
+                <div class="row">
+                    <i class="fas fa-chart-line col-1 align-self-center primary"></i>
+                    <span class="col-10">
+                        {{ examLevel }}
+                    </span>
+                </div>
+            </div>
+
+            <!-- Exam Date -->
+            <div>
+                <div class="row mt-2">
+                    <i class="fas fa-calendar-alt col-1 align-self-center primary"></i>
+                    <span class="col-10">
+                        {{ startDate }} - {{ endDate }}</span>
+                </div>
+            </div>
+
+            <!-- Exam Time -->
+            <div>
+                <div class="row mt-2">
+                    <i class="fas fa-clock col-1 align-self-center primary"></i>
+                    <span class="col-10">
+                        {{ startHour }} - {{ endHour }}</span>
+                </div>
+            </div>
+
+            <!-- Exam Cost -->
+            <div>
+                <div class="row mt-2">
+                    <i class="fa fa-dollar col-1 align-self-center font-weight-bold primary"></i>
+                    <span class="col-10">
+
+                        <!-- Is Not Free -->
+                        <ng-container *ngIf="cost > 0; else freeExam">
+                            {{ cost }} USD
+                        </ng-container>
+
+                        <ng-template #freeExam>
+                            FREE
+                        </ng-template>
+
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
