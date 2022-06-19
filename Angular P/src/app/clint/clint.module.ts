@@ -24,6 +24,7 @@ import { AllAdvertisementCardComponent } from './all-advertisement/all-advertise
 import { CourseCardComponent } from './course/course-card/course-card.component';
 import { CourseComponent } from './course/course.component';
 import { ExamComponent } from './exam/exam.component';
+import { ExamCardComponent } from './exam/exam-card/exam-card.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ExamComponent } from './exam/exam.component';
     AllAdvertisementCardComponent,
     CourseCardComponent,
     CourseComponent,
-    ExamComponent
+    ExamComponent,
+    ExamCardComponent
   ],
   imports: [
     ClintRoutingModule,
