@@ -23,6 +23,7 @@ import { AllAdvertisementComponent } from './all-advertisement/all-advertisement
 import { AllAdvertisementCardComponent } from './all-advertisement/all-advertisement-card/all-advertisement-card.component';
 import { CourseCardComponent } from './course/course-card/course-card.component';
 import { CourseComponent } from './course/course.component';
+import { ExamComponent } from './exam/exam.component';
 
 @NgModule({
   declarations: [
