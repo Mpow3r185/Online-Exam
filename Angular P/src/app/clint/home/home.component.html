@@ -96,91 +96,78 @@
     </div>
 
     <swiper class="mySwiper" [slidesPerView]="3" [spaceBetween]="15" [pagination]="{
-    clickable: false
-  }" [loop]="loopStatues" [pagination]="false" [autoplay]="{
-    delay: 2000
-}" [navigation]="true">
+    clickable: false}" [loop]="loopStatues" [pagination]="false" [autoplay]="{
+    delay: 2000}" [navigation]="true">
         <ng-template *ngFor="let adInfo of adService.data | filter:search" swiperSlide>
             <app-advertisement-card [info]='adInfo'></app-advertisement-card>
         </ng-template>
     </swiper>
 </section>
 
-<div class="team-area ">
+<div class="team-area mb-5">
     <div class="container ">
         <div class="row ">
             <div class="col-md-12 ">
                 <div class="section-title text-center ">
-                    <h2>Our Popular Courses</h2>
+                    <h2>Our Three Popular Courses</h2>
                 </div>
             </div>
 
-            <!--== Single Team Item ==-->
-            <div class="col-md-3 ">
-                <div class="single-team ">
-                    <div class="team-img ">
-                        <img src="https://i.postimg.cc/1t2svTt5/1.jpg " alt=" " class="img-responsive ">
-                    </div>
-                    <div class="team-content ">
-                        <div class="team-info ">
-                            <h3>Lisa Ray</h3>
-                            <p>Web Developer</p>
+            <div>
+                <div class="mb-5">
+                    <div class="container">
+                        <div class="row justify-content-lg-around justify-content-md-start">
+                            <app-course-card *ngFor="let obj of courses" [courseName]="obj.courseName"
+                                [courseImage]="obj.courseImage"
+                                class="col-lg-3 col-md-5 col-sm-12 mt-4 mr-4  ml-4 course-card">
+                            </app-course-card>
                         </div>
-                        <p class="team-text ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam quasi, vel.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <!--== Single Team Item ==-->
-            <div class="col-md-3 ">
-                <div class="single-team ">
-                    <div class="team-img ">
-                        <img src="https://i.postimg.cc/qRPHs3bN/2.jpg " alt=" " class="img-responsive ">
-                    </div>
-                    <div class="team-content ">
-                        <div class="team-info ">
-                            <h3>Lisa Ray</h3>
-                            <p>Web Developer</p>
-                        </div>
-                        <p class="team-text ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam quasi, vel.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <!--== Single Team Item ==-->
-            <div class="col-md-3 ">
-                <div class="single-team ">
-                    <div class="team-img ">
-                        <img src="https://i.postimg.cc/K80X9VpS/3.jpg " alt=" " class="img-responsive ">
-                    </div>
-                    <div class="team-content ">
-                        <div class="team-info ">
-                            <h3>Lisa Ray</h3>
-                            <p>Web Developer</p>
-                        </div>
-                        <p class="team-text ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam quasi, vel.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <!--== Single Team Item ==-->
-            <div class="col-md-3 ">
-                <div class="single-team ">
-                    <div class="team-img ">
-                        <img src="https://i.postimg.cc/3JZzRVT4/4.jpg " alt=" " class="img-responsive ">
-                    </div>
-                    <div class="team-content ">
-                        <div class="team-info ">
-                            <h3>Lisa Ray</h3>
-                            <p>Web Developer</p>
-                        </div>
-                        <p class="team-text ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam quasi, vel.
-                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Testimonial Header -->
+<div class="row w-100">
+    <div class="container">
+        <h3 class="text-center" style="color: #d70926">CLIENT</h3>
+        <h1 class="text-center">TESTIMONIALS</h1>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="overflow-hidden">
+        <div class="d-flex" id="testiSlider" style="transition: 0.5s">
+            <app-testimonial class="col-12" id="testimonial-{{ i }}"
+                *ngFor="let testimonial of testimonials let i = index;" [profileImage]="testimonial.profileImage"
+                [name]="testimonial.name" [title]="testimonial.title" [message]="testimonial.message"></app-testimonial>
+        </div>
+    </div>
+
+
+</div>
+
+
+<!-- All Testimonials Profile Pictures -->
+<div class="mt-3 mb-5">
+    <div class="container">
+        <div class="testi-img-container m-auto">
+
+            <div class="row justify-content-around flex-row-reverse h-100">
+
+                <div class="col-2 h-100 testimonial-transporter"
+                    *ngFor="let testimonial of testimonials; let i = index;" id="transporter{{ i }}"
+                    style="background-image:url('../../../../assets/images/{{ testimonial.profileImage }}');"
+                    (click)="animateTestimonial(i)"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
 
 <app-footer></app-footer>

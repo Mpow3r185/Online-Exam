@@ -12,17 +12,20 @@ import { SpinnerComponent } from 'src/app/spinner/spinner.component';
   styleUrls: ['./course.component.css']
 })
 export class CourseComponent implements OnInit {
+
   loopStatues: boolean = false;
   search!: string;
   adData: any = [];
   accountStatus: boolean = false;
+
   constructor(
     public adService: AdvertisementService,
     public homeService: HomeService,
     public dialog: MatDialog,
     public userService: UserService,
-    private router: Router
-  ) { }
+    private router: Router) { }
+
+  // Test Data
   courses:any=[{
     courseName:'React',
     courseImage:'assets/images/reactcourse.png'
@@ -46,17 +49,11 @@ export class CourseComponent implements OnInit {
   {
     courseName:'Entrepreneurship',
     courseImage:'assets/images/entrep.jpeg'
-  }]
+  }];
+
   ngOnInit(): void {
     SpinnerComponent.show();
     setTimeout(() => SpinnerComponent.hide(), 2000);
-
-    
-    
-    }
-
-    
-  
-
+  }
 }
 

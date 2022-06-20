@@ -1,18 +1,32 @@
-<div class="background">
-    <div class="testimonials-container">
-        <header>
-            <h2>Client</h2>
-            <h1>Testimonials</h1>
-        </header>
-        <div class="testimonials">
-            <img src="https://localhost:44359/{{testimonialInfo.profilePic}}" class="person-img">
-            <h2 class="person-name">{{testimonialInfo.username}}</h2>
-            <h3 class="person-job">{{testimonialInfo.title}}</h3>
-            <p class="person-text text-center">{{testimonialInfo.massege}}</p>
-        </div>
+<div class="container">
+    <!-- Testimonial Cards-->
+    <div class="row">
+        <div class="container">
 
-        <nav class="imgs-nav">
-            <img *ngFor="let testData of homeService.testimonialData" src="https://localhost:44359/{{testData.profilePic}}" [hidden]="!testData.isActive" class="wrapper-img rounded-circle" (click)="getData(testData.id)">
-        </nav>
+            <!-- Profile Pic -->
+            <div class="personal-img m-auto"
+                style="background-image: url('../../../../assets/images/{{ profileImage }}');">
+
+            </div>
+
+            <!-- Message Container -->
+            <div class="row testi-msg-card">
+
+                <!-- Name -->
+                <div class="container">
+                    <h3 class="text-center"> {{ name }} </h3>
+                </div>
+
+                <!-- Title -->
+                <div class="container mb-3">
+                    <h5 class="text-center"> {{ title }} </h5>
+                </div>
+
+                <!-- Message -->
+                <div class="container h-50">
+                    <p class="text-center"> {{ message }}</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

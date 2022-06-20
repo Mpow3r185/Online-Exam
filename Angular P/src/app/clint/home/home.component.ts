@@ -30,6 +30,21 @@ export class HomeComponent implements OnInit {
   adData: any = [];
   accountStatus: boolean = false;
 
+
+// Test Data 
+  courses:any=[{
+    courseName:'React',
+    courseImage:'assets/images/reactcourse.png'
+  },
+  {
+    courseName:'Angular',
+    courseImage:'assets/images/angular.png'
+  },
+  {
+    courseName:'Data Base',
+    courseImage:'assets/images/dbcourse.jpg'
+  }];
+
   sliderImages: any = [
     {
       imagePath: 'slider-1.jpg'
@@ -40,7 +55,59 @@ export class HomeComponent implements OnInit {
     {
       imagePath: 'slider-3.jpg'
     }
-  ]
+  ];
+
+    testimonials: any = [
+    {
+      profileImage: 'slider-1.jpg',
+      name: 'Abd Al Hameed Al-Dalgamouni',
+      title: 'Admin',
+      message: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
+      illo quo doloribus quas iure quod expedita eius, labore optio nesciunt nostrum tempore
+      eveniet recusandae repellat. Provident asperiores accusamus illum? Architecto tempore
+      libero quisquam dignissimos, ipsa dicta, rem accusamus quam et eum vero.`
+    },
+
+    {
+      profileImage: 'slider-2.jpg',
+      name: 'Yazeed Bani Ata',
+      title: 'Student Failer',
+      message: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
+      illo quo doloribus quas iure quod expedita eius, labore optio nesciunt nostrum tempore
+      eveniet recusandae repellat. Provident asperiores accusamus illum? Architecto tempore
+      libero quisquam dignissimos, ipsa dicta, rem accusamus quam et eum vero.`
+    },
+
+    {
+      profileImage: 'slider-3.jpg',
+      name: 'Mohammed Hamarsheh',
+      title: 'Successfull Arabic 102',
+      message: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
+      illo quo doloribus quas iure quod expedita eius, labore optio nesciunt nostrum tempore
+      eveniet recusandae repellat. Provident asperiores accusamus illum? Architecto tempore
+      libero quisquam dignissimos, ipsa dicta, rem accusamus quam et eum vero.`
+    },
+
+    {
+      profileImage: 'slider-1.jpg',
+      name: 'Haneen Momaniah',
+      title: 'Teacher',
+      message: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
+      illo quo doloribus quas iure quod expedita eius, labore optio nesciunt nostrum tempore
+      eveniet recusandae repellat. Provident asperiores accusamus illum? Architecto tempore
+      libero quisquam dignissimos, ipsa dicta, rem accusamus quam et eum vero.`
+    },
+
+    {
+      profileImage: 'slider-2.jpg',
+      name: 'Munther Al-Jodah',
+      title: 'Blocked User',
+      message: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
+      illo quo doloribus quas iure quod expedita eius, labore optio nesciunt nostrum tempore
+      eveniet recusandae repellat. Provident asperiores accusamus illum? Architecto tempore
+      libero quisquam dignissimos, ipsa dicta, rem accusamus quam et eum vero.`
+    }
+];
 
   constructor(
     public adService: AdvertisementService,
@@ -85,10 +152,12 @@ export class HomeComponent implements OnInit {
     setTimeout(() => SpinnerComponent.hide(), 2000);
   }
 
-  openDialog() {
-    this.dialog.open(TestimonialFormComponent, {
-      height: '400px',
-      width: '600px',
-    });
+  currentTestimonialIndex: number = 0;
+  animateTestimonial(index: number) {
+    document.getElementById(`transporter${this.currentTestimonialIndex}`)!.classList.remove('disable-div');
+
+    document.getElementById('testiSlider')!.style.transform = `translateX(${index * -1110}px)`;
+    document.getElementById(`transporter${index}`)!.classList.add('disable-div');
+    this.currentTestimonialIndex = index;
   }
 }

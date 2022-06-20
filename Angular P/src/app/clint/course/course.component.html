@@ -1,5 +1,6 @@
 <app-internal-nav-bar></app-internal-nav-bar>
-<app-header  pageName="Course"></app-header>
+<app-header pageName="Course"></app-header>
+
 <section class="container-fluid px-4 mt-5">
     <div class="row justify-content-center">
         <div class="col-md-12 heading-section text-center ftco-animate mb-5">
@@ -30,12 +31,10 @@
     <div style="margin-bottom: 200px ">
         <div class="container">
             <div class="row justify-content-lg-around justify-content-md-start">
-                <app-course-card *ngFor="let obj of courses"
-                [courseName]="obj.courseName" 
-                [courseImage]="obj.courseImage"
-                class="col-lg-3 col-md-5 col-sm-12 mt-4 mr-4  ml-4 course-card">
+                <app-course-card *ngFor="let obj of courses" [courseName]="obj.courseName"
+                    [courseImage]="obj.courseImage" class="col-lg-3 col-md-5 col-sm-12 mt-4 mr-4  ml-4 course-card">
                 </app-course-card>
-                
+
             </div>
         </div>
     </div>
