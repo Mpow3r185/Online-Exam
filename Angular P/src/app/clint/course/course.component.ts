@@ -8,7 +8,12 @@ import { SpinnerComponent } from 'src/app/spinner/spinner.component';
 })
 export class CourseComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public adService: AdvertisementService,
+    public homeService: HomeService,
+    public dialog: MatDialog,
+    public userService: UserService,
+    private router: Router) { }
   courses:any=[{
     courseName:'React',
     courseImage:'assets/images/reactcourse.png'
