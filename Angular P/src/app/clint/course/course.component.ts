@@ -25,7 +25,7 @@ export class CourseComponent implements OnInit {
     public userService: UserService,
     private router: Router) { }
 
-    /* Test Data */
+  // Test Data
   courses:any=[{
     courseName:'React',
     courseImage:'assets/images/reactcourse.png'
@@ -49,10 +49,11 @@ export class CourseComponent implements OnInit {
   {
     courseName:'Entrepreneurship',
     courseImage:'assets/images/entrep.jpeg'
-  }]
+  }];
+
   ngOnInit(): void {
     SpinnerComponent.show();
     setTimeout(() => SpinnerComponent.hide(), 2000);
   }
-
 }
+
