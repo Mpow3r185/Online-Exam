@@ -11,4 +11,49 @@
 
 .course-card:hover {
     box-shadow: 2px 2px 10px 1px grey;
+    
 }
+
+.center-text {
+    top: 100%;
+    position: absolute;
+    color: #000;
+    left: 0;
+    text-align: center;
+    right: 0;
+    margin: auto;
+    /* margin-bottom: 50%; */
+}
+
+.main input,
+.search-btn {
+    width: 75%;
+    border: none;
+    box-shadow: 5px 5px 15px #000;
+    border-right: 0px;
+    font-size: 18px;
+    padding: 12px;
+    /* background-color: transparent; */
+    color: rgb(34, 31, 31);
+    cursor: pointer;
+}
+
+.main button {
+    width: 25%;
+    background-color: #d70926;
+    color: #fff;
+    transition: all 0.3s;
+    float: right;
+    border-left: 0px;
+}
+
+.main button:hover {
+    opacity: .8;
+}
+
+.main input:hover {
+    opacity: .8;
+}
+
+
+
