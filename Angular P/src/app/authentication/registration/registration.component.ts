@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/service/authentication.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { AuthenticationService } from 'src/app/service/authentication.service';
 export class RegistrationComponent implements OnInit {
   hide = true;
   response!: { dbPath: "" };
-  constructor(public authService: AuthenticationService) { }
+  constructor(public authService: AuthenticationService, private router: Router) { }
   ngOnInit(): void {
   }
 
@@ -34,5 +35,8 @@ export class RegistrationComponent implements OnInit {
       this.authService.registerForm.controls.profilePic.setErrors({required: true});
     }
     this.authService.createNewCustomer();
+  }
+  goToLogin(){
+    this.router.navigate(['auth/login'])
   }
 }

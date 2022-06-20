@@ -16,13 +16,13 @@ export class DashboardCardComponent implements OnInit {
   constructor(public adService: AdvertisementService, public homeService: HomeService, public dialog: MatDialog, public userService: UserService) { }
 
   ngOnInit(): void {
-    this.adService.data = [];
+    /*this.adService.data = [];
     this.adService.getDesactiveAdvertisement();
     this.homeService.getAllTestimonials();
     this.userService.getAllUser();
     setTimeout(() => {
       this.numOfUser = this.userService.users.length;
-    }, 1200);
+    }, 1200);*/
   }
 
   openDialog(item: any) {

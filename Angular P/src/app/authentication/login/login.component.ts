@@ -11,12 +11,15 @@ import { AuthenticationService } from 'src/app/service/authentication.service';
 export class LoginComponent implements OnInit {
   hide = true;
 
-  constructor(public authService: AuthenticationService) { }
+  constructor(public authService: AuthenticationService,private router: Router) { }
   ngOnInit(): void {
   }
 
   chickAuthentication() {
     this.authService.chickAuthentication();
+  }
+  goToRegisteration(){
+    this.router.navigate(['auth/register'])
   }
 
 }

@@ -89,3 +89,26 @@ button.sign-in-btn:hover {
 
     box-shadow: 1px 1px 10px 3px rgb(17, 39, 150);
 }
+
+#sign-in-sm {
+    display: none;
+}
+
+#sign-in-lg {
+    display: block;
+}
+
+
+@media only screen and (max-width: 990px) {
+    #sign-in-sm {
+        display: block;
+    }
+    
+    #sign-in-lg {
+        display: none;
+    }
+}
+
+nav {
+    z-index: 4 !important;
+}

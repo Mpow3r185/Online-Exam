@@ -7,14 +7,20 @@ import { HomeService } from 'src/app/service/home.service';
   styleUrls: ['./testimonial.component.css']
 })
 export class TestimonialComponent implements OnInit {
-  @Input() testimonialInfo: any;
-  constructor(public homeService: HomeService) { }
+
+  @Input() profileImage!: string;
+  @Input() name!: string;
+  @Input() title!: string;
+  @Input() message!: string;
+
+  constructor() { }
 
   ngOnInit(): void {
+
   }
 
   getData(value :any){
-    this.homeService.getTestimonial(value);
+    
   }
 
 }

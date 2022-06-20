@@ -1,16 +1,39 @@
 <app-internal-nav-bar></app-internal-nav-bar>
-<app-header  pageName="Courses"></app-header>
+<app-header pageName="Course"></app-header>
+<section class="container-fluid px-4 mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-12 heading-section text-center ftco-animate mb-5">
+            <span class="subheading">Find Your Interest</span>
+            <h2 class="mb-2">Search For Courses </h2>
+        </div>
+    </div>
 
+    <div class="col-12 mb-5 d-flex">
+        <div class="main d-flex w-100 m-auto justify-content-center">
+            <input type="text" class="rounded d-flex w-50" name="Search" [(ngModel)]='search' name="search"
+                placeholder="ex: Angular">
+            <button class="btn search-btn d-flex w-auto" type="button">SEARCH</button>
+        </div>
+    </div>
+
+    <swiper class="mySwiper" [slidesPerView]="3" [spaceBetween]="15" [pagination]="{
+    clickable: false
+  }" [loop]="loopStatues" [pagination]="false" [autoplay]="{
+    delay: 2000
+}" [navigation]="true">
+        <ng-template *ngFor="let adInfo of adService.data | filter:search" swiperSlide>
+            <app-advertisement-card [info]='adInfo'></app-advertisement-card>
+        </ng-template>
+    </swiper>
+</section>
 <div>
-    <div style="margin: 200px 0">
+    <div style="margin-bottom: 200px ">
         <div class="container">
             <div class="row justify-content-lg-around justify-content-md-start">
-                <app-course-card *ngFor="let obj of courses"
-                [courseName]="obj.courseName" 
-                [courseImage]="obj.courseImage"
-                class="col-lg-3 col-md-5 col-sm-12 mt-4 mr-4  ml-4 course-card">
+                <app-course-card *ngFor="let obj of courses" [courseName]="obj.courseName"
+                    [courseImage]="obj.courseImage" class="col-lg-3 col-md-5 col-sm-12 mt-4 mr-4  ml-4 course-card">
                 </app-course-card>
-                
+
             </div>
         </div>
     </div>

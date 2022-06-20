@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('../course/course.component.css');
+
 .center-text {
     top: 100%;
     position: absolute;
@@ -199,7 +201,7 @@
 }
 
 .single-team:hover .team-info h3 {
-    color: tomato;
+    color: #d70926;
 }
 
 .team-info p {
@@ -225,7 +227,7 @@
     left: 20px;
     padding: 15px;
     border-radius: 40px;
-    background: tomato;
+    background: #d70926;
     z-index: 10;
 }
 
@@ -263,6 +265,7 @@
 .icon-wrap i {
     font-size: 50px;
     color: #016;
+    transition: 0.3s;
 }
 
 div.image {
@@ -277,4 +280,42 @@ div.overlay {
     opacity: 0.3;
     width: 100%;
     height: 100%;
+}
+
+div.service:hover i {
+    color: #d70926;
+    font-size: 55px;
+}
+
+div.service h3 {
+    transition: 0.3s;
+}
+
+div.service:hover h3 {
+    color: #d70926;
+    font-weight: bold;
+}
+
+div.testi-img-container {
+    height: 40px;
+    width: 200px;
+}
+
+div.testimonial-transporter {
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 1px solid #016;
+    cursor: pointer;
+    transition: 0.3s;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+div.testimonial-transporter:hover {
+    box-shadow: 1px 1px 3px 3px grey;
+}
+
+.disable-div {
+    pointer-events: none !important;
+    opacity: 0.5 !important;
 }
