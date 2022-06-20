@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { AdvertisementService } from 'src/app/service/advertisement.service';
+import { HomeService } from 'src/app/service/home.service';
+import { UserService } from 'src/app/service/user.service';
 import { SpinnerComponent } from 'src/app/spinner/spinner.component';
 
 @Component({
@@ -7,13 +12,17 @@ import { SpinnerComponent } from 'src/app/spinner/spinner.component';
   styleUrls: ['./course.component.css']
 })
 export class CourseComponent implements OnInit {
-
+  loopStatues: boolean = false;
+  search!: string;
+  adData: any = [];
+  accountStatus: boolean = false;
   constructor(
     public adService: AdvertisementService,
     public homeService: HomeService,
     public dialog: MatDialog,
     public userService: UserService,
-    private router: Router) { }
+    private router: Router
+  ) { }
   courses:any=[{
     courseName:'React',
     courseImage:'assets/images/reactcourse.png'
@@ -41,6 +50,13 @@ export class CourseComponent implements OnInit {
   ngOnInit(): void {
     SpinnerComponent.show();
     setTimeout(() => SpinnerComponent.hide(), 2000);
-  }
+
+    
+    
+    }
+
+    
+  
 
 }
+
