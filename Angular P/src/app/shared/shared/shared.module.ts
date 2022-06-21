@@ -8,14 +8,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule} from '@angular/common/http';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
-import { AdvertisementCardComponent } from 'src/app/clint/home/advertisement-card/advertisement-card.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {MatTableModule} from '@angular/material/table';
 import { UploadComponent } from 'src/app/upload/upload.component';
 
 @NgModule({
-  declarations: [AdvertisementCardComponent, UploadComponent],
+  declarations: [UploadComponent],
   imports: [
     CommonModule,
     SwiperModule,
@@ -43,7 +42,6 @@ import { UploadComponent } from 'src/app/upload/upload.component';
     MatDialogModule,
     MatButtonModule,
     NgxPaginationModule,
-    AdvertisementCardComponent,
     Ng2SearchPipeModule,
     MatTableModule,
     UploadComponent

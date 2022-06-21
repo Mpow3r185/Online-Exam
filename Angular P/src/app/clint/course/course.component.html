@@ -22,9 +22,6 @@
   }" [loop]="loopStatues" [pagination]="false" [autoplay]="{
     delay: 2000
 }" [navigation]="true">
-        <ng-template *ngFor="let adInfo of adService.data | filter:search" swiperSlide>
-            <app-advertisement-card [info]='adInfo'></app-advertisement-card>
-        </ng-template>
     </swiper>
 </section>
 <div>

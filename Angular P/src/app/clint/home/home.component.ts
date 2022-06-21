@@ -1,5 +1,5 @@
+import { FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { AdvertisementService } from 'src/app/service/advertisement.service';
 import SwiperCore, {
   Navigation,
   Autoplay,
@@ -8,7 +8,6 @@ import SwiperCore, {
 } from 'swiper';
 import { HomeService } from 'src/app/service/home.service';
 import { MatDialog } from '@angular/material/dialog';
-import { TestimonialFormComponent } from './testimonial-form/testimonial-form.component';
 import { SpinnerComponent } from 'src/app/spinner/spinner.component';
 import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
@@ -29,6 +28,7 @@ export class HomeComponent implements OnInit {
   search!: string;
   adData: any = [];
   accountStatus: boolean = false;
+  testimonialTextarea = new FormControl('', [Validators.required, Validators.minLength(10)]);
 
 
 // Test Data 
@@ -110,7 +110,6 @@ export class HomeComponent implements OnInit {
 ];
 
   constructor(
-    public adService: AdvertisementService,
     public homeService: HomeService,
     public dialog: MatDialog,
     public userService: UserService,
@@ -129,8 +128,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     SpinnerComponent.show();
-    this.adService.data = [];
-    this.adService.getActiveAdvertisement();
     this.homeService.getAllTestimonials();
     if (localStorage.getItem('token')) {
     this.userService.getUserById();
@@ -145,10 +142,6 @@ export class HomeComponent implements OnInit {
       this.accountStatus = true;
     }
 
-
-    if (this.adService.data.length > 3) {
-      this.loopStatues = true;
-    }
     setTimeout(() => SpinnerComponent.hide(), 2000);
   }
 

@@ -1,70 +1,74 @@
+<app-internal-nav-bar></app-internal-nav-bar>
 
-    <div class="container">
-      <div class="forms-container">
-        <div class="signin-signup">
-          <form class="sign-in-form example-form" (submit)="chickAuthentication()" [formGroup]="authService.loginForm">
-            <h2 class="title">Sign in</h2>
-            <div class="w-75">
-              <!-- <i class="fas fa-user"></i> -->
-              <mat-form-field  class="w-100 py-2" appearance="legacy">
-                <mat-label>Email</mat-label>
-                <input type="email" matInput formControlName="email">
-                <mat-error *ngIf="authService.loginForm.controls.email.hasError('email') && !authService.loginForm.controls.email.hasError('required')">
-                    Please enter a valid email address
-                </mat-error>
-                <mat-error *ngIf="authService.loginForm.controls.email.hasError('required')">
-                    Email is <strong>required</strong>
-                </mat-error>
-            </mat-form-field>
-            </div>
-            <div class="w-75">
-              <mat-form-field class="w-100 py-2 mb-3" appearance="legacy">
-                <mat-label>Enter your password</mat-label>
-                <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
-                <button class="border-0 hide-password" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+<div class="container" style="margin-top: 100px; z-index: 0;">
+  <div class="forms-container">
+    <div class="signin-signup">
+      <form class="sign-in-form example-form" (submit)="chickAuthentication()" [formGroup]="authService.loginForm">
+        <h2 class="title">Sign in</h2>
+        <div class="w-75">
+          <!-- <i class="fas fa-user"></i> -->
+          <mat-form-field class="w-100 py-2" appearance="legacy">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput formControlName="email">
+            <mat-error
+              *ngIf="authService.loginForm.controls.email.hasError('email') && !authService.loginForm.controls.email.hasError('required')">
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="authService.loginForm.controls.email.hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="w-75">
+          <mat-form-field class="w-100 py-2 mb-3" appearance="legacy">
+            <mat-label>Enter your password</mat-label>
+            <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+            <button class="border-0 hide-password" mat-icon-button matSuffix (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
-                <mat-error *ngIf="authService.loginForm.controls.password.hasError('required')">
-                    Password is <strong>required</strong>
-                </mat-error>
-            </mat-form-field>
-            </div>
-            <input type="submit" value="Login" class="btn solid" />
-            <p class="social-text">Or Sign in with social platforms</p>
-            <div class="social-media">
-              <a href="#" class="social-icon">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-google"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-linkedin-in"></i>
-              </a>
-            </div>
-          </form>
+            <mat-error *ngIf="authService.loginForm.controls.password.hasError('required')">
+              Password is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
         </div>
-      </div>
+        <input type="submit" value="Login" class="btn solid" />
+        <p class="social-text">Or Sign in with social platforms</p>
+        <div class="social-media">
+          <a href="#" class="social-icon">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="social-icon">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="social-icon">
+            <i class="fab fa-google"></i>
+          </a>
+          <a href="#" class="social-icon">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+      </form>
     </div>
+  </div>
+</div>
 
 
-    <div class="panels-container">
-      <div class="panel left-panel">
-        <div class="content">
-          <h3>New here ?</h3>
-          <p>
-            register now to try our experience in the plus exam, Let's join!
-          </p>
-          <button class="btn transparent" id="sign-up-btn" (click) = "goToRegisteration()">
-            Sign up
-          </button>
-        </div>
-        <img src="/assets/images/register.svg" class="image" alt="" />
-      </div>
-  
+<div class="panels-container" style="z-index: 0; margin-top: 100px;">
+  <div class="panel left-panel">
+    <div class="content">
+      <h3>New here ?</h3>
+      <p>
+        register now to try our experience in the plus exam, Let's join!
+      </p>
+      <button class="btn transparent" id="sign-up-btn" (click)="goToRegisteration()">
+        Sign up
+      </button>
     </div>
-  
+    <img src="/assets/images/register.svg" class="image" alt="" />
+  </div>
+
+</div>
+
 <app-footer></app-footer>
