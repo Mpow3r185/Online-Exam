@@ -319,3 +319,23 @@ div.testimonial-transporter:hover {
     pointer-events: none !important;
     opacity: 0.5 !important;
 }
+
+textarea {
+    resize: none;
+    border-radius: 10px;
+}
+
+#feedbackSubmit {
+    background-color: #016;
+    color: white;
+    border: solid #fff 1px;
+    padding: 3px 10px;
+    transition: 0.3s;
+}
+
+#feedbackSubmit:hover {
+    background-color: #fff;
+    color: #016;
+    border-color: #016;
+    box-shadow: 1px 1px 5px 1px #016;
+}

@@ -6,13 +6,12 @@
             <div class="content ">
                 <div class="container-fluid ">
                     <div class="row">
-                        <div *ngFor="let adInfo of adService.data | paginate: { itemsPerPage: 6, currentPage: page }" class="col-lg-4 col-md-6 col-sm-12 pr-0">
-                            <app-advertisement-card class="w-100" [info]='adInfo'></app-advertisement-card>
-                        </div>
+
                     </div>
                 </div>
             </div>
-            <pagination-controls [responsive]="true" class="text-center text-white" (pageChange)="page = $event"></pagination-controls>
+            <pagination-controls [responsive]="true" class="text-center text-white" (pageChange)="page = $event">
+            </pagination-controls>
         </div>
     </div>
 </div>

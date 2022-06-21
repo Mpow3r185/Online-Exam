@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AdvertisementService } from 'src/app/service/advertisement.service';
 import { HomeService } from 'src/app/service/home.service';
 import { UserService } from 'src/app/service/user.service';
 import { TestimonialViewComponent } from './testimonial-view/testimonial-view.component';
@@ -13,7 +12,7 @@ import { TestimonialViewComponent } from './testimonial-view/testimonial-view.co
 export class DashboardCardComponent implements OnInit {
   numOfUser!: number;
   numOfAdvertisement!: number;
-  constructor(public adService: AdvertisementService, public homeService: HomeService, public dialog: MatDialog, public userService: UserService) { }
+  constructor(public homeService: HomeService, public dialog: MatDialog, public userService: UserService) { }
 
   ngOnInit(): void {
     /*this.adService.data = [];
@@ -35,7 +34,6 @@ export class DashboardCardComponent implements OnInit {
   }
 
   updateActiveStatus(adId: number) {
-    this.adService.updateActivateStatus(adId);
     window.location.reload();
   }
 

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AdvertisementService } from 'src/app/service/advertisement.service';
 
 declare const exportTableToCSV: any;
 declare const exportTableToExcel: any;
@@ -12,10 +11,9 @@ declare const printTable: any;
 })
 export class SaleReportComponent implements OnInit {
 
-  constructor(public adService: AdvertisementService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.adService.getSaleReport();
   }
 
   exportToCSV(fileName: string) {

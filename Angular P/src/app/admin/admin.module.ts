@@ -10,7 +10,6 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { UserService } from '../service/user.service';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AdvertisementComponent } from './advertisement/advertisement.component';
-import { AdvertisementService } from '../service/advertisement.service';
 import { ContactMassageComponent } from './contact-massage/contact-massage.component';
 import { ContactMassageCardComponent } from './contact-massage-card/contact-massage-card.component';
 import { UsersComponent } from './users/users.component';
@@ -44,6 +43,6 @@ import { SaleReportComponent } from './sale-report/sale-report.component';
     SharedModule,
     AdminRoutingModule
   ],
-  providers: [UserService, AdvertisementService, ContactService, HomeService]
+  providers: [UserService, ContactService, HomeService]
 })
 export class AdminModule { }

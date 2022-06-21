@@ -41,48 +41,50 @@
 
 <div class="container">
     <div class="content">
-      <div class="left-side">
-        <p class="font-weight-bold" style="color: #001166; font-family: 'Roboto Slab', serif;">
-            If you have any question or any inquiry about the special program and how to apply for exams and take the certificate, you can send a message to us from here. It is our pleasure to assist you.    
-        </p>
-      </div>
-      <div class="right-side">
-        <div class="topic-text mb-2">Send Us a Message</div>
-       <form [formGroup]="contactService.contactForm" (submit)="onSubmit()">
-        <div class="col-12 px-0">
-            <mat-form-field class="example-full-width w-100" appearance="outline">
-                <mat-label>Full Name</mat-label>
-                <input type="text" matInput formControlName="Name">
-                <mat-error *ngIf="contactService.contactForm.controls.Name.hasError('required')">
-                    Name is <strong>required</strong>
-                </mat-error>
-            </mat-form-field>
+        <div class="left-side">
+            <p class="font-weight-bold" style="color: #001166; font-family: 'Roboto Slab', serif;">
+                If you have any question or any inquiry about the special program and how to apply for exams and take
+                the certificate, you can send a message to us from here. It is our pleasure to assist you.
+            </p>
         </div>
-        <div class="col-12 px-0">
-            <mat-form-field class="example-full-width w-100" appearance="outline">
-                <mat-label>Email</mat-label>
-                <input type="email" matInput formControlName="Email">
-                <mat-error *ngIf="contactService.contactForm.controls.Email.hasError('email') && !contactService.contactForm.controls.Email.hasError('required')">
-                    Please enter a valid email address
-                </mat-error>
-                <mat-error *ngIf="contactService.contactForm.controls.Email.hasError('required')">
-                    Email is <strong>required</strong>
-                </mat-error>
-            </mat-form-field>
+        <div class="right-side">
+            <div class="topic-text mb-2">Send Us a Message</div>
+            <form [formGroup]="contactService.contactForm" (submit)="onSubmit()">
+                <div class="col-12 px-0">
+                    <mat-form-field class="example-full-width w-100" appearance="outline">
+                        <mat-label>Full Name</mat-label>
+                        <input type="text" matInput formControlName="Name">
+                        <mat-error *ngIf="contactService.contactForm.controls.Name.hasError('required')">
+                            Name is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-12 px-0">
+                    <mat-form-field class="example-full-width w-100" appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input type="email" matInput formControlName="Email">
+                        <mat-error
+                            *ngIf="contactService.contactForm.controls.Email.hasError('email') && !contactService.contactForm.controls.Email.hasError('required')">
+                            Please enter a valid email address
+                        </mat-error>
+                        <mat-error *ngIf="contactService.contactForm.controls.Email.hasError('required')">
+                            Email is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-12 px-0">
+                    <mat-form-field class="w-100 rounded-lg" appearance="outline">
+                        <mat-label>Message</mat-label>
+                        <textarea matInput formControlName="Massege"></textarea>
+                        <mat-error *ngIf="contactService.contactForm.controls.Massege.hasError('required')">
+                            Message is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="button">
+                    <input type="submit" value="Send Now">
+                </div>
+            </form>
         </div>
-        <div class="col-12 px-0">
-            <mat-form-field class="w-100 rounded-lg" appearance="outline">
-                <mat-label>Message</mat-label>
-                <textarea matInput formControlName="Massege"></textarea>
-                <mat-error *ngIf="contactService.contactForm.controls.Massege.hasError('required')">
-                    Message is <strong>required</strong>
-                </mat-error>
-            </mat-form-field>
-        </div>
-        <div class="button">
-          <input type="submit" value="Send Now" >
-        </div>
-      </form>
     </div>
-    </div>
-  </div>
+</div>

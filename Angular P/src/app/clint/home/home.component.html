@@ -98,9 +98,6 @@
     <swiper class="mySwiper" [slidesPerView]="3" [spaceBetween]="15" [pagination]="{
     clickable: false}" [loop]="loopStatues" [pagination]="false" [autoplay]="{
     delay: 2000}" [navigation]="true">
-        <ng-template *ngFor="let adInfo of adService.data | filter:search" swiperSlide>
-            <app-advertisement-card [info]='adInfo'></app-advertisement-card>
-        </ng-template>
     </swiper>
 </section>
 
@@ -166,6 +163,36 @@
 
         </div>
     </div>
+</div>
+
+<div class="container mb-5 mt-5">
+    <div class="row justify-content-center">
+        <h1 class="text-center">WRITE YOUR FEEDBACK</h1>
+    </div>
+    <form class="col-10 m-auto" method="POST" action="#">
+
+        <div class="row justify-content-center">
+
+            <textarea class="col-12 pt-2 pb-2" rows="6" matInput [formControl]="testimonialTextarea" maxlength="300"
+                minlength="10" placeholder="Write your feedback here"></textarea>
+
+            <!-- Required Error -->
+            <mat-error *ngIf="testimonialTextarea.hasError('required')">
+                Feedback is Required
+            </mat-error>
+
+            <!-- Min Length Error -->
+            <mat-error *ngIf="testimonialTextarea.hasError('minlength')">
+                Minimum Length is 10 Characters
+            </mat-error>
+        </div>
+
+        <div class="row justify-content-center mt-3 mb-5">
+            <button type="submit" id="feedbackSubmit" title="Submit Your Feedback">
+                Submit
+            </button>
+        </div>
+    </form>
 </div>
 
 

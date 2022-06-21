@@ -4,35 +4,6 @@
         <div class="main-panel">
             <app-nav-bar></app-nav-bar>
 
-            <div class="content">
-                <div class="container-fluid">
-                    <button [disabled]="adService.reportData == ''" id="export" (click)="exportToExcel()" class="btn btn-success text-white ">Excel</button>
-                    <button [disabled]="adService.reportData == ''" id="export1" (click)="exportToCSV('members.csv')" class="btn btn-primary mx-3">CSV</button>
-                    <button [disabled]="adService.reportData == ''" class="btn btn-danger" (click)="printBtn()"><span class="glyphicon glyphicon-print"></span> Print</button>
-
-                    <div class="card-block table-border-style mt-4">
-                        <div class="table-responsive">
-                            <table class="table" id="tableData">
-                                <thead class="text-white">
-                                    <th>Category</th>
-                                    <th>Number Of Advertisement</th>
-                                    <th>Total Of Payment</th>
-                                </thead>
-
-                                <tbody>
-                                    <tr *ngFor="let report of adService.reportData">
-                                        <td *ngIf="report.categoryId == 1"> Apartment </td>
-                                        <td *ngIf="report.categoryId == 3"> Building </td>
-                                        <td *ngIf="report.categoryId == 6"> Commercial </td>
-                                        <td>{{report.countOfAdvByCategory}}</td>
-                                        <td>{{report.sumOfPayment}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
