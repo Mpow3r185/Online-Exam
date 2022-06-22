@@ -351,7 +351,6 @@ address VARCHAR(255) NOT NULL,
   
 contactParagraph VARCHAR(255) NOT NULL,
 contactImage VARCHAR(1000) NOT NULL,
-secondaryBackground VARCHAR(1000) NOT NULL,
 headerBackgroud VARCHAR(1000) NOT NULL,
 faviconIcon VARCHAR(1000) NOT NULL
 );
