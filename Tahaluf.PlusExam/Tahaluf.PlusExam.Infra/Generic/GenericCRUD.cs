@@ -221,6 +221,21 @@ namespace Tahaluf.PlusExam.Infra.Generic
 
                         return true;
                     }
+                     // Testimonial Table
+                case "Testimonial":
+                    {
+                        DynamicParameters testimonialDynamicParameters = GenerateTestimonialParameters(entity);
+                        testimonialDynamicParameters.Add("func",
+                                "CREATE",
+                                dbType: DbType.String,
+                                direction: ParameterDirection.Input);
+
+                        dbContext.Connection.ExecuteAsync(
+                            "TestimonialPackage.TestimonialCRD", testimonialDynamicParameters,
+                            commandType: CommandType.StoredProcedure);
+
+                        return true;
+                    }
 
             }
             return true;
@@ -489,6 +504,26 @@ namespace Tahaluf.PlusExam.Infra.Generic
 
                         return true;
                     }
+                     // Testimonial Table
+                case "Testimonial":
+                    {
+                        DynamicParameters testimonialDynamicParameters = new DynamicParameters();
+                        testimonialDynamicParameters.Add("func",
+                                "DELETE",
+                                dbType: DbType.String);
+
+                        testimonialDynamicParameters.Add("tstId",
+                                id,
+                                dbType: DbType.Int32,
+                                direction: ParameterDirection.Input);
+
+                        dbContext.Connection.ExecuteAsync(
+                            "TestimonialPackage.TestimonialCRD",
+                            testimonialDynamicParameters,
+                            commandType: CommandType.StoredProcedure);
+
+                        return true;
+                    }
 
             }
 
@@ -594,6 +629,13 @@ namespace Tahaluf.PlusExam.Infra.Generic
                     {
                         return dbContext.Connection.Query<CorrectAnswer>(
                             "CorrectAnswerPackage.CorrectAnswerCRUD",
+                            commandType: CommandType.StoredProcedure).ToList();
+                    }
+                     // Testimonial Table
+                case "Testimonial":
+                    {
+                        return dbContext.Connection.Query<Testimonial>(
+                            "TestimonialPackage.TestimonialCRD",
                             commandType: CommandType.StoredProcedure).ToList();
                     }
             }
@@ -1238,6 +1280,34 @@ namespace Tahaluf.PlusExam.Infra.Generic
             parameters.Add("QOID",
                 correctAnswer.QuestionOptionId,
                 dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+            #endregion DynamicParameters
+
+            return parameters;
+        }
+        // Dynamic Parameters For Testimonial tabel 
+        private DynamicParameters GenerateTestimonialParameters(dynamic testimonial)
+        {
+            #region DynamicParameters
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("tstId",
+                testimonial.Id,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("accid",
+                testimonial.AccountId,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("msg",
+                testimonial.Message,
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("stat",
+                testimonial.Status,
+                dbType: DbType.String,
                 direction: ParameterDirection.Input);
             #endregion DynamicParameters
 
