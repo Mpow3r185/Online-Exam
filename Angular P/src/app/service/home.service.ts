@@ -29,4 +29,16 @@ export class HomeService {
     });
     SpinnerComponent.hide();
   }
+  
+  
+  getAllServices(){
+    this.http.get('https://localhost:44342/api/OurService').subscribe((result)=>{
+        this.ourServiceData = result;
+        //this.toastr.success("service retrieved");
+    },err =>{
+      console.log(err.message,err.status);
+       this.toastr.error('Unable to connect the server');
+    })
+  }
+  
 }
