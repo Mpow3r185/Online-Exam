@@ -236,6 +236,21 @@ namespace Tahaluf.PlusExam.Infra.Generic
 
                         return true;
                     }
+                 // Our Service Table
+                case "OurService":
+                    {
+                        DynamicParameters serviceDynamicParameters = GenerateOurServiceParameters(entity);
+                        serviceDynamicParameters.Add("func",
+                                "CREATE",
+                                dbType: DbType.String,
+                                direction: ParameterDirection.Input);
+
+                        dbContext.Connection.ExecuteAsync(
+                            "OurServicePackage.OurServiceCRUD", serviceDynamicParameters,
+                            commandType: CommandType.StoredProcedure);
+
+                        return true;
+                    }
 
             }
             return true;
@@ -524,6 +539,24 @@ namespace Tahaluf.PlusExam.Infra.Generic
 
                         return true;
                     }
+                 // Service Table
+                case "OurService":
+                    {
+                        DynamicParameters serviceDynamicParameters = new DynamicParameters();
+                        serviceDynamicParameters.Add("func",
+                                "DELETE",
+                                dbType: DbType.String);
+
+                        serviceDynamicParameters.Add("Sid",
+                                id,
+                                dbType: DbType.Int32,
+                                direction: ParameterDirection.Input);
+
+                        dbContext.Connection.ExecuteAsync(
+                            "OurServicePackage.OurServiceCRUD", serviceDynamicParameters,
+                            commandType: CommandType.StoredProcedure);
+                        return true;
+                    }
 
             }
 
@@ -638,6 +671,15 @@ namespace Tahaluf.PlusExam.Infra.Generic
                             "TestimonialPackage.TestimonialCRD",
                             commandType: CommandType.StoredProcedure).ToList();
                     }
+                    
+                    // Our Service Table
+                case "OurService":
+                    {
+                        return dbContext.Connection.Query<OurService>(
+                       "OurServicePackage.OurServiceCRUD",
+                       commandType: CommandType.StoredProcedure).ToList();
+                    }
+                    
             }
 
             return null;
@@ -835,6 +877,22 @@ namespace Tahaluf.PlusExam.Infra.Generic
 
                         return true;
                     }
+                    
+                // our Service Table
+                case "OurService":
+                    {
+                        DynamicParameters ourserviceDynamicParameters = GenerateOurServiceParameters(entity);
+                        ourserviceDynamicParameters.Add("func",
+                            "UPDATE",
+                            dbType: DbType.String);
+
+                        dbContext.Connection.ExecuteAsync(
+                            "OurServicePackage.OurServiceCRUD", ourserviceDynamicParameters,
+                            commandType: CommandType.StoredProcedure);
+
+                        return true;
+                    }
+                    
             }
             return true;
         }
@@ -1307,6 +1365,30 @@ namespace Tahaluf.PlusExam.Infra.Generic
 
             parameters.Add("stat",
                 testimonial.Status,
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
+            #endregion DynamicParameters
+
+            return parameters;
+        }
+        
+        // Dynamic Parameters For Our Service tabel 
+        private DynamicParameters GenerateOurServiceParameters(dynamic service)
+        {
+            #region DynamicParameters
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("Sid",
+                service.Id,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("Stitle",
+                service.Title,
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("Stext",
+                service.Text,
                 dbType: DbType.String,
                 direction: ParameterDirection.Input);
             #endregion DynamicParameters
