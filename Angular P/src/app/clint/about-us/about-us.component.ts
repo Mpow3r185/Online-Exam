@@ -8,10 +8,11 @@ import { SpinnerComponent } from 'src/app/spinner/spinner.component';
 })
 export class AboutUsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private home:HomeService) { }
 
   ngOnInit(): void {
     SpinnerComponent.show();
+    this.home.getAllServices();
     setTimeout(() => SpinnerComponent.hide(), 2000);
   }
 
