@@ -16,17 +16,18 @@ CREATE OR REPLACE PACKAGE BODY ExamPackage AS
         stDate IN exam.startDate%type DEFAULT NULL,
         enDate IN exam.endDate%type DEFAULT NULL,
         st IN exam.status%type DEFAULT NULL,
+        exImg IN exam.examImage%type DEFAULT NULL,
         createDate IN exam.creationDate%type DEFAULT NULL) AS
         
         ref_cursor SYS_REFCURSOR;
     BEGIN
         IF func = 'CREATE' THEN
             INSERT INTO Exam
-            (courseId, title, passcode, description, examLevel,
-            successMark, cost, startDate, endDate, status, creationDate)
+            (courseId, title, passcode, description, examLevel, successMark,
+             cost, startDate, endDate, status, examImage, creationDate)
 
             VALUES(cid, exTitle, UPPER(passc), des, exLevel, succMark,
-                   price, stDate, enDate, UPPER(st), createDate);
+                   price, stDate, enDate, UPPER(st), exImg, createDate);
 
             COMMIT;
         ELSIF func = 'UPDATE' THEN
@@ -41,6 +42,7 @@ CREATE OR REPLACE PACKAGE BODY ExamPackage AS
                 startDate = stDate,
                 endDate = enDate,
                 status = UPPER(st),
+                examImage = exImg,
                 creationDate = createDate
             WHERE id = exid;
 

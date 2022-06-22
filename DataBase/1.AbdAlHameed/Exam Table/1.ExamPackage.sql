@@ -16,6 +16,7 @@ CREATE OR REPLACE PACKAGE ExamPackage AS
         stDate IN exam.startDate%type DEFAULT NULL,
         enDate IN exam.endDate%type DEFAULT NULL,
         st IN exam.status%type DEFAULT NULL,
+        exImg IN exam.examImage%type DEFAULT NULL,
         createDate IN exam.creationDate%type DEFAULT NULL);
     
     -- Search Exam Procedure
