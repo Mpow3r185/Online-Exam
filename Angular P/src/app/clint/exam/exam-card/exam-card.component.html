@@ -8,14 +8,14 @@
                 <!-- Exam Name -->
                 <div class="text-center mt-3" style="min-height:60px;">
                     <h5 style="color:#fff" title="Exam Name">
-                        {{ examName }}
+                        {{ title }}
                     </h5>
                 </div>
 
                 <!-- Course Name -->
                 <div class="text-center mt-1" style="min-height:20px;">
                     <h6 style="color:#fff" title="Course Name">
-                        {{ courseName }}
+                        {{ courseId }}
                     </h6>
                 </div>
 
@@ -36,7 +36,7 @@
                     <div class="row" title="Number of Registered Users">
                         <i class="fa fa-users col-1 align-self-center secondary"></i>
                         <span class="col-10 dt-inf">
-                            {{ numberOfUsersRegistered }}
+                            {{ 3243 }}
                         </span>
                     </div>
 
@@ -52,7 +52,7 @@
                     <div class="row" title="Exam Duration">
                         <i class="fa fa-clock col-1 align-self-center secondary"></i>
                         <span class="col-10 dt-inf">
-                            {{ duration }} minutes
+                            {{ 30 }} minutes
                         </span>
                     </div>
                 </div>
@@ -76,8 +76,8 @@
     <!-- Image Container -->
     <div class="row mb-3">
         <div class="img-container">
-            <div class="w-100 h-100 a img-inner-conatiner"
-                style="background-image: url('../../../../assets/images/{{ examImage }}')"></div>
+            <div class="w-100 h-100 a img-inner-conatiner" style="background-image: url('../../../../assets/images')">
+            </div>
         </div>
     </div>
 
@@ -88,7 +88,7 @@
             <!-- Exam Name -->
             <div style="min-height:60px;">
                 <h5>
-                    {{ examName }}
+                    {{ title }}
                 </h5>
             </div>
 
@@ -96,7 +96,7 @@
             <!-- Course Name -->
             <div style="min-height:20px;">
                 <h6>
-                    {{ courseName }}
+                    {{ courseId }}
                 </h6>
             </div>
 
@@ -127,7 +127,7 @@
                 <div class="row mt-2">
                     <i class="fas fa-clock col-1 align-self-center primary"></i>
                     <span class="col-10">
-                        {{ startHour }} - {{ endHour }}</span>
+                        startHour - endHour </span>
                 </div>
             </div>
 

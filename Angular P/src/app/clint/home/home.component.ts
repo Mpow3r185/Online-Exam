@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit {
 
     testimonials: any = [
     {
-      profileImage: 'slider-1.jpg',
+      profileImage: 'person-one.jpg',
       name: 'Abd Al Hameed Al-Dalgamouni',
       title: 'Admin',
       message: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
@@ -69,7 +69,7 @@ export class HomeComponent implements OnInit {
     },
 
     {
-      profileImage: 'slider-2.jpg',
+      profileImage: 'person-two.jpg',
       name: 'Yazeed Bani Ata',
       title: 'Student Failer',
       message: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
@@ -79,7 +79,7 @@ export class HomeComponent implements OnInit {
     },
 
     {
-      profileImage: 'slider-3.jpg',
+      profileImage: 'person-three.jpg',
       name: 'Mohammed Hamarsheh',
       title: 'Successfull Arabic 102',
       message: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
@@ -89,7 +89,7 @@ export class HomeComponent implements OnInit {
     },
 
     {
-      profileImage: 'slider-1.jpg',
+      profileImage: 'user2.jpg',
       name: 'Haneen Momaniah',
       title: 'Teacher',
       message: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
@@ -99,7 +99,7 @@ export class HomeComponent implements OnInit {
     },
 
     {
-      profileImage: 'slider-2.jpg',
+      profileImage: 'person-one.jpg',
       name: 'Munther Al-Jodah',
       title: 'Blocked User',
       message: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
@@ -127,22 +127,7 @@ export class HomeComponent implements OnInit {
   }];
 
   ngOnInit(): void {
-    SpinnerComponent.show();
-    this.homeService.getAllTestimonials();
-    if (localStorage.getItem('token')) {
-    this.userService.getUserById();
-    setTimeout(() => this.homeService.getFirstTestimonial(), 1500);
 
-    
-    }
-
-    let token = localStorage.getItem('token');
-
-    if (token) {
-      this.accountStatus = true;
-    }
-
-    setTimeout(() => SpinnerComponent.hide(), 2000);
   }
 
   currentTestimonialIndex: number = 0;

@@ -212,12 +212,11 @@
         <!-- Exams -->
         <div class="col-9 m-auto" id="coursesSection">
             <div class="row">
-                <app-exam-card *ngFor="let exam of exams" [examName]="exam.examName" [courseName]="exam.courseName"
-                    [dsecription]="exam.dsecription" [cost]="exam.cost" [examImage]="exam.examImage"
-                    [numberOfUsersRegistered]="exam.numberOfUsersRegistered" [startDate]="exam.startDate"
-                    [endDate]="exam.endDate" [startHour]="exam.startHour" [endHour]="exam.endHour"
-                    [duration]="exam.duration" [successMark]="exam.successMark" [examLevel]="exam.examLevel"
-                    class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4"></app-exam-card>
+                <app-exam-card *ngFor="let exam of exams" [id]="exam.id" [courseId]="exam.courseId" [title]="exam.title"
+                    [passcode]="exam.passcode" [dsecription]="exam.dsecription" [examLevel]="exam.examLevel"
+                    [successMark]="exam.successMark" [cost]="exam.cost" [startDate]="exam.startDate"
+                    [endDate]="exam.endDate" [status]="exam.status" [creationDate]="exam.creationDate"
+                    class=" col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4"></app-exam-card>
             </div>
 
 

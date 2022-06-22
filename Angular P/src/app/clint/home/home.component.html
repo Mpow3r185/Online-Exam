@@ -11,7 +11,7 @@
                 <div class="carousel-item" *ngFor="let img of sliderImages"
                     [ngClass]="{'active': img.imagePath == sliderImages[0].imagePath}">
                     <div class="overlay"></div>
-                    <img class="d-block w-100" src="../../../assets/images/{{ img.imagePath }}">
+                    <img class="d-block w-100" src="../../../assets/images/slider_images/{{ img.imagePath }}">
                 </div>
             </div>
 
@@ -157,7 +157,7 @@
 
                 <div class="col-2 h-100 testimonial-transporter"
                     *ngFor="let testimonial of testimonials; let i = index;" id="transporter{{ i }}"
-                    style="background-image:url('../../../../assets/images/{{ testimonial.profileImage }}');"
+                    style="background-image:url('../../../../assets/images/profile_picture/{{ testimonial.profileImage }}');"
                     (click)="animateTestimonial(i)"></div>
             </div>
 
