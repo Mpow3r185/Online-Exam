@@ -36,7 +36,7 @@ namespace Tahaluf.PlusExam.API
         {
             services.AddCors(corsOptions =>
             {
-                corsOptions.AddPolicy("policy",
+                corsOptions.AddPolicy("PlusExam",
                     builder =>
                     {
                         builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
@@ -81,6 +81,8 @@ namespace Tahaluf.PlusExam.API
             //services.AddScoped<IGenericCRUDRepository<dynamic>, GenericCRUDRepository<dynamic>>();
             // Tesimonial Repository
             services.AddScoped<ITestimonialRepository, TestimonialRepository>();
+            //Our Service Repository
+            services.AddScoped<IOurServiceRepository, OurServiceRepository>();
 
 
             // Question Service
@@ -117,6 +119,8 @@ namespace Tahaluf.PlusExam.API
             //services.AddScoped<IGenericCRUDService<dynamic>, GenericCRUDService<dynamic>>();
             // Tesimonial Service
             services.AddScoped <ITestimonialService, TestimonialService>();
+            //Out Service Service
+            services.AddScoped<IOurServiceService, OurServiceService>();
 
             //Configure Jwt Authentication
             services.AddAuthentication(opt =>
@@ -153,7 +157,7 @@ namespace Tahaluf.PlusExam.API
             
             app.UseAuthentication();
 
-            app.UseCors("policy");
+            app.UseCors("PlusExam");
 
             app.UseEndpoints(endpoints =>
             {
