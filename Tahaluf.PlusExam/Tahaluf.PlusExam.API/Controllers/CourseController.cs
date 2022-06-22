@@ -71,7 +71,7 @@ namespace Tahaluf.PlusExam.API.Controllers
         #endregion GetCoursesNames
 
         #region SearchCourse
-        [HttpGet]
+        [HttpPost]
         [Route("SearchCourse")]
         public List<Course> SearchCourse(CourseFilter courseFilter)
         {
