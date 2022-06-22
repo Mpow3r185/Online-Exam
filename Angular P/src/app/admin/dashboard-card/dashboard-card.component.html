@@ -91,30 +91,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="card-body">
-
-                    <ul>
-                        <div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
-                            <ng-container *ngFor="let item of homeService.testimonialData">
-                                <li class="border-bottom py-2" *ngIf="!item.isActive">
-                                    <div class="media">
-                                        <img src="https://localhost:44359/{{item.profilePic}}" width="64" height="64"
-                                            class="mr-3 rounded-circle" alt="...">
-                                        <div class="media-body">
-                                            <h4 class="mt-0">{{item.username}}</h4>
-                                            <h5 (click)="openDialog(item)" class="cursor">{{item.title}}</h5>
-                                        </div>
-                                        <button class="btn btn-success"
-                                            (click)="activateTestimonial(item.id)">Accept</button>
-                                    </div>
-                                </li>
-                            </ng-container>
-                        </div>
-
-                    </ul>
-
-                </div>
             </div>
         </div>
     </div>

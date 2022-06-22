@@ -1,3 +1,4 @@
+import { Time } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -6,20 +7,21 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./exam-card.component.css']
 })
 export class ExamCardComponent implements OnInit {
-
-  @Input() examName!: string;
-  @Input() courseName!: string;
+  
+  @Input() id!: number;
+  @Input() courseId!: number;
+  @Input() title!: string;
+  @Input() passcode!: string;
   @Input() dsecription!: string;
-  @Input() cost!: number;
-  @Input() examImage!: string;
-  @Input() numberOfUsersRegistered!: number;
-  @Input() startDate!: string;
-  @Input() endDate!: string;
-  @Input() startHour!: string;
-  @Input() endHour!: string;
-  @Input() duration!: number;
+  @Input() examLevel!: number;
   @Input() successMark!: number;
-  @Input() examLevel!: string;
+  @Input() cost!: number;
+  @Input() startDate!: Date;
+  @Input() endDate!: Date;
+  //@Input() startHour!: Time;
+  //@Input() endHour!: Time;
+  @Input() status!: string;
+  @Input() creationDate!: Date;
 
   constructor() { }
 
