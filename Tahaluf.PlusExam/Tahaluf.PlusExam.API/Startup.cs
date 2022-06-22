@@ -83,6 +83,8 @@ namespace Tahaluf.PlusExam.API
             services.AddScoped<ITestimonialRepository, TestimonialRepository>();
             //Our Service Repository
             services.AddScoped<IOurServiceRepository, OurServiceRepository>();
+            // Fill DynamicHome Repository
+            services.AddScoped<IDynamicHomeRepository, DynamicHomeRepository>();
 
 
             // Question Service
@@ -121,6 +123,8 @@ namespace Tahaluf.PlusExam.API
             services.AddScoped <ITestimonialService, TestimonialService>();
             //Out Service Service
             services.AddScoped<IOurServiceService, OurServiceService>();
+            // Fill DynamicHome Repository
+            services.AddScoped<IDynamicHomeService, DynamicHomeService>();
 
             //Configure Jwt Authentication
             services.AddAuthentication(opt =>
