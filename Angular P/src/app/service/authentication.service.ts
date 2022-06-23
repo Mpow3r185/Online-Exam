@@ -10,7 +10,6 @@ import { SpinnerComponent } from '../spinner/spinner.component';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  AccountData:any =[{}]; 
 
   loginForm: FormGroup = new FormGroup(
     {
