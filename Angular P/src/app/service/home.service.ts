@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class HomeService {
   
   exams: any;
+  ourServiceData: any = [{}];
 
   constructor(
     private http: HttpClient,
