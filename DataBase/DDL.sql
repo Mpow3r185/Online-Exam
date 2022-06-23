@@ -29,7 +29,7 @@ CREATE TABLE Exam
   courseId NUMBER,
   title VARCHAR2(50) UNIQUE NOT NULL,
   passcode VARCHAR(8) UNIQUE NOT NULL,
-  description VARCHAR2(300),
+  description VARCHAR2(150),
   
   examLevel VARCHAR2(12) CHECK(examLevel IN ('Beginner',
                                          'Advanced',
