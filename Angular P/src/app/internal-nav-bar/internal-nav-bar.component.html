@@ -37,11 +37,10 @@
                 </li>
 
                 <!-- Sign In  (Small Devices) -->
-                <li class="nav-item" id="sign-in-sm"><a routerLink="auth/login"
+                <li class="nav-item" id="sign-in-sm"><a routerLink="/auth/login"
                         class="nav-link pls-pri-col link-font-size">Sign
                         In</a>
                 </li>
-
 
                 <li class="nav-item" *ngIf="accountStatus && (userService.selectedUser != null)">
                     <div class="dropdown">

@@ -46,6 +46,7 @@ export class RegistrationComponent implements OnInit {
     
     if(this.registerForm.valid){
       this.authService.createNewUser(this.registerForm.value);
+      this.router.navigate(['auth/login'])
     }
     else {
         this.toastr.error('You Must Fill The Fields First')

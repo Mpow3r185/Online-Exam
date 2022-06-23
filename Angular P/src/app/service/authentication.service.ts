@@ -22,80 +22,44 @@ export class AuthenticationService {
   
   constructor(private http: HttpClient, private router: Router, private toastr: ToastrService) { }
 
-  //Create new user function
+  //Create New Account Function
   createNewUser(body: any){
-    // debugger
-
-    const headerDict = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    }
-    const requestOptions = {
-      headers: new HttpHeaders(headerDict),
-    };
 
     SpinnerComponent.show();
     body.status = 'Ok';
     body.rolename = 'Student';
     body.gender = 'N/A';
-    body.profilepicture = 'pp.png';
+    body.profilepicture = 'default.png';
 
+    // Create Account API
     this.http.post('https://localhost:44342/api/Account', body).subscribe(
       (data: any) => {
-          setTimeout(() => {
-            //window.location.reload();
-            SpinnerComponent.hide();
-          }, 2000);
-          setTimeout(() => {
-            this.toastr.success('Successfully Registration')
-          }, 2000);
+
+          // Search Account Body
+          let searchBody = {
+            username: body.username
+          };
+          let accId: number;
+          // Search Account API
+          this.http.post('https://localhost:44342/api/account/searchAccount', searchBody).subscribe((account:any) => {
+            
+          // Create Phone Number Body
+          let phoneNumberBody = 
+            {
+              phoneNum: body.phoneNumber,
+              accountId: account[0].id
+            };
+              
+            // Create Phone Number API
+            this.http.post('https://localhost:44342/api/phoneNumber', phoneNumberBody).subscribe();
+          });
+
+          SpinnerComponent.hide();
+          this.toastr.success('Successfully Registration');
       },
       error => {
-        if (error.status != 200) {
-          setTimeout(() => {
-            SpinnerComponent.hide();
-          }, 2000);
-          setTimeout(() => {
-            this.toastr.error('Failed Processing, Please try again')
-          }, 2000);
-          console.log(error.message,error.status)
-        }
+          this.toastr.error('Failed Processing, Please try again');
       });
-
-      //---This to get the information for the last user he register on site
-      let getId = {
-        Email: body.email,
-        Username:body.username
-      }
-      this.http.post('https://localhost:44342/api/Account/SearchAccount',getId,requestOptions).subscribe((result)=>{
-            this.AccountData = result; 
-            console.log("Done Retrieve");
-            console.log(this.AccountData);  
-            console.log(this.AccountData[0]);
-            //when i need to access the id like this he type undefined 
-            console.log(this.AccountData[0].id);
-            
-        },err =>{
-          console.log(err.message,err.status);
-          //this.toastr.error(err.message,err.status);
-        })
-        //--- This for add the PhoneNumber on phone number table
-      //   let numInfo = {
-      //     PhoneNum:body.phoneNumber,
-      //     AccountId:this.AccountData[0].Id
-      //   }
-      // this.http.post('https://localhost:44342/api/PhoneNumber', numInfo, requestOptions).subscribe(
-      // (data: any) => {
-      //     console.log("Add phone number is done");   
-      // },
-      // error => {
-      //   if (error.status != 200) {
-      //     console.log(error.message,error.status)
-      //   }
-      // });
-
-
-
   }
 
 
