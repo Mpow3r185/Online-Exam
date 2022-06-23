@@ -1,105 +1,116 @@
-<app-internal-nav-bar></app-internal-nav-bar>
+    <div class="container">
+      <div class="forms-container">
+        <div class="signin-signup">
+          <form class="sign-in-form example-form" [formGroup]="registerForm">
+                       <h2 class="title">Sign up</h2>
+            <div class="w-75">
+                <mat-form-field class="example-full-width w-100" appearance="legacy">
+                    <mat-label>Full Name</mat-label>
+                    <input type="text" matInput formControlName="fullName">
+                    <mat-error *ngIf=" registerForm.controls.fullName.hasError('minlength')">
+                      Minlength is <strong>6</strong>
+                  </mat-error>
+                    <mat-error *ngIf="registerForm.controls.fullName.hasError('maxlength')">
+                      Max is <strong>60</strong>
+                  </mat-error>
+                    <mat-error *ngIf="registerForm.controls.fullName.hasError('required')">
+                        Full Name is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="w-75">
+                <mat-form-field class="example-full-width w-100" appearance="legacy">
+                    <mat-label>Username</mat-label>
+                    <input type="text" matInput formControlName="username">
+                    <mat-error *ngIf=" registerForm.controls.username.hasError('minlength')">
+                      Minlength is <strong>5</strong>
+                  </mat-error>
+                    <mat-error *ngIf="registerForm.controls.username.hasError('maxlength')">
+                      Max is <strong>15</strong>
+                  </mat-error>
+                    <mat-error *ngIf="registerForm.controls.username.hasError('required')">
+                        Username is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+              </div>
+            <div class="w-75">
+              <mat-form-field class="example-full-width w-100" appearance="legacy">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput formControlName="email">
+                <mat-error *ngIf="registerForm.controls.email.hasError('email') && !registerForm.controls.email.hasError('required')">
+                    Please enter a valid email address
+                </mat-error>
+                <mat-error *ngIf="registerForm.controls.email.hasError('required')">
+                    Email is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            </div>
+            
+            <div class="w-75">
+              <mat-form-field class="example-full-width w-100" appearance="legacy">
+                  <mat-label>Phone Number</mat-label>
+                  <input type="tel" matInput formControlName="phoneNumber">
+                  <mat-error *ngIf="registerForm.controls.phoneNumber.hasError('required')">
+                      Phone Number is <strong>required</strong>
+                  </mat-error>
+              </mat-form-field>
+          </div>
+            <div class="w-75">
+                <mat-form-field class="w-100" appearance="legacy">
+                    <mat-label>Enter your password</mat-label>
+                    <input matInput formControlName="password" (change)="onPasswordChange()" [type]="hide ? 'password' : 'text'">
+                    <button class="border-0 hide-password" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+                    <mat-error *ngIf="registerForm.controls.password.hasError('required')">
+                        Password is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="registerForm.controls.password.hasError('maxLength') || !registerForm.controls.password.hasError('required')">
+                      Password must be at most 15 character
+                  </mat-error>
+                    <mat-error *ngIf="registerForm.controls.password.hasError('minLength') || !registerForm.controls.password.hasError('required')">
+                        Password must be at least 8 character
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            
+            
+            <input type="submit" class="btn" value="Sign up" (click)="createUser()"/>
 
-<div class="container" style="z-index: 0;">
-  <div class="forms-container">
-    <div class="signin-signup">
-      <form class="sign-in-form example-form" (submit)="createCustomer()" [formGroup]="authService.registerForm">
-        <h2 class="title">Sign up</h2>
-        <div class="w-75 m-1">
-          <mat-form-field class="example-full-width w-100" appearance="legacy">
-            <mat-label>Full Name</mat-label>
-            <input type="text" matInput formControlName="firstName">
-            <mat-error *ngIf="authService.registerForm.controls.firstName.hasError('required')">
-              Full Name is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
+            <p class="social-text">Or Sign up with social platforms</p>
+            <div class="social-media">
+              <a href="#" class="social-icon">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-google"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </form>
         </div>
-        <div class="w-75 m-1">
-          <mat-form-field class="example-full-width w-100" appearance="legacy">
-            <mat-label>Username</mat-label>
-            <input type="text" matInput formControlName="username">
-            <mat-error *ngIf="authService.registerForm.controls.username.hasError('required')">
-              Username is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="w-75 m-1">
-          <mat-form-field class="example-full-width w-100" appearance="legacy">
-            <mat-label>Email</mat-label>
-            <input type="email" matInput formControlName="email">
-            <mat-error
-              *ngIf="authService.registerForm.controls.email.hasError('email') && !authService.registerForm.controls.email.hasError('required')">
-              Please enter a valid email address
-            </mat-error>
-            <mat-error *ngIf="authService.registerForm.controls.email.hasError('required')">
-              Email is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-
-        <div class="w-75 m-1">
-          <mat-form-field class="w-100" appearance="legacy">
-            <mat-label>Enter your password</mat-label>
-            <input matInput formControlName="password" (change)="onPasswordChange()"
-              [type]="hide ? 'password' : 'text'">
-            <button class="border-0 hide-password" mat-icon-button matSuffix (click)="hide = !hide"
-              [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-            <mat-error *ngIf="authService.registerForm.controls.password.hasError('required')">
-              Password is <strong>required</strong>
-            </mat-error>
-            <mat-error
-              *ngIf="authService.registerForm.controls.password.hasError('minLength') || !authService.registerForm.controls.password.hasError('required')">
-              Password must be at least 8 character
-            </mat-error>
-          </mat-form-field>
-        </div>
-
-        <div class="w-75 m-1">
-          <mat-form-field class="example-full-width w-100" appearance="legacy">
-            <mat-label>Phone Number</mat-label>
-            <input type="tel" matInput formControlName="phoneNumber">
-            <mat-error *ngIf="authService.registerForm.controls.phoneNumber.hasError('required')">
-              Phone Number is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <input type="submit" class="btn" value="Sign up" />
-        <p class="social-text">Or Sign up with social platforms</p>
-        <div class="social-media">
-          <a href="#" class="social-icon">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="#" class="social-icon">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="#" class="social-icon">
-            <i class="fab fa-google"></i>
-          </a>
-          <a href="#" class="social-icon">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <div class="panels-container">
-    <div class="panel left-panel">
-      <div class="content">
-        <h3>One of us ?</h3>
-        <p>
-          Hello, please login now to re-try our experience
-        </p>
-        <button class="btn transparent" id="sign-up-btn" (click)="goToLogin()">
-          Sign in
-        </button>
       </div>
-      <img src="/assets/images/log.svg" class="image" alt="" />
+
+      <div class="panels-container">
+        <div class="panel left-panel">
+          <div class="content">
+            <h3>One of us ?</h3>
+            <p>
+              Hello, please login now to re-try our experience
+            </p>
+            <button class="btn transparent" id="sign-up-btn" (click) = "goToLogin()">
+              Sign in
+            </button>
+          </div>
+          <img src="/assets/images/log.svg" class="image" alt="" />
+        </div>
+     
+      </div>
     </div>
 
-  </div>
-</div>
-
-<app-footer></app-footer>
+  <app-footer></app-footer>
