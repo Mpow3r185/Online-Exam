@@ -10,6 +10,8 @@ import { SpinnerComponent } from '../spinner/spinner.component';
   providedIn: 'root'
 })
 export class AuthenticationService {
+  AccountData:any =[{}]; 
+
   loginForm: FormGroup = new FormGroup(
     {
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -17,22 +19,13 @@ export class AuthenticationService {
     }
   );
 
-  registerForm: FormGroup = new FormGroup({
-    firstName: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', Validators.required),
-    username: new FormControl('', Validators.required),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    address: new FormControl('', Validators.required),
-    phoneNumber: new FormControl('', Validators.required),
-    profilePic: new FormControl(),
-    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-  }
-  );
-
+  
   constructor(private http: HttpClient, private router: Router, private toastr: ToastrService) { }
 
-  createNewCustomer(){
+  //Create new user function
+  createNewUser(body: any){
     // debugger
+
     const headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
@@ -40,44 +33,73 @@ export class AuthenticationService {
     const requestOptions = {
       headers: new HttpHeaders(headerDict),
     };
+
     SpinnerComponent.show();
-    if (this.registerForm.valid) {
-    this.http.post('https://localhost:44359/api/Users', this.registerForm.value, requestOptions).subscribe(
+    body.status = 'Ok';
+    body.rolename = 'Student';
+    body.gender = 'N/A';
+    body.profilepicture = 'pp.png';
+
+    this.http.post('https://localhost:44342/api/Account', body).subscribe(
       (data: any) => {
-        if (data == 'Sucessfully') {
           setTimeout(() => {
-            window.location.reload();
+            //window.location.reload();
             SpinnerComponent.hide();
           }, 2000);
           setTimeout(() => {
-            this.toastr.success('Success')
+            this.toastr.success('Successfully Registration')
           }, 2000);
-        }
       },
       error => {
         if (error.status != 200) {
-          window.location.reload();
           setTimeout(() => {
             SpinnerComponent.hide();
           }, 2000);
           setTimeout(() => {
             this.toastr.error('Failed Processing, Please try again')
           }, 2000);
+          console.log(error.message,error.status)
         }
+      });
+
+      //---This to get the information for the last user he register on site
+      let getId = {
+        Email: body.email,
+        Username:body.username
       }
-      );
-    }
-    else {
-      window.location.reload();
-      setTimeout(() => {
-        SpinnerComponent.hide();
-      }, 2000);
-      setTimeout(() => {
-        this.toastr.error('Failed Processing, Please try again')
-      }, 2000);
-    }
+      this.http.post('https://localhost:44342/api/Account/SearchAccount',getId,requestOptions).subscribe((result)=>{
+            this.AccountData = result; 
+            console.log("Done Retrieve");
+            console.log(this.AccountData);  
+            console.log(this.AccountData[0]);
+            //when i need to access the id like this he type undefined 
+            console.log(this.AccountData[0].id);
+            
+        },err =>{
+          console.log(err.message,err.status);
+          //this.toastr.error(err.message,err.status);
+        })
+        //--- This for add the PhoneNumber on phone number table
+      //   let numInfo = {
+      //     PhoneNum:body.phoneNumber,
+      //     AccountId:this.AccountData[0].Id
+      //   }
+      // this.http.post('https://localhost:44342/api/PhoneNumber', numInfo, requestOptions).subscribe(
+      // (data: any) => {
+      //     console.log("Add phone number is done");   
+      // },
+      // error => {
+      //   if (error.status != 200) {
+      //     console.log(error.message,error.status)
+      //   }
+      // });
+
+
+
   }
 
+
+  //-------------------------------------------------------
   chickAuthentication() {
     const headerDict = {
       'Content-Type': 'application/json',
