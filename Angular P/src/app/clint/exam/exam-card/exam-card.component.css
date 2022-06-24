@@ -63,11 +63,6 @@ span.dt-inf {
 }
 
 button.dt-btn {
-    color: #000;
-    background-color: #fff;
-    border: 0.5px solid 000;
-    border-radius: 5px;
-    font-family: 'Jost', sans-serif;
     font-weight: 600;
     padding: 2px 10px;
     transition: 0.3s;
@@ -77,4 +72,5 @@ button.dt-btn:hover {
     color: #fff;
     background-color: #000;
     border-color: #fff;
+    box-shadow: 1px 1px 5px 2px rgba(255, 255, 255, 0.5);
 }
