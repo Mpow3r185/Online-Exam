@@ -30,20 +30,8 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onPasswordChange() {
-    if (this.registerForm.controls.password.value == this.registerForm.controls.confirmPassword.value) {
-      this.registerForm.controls.confirmPassword.setErrors(null);
-    } else {
-      this.registerForm.controls.confirmPassword.setErrors({ mismatch: true });
-    }
-  }
 
-  public uploadFinished = (event: any) => {
-    this.response = event;
-  };
-
-  createUser() {
-    
+  createUser() { 
     if(this.registerForm.valid){
       this.authService.createNewUser(this.registerForm.value);
       this.router.navigate(['auth/login'])
@@ -57,5 +45,7 @@ export class RegistrationComponent implements OnInit {
   goToLogin(){
     this.router.navigate(['auth/login'])
   }
+
+
 }
 
