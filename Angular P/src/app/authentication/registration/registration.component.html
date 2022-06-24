@@ -66,7 +66,7 @@
         <div class="w-75">
           <mat-form-field class="w-100" appearance="legacy">
             <mat-label>Enter your password</mat-label>
-            <input matInput formControlName="password" (change)="onPasswordChange()" maxlength="15"
+            <input matInput formControlName="password" maxlength="15"
               [type]="hide ? 'password' : 'text'">
             <button class="border-0 hide-password" mat-icon-button matSuffix (click)="hide = !hide"
               [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
