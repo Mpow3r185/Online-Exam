@@ -339,3 +339,7 @@ textarea {
     border-color: #016;
     box-shadow: 1px 1px 5px 1px #016;
 }
+
+#searchContainer {
+    display: none;
+}
