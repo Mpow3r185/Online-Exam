@@ -8,8 +8,11 @@ import { Component, OnInit,Input } from '@angular/core';
 export class CourseCardComponent implements OnInit {
 
   constructor() { }
-  @Input() courseName:string|undefined;
-  @Input() courseImage:string|undefined;
+  @Input() id!: number;
+  @Input() courseName!: string;
+  @Input() description!: string;
+  @Input() status!: string
+  @Input() courseImage!: string;
 
   ngOnInit(): void {
   }
