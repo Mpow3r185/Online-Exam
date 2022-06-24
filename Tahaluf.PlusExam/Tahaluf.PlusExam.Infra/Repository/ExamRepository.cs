@@ -1,4 +1,4 @@
-﻿using Dapper;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -102,6 +102,19 @@ namespace Tahaluf.PlusExam.Infra.Repository
 
             return dbContext.Connection.Query<Exam>(
                 "ExamPackage.SearchExam", parameters,
+                commandType: CommandType.StoredProcedure).ToList();
+        }
+
+        public List<Exam> GetExamsByCourseId(int cid)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("cid",
+                cid,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            return dbContext.Connection.Query<Exam>(
+                "ExamPackage.GetExamsByCourseId", parameters,
                 commandType: CommandType.StoredProcedure).ToList();
         }
     }
