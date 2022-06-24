@@ -1,4 +1,3 @@
-import { Time } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -18,10 +17,9 @@ export class ExamCardComponent implements OnInit {
   @Input() cost!: number;
   @Input() startDate!: Date;
   @Input() endDate!: Date;
-  //@Input() startHour!: Time;
-  //@Input() endHour!: Time;
   @Input() status!: string;
   @Input() creationDate!: Date;
+  @Input() examImage!: string;
 
   constructor() { }
 
