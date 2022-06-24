@@ -26,7 +26,8 @@ const routes: Routes = [
   {
     path:'exam',
     component: ExamComponent
-  }
+  },
+  {path:'page404', component: Page404Component}
 ];
 
 @NgModule({
