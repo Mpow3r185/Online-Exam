@@ -1,4 +1,4 @@
-﻿using Dapper;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -83,6 +83,26 @@ namespace Tahaluf.PlusExam.Infra.Repository
             return dbContext.Connection.Query<Course>(
                 "CoursePackage.SearchCourse", parameters,
                 commandType: CommandType.StoredProcedure).ToList();
+        }
+
+        public List<PopularCoursesDTO> GetPopularCourses()
+        {
+            return this.dbContext.Connection.Query<PopularCoursesDTO>(
+                "CoursePackage.GetPopularCourses",
+                commandType: CommandType.StoredProcedure).ToList();
+        }
+        
+        public Course GetCourseById(int cid)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("cid",
+                cid,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            return this.dbContext.Connection.Query<Course>(
+                "CoursePackage.GetCourseById", parameters,
+                commandType: CommandType.StoredProcedure).FirstOrDefault();
         }
     }
 }
