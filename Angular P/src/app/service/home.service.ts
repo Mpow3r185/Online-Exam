@@ -13,6 +13,7 @@ export class HomeService {
   
   exams: any;
   ourServiceData: any = [{}];
+  selectedUser: any;
 
   constructor(
     private http: HttpClient,
@@ -41,7 +42,7 @@ export class HomeService {
        this.toastr.error('Unable to connect the server');
     })
   }
-  
+
   //To get info for user he just login
   getUserByUserName() {
     let user: any = localStorage.getItem('user');
