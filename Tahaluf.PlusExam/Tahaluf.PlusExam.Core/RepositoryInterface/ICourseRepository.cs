@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Tahaluf.PlusExam.Core.Data;
@@ -25,5 +25,11 @@ namespace Tahaluf.PlusExam.Core.RepositoryInterface
 
         // Search Course
         List<Course> SearchCourse(CourseFilter courseFilter);
+
+        // Get Popular Courses
+        List<PopularCoursesDTO> GetPopularCourses();
+
+        // Get Course By Id
+        Course GetCourseById(int cid);
     }
 }
