@@ -42,4 +42,20 @@ export class HomeService {
     })
   }
   
+  //To get info for user he just login
+  getUserByUserName() {
+    let user: any = localStorage.getItem('user');
+    user = JSON.parse(user);
+    let searchBody = {
+      username: user.unique_name
+    };
+    this.http.post('https://localhost:44342/api/Account/SearchAccount', searchBody).subscribe(
+        (result: any) => {
+          this.selectedUser = result;
+          //console.log(this.selectedUser);
+        },
+        (error) => console.log(error)
+      );
+  }
+  
 }
