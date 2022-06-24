@@ -67,5 +67,14 @@ namespace Tahaluf.PlusExam.API.Controllers
             return examService.SearchExam(examFilter);
         }
         #endregion SearchExam
+
+        #region GetExamsByCourseId
+        [HttpPost]
+        [Route("GetExamsByCourseId/{cid}")]
+        public List<Exam> GetExamsByCourseId(int cid)
+        {
+            return examService.GetExamsByCourseId(cid);
+        }
+        #endregion GetExamsByCourseId
     }
 }

@@ -106,6 +106,23 @@ namespace Tahaluf.PlusExam.API.Controllers
             }
         }
         #endregion UploadImage
-        
+
+        #region GetPopularCourses
+        [HttpGet]
+        [Route("GetPopularCourses")]
+        public List<PopularCoursesDTO> GetPopularCourses()
+        {
+            return this.courseService.GetPopularCourses();
+        }
+        #endregion GetPopularCourses
+
+        #region GetCourseById
+        [HttpPost]
+        [Route("GetCourseById/{cid}")]
+        public Course GetCourseById(int cid)
+        {
+            return this.courseService.GetCourseById(cid);
+        }
+        #endregion GetCourseById
     }
 }
