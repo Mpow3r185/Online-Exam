@@ -37,35 +37,38 @@
                 </li>
 
                 <!-- Sign In  (Small Devices) -->
-                <li class="nav-item" id="sign-in-sm"><a routerLink="/auth/login"
-                        class="nav-link pls-pri-col link-font-size">Sign
-                        In</a>
+                <li *ngIf="!accountStatus" class="nav-item" id="sign-in-sm"><a routerLink="/auth/login"
+                        class="nav-link pls-pri-col link-font-size">Sign In</a>
                 </li>
 
-                <li class="nav-item" *ngIf="accountStatus && (userService.selectedUser != null)">
-                    <div class="dropdown">
-                        <a class="btn mat-stroked-button font-weight-normal pt-2 border-0 dropdown-toggle" href="#"
-                            role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                            {{userService.selectedUser.username}}
-                        </a>
-
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="http://localhost:65406/">Dashboard</a>
-                            <button class="dropdown-item" (click)="logOut()">Log out</button>
-                        </div>
-                    </div>
-                </li>
+                
             </ul>
         </div>
 
         <div class="collapse navbar-collapse justify-content-end" id="ftco-nav">
             <ul class="navbar-nav navbar font-weight-bold">
-                <li>
+                <li *ngIf="!accountStatus">
                     <button class="sign-in-btn" id="sign-in-lg" routerLink="/auth/login">
                         Sign In
                     </button>
                 </li>
+
+                <li class="nav-item" *ngIf="accountStatus && (homeService.selectedUser != null)">
+                    <div class="dropdown">
+                        <a class="btn mat-stroked-button font-weight-bold pt-2 border-0 dropdown-toggle text-dark" href="#"
+                            role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <span class="font-weight-bold" style="color: #001166;">{{homeService.selectedUser[0].username}}</span>
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">Invoices</a>
+                            <a class="dropdown-item" href="#">Edit Profile</a>
+                            <button class="dropdown-item" (click)="logOut()">Log out</button>
+                        </div>
+                    </div>
+                </li>
+
             </ul>
         </div>
     </div>
