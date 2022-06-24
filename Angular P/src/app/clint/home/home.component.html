@@ -8,10 +8,22 @@
         </ol>
         <div class="carousel-inner" style="height: 625px;">
             <div>
-                <div class="carousel-item" *ngFor="let img of sliderImages"
-                    [ngClass]="{'active': img.imagePath == sliderImages[0].imagePath}">
+                <div class="carousel-item active">
                     <div class="overlay"></div>
-                    <img class="d-block w-100" src="../../../assets/images/slider_images/{{ img.imagePath }}">
+                    <img class="d-block w-100"
+                        src="../../../assets/images/slider_images/{{ homeService.dynamicData[0].imgSlider1 }}">
+                </div>
+
+                <div class="carousel-item">
+                    <div class="overlay"></div>
+                    <img class="d-block w-100"
+                        src="../../../assets/images/slider_images/{{ homeService.dynamicData[0].imgSlider2 }}">
+                </div>
+
+                <div class="carousel-item">
+                    <div class="overlay"></div>
+                    <img class="d-block w-100"
+                        src="../../../assets/images/slider_images/{{ homeService.dynamicData[0].imgSlider3 }}">
                 </div>
             </div>
 
@@ -32,9 +44,8 @@
         <div class="container">
             <div class="row justify-content-center text-center">
                 <div class="col-lg-6 mb-5">
-                    <h2 class="text-secondary heading">Get Started Your Online Exam</h2>
-                    <p>We help you create an online exam, facilitate the entery process for students to take the exam,
-                        and provide the necessary technical support</p>
+                    <h2 class="text-secondary heading">{{ homeService.dynamicData[0].title1 }}</h2>
+                    <p>{{ homeService.dynamicData[0].subTitle1 }}</p>
                 </div>
             </div>
             <div class="row justify-content-center">
@@ -82,40 +93,80 @@
 <section class="container-fluid px-4 mt-5">
     <div class="row justify-content-center">
         <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-            <span class="subheading">Find Your Interest</span>
-            <h2 class="mb-2">Search For Courses Or Exams</h2>
+            <span class="subheading"> {{ homeService.dynamicData[0].title2 }} </span>
+            <h2 class="mb-2"> {{ homeService.dynamicData[0].subTitle2 }} </h2>
         </div>
     </div>
 
     <div class="col-12 mb-5 d-flex">
         <div class="main d-flex w-100 m-auto justify-content-center">
             <input type="text" class="rounded d-flex w-50" name="Search" [(ngModel)]='search' name="search"
-                placeholder="ex: Angular">
-            <button class="btn search-btn d-flex w-auto" type="button">SEARCH</button>
+                placeholder="ex: Angular" (keyup)="homeSearch()">
         </div>
     </div>
 
-    <swiper class="mySwiper" [slidesPerView]="3" [spaceBetween]="15" [pagination]="{
-    clickable: false}" [loop]="loopStatues" [pagination]="false" [autoplay]="{
-    delay: 2000}" [navigation]="true">
-    </swiper>
+    <div class="container w-100" id="searchContainer">
+
+        <!-- Courses -->
+        <h5 class="mt-5">
+            We found
+            <h4 style="color: #d70926; font-weight: bold; display: inline;">
+                {{ searchCourses.length }}
+            </h4>
+            courses available for you
+        </h5>
+
+        <div class="row pb-5 justify-content-lg-around justify-content-md-start px-sm-3 px-md-0" id="coursesContainer"
+            style="border: 1px solid rgba(128, 128, 128, 0.5);">
+            <app-course-card *ngFor="let course of searchCourses" [id]="course.id" [courseName]="course.courseName"
+                [description]="course.description" [status]="course.status" [courseImage]="course.courseImage"
+                class="col-lg-3 col-md-5 col-sm-12 mt-4 mx-lg-4 mx-md-4 md-xl-4 course-card">
+            </app-course-card>
+        </div>
+
+        <!-- Exams -->
+        <h5 class="mt-5">
+            We found
+            <h4 style="color: #d70926; font-weight: bold; display: inline;">
+                {{ searchExams.length }}
+            </h4>
+            exams available for you
+        </h5>
+
+        <div class="container">
+            <div class="row mt-3 justify-content-lg-around justify-content-md-start pb-5" id="examsContainer"
+                style="border: 1px solid rgba(128, 128, 128, 0.5);">
+
+                <app-exam-card *ngFor="let exam of searchExams" [id]="exam.id" [courseId]="exam.courseId"
+                    [title]="exam.title" [passcode]="exam.passcode" [dsecription]="exam.dsecription"
+                    [examLevel]="exam.examLevel" [successMark]="exam.successMark" [cost]="exam.cost"
+                    [startDate]="exam.startDate" [endDate]="exam.endDate" [status]="exam.status"
+                    [examImage]="exam.examImage" [creationDate]="exam.creationDate"
+                    class=" col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                </app-exam-card>
+
+            </div>
+        </div>
+
+    </div>
 </section>
 
-<div class="team-area mb-5">
+<div class="team-area my-5">
     <div class="container ">
         <div class="row ">
             <div class="col-md-12 ">
                 <div class="section-title text-center ">
-                    <h2>Our Three Popular Courses</h2>
+                    <h2>{{ homeService.dynamicData[0].popularParagraph }}</h2>
                 </div>
             </div>
 
-            <div>
+            <div class="w-100">
                 <div class="mb-5">
                     <div class="container">
                         <div class="row justify-content-lg-around justify-content-md-start">
-                            <app-course-card *ngFor="let obj of courses" [courseName]="obj.courseName"
-                                [courseImage]="obj.courseImage"
+                            <app-course-card *ngFor="let course of homeService.popularCourses" [id]="course.id"
+                                [courseName]="course.courseName" [description]="course.description"
+                                [status]="course.status" [courseImage]="course.courseImage"
                                 class="col-lg-3 col-md-5 col-sm-12 mt-4 mr-4  ml-4 course-card">
                             </app-course-card>
                         </div>
