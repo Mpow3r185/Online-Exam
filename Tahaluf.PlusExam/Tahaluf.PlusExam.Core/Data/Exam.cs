@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -43,6 +43,8 @@ namespace Tahaluf.PlusExam.Core.Data
         public string Status { get; set; }
 
         public DateTime CreationDate { get; set; }
+        
+        public string ExamImage { get; set; }
 
 
         public virtual Course Course { get; set; }
