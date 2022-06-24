@@ -1,3 +1,4 @@
+import { ExamProfileComponent } from './exam/exam-profile/exam-profile.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutUsComponent } from './about-us/about-us.component';
@@ -27,7 +28,14 @@ const routes: Routes = [
     path:'exam',
     component: ExamComponent
   },
-  {path:'page404', component: Page404Component}
+  {
+    path:'examProfile',
+    component: ExamProfileComponent
+  },
+  {
+    path:'page404',
+    component: Page404Component
+  }
 ];
 
 @NgModule({
