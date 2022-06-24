@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Tahaluf.PlusExam.Core.Data;
@@ -55,6 +55,11 @@ namespace Tahaluf.PlusExam.Infra.Service
         public List<Exam> SearchExam(ExamFilter examFilter)
         {
             return examRepository.SearchExam(examFilter);
+        }
+
+        public List<Exam> GetExamsByCourseId(int cid)
+        {
+            return examRepository.GetExamsByCourseId(cid);
         }
     }
 }
