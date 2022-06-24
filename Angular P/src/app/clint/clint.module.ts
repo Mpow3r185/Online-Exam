@@ -20,6 +20,7 @@ import { CourseCardComponent } from './course/course-card/course-card.component'
 import { CourseComponent } from './course/course.component';
 import { ExamComponent } from './exam/exam.component';
 import { ExamCardComponent } from './exam/exam-card/exam-card.component';
+import { Page404Component } from './page404/page404.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ExamCardComponent } from './exam/exam-card/exam-card.component';
     CourseCardComponent,
     CourseComponent,
     ExamComponent,
-    ExamCardComponent
+    ExamCardComponent,
+    Page404Component
   ],
   imports: [
     ClintRoutingModule,
