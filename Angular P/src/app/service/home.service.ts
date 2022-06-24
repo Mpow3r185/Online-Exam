@@ -11,7 +11,11 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class HomeService {
   
-  exams: any;
+  exams: any = [{}];
+  ourses: any = [{}];
+  dynamicData: any = [{}];
+  popularCoursesId!: any;
+  popularCourses: any = [];
   ourServiceData: any = [{}];
   selectedUser: any;
 
@@ -19,19 +23,82 @@ export class HomeService {
     private http: HttpClient,
     private toastr: ToastrService,
     private dialog: MatDialog
-    ) {}
+    ) {
+      this.run();
+    }
+
+  // Call Async Functions
+  private async run() {
+    SpinnerComponent.show();
+    await this.getDynamicData();
+    await this.getPopularCourses();
+    SpinnerComponent.hide();
+  }
 
   // Get Exams
   getExams() {
-    SpinnerComponent.show();
-    this.http.get('https://localhost:44342/api/exam').subscribe((result) => {            
-      this.exams = result;      
+    this.http.get('https://localhost:44342/api/exam').subscribe((result) => { 
+      SpinnerComponent.show();           
+      this.exams = result;
+      console.log(this.exams);
+      
+      SpinnerComponent.hide();
     }, error => {
       this.toastr.error('Unable to connect the server.')
     });
-    SpinnerComponent.hide();
+  }
+
+  // Get Courses
+  getCourses() {
+    this.http.get('https://localhost:44342/api/course').subscribe((result) => {
+      SpinnerComponent.show();
+      this.courses = result;
+      SpinnerComponent.hide();
+    }, err => {
+      this.toastr.error('Unable to connect the server');
+    });
+  }
+
+  // Get Dynamic Data
+  private async getDynamicData(): Promise<void> {
+    
+    this.http.get('https://localhost:44342/api/dynamicHome').subscribe((result) => {
+      this.dynamicData = result;
+    }, err => {
+      this.toastr.error('Unable to connect the server');
+    });
   }
   
+  // Get Popular Courses Id
+  private async getPopularCourses(): Promise<void> {
+   this.http.get('https://localhost:44342/api/course/getPopularCourses').subscribe((result: any) => {  
+    
+    for (let item of result) {
+      this.http.post(`https://localhost:44342/api/course/getCourseById/${item.courseId}`, null).subscribe((course) => {
+        this.popularCourses.push(course);
+      },
+      err => {
+        this.toastr.error('Unable to connect the server');
+      })
+    }
+   },
+   err => {
+     this.toastr.error('Unable to connect the server');
+   });
+  }
+  
+  // Get Exams By Course Id
+  getExamsByCourseId(cid: number) {
+    this.http.post(`https://localhost:44342/api/exam/getExamsByCourseId/${cid}`, null).subscribe((result) => {
+      SpinnerComponent.show();
+      console.log(result);
+      
+      this.exams = result;
+      SpinnerComponent.hide();
+    }, err => {
+      this.toastr.error('Unable to connect the server');
+    });
+  }
   
   getAllServices(){
     this.http.get('https://localhost:44342/api/OurService').subscribe((result)=>{
