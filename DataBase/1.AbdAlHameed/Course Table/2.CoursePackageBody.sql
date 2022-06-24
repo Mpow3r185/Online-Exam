@@ -36,12 +36,12 @@ CREATE OR REPLACE PACKAGE BODY CoursePackage AS
             OPEN ref_cursor FOR
             SELECT *
             FROM Course;
-    
+
             DBMS_SQL.RETURN_RESULT(ref_cursor);
         END IF;
-    
+
     END CourseCRUD;
-    
+
     -- Get Courses Names
     PROCEDURE GetCoursesNames AS
         ref_cursor SYS_REFCURSOR;
@@ -68,6 +68,33 @@ CREATE OR REPLACE PACKAGE BODY CoursePackage AS
 
         DBMS_SQL.RETURN_RESULT(ref_cursor);
     END SearchCourse;
+
+    -- Get Courses Sorted By Number Of Registrants
+    PROCEDURE GetPopularCourses AS
+        ref_cursor SYS_REFCURSOR;
+    BEGIN
+        OPEN ref_cursor FOR
+        SELECT course.Id AS CourseId, COUNT(course.Id) AS Summation
+        FROM invoice
+        JOIN exam ON invoice.examId = exam.id
+        JOIN course ON course.id = exam.courseId
+        GROUP BY course.id
+        ORDER BY Summation DESC;
+
+        DBMS_SQL.RETURN_RESULT(ref_cursor);
+    END GetPopularCourses;
+
+    -- Get Course By Id
+    PROCEDURE GetCourseById(cid IN Course.id%type) AS
+        ref_cursor SYS_REFCURSOR;
+    BEGIN
+        OPEN ref_cursor FOR
+        SELECT *
+        FROM Course
+        WHERE id = cid;
+
+        DBMS_SQL.RETURN_RESULT(ref_cursor);
+    END GetCourseById;
 
 END CoursePackage;
 

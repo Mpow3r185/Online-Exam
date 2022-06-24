@@ -18,7 +18,7 @@ CREATE OR REPLACE PACKAGE ExamPackage AS
         st IN exam.status%type DEFAULT NULL,
         exImg IN exam.examImage%type DEFAULT NULL,
         createDate IN exam.creationDate%type DEFAULT NULL);
-    
+
     -- Search Exam Procedure
     PROCEDURE SearchExam(
         exTitle IN exam.title%type DEFAULT NULL,
@@ -28,16 +28,19 @@ CREATE OR REPLACE PACKAGE ExamPackage AS
         stDate IN exam.startDate%type DEFAULT NULL,
         enDate IN exam.endDate%type DEFAULT NULL,
         createDate IN exam.creationDate%type DEFAULT NULL);
-        
+
     -- Buy Exam Procedure
     PROCEDURE BuyExam(
         accid IN account.id%type,
         exid IN exam.id%type);
-        
+
     -- Enter Exam Procedure
     PROCEDURE EnterExam(
         accid account.id%type,
         exid exam.id%type);
+
+    -- Get Exams By Course Id
+    PROCEDURE GetExamsByCourseId(cid IN exam.courseId%type);
 
 END ExamPackage;
 

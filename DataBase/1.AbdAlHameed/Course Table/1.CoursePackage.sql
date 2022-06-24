@@ -19,6 +19,12 @@ CREATE OR REPLACE PACKAGE CoursePackage AS
         cid IN Course.id%type DEFAULT NULL,
         cName IN Course.courseName%type DEFAULT NULL);
 
+    -- Get Courses Sorted By Number Of Registrants
+    PROCEDURE GetPopularCourses;
+
+    -- Get Course By Id
+    PROCEDURE GetCourseById(cid IN Course.id%type);
+
 END CoursePackage;
 
 -- End Code

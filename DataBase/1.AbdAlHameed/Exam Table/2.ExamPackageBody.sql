@@ -55,10 +55,10 @@ CREATE OR REPLACE PACKAGE BODY ExamPackage AS
             OPEN ref_cursor FOR
             SELECT *
             FROM Exam;
-    
+
             DBMS_SQL.RETURN_RESULT(ref_cursor);
         END IF;
-        
+
     END ExamCRUD;
 
     -- Search Exam Procedure
@@ -91,12 +91,12 @@ CREATE OR REPLACE PACKAGE BODY ExamPackage AS
 
             DBMS_SQL.RETURN_RESULT(ref_cursor);
         END SearchExam;
-        
+
     -- Buy Exam Procedure
     PROCEDURE BuyExam(
         accid IN account.id%type,
         exid IN exam.id%type) AS
-        
+
             accBalance creditCard.balance%type;
             examPrice exam.cost%type;
         BEGIN
@@ -104,34 +104,49 @@ CREATE OR REPLACE PACKAGE BODY ExamPackage AS
             INTO accBalance
             FROM creditCard
             WHERE accountId = accid;
-            
+
             SELECT cost
             INTO examPrice
             FROM exam
             WHERE id = exid;
-            
+
             IF accBalance >= examPrice THEN 
-                InvoicePackage.CreateInvoice(CURRENT_TIMESTAMP,exid, accid); -- Create invoice
-            
+                InvoicePackage.InvoiceCRUD(
+                    CREATEDATE => CURRENT_TIMESTAMP,
+                    EXAM_ID => exid,
+                    ACC_ID => accid); -- Create invoice
+
                 CreditCardPackage.UpdateBalance(accid, accBalance - examPrice); -- Pay for the exam
             END IF;
-            
+
         END BuyExam;
-    
+
     -- Enter Exam Procedure
     PROCEDURE EnterExam(
         accid account.id%type,
         exid exam.id%type) AS 
-        
+
         ref_cursor SYS_REFCURSOR;
     BEGIN
         OPEN ref_cursor FOR
         SELECT examId, accountId
         FROM Invoice
         WHERE examId = exid AND accountId = accid;
-    
+
         DBMS_SQL.RETURN_RESULT(ref_cursor);
     END EnterExam;
+
+    -- Get Exams By Course Id
+    PROCEDURE GetExamsByCourseId(cid IN exam.courseId%type) AS
+        ref_cursor SYS_REFCURSOR;
+    BEGIN
+        OPEN ref_cursor FOR
+        SELECT *
+        FROM Exam
+        WHERE courseId = cid;
+
+        DBMS_SQL.RETURN_RESULT(ref_cursor);
+    END GetExamsByCourseId;
 
 END ExamPackage;
 
