@@ -53,4 +53,18 @@ VALUES(203, 301, 'C++ Basics', 'KHJBFGH',
 
 COMMIT;
 
+
+-- Invoice Test Data
+INSERT INTO Invoice (id, examId, accountId)
+VALUES (9000, 203, 101);
+
+INSERT INTO Invoice (id, examId, accountId)
+VALUES (9001, 203, 100);
+
+INSERT INTO Invoice (id, examId, accountId)
+VALUES (9002, 203, 16);
+
+INSERT INTO Invoice (id, examId, accountId)
+VALUES (9003, 202, 101);
+
 -- End Code
