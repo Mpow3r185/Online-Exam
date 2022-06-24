@@ -22,11 +22,11 @@ export class AuthorizationGuard implements CanActivate {
   ): | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const token = localStorage.getItem('token');
     if (token) {
-      if (state.url.indexOf('client') >= 0) {
+      if (state.url.indexOf('clint') >= 0) {
         let user: any = localStorage.getItem('user');
         if (user) {
           user = JSON.parse(user);
-          if (user.role == 'Client') {
+          if (user.role == 'Student') {
             setTimeout(() => {
               SpinnerComponent.hide();
             }, 2000);
@@ -36,7 +36,7 @@ export class AuthorizationGuard implements CanActivate {
               SpinnerComponent.hide();
             }, 2000);
             setTimeout(() => {
-              this.toastr.error('this page for Client');
+              this.toastr.error('You do not have permission to access the page');
             }, 2000);
             return false;
           }
@@ -45,7 +45,7 @@ export class AuthorizationGuard implements CanActivate {
             SpinnerComponent.hide();
           }, 2000);
           setTimeout(() => {
-            this.toastr.error('you are not authorized');
+            this.toastr.error('You are not authorized');
           }, 2000);
           return false;
         }
@@ -54,7 +54,7 @@ export class AuthorizationGuard implements CanActivate {
         let user: any = localStorage.getItem('user');
         if (user) {
           user = JSON.parse(user);
-          if (user.role == 'admin') {
+          if (user.role == 'Admin') {
             setTimeout(() => {
               SpinnerComponent.hide();
             }, 2000);
@@ -64,9 +64,9 @@ export class AuthorizationGuard implements CanActivate {
             setTimeout(() => {
               SpinnerComponent.hide();
             }, 2000);
-            this.router.navigate(['client/home']);
+            this.router.navigate(['/page404']);
             setTimeout(() => {
-              this.toastr.error('this page for admin');
+              this.toastr.error('You do not have permission to access the page');
             }, 2000);
             return false;
           }
@@ -76,7 +76,7 @@ export class AuthorizationGuard implements CanActivate {
             SpinnerComponent.hide();
           }, 2000);
           setTimeout(() => {
-            this.toastr.error('you are not authorized');
+            this.toastr.error('You are not authorized');
           }, 2000);
           return false;
         }
@@ -87,7 +87,7 @@ export class AuthorizationGuard implements CanActivate {
         SpinnerComponent.hide();
       }, 2000);
       setTimeout(() => {
-        this.toastr.error('you are not authorized');
+        this.toastr.error('You are not authorized');
       }, 2000);
       this.router.navigate(['auth/login']);
       return false;
