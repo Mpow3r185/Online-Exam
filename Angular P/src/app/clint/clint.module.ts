@@ -20,6 +20,7 @@ import { CourseCardComponent } from './course/course-card/course-card.component'
 import { CourseComponent } from './course/course.component';
 import { ExamComponent } from './exam/exam.component';
 import { ExamCardComponent } from './exam/exam-card/exam-card.component';
+import { ExamProfileComponent } from './exam/exam-profile/exam-profile.component';
 import { Page404Component } from './page404/page404.component';
 
 @NgModule({
@@ -38,6 +39,7 @@ import { Page404Component } from './page404/page404.component';
     CourseComponent,
     ExamComponent,
     ExamCardComponent,
+    ExamProfileComponent,
     Page404Component
   ],
   imports: [
