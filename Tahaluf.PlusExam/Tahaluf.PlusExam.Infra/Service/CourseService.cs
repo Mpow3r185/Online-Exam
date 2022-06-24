@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Tahaluf.PlusExam.Core.Data;
@@ -60,6 +60,16 @@ namespace Tahaluf.PlusExam.Infra.Service
         public List<string> GetCoursesNames()
         {
             return courseRepository.GetCoursesNames();
+        }
+
+        public List<PopularCoursesDTO> GetPopularCourses()
+        {
+            return courseRepository.GetPopularCourses();
+        }
+
+        public Course GetCourseById(int cid)
+        {
+            return this.courseRepository.GetCourseById(cid);
         }
     }
 }
