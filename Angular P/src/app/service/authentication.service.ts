@@ -62,8 +62,9 @@ export class AuthenticationService {
   }
 
 
-  //-------------------------------------------------------
-  chickAuthentication() {
+    //-------------------------------------------------------
+  chickAuthentication(body:any) {
+
     const headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
@@ -72,37 +73,36 @@ export class AuthenticationService {
       headers: new HttpHeaders(headerDict),
     };
 
-    var response1:any;
-
     SpinnerComponent.show();
-
-    this.http.post('https://localhost:44359/api/Login/Auth', this.loginForm.value, requestOptions).subscribe(
+    this.http.post('https://localhost:44342/api/Account/login', body, requestOptions).subscribe(
       (result: any) => {
-        response1 = result;
+
         const response={
-          token:response1.toString(),
+          token:result.toString(),
         };
+
         localStorage.setItem('token', response.token);
         let data:any = jwtDecode(response.token);
+        
+        console.log(data);
         localStorage.setItem('user', JSON.stringify({...data}));
-        if (data.role == 'admin') {
+        if (data.role == 'Admin') {
           this.router.navigate(['admin/dashboard']);
         }
-        else if (data.role == 'Client') {
-          // SpinnerComponent.hide();
-          this.router.navigate(['/client/home']);
+        else if (data.role == 'Student') {
+          SpinnerComponent.hide();
+          this.router.navigate(['/']);
         }
       },
       error => {
-        if (error.stats != 200) {
           setTimeout(() => {
             SpinnerComponent.hide();
           }, 2000);
           setTimeout(() => {
-            this.toastr.error("User not found, Please try Again")
+            this.toastr.error("These credentials do not match our records.")
           }, 2000);
-        }
-      }
-    );
+          //console.log(error.message,error.status);
+      });
   }
+  
 }
