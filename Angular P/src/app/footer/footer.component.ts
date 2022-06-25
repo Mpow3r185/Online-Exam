@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HomeService } from '../service/home.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(public homeService: HomeService) { }
 
   ngOnInit(): void {
+    this.homeService.getHomePage();
   }
 
 }
