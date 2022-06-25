@@ -1,5 +1,5 @@
-<footer class="footer-area section-padding-100-0 bg-img gradient-background-overlay"
-    style="background-image:url(/assets/images/img101.jpeg); background-attachment: fixed;">
+<footer *ngFor="let obj of homeService.homePage" class="footer-area section-padding-100-0 bg-img gradient-background-overlay"
+    style="background-image:url(/assets/images/{{obj.footerBackground}}); background-attachment: fixed;">
     <div class="main-footer-area">
         <div class="container">
             <div class="row justify-content-center">
@@ -10,11 +10,9 @@
                         <div class="widget-title">
                             <h6>About Us</h6>
                         </div>
-                        <img src="../../assets/images/light-full-logo.svg" alt="" width=100>
+                        <img src="../../assets/images/{{obj.logoLight}}" alt="" width=100>
 
-                        <p>Plus exam is an Online Examination system, brought to you by M2YH Webs Pvt. Ltd. It was
-                            designed with a mission to strive for excellence, with an expertise in driving assessments
-                            in the educational domain.</p>
+                        <p>{{obj.footerParagraph}}</p>
 
                     </div>
                 </div>
@@ -28,10 +26,9 @@
 
 
                         <div class="address">
-                            <h6><i class="fal fa-phone-alt mr-2"></i> +45 677 8993000 223</h6>
-                            <h6><i class="fal fa-envelope mr-2"></i> office@template.com</h6>
-                            <h6 class="d-flex"><i class="fal fa-map mr-2 mt-2"></i> <span class="d-block">Main Str. no
-                                    45-46, b3, 56832, Los Angeles, CA</span></h6>
+                            <h6><i class="fal fa-phone-alt mr-2"></i> {{obj.phoneNumber}}</h6>
+                            <h6><i class="fal fa-envelope mr-2"></i> {{obj.email}}</h6>
+                            <h6 class="d-flex"><i class="fal fa-map mr-2 mt-2"></i> <span class="d-block">{{obj.address}}</span></h6>
                         </div>
                     </div>
                 </div>
@@ -66,7 +63,7 @@
                 src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
             <script>
                 document.write(new Date().getFullYear());
-            </script> All rights reserved <i aria-hidden="true"></i> by <a href="" target="_blank">Plus Exam</a>
+            </script> All rights reserved <i aria-hidden="true"></i> by <a href="" target="_blank">{{obj.webSiteName}}</a>
 
     </div>
 </footer>
