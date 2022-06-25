@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HomeService } from 'src/app/service/home.service';
 import { SpinnerComponent } from 'src/app/spinner/spinner.component';
 
 @Component({
@@ -11,24 +12,25 @@ export class ContactUsComponent implements OnInit {
     {
       icon: "fal fa-map",
       title: "Address",
-      subtitle: "198 West 21th Street, Suite 721 New York NY 10016"
+      subtitle: this.homeService.homePage[0].address
     },
     {
       icon: "fal fa-mobile",
       title: "Phone",
-      subtitle: "+ 1235 2355 98"
+      subtitle: this.homeService.homePage[0].phoneNumber
     },
     {
       icon: "fal fa-envelope",
       title: "Email",
-      subtitle: "info@yoursite.com"
+      subtitle: this.homeService.homePage[0].email
     }
   ];
-  constructor() { }
+  constructor(public homeService: HomeService) { }
 
   ngOnInit(): void {
     SpinnerComponent.show();
     setTimeout(() => SpinnerComponent.hide(), 2000);
+    this.homeService.getHomePage();
   }
 
 }
