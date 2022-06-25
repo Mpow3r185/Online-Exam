@@ -93,6 +93,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.homeService.getCourses();
     this.homeService.getExams();
+    this.homeService.getHomePage();
   }
 
   currentTestimonialIndex: number = 0;
