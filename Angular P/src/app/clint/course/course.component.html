@@ -28,7 +28,7 @@
     <div style="margin-bottom: 200px ">
         <div class="container">
             <div class="row justify-content-lg-around justify-content-md-start">
-                <app-course-card *ngFor="let obj of courses" [courseName]="obj.courseName"
+                <app-course-card *ngFor="let obj of homeService.courses" [courseName]="obj.courseName"
                     [courseImage]="obj.courseImage" class="col-lg-3 col-md-5 col-sm-12 mt-4 mr-4  ml-4 course-card">
                 </app-course-card>
 
