@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { HomeService } from 'src/app/service/home.service';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   @Input() pageName: any;
 
-  constructor() { }
+  constructor(public homeService: HomeService) { }
 
   ngOnInit(): void {
   }
