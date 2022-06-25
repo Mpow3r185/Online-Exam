@@ -7,6 +7,7 @@ import { CourseComponent } from './course/course.component';
 import { HomeComponent } from './home/home.component';
 import { ExamComponent } from './exam/exam.component';
 import { Page404Component } from './page404/page404.component';
+import { CourseProfileComponent } from './course/course-profile/course-profile.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,14 @@ const routes: Routes = [
   {
     path:'examProfile',
     component: ExamProfileComponent
+  },
+  {
+    path:'exam/:id',
+    component: ExamProfileComponent
+  },
+  {
+    path: 'course/:id',
+    component: CourseProfileComponent
   },
   {
     path:'page404',
