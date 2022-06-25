@@ -6,6 +6,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { CourseComponent } from './course/course.component';
 import { HomeComponent } from './home/home.component';
 import { ExamComponent } from './exam/exam.component';
+import { Page404Component } from './page404/page404.component';
 
 const routes: Routes = [
   {
