@@ -25,11 +25,11 @@
                         class="under-line nav-link pls-pri-col link-font-size">About</a></li>
 
                 <!-- Course -->
-                <li class="nav-item"><a routerLink="/course" class="nav-link pls-pri-col link-font-size">Courses</a>
+                <li class="nav-item"><a routerLink="/courses" class="nav-link pls-pri-col link-font-size">Courses</a>
                 </li>
 
                 <!-- Exam -->
-                <li class="nav-item"><a routerLink="/exam" class="nav-link pls-pri-col link-font-size">Exams</a>
+                <li class="nav-item"><a routerLink="/exams" class="nav-link pls-pri-col link-font-size">Exams</a>
                 </li>
 
                 <!-- Contact -->
@@ -41,7 +41,7 @@
                         class="nav-link pls-pri-col link-font-size">Sign In</a>
                 </li>
 
-                
+
             </ul>
         </div>
 
@@ -55,10 +55,11 @@
 
                 <li class="nav-item" *ngIf="accountStatus && (homeService.selectedUser != null)">
                     <div class="dropdown">
-                        <a class="btn mat-stroked-button font-weight-bold pt-2 border-0 dropdown-toggle text-dark" href="#"
-                            role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                        <a class="btn mat-stroked-button font-weight-bold pt-2 border-0 dropdown-toggle text-dark"
+                            href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
-                            <span class="font-weight-bold" style="color: #001166;">{{homeService.selectedUser[0].username}}</span>
+                            <span class="font-weight-bold"
+                                style="color: #001166;">{{homeService.selectedUser[0].username}}</span>
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
