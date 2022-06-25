@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class HomeService {
   
   exams: any = [{}];
-  ourses: any = [{}];
+  courses: any = [{}];
   dynamicData: any = [{}];
   popularCoursesId!: any;
   popularCourses: any = [];
