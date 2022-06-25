@@ -1,13 +1,13 @@
-.hero-wrap {
+/* .hero-wrap {
     width: 100%;
-    height: 700px;
+    height: 450px;
     position: inherit;
     background:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.0)), url('../../../assets/images/header-bg.jpg');
     background-attachment: fixed;
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 0
-}
+} */
 
 .hero-wrap .overlay,
 .hero-wrap .overlay-2 {
