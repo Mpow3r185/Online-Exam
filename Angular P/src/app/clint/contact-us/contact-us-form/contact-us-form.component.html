@@ -39,12 +39,20 @@
     </section>
 </div> -->
 
-<div class="container">
+<div style="width: 85%;
+background:linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)), url('../../../../assets/images/{{homeService.homePage[0].contactImage}}') top center no-repeat;
+background-position: center;
+background-attachment: fixed;
+background-size: cover;
+background-repeat: no-repeat;
+border-radius: 6px;
+padding: 20px 60px 30px 40px;
+box-shadow: -2px 0px 19px 1px #001166;
+margin-bottom: 5rem;" class="container">
     <div class="content">
         <div class="left-side">
             <p class="font-weight-bold" style="color: #001166; font-family: 'Roboto Slab', serif;">
-                If you have any question or any inquiry about the special program and how to apply for exams and take
-                the certificate, you can send a message to us from here. It is our pleasure to assist you.
+               {{homeService.homePage[0].contactParagraph}}
             </p>
         </div>
         <div class="right-side">
