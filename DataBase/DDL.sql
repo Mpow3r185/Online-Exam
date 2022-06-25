@@ -369,15 +369,15 @@ CREATE TABLE Testimonial
   Message VARCHAR2(255) NOT NULL,
   
   status VARCHAR(8)
-  DEFAULT('ACCEPTED')
-  CHECK (Status IN ('ACCEPTED', 'REJECTED'))
+  DEFAULT('PENDING')
+  CHECK (Status IN ('ACCEPTED','PENDING', 'REJECTED'))
   NOT NULL, 
   
   CONSTRAINT testimonial_account_fk
   FOREIGN KEY (accountId) 
   REFERENCES account(ID) 
   ON DELETE SET NULL
-); 
+);
 
 --------------------------------------------------------
 --  DDL for Table OURSERVICE
