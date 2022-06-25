@@ -36,12 +36,10 @@ export class HomeService {
   }
 
   // Get Exams
-  getExams() {
+  async getExams(): Promise<void> {
     this.http.get('https://localhost:44342/api/exam').subscribe((result) => { 
       SpinnerComponent.show();           
-      this.exams = result;
-      console.log(this.exams);
-      
+      this.exams = result;      
       SpinnerComponent.hide();
     }, error => {
       this.toastr.error('Unable to connect the server.')
@@ -49,8 +47,19 @@ export class HomeService {
   }
 
   // Get Courses
-  getCourses() {
+  async getCourses(): Promise<void> {
     this.http.get('https://localhost:44342/api/course').subscribe((result) => {
+      SpinnerComponent.show();
+      this.courses = result;
+      SpinnerComponent.hide();
+    }, err => {
+      this.toastr.error('Unable to connect the server');
+    });
+  }
+  
+  // Search Course
+  async searchCourse(body: any) {
+    this.http.post('https://localhost:44342/api/course/searchCourse', body).subscribe((result) => {
       SpinnerComponent.show();
       this.courses = result;
       SpinnerComponent.hide();
@@ -88,11 +97,9 @@ export class HomeService {
   }
   
   // Get Exams By Course Id
-  getExamsByCourseId(cid: number) {
+  async getExamsByCourseId(cid: number) {
     this.http.post(`https://localhost:44342/api/exam/getExamsByCourseId/${cid}`, null).subscribe((result) => {
-      SpinnerComponent.show();
-      console.log(result);
-      
+      SpinnerComponent.show();      
       this.exams = result;
       SpinnerComponent.hide();
     }, err => {
@@ -100,10 +107,9 @@ export class HomeService {
     });
   }
   
-  getAllServices(){
+  async getAllServices(){
     this.http.get('https://localhost:44342/api/OurService').subscribe((result)=>{
         this.ourServiceData = result;
-        //this.toastr.success("service retrieved");
     },err =>{
       console.log(err.message,err.status);
        this.toastr.error('Unable to connect the server');
@@ -111,7 +117,7 @@ export class HomeService {
   }
 
   //To get info for user he just login
-  getUserByUserName() {
+  async getUserByUserName() {
     let user: any = localStorage.getItem('user');
     user = JSON.parse(user);
     let searchBody = {
@@ -120,7 +126,6 @@ export class HomeService {
     this.http.post('https://localhost:44342/api/Account/SearchAccount', searchBody).subscribe(
         (result: any) => {
           this.selectedUser = result;
-          //console.log(this.selectedUser);
         },
         (error) => console.log(error)
       );
