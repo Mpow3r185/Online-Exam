@@ -22,6 +22,7 @@ import { ExamComponent } from './exam/exam.component';
 import { ExamCardComponent } from './exam/exam-card/exam-card.component';
 import { ExamProfileComponent } from './exam/exam-profile/exam-profile.component';
 import { Page404Component } from './page404/page404.component';
+import { CourseProfileComponent } from './course/course-profile/course-profile.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { Page404Component } from './page404/page404.component';
     ExamComponent,
     ExamCardComponent,
     ExamProfileComponent,
-    Page404Component
+    Page404Component,
+    CourseProfileComponent
   ],
   imports: [
     ClintRoutingModule,
