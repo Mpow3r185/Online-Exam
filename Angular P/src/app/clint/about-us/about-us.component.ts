@@ -9,11 +9,12 @@ import { SpinnerComponent } from 'src/app/spinner/spinner.component';
 })
 export class AboutUsComponent implements OnInit {
 
-  constructor(private home:HomeService) { }
+  constructor(public home:HomeService) { }
 
   ngOnInit(): void {
     SpinnerComponent.show();
     this.home.getAllServices();
+    this.home.getHomePage();
     setTimeout(() => SpinnerComponent.hide(), 2000);
   }
 
