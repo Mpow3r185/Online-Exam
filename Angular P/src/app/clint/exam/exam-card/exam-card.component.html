@@ -7,22 +7,22 @@
             <div class="container p-3">
                 <!-- Exam Name -->
                 <div class="text-center mt-3" style="min-height:60px;">
-                    <h5 style="color:#fff" title="Exam Name">
+                    <h2 style="color:#fff" title="Exam Name">
                         {{ title }}
-                    </h5>
+                    </h2>
                 </div>
 
                 <!-- Course Name -->
                 <div class="text-center mt-1" style="min-height:20px;">
-                    <h6 style="color:#fff" title="Course Name">
-                        {{ courseId }}
-                    </h6>
+                    <h3 style="color:#fff" title="Course Name">
+                        {{ homeService.courses[0].courseName }}
+                    </h3>
                 </div>
 
                 <!-- Exam Description -->
-                <div class="text-center mt-1" style="min-height:220px; max-height:220px;">
-                    <p class="p-3" style="color:#fff; word-break: break-word;" title="Exam Description">
-                        {{ dsecription }}
+                <div class="text-center mt-1">
+                    <p class="p-3" style="color:#fff; word-break: break-word; height: 270px" title="Exam Description">
+                        {{ description }}
                     </p>
                 </div>
 
@@ -97,7 +97,7 @@
             <!-- Course Name -->
             <div style="min-height:20px;">
                 <h6>
-                    {{ courseId }}
+                    {{ homeService.courses[0].courseName }}
                 </h6>
             </div>
 

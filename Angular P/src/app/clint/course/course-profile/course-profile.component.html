@@ -13,7 +13,7 @@
         </div>
         <div class="row pb-5" style="border: 1px solid rgba(128, 128, 128, 0.2); border-radius: 10px;">
             <app-exam-card *ngFor="let exam of homeService.exams" [id]="exam.id" [courseId]="exam.courseId"
-                [title]="exam.title" [passcode]="exam.passcode" [dsecription]="exam.dsecription"
+                [title]="exam.title" [passcode]="exam.passcode" [description]="exam.description"
                 [examLevel]="exam.examLevel" [successMark]="exam.successMark" [cost]="exam.cost"
                 [startDate]="exam.startDate" [endDate]="exam.endDate" [status]="exam.status"
                 [creationDate]="exam.creationDate" [examImage]="exam.examImage"

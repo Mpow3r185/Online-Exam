@@ -19,7 +19,7 @@ export class CourseCardComponent implements OnInit {
   }
 
   goToCourseProfile() {
-    this.router.navigate([`Course/${this.id}`])
+    this.router.navigate([`course/${this.id}`])
   }
 
 }

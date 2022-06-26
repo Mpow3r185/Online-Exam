@@ -19,6 +19,9 @@ export class InternalNavBarComponent implements OnInit {
   async ngOnInit() {
     if (localStorage.getItem('token')) {
       this.homeService.getUserByUserName();
+      await this.homeService.getDynamicData();
+      console.log(this.homeService.dynamicData);
+      
       this.accountStatus = true;
     }
   }
