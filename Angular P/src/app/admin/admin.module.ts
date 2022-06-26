@@ -15,6 +15,7 @@ import { DashboardCardComponent } from './dashboard-card/dashboard-card.componen
 import { HomeService } from '../service/home.service';
 import { TestimonialViewComponent } from './dashboard-card/testimonial-view/testimonial-view.component';
 import { AdminService } from '../service/admin.service';
+import { AdminCoursesComponent } from './admin-courses/admin-courses.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AdminService } from '../service/admin.service';
     UsersComponent,
     UserCardComponent,
     DashboardCardComponent,
-    TestimonialViewComponent
+    TestimonialViewComponent,
+     AdminCoursesComponent
   ],
   imports: [
     SharedModule,
