@@ -26,5 +26,9 @@ export class CourseComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     await this.homeService.getCourses();
   }
+
+  courseSearch(event: any) {
+    this.homeService.searchCourse({ cName:  event.target.value.toLowerCase()});
+  }
 }
 

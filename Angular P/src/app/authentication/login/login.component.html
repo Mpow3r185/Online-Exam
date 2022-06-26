@@ -1,53 +1,54 @@
-
-    <div class="container">
-      <div class="forms-container">
-        <div class="signin-signup">
-          <form class="sign-in-form example-form" [formGroup]="loginForm">
-            <h2 class="title">Sign in</h2>
-            <div class="w-75">
-              <!-- <i class="fas fa-user"></i> -->
-              <mat-form-field  class="w-100 py-2" appearance="legacy">
-                <mat-label>UserName/Email</mat-label>
-                <input type="text" matInput formControlName="username">
-                <mat-error *ngIf="loginForm.controls.username.hasError('required')">
-                    This Filed is <strong>required</strong>
-                </mat-error>
-            </mat-form-field>
-            </div>
-            <div class="w-75">
-              <mat-form-field class="w-100 py-2 mb-3" appearance="legacy">
-                <mat-label>Enter your password</mat-label>
-                <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
-                <button class="border-0 hide-password" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+<app-internal-nav-bar></app-internal-nav-bar>
+<div class="container">
+  <div class="forms-container">
+    <div class="signin-signup">
+      <form class="sign-in-form example-form" [formGroup]="loginForm">
+        <h2 class="title">Sign in</h2>
+        <div class="w-75">
+          <!-- <i class="fas fa-user"></i> -->
+          <mat-form-field class="w-100 py-2" appearance="legacy">
+            <mat-label>UserName/Email</mat-label>
+            <input type="text" matInput formControlName="username">
+            <mat-error *ngIf="loginForm.controls.username.hasError('required')">
+              This Filed is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="w-75">
+          <mat-form-field class="w-100 py-2 mb-3" appearance="legacy">
+            <mat-label>Enter your password</mat-label>
+            <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+            <button class="border-0 hide-password" mat-icon-button matSuffix (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
-                <mat-error *ngIf="loginForm.controls.password.hasError('required')">
-                    Password is <strong>required</strong>
-                </mat-error>
-            </mat-form-field>
-            </div>
-            <input type="submit" value="Login" class="btn solid" (click)="chickAuthentication()"/>
-            
-          </form>
+            <mat-error *ngIf="loginForm.controls.password.hasError('required')">
+              Password is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
         </div>
-      </div>
+        <input type="submit" value="Login" class="btn solid" (click)="chickAuthentication()" />
+
+      </form>
     </div>
+  </div>
+</div>
 
 
-    <div class="panels-container">
-      <div class="panel left-panel">
-        <div class="content">
-          <h3>New here ?</h3>
-          <p>
-            register now to try our experience in the plus exam, Let's join!
-          </p>
-          <button class="btn transparent" id="sign-up-btn" (click) = "goToRegisteration()">
-            Sign up
-          </button>
-        </div>
-        <img src="/assets/images/register.svg" class="image" alt="" />
-      </div>
-  
+<div class="panels-container">
+  <div class="panel left-panel">
+    <div class="content">
+      <h3>New here ?</h3>
+      <p>
+        register now to try our experience in the plus exam, Let's join!
+      </p>
+      <button class="btn transparent" id="sign-up-btn" (click)="goToRegisteration()">
+        Sign up
+      </button>
     </div>
-  
+    <img src="/assets/images/register.svg" class="image" alt="" />
+  </div>
+
+</div>
+
 <app-footer></app-footer>

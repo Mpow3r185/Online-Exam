@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { HomeService } from 'src/app/service/home.service';
 
 @Component({
   selector: 'app-exam-card',
@@ -11,7 +12,7 @@ export class ExamCardComponent implements OnInit {
   @Input() courseId!: number;
   @Input() title!: string;
   @Input() passcode!: string;
-  @Input() dsecription!: string;
+  @Input() description!: string;
   @Input() examLevel!: number;
   @Input() successMark!: number;
   @Input() cost!: number;
@@ -21,7 +22,15 @@ export class ExamCardComponent implements OnInit {
   @Input() creationDate!: Date;
   @Input() examImage!: string;
 
-  constructor() { }
+  course: any = [{}];
+
+  constructor(public homeService: HomeService) { 
+    this.run();
+  }
+
+  private async run() {
+    await this.homeService.searchCourse( { cid: this.courseId } );
+  }
 
   ngOnInit(): void {
   }
