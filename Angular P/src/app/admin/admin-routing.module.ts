@@ -9,6 +9,7 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
   },
+   {path:'courses',component:AdminCoursesComponent},
   {
     path: 'adminProfile',
     component: AdminProfileComponent,
