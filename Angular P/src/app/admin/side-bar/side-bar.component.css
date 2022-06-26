@@ -1,0 +1,22 @@
+@import '../../../assets/admin-dashboard/css/material-dashboard.css';
+@import '../../../assets/admin-dashboard/demo/demo.css';
+@import '../../../assets/admin-dashboard/css/material-dashboard.min.css';
+
+
+.menu_section {
+    margin-bottom: 35px; 
+}
+  
+  .menu_section h3 {
+    padding-left: 23px;
+    color: #001166;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    font-weight: bold;
+    font-size: 11px;
+    margin-bottom: 0;
+    margin-top: 0;
+    text-shadow: 1px 1px #000;
+ }
+
+    

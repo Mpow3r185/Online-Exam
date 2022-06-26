@@ -1,0 +1,35 @@
+<div class="overflow-hidden dark-edition">
+    <div class="wrapper">
+        <app-side-bar></app-side-bar>
+
+        <div class="main-panel">
+            <app-nav-bar></app-nav-bar>
+
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <app-edit-profile></app-edit-profile>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card card-profile">
+                                <div class="card-avatar">
+                                    <img class="img" *ngIf="userService.selectedUser.profilePic != ''" src="https://localhost:44359/{{userService.selectedUser.profilePic}}" alt="{{userService.selectedUser.username}}" />
+                                </div>
+                                <div class="card-body">
+                                    <!-- <h6 class="card-category">CEO / Co-Founder</h6> -->
+                                    <h4 class="card-title">{{userService.selectedUser.firstName}} {{userService.selectedUser.lastName}}</h4>
+                                    <p class="card-description">
+                                        {{userService.selectedUser.roleName}}
+                                    </p>
+                                    <!-- <a href="#pablo" class="btn btn-primary btn-round">Follow</a> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
