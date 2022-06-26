@@ -23,11 +23,11 @@ const routes: Routes = [
     component: AboutUsComponent,
   },
   {
-    path:'course',
+    path:'courses',
     component:CourseComponent
   },
   {
-    path:'exam',
+    path:'exams',
     component: ExamComponent
   },
   {
