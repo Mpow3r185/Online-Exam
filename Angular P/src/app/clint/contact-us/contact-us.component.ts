@@ -8,29 +8,36 @@ import { SpinnerComponent } from 'src/app/spinner/spinner.component';
   styleUrls: ['./contact-us.component.css']
 })
 export class ContactUsComponent implements OnInit {
-  contactUsInfo: Array<any> = [
-    {
-      icon: "fal fa-map",
-      title: "Address",
-      subtitle: this.homeService.homePage[0].address
-    },
-    {
-      icon: "fal fa-mobile",
-      title: "Phone",
-      subtitle: this.homeService.homePage[0].phoneNumber
-    },
-    {
-      icon: "fal fa-envelope",
-      title: "Email",
-      subtitle: this.homeService.homePage[0].email
-    }
-  ];
+  
+  
+  contactUsInfo!: Array<any>;
   constructor(public homeService: HomeService) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     SpinnerComponent.show();
     setTimeout(() => SpinnerComponent.hide(), 2000);
-    this.homeService.getHomePage();
+    await this.homeService.getDynamicData();
+    setTimeout(() => this.getContactInfo(), 1000);
+    
+  }
+
+  getContactInfo() {
+      this.contactUsInfo = [{
+        icon: "fal fa-map",
+        title: "Address",
+        subtitle: this.homeService.dynamicData[0].address
+      },
+      {
+        icon: "fal fa-mobile",
+        title: "Phone",
+        subtitle: this.homeService.dynamicData[0].phoneNumber
+      },
+      {
+        icon: "fal fa-envelope",
+        title: "Email",
+        subtitle: this.homeService.dynamicData[0].email
+      }
+    ];
   }
 
 }
