@@ -30,10 +30,10 @@ export class ExamComponent implements OnInit {
   
   exams: any;
 
-  constructor(private home: HomeService) { }
+  constructor(public home: HomeService) { }
 
   ngOnInit(): void {
-    this.home.getExams();    
+    this.home.getExams();
     
     this.filterIsOpened = true;
     this.filterSection = document.getElementById('filterSection') as HTMLInputElement;
@@ -57,9 +57,6 @@ export class ExamComponent implements OnInit {
   }
 
   handleFilterFunctionality(): void {    
-    this.exams = this.home.exams;
-    console.log(this.exams);
-    
     this.filterIsOpened = !this.filterIsOpened;
     
     if (this.filterIsOpened) {
