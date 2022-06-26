@@ -11,7 +11,7 @@ export class ContactUsFormComponent implements OnInit {
   constructor(public contactService: ContactService, public homeService: HomeService) {}
 
   ngOnInit(): void {
-    this.homeService.getHomePage();
+    this.homeService.getDynamicData();
   }
   
 
