@@ -1,6 +1,6 @@
 -- Start Code
 
-CREATE OR REPLACE PACKAGE BODY TestimonialPackage AS
+create or replace PACKAGE BODY TestimonialPackage AS
     
     -- Testimonial CRD Operations
     PROCEDURE TestimonialCRD(
@@ -18,29 +18,22 @@ CREATE OR REPLACE PACKAGE BODY TestimonialPackage AS
             VALUES(accid, msg,stat);
 
             COMMIT;            
-        
+
         ELSIF func = 'DELETE' THEN
             DELETE From Testimonial WHERE id = tstId;
 
             COMMIT;
         ELSE
             OPEN ref_cursor FOR
-            SELECT *
-            FROM Testimonial;
-            
+            SELECT T.id ,T.accountId,T.message,T.status,A.userName,A.profilePicture,A.fullName
+            FROM Testimonial T Join Account A
+            on T.accountId = A.id;
+
             DBMS_SQL.RETURN_RESULT(ref_cursor);
         END IF;
     END TestimonialCRD;
 
-   
+
 END TestimonialPackage;
 
 -- End Code
-
-
-
-
-
-
-
-
