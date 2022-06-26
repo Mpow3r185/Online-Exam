@@ -70,7 +70,7 @@ export class HomeService {
   }
 
   // Get Dynamic Data
-  private async getDynamicData(): Promise<void> {
+  async getDynamicData(): Promise<void> {
     
     this.http.get('https://localhost:44342/api/dynamicHome').subscribe((result) => {
       this.dynamicData = result;
@@ -131,14 +131,4 @@ export class HomeService {
         (error) => console.log(error)
       );
   }
-  getHomePage(){
-    this.http.get('https://localhost:44342/api/DynamicHome').subscribe((result)=>{
-      this.homePage = result;
-     
-    },err =>{
-      console.log(err.message,err.status);
-       this.toastr.error('Unable to connect the server');
-    })
-  }
-  
 }
