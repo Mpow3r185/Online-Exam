@@ -116,3 +116,12 @@
     text-transform: uppercase;
     font-weight: 500
 }
+
+section.cus-img {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    z-index: 0;
+    width: 100%;
+    height: 450px;
+}
