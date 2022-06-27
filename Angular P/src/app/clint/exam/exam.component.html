@@ -178,6 +178,15 @@
                                             </label>
                                         </div>
 
+                                        <!-- Advanced Level -->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="Advanced"
+                                                name="examLevel" id="advancedLvl">
+                                            <label class="form-check-label" for="advancedLvl">
+                                                Advanced
+                                            </label>
+                                        </div>
+
                                         <!-- Expert Level -->
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="Expert"
@@ -187,14 +196,6 @@
                                             </label>
                                         </div>
 
-                                        <!-- Advanced Level -->
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="Advanced"
-                                                name="examLevel" id="advancedLvl">
-                                            <label class="form-check-label" for="advancedLvl">
-                                                Advanced
-                                            </label>
-                                        </div>
                                     </div>
 
                                 </div>
@@ -218,15 +219,33 @@
 
         <!-- Exams -->
         <div class="col-9 m-auto" id="coursesSection">
-            <div class="row">
+            <div class="row" *ngIf="home.exams.length > 0; else noData">
                 <app-exam-card *ngFor="let exam of home.exams" [id]="exam.id" [courseId]="exam.courseId"
                     [title]="exam.title" [passcode]="exam.passcode" [description]="exam.description"
                     [examLevel]="exam.examLevel" [successMark]="exam.successMark" [cost]="exam.cost"
                     [startDate]="exam.startDate" [endDate]="exam.endDate" [status]="exam.status"
-                    [creationDate]="exam.creationDate" [examImage]="exam.examImage"
+                    [creationDate]="exam.creationDate" [examImage]="exam.examImage" [courseName]="exam.courseName"
                     class=" col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4"></app-exam-card>
             </div>
 
+            <ng-template #noData>
+                <div class="row pb-5 justify-content-center "
+                    style="border: 1px solid rgba(128, 128, 128, 0.2); border-radius: 10px;">
+
+                    <div class="m-5">
+                        <div
+                            style="background-image: url('../../../../assets/images/not-found.svg'); height: 265px; width: 268px;">
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <h4 class="text-center align-self-center font-weight-bold" style="color: #d70926;">
+                            The data does not match any exam
+                        </h4>
+                    </div>
+
+                </div>
+            </ng-template>
 
         </div>
     </div>
