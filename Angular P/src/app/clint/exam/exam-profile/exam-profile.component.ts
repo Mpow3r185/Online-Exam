@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { HomeService } from 'src/app/service/home.service';
 
 @Component({
   selector: 'app-exam-profile',
@@ -8,27 +11,14 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ExamProfileComponent implements OnInit {
 
   isExpanded: boolean = true;
+  private routeSub!: Subscription;
 
-  
-  @Input() id!: number;
-  @Input() courseId!: number;
-  @Input() title!: string;
-  @Input() passcode!: string;
-  @Input() dsecription!: string;
-  @Input() examLevel!: number;
-  @Input() successMark!: number;
-  @Input() cost!: number;
-  @Input() startDate!: Date;
-  @Input() endDate!: Date;
-  @Input() status!: string;
-  @Input() creationDate!: Date;
+  constructor(public homeService: HomeService, private route: ActivatedRoute) {}
 
-  constructor() { 
-    
-
-  }
-
-  ngOnInit(): void {
+  ngOnInit() {
+    this.routeSub = this.route.params.subscribe(async params => {
+      await this.homeService.getExamById(Number(params['id']));
+    });
   }
 
   expandExamInformation(): void {
@@ -40,5 +30,10 @@ export class ExamProfileComponent implements OnInit {
         document.getElementById('expandInf')!.style.transform = 'rotate(180deg)';
         document.getElementById('examInfContainer')!.style.transform = 'translateX(-100%)';
     }
+  }
+
+  // Unsubscribe to prevent memory leaks
+  ngOnDestroy() {
+    this.routeSub.unsubscribe();
   }
 }
