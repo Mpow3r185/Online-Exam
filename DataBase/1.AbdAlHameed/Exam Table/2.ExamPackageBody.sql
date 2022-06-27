@@ -53,8 +53,9 @@ CREATE OR REPLACE PACKAGE BODY ExamPackage AS
             COMMIT;
         ELSE
             OPEN ref_cursor FOR
-            SELECT *
-            FROM Exam;
+            SELECT Exam.*, Course.courseName
+            FROM Exam
+            JOIN Course ON Course.Id = Exam.courseId;
 
             DBMS_SQL.RETURN_RESULT(ref_cursor);
         END IF;
@@ -78,7 +79,7 @@ CREATE OR REPLACE PACKAGE BODY ExamPackage AS
             ref_cursor SYS_REFCURSOR;
         BEGIN
             OPEN ref_cursor FOR
-            SELECT *
+            SELECT Exam.*, Course.courseName
             FROM Exam
             JOIN Course ON (Exam.courseId = Course.id)
             WHERE (exTitle IS NULL OR title LIKE '%' || exTitle || '%')
@@ -152,12 +153,26 @@ CREATE OR REPLACE PACKAGE BODY ExamPackage AS
         ref_cursor SYS_REFCURSOR;
     BEGIN
         OPEN ref_cursor FOR
-        SELECT *
+        SELECT Exam.*, Course.courseName
         FROM Exam
+        JOIN Course ON Course.id = cid
         WHERE courseId = cid;
 
         DBMS_SQL.RETURN_RESULT(ref_cursor);
     END GetExamsByCourseId;
+    
+    -- Get Exam By Id
+    PROCEDURE GetExamById(exid IN exam.id%type) AS
+        ref_cursor SYS_REFCURSOR;
+    BEGIN
+        OPEN ref_cursor FOR
+        SELECT Exam.*, Course.courseName
+        FROM Exam
+        JOIN Course ON Course.id = Exam.courseId
+        WHERE Exam.id = exid;
+        
+        DBMS_SQL.RETURN_RESULT(ref_cursor);
+    END GetExamById;
 
 END ExamPackage;
 

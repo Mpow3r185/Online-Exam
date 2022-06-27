@@ -45,6 +45,9 @@ CREATE OR REPLACE PACKAGE ExamPackage AS
 
     -- Get Exams By Course Id
     PROCEDURE GetExamsByCourseId(cid IN exam.courseId%type);
+    
+    -- Get Exam By Id
+    PROCEDURE GetExamById(exid IN exam.id%type);
 
 END ExamPackage;
 
