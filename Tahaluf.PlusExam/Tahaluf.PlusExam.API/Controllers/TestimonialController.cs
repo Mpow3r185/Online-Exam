@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Tahaluf.PlusExam.Core.Data;
+using Tahaluf.PlusExam.Core.DTO;
 using Tahaluf.PlusExam.Core.ServiceInterface;
 
 namespace Tahaluf.PlusExam.API.Controllers
@@ -40,7 +41,7 @@ namespace Tahaluf.PlusExam.API.Controllers
 
         #region GetTestimonials
         [HttpGet]
-        public List<Testimonial> GetTestimonials()
+        public List<TestimonialDTO> GetTestimonials()
         {
             return testimonialService.GetTestimonials();
         }
