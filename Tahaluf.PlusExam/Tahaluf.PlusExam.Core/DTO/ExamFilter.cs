@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -16,6 +16,6 @@ namespace Tahaluf.PlusExam.Core.DTO
         public DateTime? StDate { get; set; }
         public DateTime? EnDate { get; set; }
         public DateTime? CreateDate { get; set; }
-        public string CName { get; set; }
+        public string CourseName { get; set; }
     }
 }
