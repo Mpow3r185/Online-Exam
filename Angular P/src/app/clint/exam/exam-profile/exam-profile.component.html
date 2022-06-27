@@ -1,4 +1,7 @@
-<div class="container">
+<app-internal-nav-bar></app-internal-nav-bar>
+<app-header [pageName]="homeService.exams.title"></app-header>
+
+<div class="container my-5">
 
     <div class="row min-height-700">
 
@@ -11,7 +14,8 @@
 
                     <!-- Exam Image -->
                     <div class="ex-img m-auto" title="Exam Image"
-                        style="background-image: url('../../../../assets/images/about-us-bg.jpg');"></div>
+                        style="background-image: url('../../../../assets/images/exam_images/{{ homeService.exams.examImage }}');">
+                    </div>
 
                 </div>
 
@@ -20,7 +24,7 @@
 
                     <!-- Exam Title -->
                     <h2 class="text-center" title="Exam Name">
-                        Python 101
+                        {{ homeService.exams.title | titlecase }}
                     </h2>
 
                 </div>
@@ -28,19 +32,14 @@
                 <!-- Course Name Container -->
                 <div class="container mb-3">
                     <h4 class=" text-center" title="Course Name">
-                        Python
+                        {{ homeService.exams.courseName | titlecase }}
                     </h4>
                 </div>
 
                 <!-- Exam Description Container -->
                 <div class="container mb-3">
                     <p class=" text-center" title="Exam Description">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem soluta ab quod earum
-                        ratione, sunt dicta expedita, officiis pariatur mollitia perspiciatis accusantium
-                        facilis neque saepe ducimus suscipit quas et nisi eum repellendus error ad, animi
-                        repellat distinctio! Nesciunt dolor similique corporis dicta cupiditate eum laudantium
-                        eos ipsum, deserunt quam minima necessitatibus expedita ullam nam ea ab minus.
-                        Repellendus, tempora maxime?
+                        {{ homeService.exams.description}}
                     </p>
                 </div>
 
@@ -61,7 +60,7 @@
                 <!-- Expand Button -->
                 <div class=" expand-btn-cont">
                     <button class="btn btn-primary expand-btn d-block mx-auto"
-                        style="width: 50px; height: 50px; border-radius: 50%;" onclick="expandExamInformation()">
+                        style="width: 50px; height: 50px; border-radius: 50%;" (click)="expandExamInformation()">
                         <i class="fas fa-chevron-down" id="expandInf"></i>
                     </button>
                 </div>
@@ -78,7 +77,8 @@
                                 </div>
 
                                 <div class="col-6 text-left">
-                                    6 JUN 2022 - 7 JUN 2022
+                                    {{ homeService.exams.startDate | date : 'mediumDate' }} - {{
+                                    homeService.exams.endDate | date : 'mediumDate' }}
                                 </div>
                             </div>
                         </li>
@@ -91,7 +91,8 @@
                                 </div>
 
                                 <div class="col-6 text-left">
-                                    13:30 - 14:45
+                                    {{ homeService.exams.startDate | date : 'HH:mm' }} - {{
+                                    homeService.exams.endDate | date : 'HH:mm' }}
                                 </div>
                             </div>
                         </li>
@@ -130,7 +131,7 @@
                                 </div>
 
                                 <div class="col-6 text-left">
-                                    50%
+                                    {{ homeService.exams.successMark }}%
                                 </div>
                             </div>
                         </li>
@@ -156,7 +157,7 @@
                                 </div>
 
                                 <div class="col-6 text-left">
-                                    Beginner
+                                    {{ homeService.exams.examLevel }}
                                 </div>
                             </div>
                         </li>
@@ -169,7 +170,7 @@
                                 </div>
 
                                 <div class="col-6 text-left">
-                                    $70.5
+                                    ${{ homeService.exams.cost }}
                                 </div>
                             </div>
                         </li>
@@ -182,3 +183,5 @@
     </div>
 
 </div>
+
+<app-footer></app-footer>
