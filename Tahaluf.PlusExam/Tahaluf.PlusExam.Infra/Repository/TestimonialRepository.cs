@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Tahaluf.PlusExam.Core.Common;
 using Tahaluf.PlusExam.Core.Data;
+using Tahaluf.PlusExam.Core.DTO;
 using Tahaluf.PlusExam.Core.GenericInterface;
 using Tahaluf.PlusExam.Core.RepositoryInterface;
 using Tahaluf.PlusExam.Infra.Generic;
@@ -25,7 +26,7 @@ namespace Tahaluf.PlusExam.Infra.Repository
         #endregion Constructor
 
         #region GetTestimonials
-        public List<Testimonial> GetTestimonials()
+        public List<TestimonialDTO> GetTestimonials()
         {
             return genericCRUD.GetAll();
         }
