@@ -15,13 +15,13 @@
                 <!-- Course Name -->
                 <div class="text-center mt-1" style="min-height:20px;">
                     <h3 style="color:#fff" title="Course Name">
-                        {{ homeService.courses[0].courseName | titlecase }}
+                        {{ courseName | titlecase }}
                     </h3>
                 </div>
 
                 <!-- Exam Description -->
                 <div class="text-center mt-1">
-                    <p class="p-3" style="color:#fff; word-break: break-word; height: 270px" title="Exam Description">
+                    <p class="p-3" style="color:#fff; word-break: break-word; height: 220px;" title="Exam Description">
                         {{ description }}
                     </p>
                 </div>
@@ -44,7 +44,7 @@
                     <div class="row" title="Success Mark">
                         <i class="fa fa-check-square-o col-1 align-self-center secondary"></i>
                         <span class="col-10 dt-inf">
-                            {{ successMark }}
+                            {{ successMark }}%
                         </span>
                     </div>
 
@@ -63,7 +63,8 @@
                 <!-- Details Button -->
                 <div class="container">
                     <div class="row justify-content-center">
-                        <button type="button" class="btn btn-light dt-btn" title="Press to See Details">
+                        <button type="button" class="btn btn-light dt-btn" title="Press to See Details"
+                            (click)="goToExamProfile(id)">
                             See Details
                         </button>
                     </div>
@@ -97,7 +98,7 @@
             <!-- Course Name -->
             <div style="min-height:20px;">
                 <h6>
-                    {{ homeService.courses[0].courseName | titlecase }}
+                    {{ courseName| titlecase }}
                 </h6>
             </div>
 
@@ -148,6 +149,28 @@
                         </ng-template>
 
                     </span>
+                </div>
+            </div>
+
+            <!-- Separator -->
+            <hr class="mb-0" />
+
+            <!-- Exam Timer -->
+            <div>
+                <div class="row justify-content-center flex-column py-2"
+                    *ngIf="timerStatus == 'ENDS AFTER' || timerStatus == 'START AFTER'">
+
+                    <sub class="py-1 text-center">
+                        {{ timerStatus }}
+                    </sub>
+
+                    <b class="font-family-digital text-center">
+                        {{ timerExam }}
+                    </b>
+                </div>
+
+                <div class="row justify-content-center py-3" *ngIf="timerStatus === undefined">
+                    <b style="font-size: 1.5rem;">{{ timerExam }}</b>
                 </div>
             </div>
         </div>
