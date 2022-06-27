@@ -18,7 +18,6 @@ export class HomeService {
   popularCourses: any = [];
   ourServiceData: any = [{}];
   selectedUser: any;
- testimonial:any=[{}];
   homePage: any = [{}];
 
   constructor(
@@ -48,11 +47,26 @@ export class HomeService {
     });
   }
 
+  // Get Exam By Id
+  async getExamById(exid: number): Promise<void> {
+    this.http.post(`https://localhost:44342/api/exam/getExamById/${exid}`, null).subscribe((result) => {
+      SpinnerComponent.show();   
+      this.exams = result;
+      console.log(result);
+      console.log(this.exams);
+      
+      
+      SpinnerComponent.hide();   
+    }, err => {
+      this.toastr.error('Unable to connect the server.')
+    })
+  }
+
   // Get Courses
   async getCourses(): Promise<void> {
     this.http.get('https://localhost:44342/api/course').subscribe((result) => {
       SpinnerComponent.show();
-      this.courses = result;
+      this.courses = result;      
       SpinnerComponent.hide();
     }, err => {
       this.toastr.error('Unable to connect the server');
@@ -63,9 +77,7 @@ export class HomeService {
   async searchCourse(body: any) {
     this.http.post('https://localhost:44342/api/course/searchCourse', body).subscribe((result) => {
       SpinnerComponent.show();
-      this.courses = result;
-      console.log(result);
-      
+      this.courses = result;      
       SpinnerComponent.hide();
     }, err => {
       this.toastr.error('Unable to connect the server');
@@ -100,13 +112,13 @@ export class HomeService {
    err => {
      this.toastr.error('Unable to connect the server');
    });
-  }
+  } 
   
   // Get Exams By Course Id
   async getExamsByCourseId(cid: number) {
     this.http.post(`https://localhost:44342/api/exam/getExamsByCourseId/${cid}`, null).subscribe((result) => {
       SpinnerComponent.show();      
-      this.exams = result;
+      this.exams = result;      
       SpinnerComponent.hide();
     }, err => {
       this.toastr.error('Unable to connect the server');
@@ -116,8 +128,7 @@ export class HomeService {
   async getAllServices(){
     this.http.get('https://localhost:44342/api/OurService').subscribe((result)=>{
         this.ourServiceData = result;
-    },err =>{
-      console.log(err.message,err.status);
+    }, err =>{
        this.toastr.error('Unable to connect the server');
     })
   }
@@ -142,38 +153,9 @@ export class HomeService {
         (result: any) => {
           this.selectedUser = result;
         },
-        (error) => console.log(error)
+        (error) => {
+          this.toastr.error(error.message)
+        }
       );
   }
-// Get Testimonials
-   getTestimonials() {
-    this.http.get('https://localhost:44342/api/testimonial').subscribe((result:any) => {
-
-      this.testimonial = result.filter((value:any)=>
-        value.status=='ACCEPTED'
-      );
-
-    }, err => {
-      this.toastr.error(err.message,err.status);
-    });
-  }
-
-   // Create Testimonial
-   createTestimonial(test:any) {
-    
-    
-    let body:any={message:test.toString(),accountId:this.selectedUser[0].id,status:'PENDING'};
-    
-    this.http.post('https://localhost:44342/api/testimonial',body).subscribe((result) => {
-      SpinnerComponent.show();          
-      setTimeout(() => {
-        SpinnerComponent.hide();
-        this.toastr.success('created');
-      }, 2000);
-
-    }, err => {
-      this.toastr.error(err.message,err.status);
-    });
-  }
-  
 }
