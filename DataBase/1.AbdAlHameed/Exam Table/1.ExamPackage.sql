@@ -30,7 +30,8 @@ CREATE OR REPLACE PACKAGE ExamPackage AS
         price IN exam.cost%type DEFAULT NULL,
         stDate IN exam.startDate%type DEFAULT NULL,
         enDate IN exam.endDate%type DEFAULT NULL,
-        createDate IN exam.creationDate%type DEFAULT NULL);
+        createDate IN exam.creationDate%type DEFAULT NULL,
+        cName IN course.courseName%type);
 
     -- Buy Exam Procedure
     PROCEDURE BuyExam(

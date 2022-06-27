@@ -116,20 +116,38 @@ export class ExamComponent implements OnInit {
     }
   }
 
-  examSearch() {
+  async examSearch() {
     const startDate: any = document.getElementById('startDate');
     const endDate: any = document.getElementById('endDate');
     const courseName: any = document.getElementById('courseName');
     const examName: any = document.getElementById('examName');
     const examLevel: any = document.querySelectorAll('.form-check-input');
 
-    examLevel.forEach((level: any) => {
-      if (level.checked) {
-        console.log(level);
-      }
-    });
+    const startDateValue = (startDate.value === '') ? null : startDate.value;
+    const endDateValue = (endDate.value === '') ? null : endDate.value;
+    const courseNameValue = (courseName.value === '') ? null : courseName.value.toLowerCase();
+    const examNameValue = (examName.value === '') ? null : examName.value.toLowerCase();
+    const beginnerExamLevelValue = (!examLevel[0].checked) ? null : 'Beginner';
+    const intermediateExamLevelValue = (!examLevel[1].checked) ? null : 'Intermediate';
+    const advancedExamLevelValue = (!examLevel[2].checked) ? null : 'Advanced';
+    const expertExamLevelValue = (!examLevel[3].checked) ? null : 'Expert';
     
-    
+    const searchBody = {
+      stDate: startDateValue,
+      enDate: endDateValue,
+      cName: courseNameValue,
+      exTitle: examNameValue,
+      ExLevelBeginner: beginnerExamLevelValue,
+      ExLevelIntermediate: intermediateExamLevelValue,
+      ExLevelAdvanced: advancedExamLevelValue,
+      ExLevelExpert: expertExamLevelValue
+    }
+
+    await this.home.searchExam(searchBody);
   }
 
+  async examClear() {
+    const emptyBody = {};
+    await this.home.searchExam(emptyBody);
+  }
 }

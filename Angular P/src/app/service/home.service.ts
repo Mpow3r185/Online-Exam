@@ -121,6 +121,15 @@ export class HomeService {
     })
   }
 
+  // Search Exam
+  async searchExam(body: any) {
+    this.http.post('https://localhost:44342/api/exam/searchExam', body).subscribe((result) => {
+      SpinnerComponent.show();
+      this.exams = result;
+      SpinnerComponent.hide();
+    })
+  }
+
   //To get info for user he just login
   async getUserByUserName() {
     let user: any = localStorage.getItem('user');

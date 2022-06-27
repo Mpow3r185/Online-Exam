@@ -59,7 +59,8 @@ form label {
     display: none;
 }
 
-#searchBtn {
+#searchBtn,
+#clearBtn {
     font-family: Arial, Helvetica, sans-serif;
     padding: 3px 10px;
     background-color: #fff;
@@ -69,7 +70,8 @@ form label {
     transition: 0.3s;
 }
 
-#searchBtn:hover {
+#searchBtn:hover,
+#clearBtn:hover {
     background-color: #016;
     color: #fff;
 

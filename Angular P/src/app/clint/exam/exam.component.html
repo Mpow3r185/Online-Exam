@@ -203,9 +203,16 @@
                     </li>
                 </ul>
 
-                <div class="row justify-content-center mt-3 mb-3 btn-container">
-                    <input type="submit" value="Search" id="searchBtn" (click)="examSearch()" />
+                <div class="row justify-content-around">
+                    <div class="mt-3 mb-3 btn-container">
+                        <input type="submit" value="Search" id="searchBtn" (click)="examSearch()" />
+                    </div>
+
+                    <div class="mt-3 mb-3 btn-container">
+                        <input type="reset" value="Clear" id="clearBtn" (click)="examClear()" />
+                    </div>
                 </div>
+
             </form>
         </div>
 

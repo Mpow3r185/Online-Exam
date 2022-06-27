@@ -72,19 +72,23 @@ CREATE OR REPLACE PACKAGE BODY ExamPackage AS
         price IN exam.cost%type DEFAULT NULL,
         stDate IN exam.startDate%type DEFAULT NULL,
         enDate IN exam.endDate%type DEFAULT NULL,
-        createDate IN exam.creationDate%type DEFAULT NULL) AS 
+        createDate IN exam.creationDate%type DEFAULT NULL,
+        cName IN course.courseName%type) AS 
 
             ref_cursor SYS_REFCURSOR;
         BEGIN
             OPEN ref_cursor FOR
             SELECT *
             FROM Exam
+            JOIN Course ON (Exam.courseId = Course.id)
             WHERE (exTitle IS NULL OR title LIKE '%' || exTitle || '%')
+            AND (cName IS NULL OR courseName LIKE '%' || cName || '%')
             AND ((examLevel = exLevelBeginner)
             OR (examLevel = exLevelIntermediate)
             OR (examLevel = exLevelAdvanced)
             OR (examLevel = exLevelExpert)
-            OR (exLevelBeginner IS NULL AND exLevelIntermediate IS NULL AND exLevelAdvanced IS NULL AND exLevelExpert IS NULL))
+            OR (exLevelBeginner IS NULL AND exLevelIntermediate IS NULL 
+            AND exLevelAdvanced IS NULL AND exLevelExpert IS NULL))
             AND (succMark IS NULL OR successMark = succMark)
             AND (price IS NULL OR cost = price)
 

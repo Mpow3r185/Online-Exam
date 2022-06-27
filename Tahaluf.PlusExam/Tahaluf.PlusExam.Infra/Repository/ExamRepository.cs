@@ -69,8 +69,23 @@ namespace Tahaluf.PlusExam.Infra.Repository
                 dbType: DbType.String,
                 direction: ParameterDirection.Input);
 
-            parameters.Add("exLevel",
-                examFilter.ExLevel,
+            parameters.Add("ExLevelBeginner",
+                examFilter.ExLevelBeginner,
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("ExLevelIntermediate",
+                examFilter.ExLevelIntermediate,
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("ExLevelAdvanced",
+                examFilter.ExLevelAdvanced,
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("ExLevelExpert",
+                examFilter.ExLevelExpert,
                 dbType: DbType.String,
                 direction: ParameterDirection.Input);
 
@@ -97,6 +112,11 @@ namespace Tahaluf.PlusExam.Infra.Repository
             parameters.Add("createDate",
                 examFilter.CreateDate,
                 dbType: DbType.DateTime,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("cName",
+                examFilter.CName,
+                dbType: DbType.String,
                 direction: ParameterDirection.Input);
             #endregion DynamicParameters
 
