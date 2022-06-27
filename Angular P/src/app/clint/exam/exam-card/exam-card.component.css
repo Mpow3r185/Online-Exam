@@ -1,5 +1,10 @@
+@font-face {
+    font-family: 'digital-7';
+    src: url('../../../../assets/fonts/digital-7.ttf');
+}
+
 div.exam-card {
-    height: 600px;
+    height: 550px;
     border: 0.5px solid rgba(128, 128, 128, 0.452);
     transition: 0.5s;
     overflow: hidden;
@@ -73,4 +78,9 @@ button.dt-btn:hover {
     background-color: #000;
     border-color: #fff;
     box-shadow: 1px 1px 5px 2px rgba(255, 255, 255, 0.5);
+}
+
+.font-family-digital {
+    font-family: 'digital-7';
+    font-size: 2rem;
 }
