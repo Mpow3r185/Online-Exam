@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -176,6 +176,15 @@ namespace Tahaluf.PlusExam.API.Controllers
             }
         }
         #endregion UploadImage
+
+        #region GetAccountById
+        [HttpPost]
+        [Route("GetAccountById/{accid}")]
+        public Account GetAccountById(int accid)
+        {
+            return accountService.GetAccountById(accid);
+        }
+        #endregion GetAccountById
 
     }
 }
