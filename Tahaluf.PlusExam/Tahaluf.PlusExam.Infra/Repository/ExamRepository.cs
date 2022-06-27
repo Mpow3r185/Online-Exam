@@ -115,7 +115,7 @@ namespace Tahaluf.PlusExam.Infra.Repository
                 direction: ParameterDirection.Input);
 
             parameters.Add("cName",
-                examFilter.CName,
+                examFilter.CourseName,
                 dbType: DbType.String,
                 direction: ParameterDirection.Input);
             #endregion DynamicParameters
@@ -136,6 +136,19 @@ namespace Tahaluf.PlusExam.Infra.Repository
             return dbContext.Connection.Query<Exam>(
                 "ExamPackage.GetExamsByCourseId", parameters,
                 commandType: CommandType.StoredProcedure).ToList();
+        }
+
+        public Exam GetExamById(int exid)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("exid",
+                exid,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            return dbContext.Connection.Query<Exam>(
+                "ExamPackage.GetExamById", parameters,
+                commandType: CommandType.StoredProcedure).FirstOrDefault();
         }
     }
 }
