@@ -45,6 +45,7 @@ namespace Tahaluf.PlusExam.Core.Data
         public DateTime CreationDate { get; set; }
         
         public string ExamImage { get; set; }
+        public string CourseName { get; set; }
 
 
         public virtual Course Course { get; set; }
