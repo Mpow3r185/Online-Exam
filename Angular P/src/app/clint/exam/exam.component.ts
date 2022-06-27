@@ -1,3 +1,4 @@
+import { SpinnerComponent } from 'src/app/spinner/spinner.component';
 import { HomeService } from 'src/app/service/home.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -130,7 +131,7 @@ export class ExamComponent implements OnInit {
     const beginnerExamLevelValue = (!examLevel[0].checked) ? null : 'Beginner';
     const intermediateExamLevelValue = (!examLevel[1].checked) ? null : 'Intermediate';
     const advancedExamLevelValue = (!examLevel[2].checked) ? null : 'Advanced';
-    const expertExamLevelValue = (!examLevel[3].checked) ? null : 'Expert';
+    const expertExamLevelValue = (!examLevel[3].checked) ? null : 'Expert';    
     
     const searchBody = {
       stDate: startDateValue,
@@ -142,7 +143,8 @@ export class ExamComponent implements OnInit {
       ExLevelAdvanced: advancedExamLevelValue,
       ExLevelExpert: expertExamLevelValue
     }
-
+    console.log(searchBody);
+    
     await this.home.searchExam(searchBody);
   }
 
