@@ -1,1 +1,12 @@
 
+
+.scroll-top-style {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    transform: rotate(90deg);
+    background-color: #016;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.4rem
+  }
