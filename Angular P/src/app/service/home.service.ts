@@ -18,6 +18,7 @@ export class HomeService {
   popularCourses: any = [];
   ourServiceData: any = [{}];
   selectedUser: any;
+ testimonial:any=[{}];
   homePage: any = [{}];
 
   constructor(
@@ -144,4 +145,35 @@ export class HomeService {
         (error) => console.log(error)
       );
   }
+// Get Testimonials
+   getTestimonials() {
+    this.http.get('https://localhost:44342/api/testimonial').subscribe((result:any) => {
+
+      this.testimonial = result.filter((value:any)=>
+        value.status=='ACCEPTED'
+      );
+
+    }, err => {
+      this.toastr.error(err.message,err.status);
+    });
+  }
+
+   // Create Testimonial
+   createTestimonial(test:any) {
+    
+    
+    let body:any={message:test.toString(),accountId:this.selectedUser[0].id,status:'PENDING'};
+    
+    this.http.post('https://localhost:44342/api/testimonial',body).subscribe((result) => {
+      SpinnerComponent.show();          
+      setTimeout(() => {
+        SpinnerComponent.hide();
+        this.toastr.success('created');
+      }, 2000);
+
+    }, err => {
+      this.toastr.error(err.message,err.status);
+    });
+  }
+  
 }
