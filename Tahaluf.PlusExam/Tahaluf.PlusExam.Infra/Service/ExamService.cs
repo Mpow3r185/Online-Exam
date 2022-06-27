@@ -61,5 +61,10 @@ namespace Tahaluf.PlusExam.Infra.Service
         {
             return examRepository.GetExamsByCourseId(cid);
         }
+
+        public Exam GetExamById(int exid)
+        {
+            return examRepository.GetExamById(exid);
+        }
     }
 }
