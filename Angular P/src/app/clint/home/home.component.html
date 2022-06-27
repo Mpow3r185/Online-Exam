@@ -190,14 +190,12 @@
     <div class="overflow-hidden">
         <div class="d-flex" id="testiSlider" style="transition: 0.5s">
             <app-testimonial class="col-12" id="testimonial-{{ i }}"
-                *ngFor="let testimonial of testimonials let i = index;" [profileImage]="testimonial.profileImage"
-                [name]="testimonial.name" [title]="testimonial.title" [message]="testimonial.message"></app-testimonial>
+                *ngFor="let testimonial of homeService.testimonial let i = index;" [profilePicture]="testimonial.profilePicture"
+                [userName]="testimonial.userName" [message]="testimonial.message" [fullName]="testimonial.fullName">
+            </app-testimonial>
         </div>
     </div>
-
-
 </div>
-
 
 <!-- All Testimonials Profile Pictures -->
 <div class="mt-3 mb-5">
@@ -207,8 +205,8 @@
             <div class="row justify-content-around flex-row-reverse h-100">
 
                 <div class="col-2 h-100 testimonial-transporter"
-                    *ngFor="let testimonial of testimonials; let i = index;" id="transporter{{ i }}"
-                    style="background-image:url('../../../../assets/images/profile_picture/{{ testimonial.profileImage }}');"
+                    *ngFor="let testimonial of homeService.testimonial ; let i = index;" id="transporter{{ i }}"
+                    style="background-image:url('../../../../assets/images/profile_picture/{{ testimonial.profilePicture }}');"
                     (click)="animateTestimonial(i)"></div>
             </div>
 
@@ -220,7 +218,7 @@
     <div class="row justify-content-center">
         <h1 class="text-center">WRITE YOUR FEEDBACK</h1>
     </div>
-    <form class="col-10 m-auto" method="POST" action="#">
+    <form class="col-10 m-auto">
 
         <div class="row justify-content-center">
 
@@ -233,13 +231,13 @@
             </mat-error>
 
             <!-- Min Length Error -->
-            <mat-error *ngIf="testimonialTextarea.hasError('minlength')">
+            <mat-error *ngIf="testimonialTextarea.hasError('minlength')" >
                 Minimum Length is 10 Characters
             </mat-error>
         </div>
 
         <div class="row justify-content-center mt-3 mb-5">
-            <button type="submit" id="feedbackSubmit" title="Submit Your Feedback">
+            <button type="submit" id="feedbackSubmit" title="Submit Your Feedback" (click)="saveTesti()">
                 Submit
             </button>
         </div>
