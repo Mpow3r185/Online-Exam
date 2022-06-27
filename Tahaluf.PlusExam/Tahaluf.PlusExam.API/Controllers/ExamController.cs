@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Tahaluf.PlusExam.Core.Data;
@@ -76,5 +76,14 @@ namespace Tahaluf.PlusExam.API.Controllers
             return examService.GetExamsByCourseId(cid);
         }
         #endregion GetExamsByCourseId
+
+        #region GetExamById
+        [HttpPost]
+        [Route("GetExamById/{exid}")]
+        public Exam GetExamById(int exid)
+        {
+            return examService.GetExamById(exid);
+        }
+        #endregion GetExamById
     }
 }
