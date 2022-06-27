@@ -31,10 +31,6 @@ const routes: Routes = [
     component: ExamComponent
   },
   {
-    path:'examProfile',
-    component: ExamProfileComponent
-  },
-  {
     path:'exam/:id',
     component: ExamProfileComponent
   },
