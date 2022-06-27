@@ -6,18 +6,39 @@
         <div class="row justify-content-center mb-3">
             <h1>Exams For
                 <span class="font-weight-bold" style="color: #d70926;">
-                    {{ homeService.courses[0].courseName }}
+                    {{ homeService.courses[0].courseName | titlecase }}
                 </span>
                 Course
             </h1>
         </div>
-        <div class="row pb-5" style="border: 1px solid rgba(128, 128, 128, 0.2); border-radius: 10px;">
-            <app-exam-card *ngFor="let exam of homeService.exams" [id]="exam.id" [courseId]="exam.courseId"
-                [title]="exam.title" [passcode]="exam.passcode" [description]="exam.description"
-                [examLevel]="exam.examLevel" [successMark]="exam.successMark" [cost]="exam.cost"
-                [startDate]="exam.startDate" [endDate]="exam.endDate" [status]="exam.status"
+        <div class="row pb-5" style="border: 1px solid rgba(128, 128, 128, 0.2); border-radius: 10px;"
+            *ngIf="homeService.exams.length > 0; else noData">
+            <app-exam-card *ngFor="let exam of homeService.exams if homeService.exams.length > 0" [id]="exam.id"
+                [courseId]="exam.courseId" [title]="exam.title" [passcode]="exam.passcode"
+                [description]="exam.description" [examLevel]="exam.examLevel" [successMark]="exam.successMark"
+                [cost]="exam.cost" [startDate]="exam.startDate" [endDate]="exam.endDate" [status]="exam.status"
                 [creationDate]="exam.creationDate" [examImage]="exam.examImage"
-                class=" col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4"></app-exam-card>
+                class=" col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            </app-exam-card>
         </div>
+
+        <ng-template #noData>
+            <div class="row pb-5 justify-content-center "
+                style="border: 1px solid rgba(128, 128, 128, 0.2); border-radius: 10px;">
+
+                <div class="m-5">
+                    <div
+                        style="background-image: url('../../../../assets/images/not-found.svg'); height: 265px; width: 268px;">
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <h4 class="text-center align-self-center font-weight-bold" style="color: #d70926;">
+                        There is no exams for that course currently
+                    </h4>
+                </div>
+
+            </div>
+        </ng-template>
     </div>
 </div>

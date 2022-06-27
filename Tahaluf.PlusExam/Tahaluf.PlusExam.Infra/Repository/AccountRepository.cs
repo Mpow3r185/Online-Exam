@@ -194,5 +194,18 @@ namespace Tahaluf.PlusExam.Infra.Repository
             return result.FirstOrDefault();
 
         }
+
+        public Account GetAccountById(int accid)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("accid",
+                accid,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            return dbContext.Connection.Query<Account>(
+                "AccountPackage.GetAccountById", parameters,
+                commandType: CommandType.StoredProcedure).FirstOrDefault();
+        }
     }
 }

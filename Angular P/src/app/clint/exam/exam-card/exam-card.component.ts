@@ -13,7 +13,7 @@ export class ExamCardComponent implements OnInit {
   @Input() title!: string;
   @Input() passcode!: string;
   @Input() description!: string;
-  @Input() examLevel!: number;
+  @Input() examLevel!: string;
   @Input() successMark!: number;
   @Input() cost!: number;
   @Input() startDate!: Date;
@@ -25,12 +25,8 @@ export class ExamCardComponent implements OnInit {
   course: any = [{}];
 
   constructor(public homeService: HomeService) { 
-    this.run();
   }
 
-  private async run() {
-    await this.homeService.searchCourse( { cid: this.courseId } );
-  }
 
   ngOnInit(): void {
   }

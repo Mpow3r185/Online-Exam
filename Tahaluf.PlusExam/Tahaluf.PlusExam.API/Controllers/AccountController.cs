@@ -177,5 +177,14 @@ namespace Tahaluf.PlusExam.API.Controllers
         }
         #endregion UploadImage
 
+        #region GetAccountById
+        [HttpPost]
+        [Route("GetAccountById/{accid}")]
+        public Account GetAccountById(int accid)
+        {
+            return accountService.GetAccountById(accid);
+        }
+        #endregion GetAccountById
+
     }
 }

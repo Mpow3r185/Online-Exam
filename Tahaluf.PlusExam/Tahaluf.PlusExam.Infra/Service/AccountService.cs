@@ -123,5 +123,10 @@ namespace Tahaluf.PlusExam.Infra.Service
                 return null;
             }
         }
+
+        public Account GetAccountById(int accid)
+        {
+            return accountRepository.GetAccountById(accid);
+        }
     }
 }

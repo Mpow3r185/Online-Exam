@@ -64,7 +64,10 @@ CREATE OR REPLACE PACKAGE BODY ExamPackage AS
     -- Search Exam Procedure
     PROCEDURE SearchExam(
         exTitle IN exam.title%type DEFAULT NULL,
-        exLevel IN exam.examLevel%type DEFAULT NULL,
+        exLevelBeginner IN exam.examLevel%type DEFAULT NULL,
+        exLevelIntermediate IN exam.examLevel%type DEFAULT NULL,
+        exLevelAdvanced IN exam.examLevel%type DEFAULT NULL,
+        exLevelExpert IN exam.examLevel%type DEFAULT NULL,
         succMark IN exam.successMark%type DEFAULT NULL,
         price IN exam.cost%type DEFAULT NULL,
         stDate IN exam.startDate%type DEFAULT NULL,
@@ -77,7 +80,11 @@ CREATE OR REPLACE PACKAGE BODY ExamPackage AS
             SELECT *
             FROM Exam
             WHERE (exTitle IS NULL OR title LIKE '%' || exTitle || '%')
-            AND (exLevel IS NULL OR examLevel LIKE '%' || exLevel || '%')
+            AND ((examLevel = exLevelBeginner)
+            OR (examLevel = exLevelIntermediate)
+            OR (examLevel = exLevelAdvanced)
+            OR (examLevel = exLevelExpert)
+            OR (exLevelBeginner IS NULL AND exLevelIntermediate IS NULL AND exLevelAdvanced IS NULL AND exLevelExpert IS NULL))
             AND (succMark IS NULL OR successMark = succMark)
             AND (price IS NULL OR cost = price)
 

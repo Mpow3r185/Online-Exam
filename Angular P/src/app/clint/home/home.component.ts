@@ -35,10 +35,7 @@ export class HomeComponent implements OnInit {
       profileImage: 'person-one.jpg',
       name: 'Abd Al Hameed Al-Dalgamouni',
       title: 'Admin',
-      message: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
-      illo quo doloribus quas iure quod expedita eius, labore optio nesciunt nostrum tempore
-      eveniet recusandae repellat. Provident asperiores accusamus illum? Architecto tempore
-      libero quisquam dignissimos, ipsa dicta, rem accusamus quam et eum vero.`
+      message: ``
     },
 
     {
@@ -93,7 +90,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.homeService.getCourses();
     this.homeService.getExams();
-    //this.homeService.getHomePage();
   }
 
   currentTestimonialIndex: number = 0;

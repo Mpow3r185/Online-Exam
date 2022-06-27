@@ -22,7 +22,10 @@ CREATE OR REPLACE PACKAGE ExamPackage AS
     -- Search Exam Procedure
     PROCEDURE SearchExam(
         exTitle IN exam.title%type DEFAULT NULL,
-        exLevel IN exam.examLevel%type DEFAULT NULL,
+        exLevelBeginner IN exam.examLevel%type DEFAULT NULL,
+        exLevelIntermediate IN exam.examLevel%type DEFAULT NULL,
+        exLevelAdvanced IN exam.examLevel%type DEFAULT NULL,
+        exLevelExpert IN exam.examLevel%type DEFAULT NULL,
         succMark IN exam.successMark%type DEFAULT NULL,
         price IN exam.cost%type DEFAULT NULL,
         stDate IN exam.startDate%type DEFAULT NULL,

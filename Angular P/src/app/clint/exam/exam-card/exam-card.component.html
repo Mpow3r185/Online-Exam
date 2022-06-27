@@ -8,14 +8,14 @@
                 <!-- Exam Name -->
                 <div class="text-center mt-3" style="min-height:60px;">
                     <h2 style="color:#fff" title="Exam Name">
-                        {{ title }}
+                        {{ title | titlecase }}
                     </h2>
                 </div>
 
                 <!-- Course Name -->
                 <div class="text-center mt-1" style="min-height:20px;">
                     <h3 style="color:#fff" title="Course Name">
-                        {{ homeService.courses[0].courseName }}
+                        {{ homeService.courses[0].courseName | titlecase }}
                     </h3>
                 </div>
 
@@ -89,7 +89,7 @@
             <!-- Exam Name -->
             <div style="min-height:60px;">
                 <h5>
-                    {{ title }}
+                    {{ title | titlecase }}
                 </h5>
             </div>
 
@@ -97,7 +97,7 @@
             <!-- Course Name -->
             <div style="min-height:20px;">
                 <h6>
-                    {{ homeService.courses[0].courseName }}
+                    {{ homeService.courses[0].courseName | titlecase }}
                 </h6>
             </div>
 
@@ -109,7 +109,7 @@
                 <div class="row">
                     <i class="fas fa-chart-line col-1 align-self-center primary"></i>
                     <span class="col-10">
-                        {{ examLevel }}
+                        {{ examLevel | titlecase }}
                     </span>
                 </div>
             </div>
@@ -119,7 +119,7 @@
                 <div class="row mt-2">
                     <i class="fas fa-calendar-alt col-1 align-self-center primary"></i>
                     <span class="col-10">
-                        {{ startDate }} - {{ endDate }}</span>
+                        {{ startDate | date: 'shortDate' }} - {{ endDate | date: 'shortDate' }}</span>
                 </div>
             </div>
 
@@ -128,7 +128,7 @@
                 <div class="row mt-2">
                     <i class="fas fa-clock col-1 align-self-center primary"></i>
                     <span class="col-10">
-                        startHour - endHour </span>
+                        {{ startDate | date: 'HH:mm'}} - {{ endDate | date: 'HH:mm'}} </span>
                 </div>
             </div>
 

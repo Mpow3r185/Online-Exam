@@ -23,10 +23,12 @@ export class CourseProfileComponent implements OnInit {
   ngOnInit(): void {
 
     // Get Course And Exams For That Course
-    this.routeSub = this.route.params.subscribe(async params => {      
+    this.routeSub = this.route.params.subscribe(async params => {   
+      
+         
       let body = {
         cid: Number(params['id'])
-      };      
+      };     
       await this.homeService.searchCourse(body);            // Get Course
       await this.homeService.getExamsByCourseId(body.cid);  // Get Exams
     });

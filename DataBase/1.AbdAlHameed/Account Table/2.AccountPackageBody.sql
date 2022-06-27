@@ -50,7 +50,7 @@ CREATE OR REPLACE PACKAGE BODY AccountPackage AS
             OPEN ref_cursor FOR
             SELECT *
             FROM Account;
-            
+
             DBMS_SQL.RETURN_RESULT(ref_cursor);
         END IF;
     END AccountCRUD;
@@ -159,12 +159,12 @@ CREATE OR REPLACE PACKAGE BODY AccountPackage AS
 
         commit;
     END UnblockUser;
-    
+
     -- Login Procedure
     PROCEDURE Login(
         uName IN VARCHAR,
         passw IN account.password%type) AS
-        
+
             ref_cursor SYS_REFCURSOR;
         BEGIN
             OPEN ref_cursor FOR
@@ -172,9 +172,21 @@ CREATE OR REPLACE PACKAGE BODY AccountPackage AS
             FROM Account
             WHERE (email = uName OR username = uName)
             AND password = passw;
-            
+
             DBMS_SQL.RETURN_RESULT(ref_cursor);
         END Login;
+        
+    -- Get Account By Id Procedure
+    PROCEDURE GetAccountById(accid IN account.id%type) AS 
+        ref_cursor SYS_REFCURSOR;
+    BEGIN
+        OPEN ref_cursor FOR
+        SELECT *
+        FROM Account
+        WHERE id = accid;
+        
+        DBMS_SQL.RETURN_RESULT(ref_cursor);
+    END GetAccountById;
 
 END AccountPackage;
 

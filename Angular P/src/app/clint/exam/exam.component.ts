@@ -116,4 +116,20 @@ export class ExamComponent implements OnInit {
     }
   }
 
+  examSearch() {
+    const startDate: any = document.getElementById('startDate');
+    const endDate: any = document.getElementById('endDate');
+    const courseName: any = document.getElementById('courseName');
+    const examName: any = document.getElementById('examName');
+    const examLevel: any = document.querySelectorAll('.form-check-input');
+
+    examLevel.forEach((level: any) => {
+      if (level.checked) {
+        console.log(level);
+      }
+    });
+    
+    
+  }
+
 }

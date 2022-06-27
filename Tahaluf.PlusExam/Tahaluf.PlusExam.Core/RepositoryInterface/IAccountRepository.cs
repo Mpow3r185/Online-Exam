@@ -57,6 +57,9 @@ namespace Tahaluf.PlusExam.Core.RepositoryInterface
         
         
         // User Login
-        public Account UserLogin(UserInfoDTO userInfoDTO);
+        Account UserLogin(UserInfoDTO userInfoDTO);
+
+        // Get Account By Id
+        Account GetAccountById(int accid);
     }
 }

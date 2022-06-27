@@ -63,6 +63,8 @@ export class HomeService {
     this.http.post('https://localhost:44342/api/course/searchCourse', body).subscribe((result) => {
       SpinnerComponent.show();
       this.courses = result;
+      console.log(result);
+      
       SpinnerComponent.hide();
     }, err => {
       this.toastr.error('Unable to connect the server');

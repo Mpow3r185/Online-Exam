@@ -50,11 +50,14 @@ CREATE OR REPLACE PACKAGE AccountPackage AS
         accid IN account.id%type,
         uName IN account.username%type,
         mail IN account.email%type);
-        
+
     -- Login Procedure
     PROCEDURE Login(
         uName IN VARCHAR,
         passw IN account.password%type);
+        
+    -- Get Account By Id Procedure
+    PROCEDURE GetAccountById(accid IN account.id%type);
 
 END AccountPackage;
 

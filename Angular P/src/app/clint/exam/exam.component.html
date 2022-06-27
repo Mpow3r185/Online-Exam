@@ -163,7 +163,7 @@
                                         <!-- Beginner Level -->
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="Beginner"
-                                                id="beginnerLvl">
+                                                name="examLevel" id="beginnerLvl">
                                             <label class="form-check-label" for="beginnerLvl">
                                                 Beginner
                                             </label>
@@ -172,7 +172,7 @@
                                         <!-- Intermediate Level -->
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="Intermediate"
-                                                id="intermediateLvl">
+                                                name="examLevel" id="intermediateLvl">
                                             <label class="form-check-label" for="intermediateLvl">
                                                 Intermediate
                                             </label>
@@ -181,7 +181,7 @@
                                         <!-- Expert Level -->
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="Expert"
-                                                id="expertLvl">
+                                                name="examLevel" id="expertLvl">
                                             <label class="form-check-label" for="expertLvl">
                                                 Expert
                                             </label>
@@ -190,7 +190,7 @@
                                         <!-- Advanced Level -->
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="Advanced"
-                                                id="advancedLvl">
+                                                name="examLevel" id="advancedLvl">
                                             <label class="form-check-label" for="advancedLvl">
                                                 Advanced
                                             </label>
@@ -204,7 +204,7 @@
                 </ul>
 
                 <div class="row justify-content-center mt-3 mb-3 btn-container">
-                    <input type="submit" value="Search" id="searchBtn" />
+                    <input type="submit" value="Search" id="searchBtn" (click)="examSearch()" />
                 </div>
             </form>
         </div>
