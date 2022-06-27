@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using Tahaluf.PlusExam.Core.Common;
 using Tahaluf.PlusExam.Core.Data;
+using Tahaluf.PlusExam.Core.DTO;
 using Tahaluf.PlusExam.Core.GenericInterface;
 using Tahaluf.PlusExam.Infra.Commom;
 
@@ -667,7 +668,7 @@ namespace Tahaluf.PlusExam.Infra.Generic
                      // Testimonial Table
                 case "Testimonial":
                     {
-                        return dbContext.Connection.Query<Testimonial>(
+                        return dbContext.Connection.Query<TestimonialDTO>(
                             "TestimonialPackage.TestimonialCRD",
                             commandType: CommandType.StoredProcedure).ToList();
                     }
