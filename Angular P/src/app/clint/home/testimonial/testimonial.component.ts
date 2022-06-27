@@ -8,14 +8,26 @@ import { HomeService } from 'src/app/service/home.service';
 })
 export class TestimonialComponent implements OnInit {
 
-  @Input() profileImage!: string;
-  @Input() name!: string;
-  @Input() title!: string;
-  @Input() message!: string;
+  @Input() profileImage:string | undefined;
+  // @Input() name!: string;
+  // @Input() title!: string;
+  // @Input() message!: string;
 
-  constructor() { }
+  //New2
+  @Input() idd      : number | undefined;
+  @Input() message  : string | undefined;
+  @Input() status   : string | undefined;
+  @Input() accountId: number | undefined;
+  @Input() userName : string | undefined;
+  @Input() profilePicture : string | undefined;
+  @Input() fullName : string | undefined;
+
+
+
+  constructor(public homeService:HomeService) { }
 
   ngOnInit(): void {
+    this.homeService.getTestimonials();
 
   }
 
@@ -24,3 +36,4 @@ export class TestimonialComponent implements OnInit {
   }
 
 }
+
