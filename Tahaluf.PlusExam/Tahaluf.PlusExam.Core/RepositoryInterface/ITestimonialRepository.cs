@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using Tahaluf.PlusExam.Core.Data;
+using Tahaluf.PlusExam.Core.DTO;
+
 
 namespace Tahaluf.PlusExam.Core.RepositoryInterface
 {
