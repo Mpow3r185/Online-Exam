@@ -30,54 +30,7 @@ export class HomeComponent implements OnInit {
   accountStatus: boolean = false;
   testimonialTextarea = new FormControl('', [Validators.required, Validators.minLength(10)]);
 
-    testimonials: any = [
-    {
-      profileImage: 'person-one.jpg',
-      name: 'Abd Al Hameed Al-Dalgamouni',
-      title: 'Admin',
-      message: ``
-    },
-
-    {
-      profileImage: 'person-two.jpg',
-      name: 'Yazeed Bani Ata',
-      title: 'Student Failer',
-      message: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
-      illo quo doloribus quas iure quod expedita eius, labore optio nesciunt nostrum tempore
-      eveniet recusandae repellat. Provident asperiores accusamus illum? Architecto tempore
-      libero quisquam dignissimos, ipsa dicta, rem accusamus quam et eum vero.`
-    },
-
-    {
-      profileImage: 'person-three.jpg',
-      name: 'Mohammed Hamarsheh',
-      title: 'Successfull Arabic 102',
-      message: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
-      illo quo doloribus quas iure quod expedita eius, labore optio nesciunt nostrum tempore
-      eveniet recusandae repellat. Provident asperiores accusamus illum? Architecto tempore
-      libero quisquam dignissimos, ipsa dicta, rem accusamus quam et eum vero.`
-    },
-
-    {
-      profileImage: 'user2.jpg',
-      name: 'Haneen Momaniah',
-      title: 'Teacher',
-      message: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
-      illo quo doloribus quas iure quod expedita eius, labore optio nesciunt nostrum tempore
-      eveniet recusandae repellat. Provident asperiores accusamus illum? Architecto tempore
-      libero quisquam dignissimos, ipsa dicta, rem accusamus quam et eum vero.`
-    },
-
-    {
-      profileImage: 'person-one.jpg',
-      name: 'Munther Al-Jodah',
-      title: 'Blocked User',
-      message: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
-      illo quo doloribus quas iure quod expedita eius, labore optio nesciunt nostrum tempore
-      eveniet recusandae repellat. Provident asperiores accusamus illum? Architecto tempore
-      libero quisquam dignissimos, ipsa dicta, rem accusamus quam et eum vero.`
-    }
-];
+    
 
   constructor(
     public homeService: HomeService,
@@ -90,6 +43,9 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.homeService.getCourses();
     this.homeService.getExams();
+  }
+  saveTesti(){
+    this.homeService.createTestimonial(this.testimonialTextarea.value);
   }
 
   currentTestimonialIndex: number = 0;
