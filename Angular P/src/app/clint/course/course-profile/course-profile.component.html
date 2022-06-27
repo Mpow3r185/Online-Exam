@@ -13,11 +13,11 @@
         </div>
         <div class="row pb-5" style="border: 1px solid rgba(128, 128, 128, 0.2); border-radius: 10px;"
             *ngIf="homeService.exams.length > 0; else noData">
-            <app-exam-card *ngFor="let exam of homeService.exams if homeService.exams.length > 0" [id]="exam.id"
-                [courseId]="exam.courseId" [title]="exam.title" [passcode]="exam.passcode"
-                [description]="exam.description" [examLevel]="exam.examLevel" [successMark]="exam.successMark"
-                [cost]="exam.cost" [startDate]="exam.startDate" [endDate]="exam.endDate" [status]="exam.status"
-                [creationDate]="exam.creationDate" [examImage]="exam.examImage"
+            <app-exam-card *ngFor="let exam of homeService.exams" [id]=" exam.id" [courseId]="exam.courseId"
+                [title]="exam.title" [passcode]="exam.passcode" [description]="exam.description"
+                [examLevel]="exam.examLevel" [successMark]="exam.successMark" [cost]="exam.cost"
+                [startDate]="exam.startDate" [endDate]="exam.endDate" [status]="exam.status"
+                [creationDate]="exam.creationDate" [examImage]="exam.examImage" [courseName]="exam.courseName"
                 class=" col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
             </app-exam-card>
         </div>
