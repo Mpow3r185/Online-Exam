@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Tahaluf.PlusExam.Core.Data;
+using Tahaluf.PlusExam.Core.DTO;
 using Tahaluf.PlusExam.Core.RepositoryInterface;
 using Tahaluf.PlusExam.Core.ServiceInterface;
 
@@ -21,7 +22,7 @@ namespace Tahaluf.PlusExam.Infra.Service
         #endregion Constructor
 
         #region GetTestimonials
-        public List<Testimonial> GetTestimonials()
+        public List<TestimonialDTO> GetTestimonials()
         {
             return testimonialRepository.GetTestimonials();
         }
