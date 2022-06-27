@@ -8,7 +8,7 @@ namespace Tahaluf.PlusExam.Core.RepositoryInterface
     public interface ITestimonialRepository
     {
         // Get Testimonials
-        List<Testimonial> GetTestimonials();
+        List<TestimonialDTO> GetTestimonials();
 
 
         // Create Testimonial
