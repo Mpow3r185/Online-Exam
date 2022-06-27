@@ -1,4 +1,4 @@
-﻿using Dapper;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -193,6 +193,19 @@ namespace Tahaluf.PlusExam.Infra.Repository
                 commandType: CommandType.StoredProcedure);
             return result.FirstOrDefault();
 
+        }
+
+        public Account GetAccountById(int accid)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("accid",
+                accid,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            return dbContext.Connection.Query<Account>(
+                "AccountPackage.GetAccountById", parameters,
+                commandType: CommandType.StoredProcedure).FirstOrDefault();
         }
     }
 }
