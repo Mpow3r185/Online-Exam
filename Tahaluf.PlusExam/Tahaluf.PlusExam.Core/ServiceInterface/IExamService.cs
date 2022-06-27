@@ -25,5 +25,8 @@ namespace Tahaluf.PlusExam.Core.RepositoryInterface
 
         // Get Exams By Course Id
         List<Exam> GetExamsByCourseId(int cid);
+
+        // Get Exam By Id
+        Exam GetExamById(int exid);
     }
 }
