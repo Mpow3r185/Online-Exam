@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using Tahaluf.PlusExam.Core.Data;
+using Tahaluf.PlusExam.Core.DTO;
 
 namespace Tahaluf.PlusExam.Core.ServiceInterface
 {
     public interface ITestimonialService
     {
         // Get Testimonials
-        List<Testimonial> GetTestimonials();
+        List<TestimonialDTO> GetTestimonials();
 
 
         // Create Testimonial
