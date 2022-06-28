@@ -84,15 +84,31 @@ export class AuthenticationService {
         localStorage.setItem('token', response.token);
         let data:any = jwtDecode(response.token);
         
-        console.log(data);
+        //console.log(data);
         localStorage.setItem('user', JSON.stringify({...data}));
-        if (data.role == 'Admin') {
-          this.router.navigate(['admin/dashboard']);
-        }
-        else if (data.role == 'Student') {
-          SpinnerComponent.hide();
-          this.router.navigate(['/']);
-        }
+        
+        //Check if user is Blocked Account
+        let searchBody = {
+          username: data.unique_name
+        };
+        this.http.post('https://localhost:44342/api/Account/SearchAccount', searchBody).subscribe(
+            (result: any) => {
+              if(result[0].status == 'BLOCK'){
+                localStorage.clear();
+                SpinnerComponent.hide();
+                this.toastr.info("This User Is Blocked By Admin For Some Reasons");
+              }else{
+                if (data.role == 'Admin') {
+                  this.router.navigate(['admin/dashboard']);
+                }
+                else if (data.role == 'Student') {
+                  SpinnerComponent.hide();
+                  this.router.navigate(['/']);
+                }
+              }
+            },
+            (error) => console.log(error)
+          );
       },
       error => {
           setTimeout(() => {
