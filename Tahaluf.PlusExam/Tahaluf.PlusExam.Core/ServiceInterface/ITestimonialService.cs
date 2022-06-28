@@ -18,5 +18,8 @@ namespace Tahaluf.PlusExam.Core.ServiceInterface
 
         // Delete Testimonial
         bool DeleteTestimonial(int id);
+
+        // Update Testimonial
+        bool UpdateTestimonial(Testimonial testimonial);
     }
 }

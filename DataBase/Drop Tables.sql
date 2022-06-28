@@ -9,6 +9,7 @@ DROP TABLE Certificate;
 DROP TABLE Invoice;
 DROP TABLE Result;
 DROP TABLE FillResult;
+DROP TABLE Testimonial;
 DROP TABLE Account;
 DROP TABLE CorrectAnswer;
 DROP TABLE QuestionOption;

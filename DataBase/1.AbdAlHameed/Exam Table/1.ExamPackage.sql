@@ -12,9 +12,11 @@ CREATE OR REPLACE PACKAGE ExamPackage AS
         des IN exam.description%type DEFAULT NULL,
         exLevel IN exam.examLevel%type DEFAULT NULL,
         succMark IN exam.successMark%type DEFAULT NULL,
+        numOfQuestions IN exam.numberOfQuestions%type DEFAULT NULL,
         price IN exam.cost%type DEFAULT NULL,
         stDate IN exam.startDate%type DEFAULT NULL,
         enDate IN exam.endDate%type DEFAULT NULL,
+        markSt IN exam.markStatus%type DEFAULT NULL,
         st IN exam.status%type DEFAULT NULL,
         exImg IN exam.examImage%type DEFAULT NULL,
         createDate IN exam.creationDate%type DEFAULT NULL);
@@ -48,6 +50,9 @@ CREATE OR REPLACE PACKAGE ExamPackage AS
     
     -- Get Exam By Id
     PROCEDURE GetExamById(exid IN exam.id%type);
+    
+    -- Get Users Buy The Exam Id
+    PROCEDURE GetUsersBuyExamId(exid IN exam.id%type);
 
 END ExamPackage;
 

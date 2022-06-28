@@ -164,11 +164,14 @@
                 <div class="mb-5">
                     <div class="container">
                         <div class="row justify-content-lg-around justify-content-md-start">
-                            <app-course-card *ngFor="let course of homeService.popularCourses" [id]="course.id"
-                                [courseName]="course.courseName" [description]="course.description"
-                                [status]="course.status" [courseImage]="course.courseImage"
-                                class="col-lg-3 col-md-5 col-sm-12 mt-4 mr-4  ml-4 course-card">
-                            </app-course-card>
+                            <ng-container *ngFor="let course of homeService.popularCourses; let i = index">
+                                <app-course-card *ngIf="i<3" [id]="course.id" [courseName]="course.courseName"
+                                    [description]="course.description" [status]="course.status"
+                                    [courseImage]="course.courseImage"
+                                    class="col-lg-3 col-md-5 col-sm-12 mt-4 mr-4  ml-4 course-card">
+                                </app-course-card>
+                            </ng-container>
+
                         </div>
                     </div>
                 </div>
@@ -186,12 +189,13 @@
 </div>
 
 
-<div class="container">
+<div class="container" (window:resize)="animateTestimonial(currentTestimonialIndex)">
     <div class="overflow-hidden">
         <div class="d-flex" id="testiSlider" style="transition: 0.5s">
             <app-testimonial class="col-12" id="testimonial-{{ i }}"
-                *ngFor="let testimonial of homeService.testimonial let i = index;" [profilePicture]="testimonial.profilePicture"
-                [userName]="testimonial.userName" [message]="testimonial.message" [fullName]="testimonial.fullName">
+                *ngFor="let testimonial of homeService.testimonial let i = index;"
+                [profilePicture]="testimonial.profilePicture" [userName]="testimonial.userName"
+                [message]="testimonial.message" [fullName]="testimonial.fullName">
             </app-testimonial>
         </div>
     </div>
@@ -222,8 +226,8 @@
 
         <div class="row justify-content-center">
 
-            <textarea class="col-12 pt-2 pb-2" rows="6" matInput [formControl]="testimonialTextarea" maxlength="300" style="border: 1px solid #808080"
-                minlength="10" placeholder="Write your feedback here"></textarea>
+            <textarea class="col-12 pt-2 pb-2" rows="6" matInput [formControl]="testimonialTextarea" maxlength="300"
+                style="border: 1px solid #808080" minlength="10" placeholder="Write your feedback here"></textarea>
 
             <!-- Required Error -->
             <mat-error *ngIf="testimonialTextarea.hasError('required')">
@@ -231,7 +235,7 @@
             </mat-error>
 
             <!-- Min Length Error -->
-            <mat-error *ngIf="testimonialTextarea.hasError('minlength')" >
+            <mat-error *ngIf="testimonialTextarea.hasError('minlength')">
                 Minimum Length is 10 Characters
             </mat-error>
         </div>

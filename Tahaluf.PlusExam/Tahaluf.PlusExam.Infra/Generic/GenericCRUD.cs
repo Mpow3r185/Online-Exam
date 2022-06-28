@@ -558,7 +558,6 @@ namespace Tahaluf.PlusExam.Infra.Generic
                             commandType: CommandType.StoredProcedure);
                         return true;
                     }
-
             }
 
             return true;
@@ -893,7 +892,22 @@ namespace Tahaluf.PlusExam.Infra.Generic
 
                         return true;
                     }
-                    
+
+                // Testimonial Table
+                case "Testimonial":
+                    {
+                        DynamicParameters testimonialDynamicParameters = GenerateTestimonialParameters(entity);
+                        testimonialDynamicParameters.Add("func",
+                                            "UPDATE",
+                                            dbType: DbType.String);
+
+                        dbContext.Connection.ExecuteAsync(
+                            "TestimonialPackage.TestimonialCRD", testimonialDynamicParameters,
+                            commandType: CommandType.StoredProcedure);
+
+                        return true;
+                    }
+
             }
             return true;
         }
@@ -1123,6 +1137,11 @@ namespace Tahaluf.PlusExam.Infra.Generic
                 dbType: DbType.Decimal,
                 direction: ParameterDirection.Input);
 
+            parameters.Add("numOfQuestions",
+                exam.NumberOfQuestions,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
             parameters.Add("price",
                 exam.Cost,
                 dbType: DbType.Decimal,
@@ -1136,6 +1155,11 @@ namespace Tahaluf.PlusExam.Infra.Generic
             parameters.Add("enDate",
                 exam.EndDate,
                 dbType: DbType.DateTime,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("markSt",
+                exam.MarkStatus,
+                dbType: DbType.String,
                 direction: ParameterDirection.Input);
 
             parameters.Add("st",
@@ -1368,6 +1392,7 @@ namespace Tahaluf.PlusExam.Infra.Generic
                 testimonial.Status,
                 dbType: DbType.String,
                 direction: ParameterDirection.Input);
+
             #endregion DynamicParameters
 
             return parameters;

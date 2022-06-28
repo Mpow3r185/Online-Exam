@@ -12,9 +12,11 @@ CREATE OR REPLACE PACKAGE BODY ExamPackage AS
         des IN exam.description%type DEFAULT NULL,
         exLevel IN exam.examLevel%type DEFAULT NULL,
         succMark IN exam.successMark%type DEFAULT NULL,
+        numOfQuestions IN exam.numberOfQuestions%type DEFAULT NULL,
         price IN exam.cost%type DEFAULT NULL,
         stDate IN exam.startDate%type DEFAULT NULL,
         enDate IN exam.endDate%type DEFAULT NULL,
+        markSt IN exam.markStatus%type DEFAULT NULL,
         st IN exam.status%type DEFAULT NULL,
         exImg IN exam.examImage%type DEFAULT NULL,
         createDate IN exam.creationDate%type DEFAULT NULL) AS
@@ -24,19 +26,21 @@ CREATE OR REPLACE PACKAGE BODY ExamPackage AS
         IF func = 'CREATE' THEN
             INSERT INTO Exam
             (courseId, title, passcode, description, examLevel, successMark,
-             cost, startDate, endDate, status, examImage, creationDate)
+             numberOfQuestions, cost, startDate, endDate, markStatus, status,
+             examImage, creationDate)
 
-            VALUES(cid, exTitle, UPPER(passc), des, exLevel, succMark,
-                   price, stDate, enDate, UPPER(st), exImg, createDate);
+            VALUES(cid, LOWER(exTitle), UPPER(passc), des, INITCAP(exLevel),
+            succMark, numOfQuestions, price, stDate, enDate, UPPER(markSt),
+            UPPER(st), exImg, createDate);
 
             COMMIT;
         ELSIF func = 'UPDATE' THEN
             UPDATE Exam SET
                 courseId = cid,
-                title = exTitle,
+                title = LOWER(exTitle),
                 passcode = UPPER(passc),
                 description = des,
-                examLevel = exLevel,
+                examLevel = INITCAP(exLevel),
                 successMark = succMark,
                 cost = price,
                 startDate = stDate,
@@ -153,7 +157,7 @@ CREATE OR REPLACE PACKAGE BODY ExamPackage AS
         ref_cursor SYS_REFCURSOR;
     BEGIN
         OPEN ref_cursor FOR
-        SELECT Exam.*, Course.courseName
+        SELECT Exam.*, Course.courseName            
         FROM Exam
         JOIN Course ON Course.id = cid
         WHERE courseId = cid;
@@ -166,13 +170,28 @@ CREATE OR REPLACE PACKAGE BODY ExamPackage AS
         ref_cursor SYS_REFCURSOR;
     BEGIN
         OPEN ref_cursor FOR
-        SELECT Exam.*, Course.courseName
+        SELECT Exam.*, Course.courseName            
         FROM Exam
         JOIN Course ON Course.id = Exam.courseId
         WHERE Exam.id = exid;
         
         DBMS_SQL.RETURN_RESULT(ref_cursor);
     END GetExamById;
+    
+    -- Get Users Buy The Exam Id
+    PROCEDURE GetUsersBuyExamId(exid IN exam.id%type) AS
+        ref_cursor SYS_REFCURSOR;
+    BEGIN
+        OPEN ref_cursor FOR
+        SELECT Account.*
+        FROM Account
+        JOIN Invoice ON Account.id = Invoice.accountId
+        JOIN Exam ON Exam.id = Invoice.examId
+        WHERE exid = Exam.id
+        ORDER BY Invoice.creationDate DESC;
+        
+        DBMS_SQL.RETURN_RESULT(ref_cursor);
+    END GetUsersBuyExamId;
 
 END ExamPackage;
 

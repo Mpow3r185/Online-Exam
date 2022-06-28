@@ -39,8 +39,15 @@ namespace Tahaluf.PlusExam.API.Controllers
         }
         #endregion DeleteTestimonial
 
-        #region GetTestimonials
-        [HttpGet]
+        [HttpPut]
+
+        public bool UpdateTestimonial(Testimonial testimonial)
+        {
+            return testimonialService.UpdateTestimonial(testimonial);
+        }
+
+    #region GetTestimonials
+    [HttpGet]
         public List<TestimonialDTO> GetTestimonials()
         {
             return testimonialService.GetTestimonials();

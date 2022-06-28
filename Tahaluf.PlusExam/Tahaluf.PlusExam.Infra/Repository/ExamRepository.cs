@@ -150,5 +150,31 @@ namespace Tahaluf.PlusExam.Infra.Repository
                 "ExamPackage.GetExamById", parameters,
                 commandType: CommandType.StoredProcedure).FirstOrDefault();
         }
+
+        public List<Account> GetUsersBuyExamId(int exid)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("exid",
+                exid,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            return dbContext.Connection.Query<Account>(
+                "ExamPackage.GetUsersBuyExamId", parameters,
+                commandType: CommandType.StoredProcedure).ToList();
+        }
+
+        public int GetNumberOfUsersBuyByExamId(int exid) 
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("exid",
+                exid,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            return dbContext.Connection.Query<Account>(
+                "ExamPackage.GetUsersBuyExamId", parameters,
+                commandType: CommandType.StoredProcedure).Count();
+        }
     }
 }

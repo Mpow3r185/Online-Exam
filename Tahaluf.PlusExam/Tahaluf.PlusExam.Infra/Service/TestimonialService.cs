@@ -42,5 +42,10 @@ namespace Tahaluf.PlusExam.Infra.Service
         }
         #endregion DeleteTestimonial
 
+        public bool UpdateTestimonial(Testimonial testimonial)
+        {
+            return testimonialRepository.UpdateTestimonial(testimonial);
+        }
+
     }
 }

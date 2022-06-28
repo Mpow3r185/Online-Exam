@@ -66,5 +66,15 @@ namespace Tahaluf.PlusExam.Infra.Service
         {
             return examRepository.GetExamById(exid);
         }
+
+        public List<Account> GetUsersBuyExamId(int exid)
+        {
+            return examRepository.GetUsersBuyExamId(exid);
+        }
+
+        public int GetNumberOfUsersBuyByExamId(int exid)
+        {
+            return this.examRepository.GetNumberOfUsersBuyByExamId(exid);
+        }
     }
 }

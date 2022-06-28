@@ -85,5 +85,23 @@ namespace Tahaluf.PlusExam.API.Controllers
             return examService.GetExamById(exid);
         }
         #endregion GetExamById
+
+        #region GetUsersBuyExamId
+        [HttpPost]
+        [Route("GetUsersBuyExamId/{exid}")]
+        public List<Account> GetUsersBuyExamId(int exid)
+        {
+            return examService.GetUsersBuyExamId(exid);
+        }
+        #endregion GetUsersBuyExamId
+
+        #region GetNumberOfUsersBuyByExamId
+        [HttpPost]
+        [Route("GetNumberOfUsersBuyByExamId/{exid}")]
+        public int GetNumberOfUsersBuyByExamId(int exid)
+        {
+            return examService.GetNumberOfUsersBuyByExamId(exid);
+        }
+        #endregion GetNumberOfUsersBuyByExamId
     }
 }

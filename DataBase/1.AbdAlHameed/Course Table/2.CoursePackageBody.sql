@@ -16,12 +16,12 @@ CREATE OR REPLACE PACKAGE BODY CoursePackage AS
         IF func = 'CREATE' THEN
             INSERT INTO Course
             (courseName, description, status, courseimage)
-            VALUES(cName, des, UPPER(st), cImage);
+            VALUES(LOWER(cName), des, UPPER(st), cImage);
 
             COMMIT;
         ELSIF func = 'UPDATE' THEN
             UPDATE Course
-            SET courseName = cName,
+            SET courseName = LOWER(cName),
                 description = des,
                 status = UPPER(st),
                 courseImage = cImage

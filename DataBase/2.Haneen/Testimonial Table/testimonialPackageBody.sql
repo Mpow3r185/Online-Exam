@@ -28,7 +28,7 @@ create or replace PACKAGE BODY TestimonialPackage AS
             COMMIT;
         ELSE
             OPEN ref_cursor FOR
-            SELECT T.id ,T.accountId,T.message,T.status,A.userName,A.profilePicture,A.fullName
+            SELECT T.* ,A.userName, A.profilePicture, A.fullName
             FROM Testimonial T Join Account A
             on T.accountId = A.id;
 
