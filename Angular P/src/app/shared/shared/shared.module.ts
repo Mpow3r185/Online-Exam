@@ -11,10 +11,9 @@ import {MatButtonModule} from '@angular/material/button';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {MatTableModule} from '@angular/material/table';
-import { UploadComponent } from 'src/app/upload/upload.component';
 
 @NgModule({
-  declarations: [UploadComponent],
+  declarations: [],
   imports: [
     CommonModule,
     SwiperModule,
@@ -43,8 +42,7 @@ import { UploadComponent } from 'src/app/upload/upload.component';
     MatButtonModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
-    MatTableModule,
-    UploadComponent
+    MatTableModule
   ]
 })
 export class SharedModule { }
