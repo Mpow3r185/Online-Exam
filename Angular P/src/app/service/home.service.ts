@@ -19,6 +19,7 @@ export class HomeService {
   ourServiceData: any = [{}];
   selectedUser: any;
   homePage: any = [{}];
+  testimonial: any = [{}];
 
   constructor(
     private http: HttpClient,
