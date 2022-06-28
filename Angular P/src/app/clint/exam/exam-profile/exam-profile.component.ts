@@ -1,3 +1,4 @@
+import { SpinnerComponent } from './../../../spinner/spinner.component';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -11,14 +12,21 @@ import { HomeService } from 'src/app/service/home.service';
 export class ExamProfileComponent implements OnInit {
 
   isExpanded: boolean = true;
+  timerStatus: any;
+  timerExam: any;
   private routeSub!: Subscription;
 
   constructor(public homeService: HomeService, private route: ActivatedRoute) {}
 
-  ngOnInit() {
+  async ngOnInit() {
+    
     this.routeSub = this.route.params.subscribe(async params => {
       await this.homeService.getExamById(Number(params['id']));
+      await this.homeService.GetNumberOfUsersBuyByExamId(Number(params['id']));
     });
+    await delay(1000);
+
+    this.getExamDuration();
   }
 
   expandExamInformation(): void {
@@ -32,8 +40,28 @@ export class ExamProfileComponent implements OnInit {
     }
   }
 
+  // Return Number Represt Duration of Exam in Minutes
+  getExamDuration(): number {
+    let startTime = new Date(this.homeService.exams.startDate).getTime();
+    let endTime = new Date(this.homeService.exams.endDate).getTime();
+
+    let durationTime = endTime - startTime;
+    let durationMinutes = Math.ceil((durationTime % (1000 * 60 * 60)) / (1000 * 60));
+
+    return durationMinutes;
+  }
+
+  // Number Of Registered Users
+  getNumberOfRegisteredUsers(): number {
+    return this.homeService.numberOfUsersBuyExam;
+  }
+
   // Unsubscribe to prevent memory leaks
   ngOnDestroy() {
     this.routeSub.unsubscribe();
   }
+}
+
+function delay(ms: number) {
+  return new Promise( resolve => setTimeout(resolve, ms) );
 }

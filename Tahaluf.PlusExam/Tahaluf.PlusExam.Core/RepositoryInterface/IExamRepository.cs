@@ -29,5 +29,11 @@ namespace Tahaluf.PlusExam.Core.RepositoryInterface
         // Get Exam By Id
         Exam GetExamById(int exid);
 
+        // Get Users Buy The Exam Id
+        List<Account> GetUsersBuyExamId(int exid);
+
+        // Get Number Of Users Buy Exam By Exam Id
+        int GetNumberOfUsersBuyByExamId(int exid);
+
     }
 }

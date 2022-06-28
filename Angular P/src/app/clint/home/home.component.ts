@@ -30,8 +30,6 @@ export class HomeComponent implements OnInit {
   accountStatus: boolean = false;
   testimonialTextarea = new FormControl('', [Validators.required, Validators.minLength(10)]);
 
-    
-
   constructor(
     public homeService: HomeService,
     public dialog: MatDialog,
@@ -43,6 +41,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.homeService.getCourses();
     this.homeService.getExams();
+    this.homeService.getTestimonials();
   }
   saveTesti(){
     this.homeService.createTestimonial(this.testimonialTextarea.value);
@@ -51,8 +50,9 @@ export class HomeComponent implements OnInit {
   currentTestimonialIndex: number = 0;
   animateTestimonial(index: number) {
     document.getElementById(`transporter${this.currentTestimonialIndex}`)!.classList.remove('disable-div');
+    let sliderContainer = document.getElementById('testiSlider');
 
-    document.getElementById('testiSlider')!.style.transform = `translateX(${index * -1110}px)`;
+    sliderContainer!.style.transform = `translateX(${index * -sliderContainer!.clientWidth}px)`;
     document.getElementById(`transporter${index}`)!.classList.add('disable-div');
     this.currentTestimonialIndex = index;
   }

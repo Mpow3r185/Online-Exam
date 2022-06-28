@@ -4,7 +4,7 @@ div.expand-btn-cont {
     position: absolute;
     top: 45%;
     transform: translateX(-25px);
-    z-index: 4;
+    z-index: 3;
 }
 
 button.expand-btn {

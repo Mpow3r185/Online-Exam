@@ -24,14 +24,9 @@ export class TestimonialComponent implements OnInit {
 
 
 
-  constructor(public homeService:HomeService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.homeService.getTestimonials();
-
-  }
-
-  getData(value :any){
     
   }
 

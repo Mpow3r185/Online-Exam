@@ -30,6 +30,7 @@ namespace Tahaluf.PlusExam.Core.Data
         public string ExamLevel { get; set; }
         
         public decimal SuccessMark { get; set; }
+        public int NumberOfQuestions { get; set; }
 
         public decimal Cost { get; set; }
 
@@ -38,6 +39,8 @@ namespace Tahaluf.PlusExam.Core.Data
 
         [Required, NotNull]
         public DateTime EndDate { get; set; }
+        
+        public string MarkStatus { get; set; }
 
         [MaxLength(7)]
         public string Status { get; set; }

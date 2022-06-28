@@ -19,5 +19,8 @@ namespace Tahaluf.PlusExam.Core.RepositoryInterface
 
         // Delete Testimonial
         bool DeleteTestimonial(int id);
+
+        // Update Testimonial
+        bool UpdateTestimonial(Testimonial testimonial);
     }
 }

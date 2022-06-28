@@ -23,17 +23,36 @@ namespace Tahaluf.PlusExam.Infra.Commom
         {
             get
             {
-                if (_dbConnection == null)
+                try
                 {
-                    _dbConnection = new OracleConnection(_Configuration["ConnectionStrings:DBConnectionString"]);
-                    _dbConnection.Open();
-                }
-                else if (_dbConnection.State != ConnectionState.Open)
-                {
-                    _dbConnection.Open();
-                }
+                    if (_dbConnection == null)
+                    {
+                        _dbConnection = new OracleConnection(_Configuration["ConnectionStrings:DBConnectionString"]);
+                        _dbConnection.Open();
+                    }
+                    else if (_dbConnection.State != ConnectionState.Open)
+                    {
+                        _dbConnection.Open();
+                    }
 
-                return _dbConnection;
+                    return _dbConnection;
+                }
+                catch (OracleException ex) // catches only Oracle errors
+                {
+                    switch (ex.Number)
+                    {
+                        case 1:
+                            throw new Exception("Error attempting to insert duplicate data.");
+                        case 12545:
+                            throw new Exception("The database is unavailable.");
+                        default:
+                            throw new Exception("Database error: " + ex.Message.ToString());
+                    }
+                }
+                catch (Exception ex) // catches any error
+                {
+                    throw new Exception(ex.Message.ToString());
+                }
             }
 
         }

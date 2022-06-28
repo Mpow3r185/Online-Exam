@@ -12,7 +12,6 @@ namespace Tahaluf.PlusExam.Core.Data
         [Key]
         public int Id { get; set; }
 
-        [Required, NotNull,MaxLength(255)]
         public string Message { get; set; }
 
         [MaxLength(8)]
