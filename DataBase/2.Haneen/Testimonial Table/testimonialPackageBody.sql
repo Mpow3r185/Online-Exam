@@ -1,5 +1,3 @@
--- Start Code
-
 create or replace PACKAGE BODY TestimonialPackage AS
     
     -- Testimonial CRD Operations
@@ -18,7 +16,12 @@ create or replace PACKAGE BODY TestimonialPackage AS
             VALUES(accid, msg,stat);
 
             COMMIT;            
+        ELSIF func = 'UPDATE' THEN
+            UPDATE Testimonial SET              
+                Status = stat
+            WHERE id = tstId;
 
+            COMMIT;
         ELSIF func = 'DELETE' THEN
             DELETE From Testimonial WHERE id = tstId;
 
