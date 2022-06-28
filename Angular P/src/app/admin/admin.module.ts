@@ -10,7 +10,6 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { UserService } from '../service/user.service';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { UsersComponent } from './users/users.component';
-import { UserCardComponent } from './user-card/user-card.component';
 import { DashboardCardComponent } from './dashboard-card/dashboard-card.component';
 import { HomeService } from '../service/home.service';
 import { TestimonialViewComponent } from './dashboard-card/testimonial-view/testimonial-view.component';
@@ -25,7 +24,6 @@ import { AdminCoursesComponent } from './admin-courses/admin-courses.component';
     EditProfileComponent,
     NavBarComponent,
     UsersComponent,
-    UserCardComponent,
     DashboardCardComponent,
     TestimonialViewComponent,
      AdminCoursesComponent
