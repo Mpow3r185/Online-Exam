@@ -19,8 +19,7 @@ import { AdminTestimonialComponent } from './admin-testimonial/admin-testimonial
 import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
 import { CreateCourseComponent } from './admin-courses/create-course/create-course.component';
-import { AdminServicesComponent } from './admin-services/admin-services.component';
-import { CreateServiceComponent } from './admin-services/create-service/create-service.component';
+
 
 
 @NgModule({
@@ -35,9 +34,7 @@ import { CreateServiceComponent } from './admin-services/create-service/create-s
     TestimonialViewComponent,
     AdminCoursesComponent,
     AdminTestimonialComponent,
-    CreateCourseComponent,
-    AdminServicesComponent,
-    CreateServiceComponent
+    CreateCourseComponent
   ],
   imports: [
     SharedModule,
