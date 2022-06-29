@@ -23,6 +23,12 @@ const routes: Routes = [
     ),
     canActivate: [AuthorizationGuard]
   },
+    {
+    path: 'profile',
+    loadChildren: () => import('./user-profile/user-profile.module').then(
+      (m) => m.UserProfileModule,
+    ),
+  }
 ];
 
 @NgModule({
