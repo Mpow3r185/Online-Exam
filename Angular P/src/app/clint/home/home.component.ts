@@ -36,7 +36,8 @@ export class HomeComponent implements OnInit {
     public dialog: MatDialog,
     public userService: UserService,
     private router: Router,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private toastr: ToastrService
   ) {
   }
 
@@ -50,7 +51,12 @@ export class HomeComponent implements OnInit {
     this.homeService.getTestimonials();
   }
   saveTesti(){
-    this.homeService.createTestimonial(this.testimonialTextarea.value);
+    if(this.testimonialTextarea.valid){
+      this.homeService.createTestimonial(this.testimonialTextarea.value);
+    }else{
+      this.toastr.error('You Must Fill The Field First')
+    }
+  
   }
 
   currentTestimonialIndex: number = 0;
