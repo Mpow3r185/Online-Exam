@@ -71,7 +71,7 @@ export class HomeService {
   async getCourses(): Promise<void> {
     SpinnerComponent.show();
 
-    this.http.get('https://localhost:44342/api/course').subscribe((result) => {
+    this.http.get('https://localhost:44342/api/course').subscribe((result:any) => {
       this.courses = result.filter((value:any)=> value.status=='ENABLE');
     }, err => {
       this.toastr.error('Unable to connect the server');
