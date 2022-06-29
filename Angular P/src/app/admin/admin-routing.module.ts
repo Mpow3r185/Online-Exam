@@ -21,6 +21,10 @@ const routes: Routes = [
   {
     path: 'users',
     component: UsersComponent,
+  },
+  {
+    path: 'testimonial',
+    component: AdminTestimonialComponent,
   }
 ];
 
