@@ -24,7 +24,7 @@ export class UsersComponent implements OnInit,AfterViewInit {
         pageLength: 5,
         processing: true
     });
-    }, 3000);
+    }, 3500);
   }
 
   ngOnInit(): void {
@@ -32,7 +32,7 @@ export class UsersComponent implements OnInit,AfterViewInit {
     this.adminService.getAllAccounts();
     setTimeout(() => {
       SpinnerComponent.hide();
-    }, 3000);
+    }, 3500);
 
   }
 
