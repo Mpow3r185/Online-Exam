@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { HomeService } from './home.service';
+import { SpinnerComponent } from 'src/app/spinner/spinner.component';
 
 @Injectable({
   providedIn: 'root'
