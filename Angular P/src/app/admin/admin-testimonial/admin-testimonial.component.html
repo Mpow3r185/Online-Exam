@@ -1,0 +1,84 @@
+<div class="overflow-hidden dark-edition bg-white">
+    <div class="wrapper">
+        <app-side-bar></app-side-bar>
+        <div class="main-panel">
+            <app-nav-bar></app-nav-bar>
+
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 mb-30">
+                            <div class="card card-statistics h-100">
+                                        <div class="card-body">
+                                        <div class="x_panel">
+                                          <div class="x_title">
+                                            <h2>All Testimonials</h2>
+                                            <ul class="nav navbar-right panel_toolbox">
+                                              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                              </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                          </div>
+                                          <div class="x_content">
+                                              <div class="row">
+                                                  <div class="col-sm-12">
+                                                    <div class="card-box table-responsive">
+                                            <p class="text-muted font-13 m-b-30">
+                                                <a routerLink="" class="btn btn-lg btn-bg-col" role="button"
+                                               aria-pressed="true">Go to Testimonials</a>
+                                               <br><br>
+                                            </p>
+                                            <table id="datatable-fixed-header" class="table table-hover table-sm table-bordered p-0" style="width:100%;text-align: center">
+                                              <thead class="bg-col text-white font-weight-bold">
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>ProfilePicture</th>
+                                                  <th>Name</th>
+                                                  <th>Message</th>
+                                                  
+                                                  <th>Status</th>
+                                                  <th>Proccess</th>
+                                                </tr>
+                                              </thead>
+                                              <tbody class="font-weight-bold">
+                                             
+                                                   
+                                                <tr *ngFor="let obj of adminService.testimonials ;let i=index" >
+                                                  <td >{{i+1}}</td>
+                                                  <td><img  src="../../../assets/images/profile_picture/{{obj.profilePicture}}" alt="iamge @item.Id" width=100 height=100/></td>
+                                                  <td>{{obj.fullName}}</td>
+                                                  <td>{{obj.message}}</td>
+                                                   <td>{{obj.status}}</td>
+                                                  
+                                                  
+                                                  <td>
+                                                    <a class="btn  btn-sm bg-col-accept" role="button" aria-pressed="true" title="Accept" (click)="handleAccepted(obj)"><i class="fa fa-check-circle"></i></a> 
+                                                    <a data-target="#Delete_Clinic_@item.Id" data-toggle="modal" class="btn bg-col-Reject btn-sm text-white" role="button" aria-pressed="true" title="Reject" style="cursor:pointer;" (click)="deletetest(obj.id)"><i class="fa fa-close"></i></a>
+                                                  </td>
+                                                 
+                                               </tr>
+                
+                                              </tbody>
+                                            </table>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                   </div>
+                                  </div>
+                                  </div>
+                                  </div>
+                        
+                        </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
