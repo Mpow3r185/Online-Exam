@@ -30,7 +30,7 @@ export class AdminCoursesComponent implements OnInit,AfterViewInit {
         pageLength: 5,
         processing: true
     });
-    }, 3000);
+    }, 3500);
   }
 
   ngOnInit(): void {
@@ -38,7 +38,7 @@ export class AdminCoursesComponent implements OnInit,AfterViewInit {
     this.adminService.getAllCourses();
     setTimeout(() => {
       SpinnerComponent.hide();
-    }, 3000);
+    }, 3500);
 
   }
 
