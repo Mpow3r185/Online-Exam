@@ -97,12 +97,20 @@ export class UserService {
     this.updateForm.controls.address.setValue(this.selectedUser.address);
   }
 
-  getUserById() {
+  async getUserById(): Promise<void> {
     let user: any = localStorage.getItem('user');
     user = JSON.parse(user);
+
     SpinnerComponent.show();
-    this.http
-      .get('https://localhost:44359/api/Users/GetUser/' + user.primarysid)
+
+    let searchBody = {
+      username: user.unique_name
+    };
+    this.http.post("https://localhost:44342/api/Account/SearchAccount",searchBody).subscribe(
+      (result: any) => {
+        let id  = result.id;
+        this.http
+      .post(`https://localhost:44342/api/account/GetAccountById/${result[0].id}` ,null)
       .subscribe(
         (result: any) => {
           this.selectedUser = result;
@@ -112,6 +120,10 @@ export class UserService {
         },
         (error) => console.log(error)
       );
+      },
+      (error) => console.log(error)
+    );
+  
   }
 
   getAllUser() {
