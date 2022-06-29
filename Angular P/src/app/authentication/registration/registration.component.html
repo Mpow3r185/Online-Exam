@@ -48,26 +48,25 @@
         </div>
 
         <div class="w-75">
-              <mat-form-field class="example-full-width w-100" appearance="legacy">
-                  <mat-label>Phone Number</mat-label>
-                  <input type="tel" matInput formControlName="phoneNumber">
-                  <mat-error *ngIf=" registerForm.controls.phoneNumber.hasError('minlength')">
-                    Min Length is <strong>10</strong>
-                </mat-error>
-                  <mat-error *ngIf="registerForm.controls.phoneNumber.hasError('maxlength')">
-                    Max Length is <strong>20</strong>
-                </mat-error>
-                  <mat-error *ngIf="registerForm.controls.phoneNumber.hasError('required')">
-                      Phone Number is <strong>required</strong>
-                  </mat-error>
-              </mat-form-field>
-          </div>
-        
+          <mat-form-field class="example-full-width w-100" appearance="legacy">
+            <mat-label>Phone Number</mat-label>
+            <input type="tel" matInput formControlName="phoneNumber">
+            <mat-error *ngIf=" registerForm.controls.phoneNumber.hasError('minlength')">
+              Min Length is <strong>10</strong>
+            </mat-error>
+            <mat-error *ngIf="registerForm.controls.phoneNumber.hasError('maxlength')">
+              Max Length is <strong>20</strong>
+            </mat-error>
+            <mat-error *ngIf="registerForm.controls.phoneNumber.hasError('required')">
+              Phone Number is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
         <div class="w-75">
           <mat-form-field class="w-100" appearance="legacy">
             <mat-label>Enter your password</mat-label>
-            <input matInput formControlName="password" maxlength="15"
-              [type]="hide ? 'password' : 'text'">
+            <input matInput formControlName="password" maxlength="15" [type]="hide ? 'password' : 'text'">
             <button class="border-0 hide-password" mat-icon-button matSuffix (click)="hide = !hide"
               [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
