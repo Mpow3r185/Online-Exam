@@ -1,3 +1,4 @@
+import { AuthenticationService } from 'src/app/service/authentication.service';
 import { FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import SwiperCore, {
@@ -34,7 +35,8 @@ export class HomeComponent implements OnInit {
     public homeService: HomeService,
     public dialog: MatDialog,
     public userService: UserService,
-    private router: Router
+    private router: Router,
+    private authService: AuthenticationService
   ) {
   }
 

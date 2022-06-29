@@ -142,9 +142,7 @@ export class ExamComponent implements OnInit {
       ExLevelIntermediate: intermediateExamLevelValue,
       ExLevelAdvanced: advancedExamLevelValue,
       ExLevelExpert: expertExamLevelValue
-    }
-    console.log(searchBody);
-    
+    }    
     await this.home.searchExam(searchBody);
   }
 

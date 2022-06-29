@@ -218,7 +218,7 @@
     </div>
 </div>
 
-<div class="container mb-5 mt-5">
+<div class="container mb-5 mt-5" *ngIf="">
     <div class="row justify-content-center">
         <h1 class="text-center">WRITE YOUR FEEDBACK</h1>
     </div>
@@ -226,7 +226,7 @@
 
         <div class="row justify-content-center">
 
-            <textarea class="col-12 pt-2 pb-2" rows="6" matInput [formControl]="testimonialTextarea" maxlength="300"
+            <textarea class="col-12 pt-2 pb-4" rows="6" matInput [formControl]="testimonialTextarea" maxlength="300"
                 style="border: 1px solid #808080" minlength="10" placeholder="Write your feedback here"></textarea>
 
             <!-- Required Error -->

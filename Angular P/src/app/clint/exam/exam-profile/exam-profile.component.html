@@ -48,9 +48,24 @@
                     <button type="button" class="btn btn-primary d-block mx-auto">Buy Now</button>
                 </div>
 
-                <div>
-                    {{ timerStatus }}
-                    {{ timerExam}}
+                <!-- Exam Timer -->
+                <div class="container mt-3">
+                    <div class="row justify-content-center flex-column py-2"
+                        *ngIf="timerStatus == 'ENDS AFTER' || timerStatus == 'START AFTER'">
+
+                        <span class="text-center mr-3">
+                            {{ timerStatus }}
+                        </span>
+
+
+                        <b class="font-family-digital text-center">
+                            {{ timerExam }}
+                        </b>
+                    </div>
+
+                    <div class="row justify-content-center py-3" *ngIf="timerStatus === undefined">
+                        <b style="font-size: 1.5rem;">{{ timerExam }}</b>
+                    </div>
                 </div>
 
             </div>
