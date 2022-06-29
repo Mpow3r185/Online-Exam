@@ -4,6 +4,8 @@ import { AdminCoursesComponent } from './admin-courses/admin-courses.component';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
+import { AdminTestimonialComponent } from './admin-testimonial/admin-testimonial.component';
+
 
 const routes: Routes = [
   {
