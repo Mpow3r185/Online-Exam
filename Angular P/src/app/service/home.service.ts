@@ -72,7 +72,7 @@ export class HomeService {
     SpinnerComponent.show();
 
     this.http.get('https://localhost:44342/api/course').subscribe((result) => {
-      this.courses = result;
+      this.courses = result.filter((value:any)=> value.status=='ENABLE');
     }, err => {
       this.toastr.error('Unable to connect the server');
     });
