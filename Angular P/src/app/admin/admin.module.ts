@@ -10,13 +10,18 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { UserService } from '../service/user.service';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { UsersComponent } from './users/users.component';
-import { UserCardComponent } from './user-card/user-card.component';
 import { DashboardCardComponent } from './dashboard-card/dashboard-card.component';
 import { HomeService } from '../service/home.service';
 import { TestimonialViewComponent } from './dashboard-card/testimonial-view/testimonial-view.component';
 import { AdminService } from '../service/admin.service';
 import { AdminCoursesComponent } from './admin-courses/admin-courses.component';
 import { AdminTestimonialComponent } from './admin-testimonial/admin-testimonial.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatSelectModule} from '@angular/material/select';
+import { CreateCourseComponent } from './admin-courses/create-course/create-course.component';
+import { AdminServicesComponent } from './admin-services/admin-services.component';
+import { CreateServiceComponent } from './admin-services/create-service/create-service.component';
+
 
 @NgModule({
   declarations: [
@@ -28,13 +33,17 @@ import { AdminTestimonialComponent } from './admin-testimonial/admin-testimonial
     UsersComponent,
     DashboardCardComponent,
     TestimonialViewComponent,
-     AdminCoursesComponent,
-    UserCardComponent,
-     AdminTestimonialComponent
+    AdminCoursesComponent,
+    AdminTestimonialComponent,
+    CreateCourseComponent,
+    AdminServicesComponent,
+    CreateServiceComponent
   ],
   imports: [
     SharedModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    MatTableModule,
+     MatSelectModule
   ],
   providers: [UserService, HomeService,AdminService]
 })
