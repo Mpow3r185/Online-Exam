@@ -40,7 +40,11 @@ export class HomeComponent implements OnInit {
   ) {
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+     if (localStorage.getItem('token')) {
+      this.homeService.getUserByUserName();
+      this.accountStatus = true;
+    }
     this.homeService.getCourses();
     this.homeService.getExams();
     this.homeService.getTestimonials();
