@@ -2,3 +2,19 @@
 @import '../../../assets/admin-dashboard/demo/demo.css';
 @import '../../../assets/admin-dashboard/css/material-dashboard.min.css';
 @import '../../../assets/admin-dashboard/css/material-dashboard.min.css';
+
+.c-nav-bg-col{
+    background-color: #102070 !important;
+}
+
+
+.dropdown-menu .dropdown-item{
+    color:#102070 !important;
+}   
+.dropdown-menu .dropdown-item:hover {
+    background-color:#be0808 !important;
+    color: white !important;;
+} 
+div.dropdown-menu.dropdown-menu-right.show{
+    padding: 10px 10px  10px 0px !important  ;
+}
