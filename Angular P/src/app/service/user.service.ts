@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { SpinnerComponent } from '../spinner/spinner.component';
+import { HomeService } from './home.service';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +26,7 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private toastr: ToastrService,
+    private homeService: HomeService
   ) {}
 
   public uploadFinished = (event: any) => {
