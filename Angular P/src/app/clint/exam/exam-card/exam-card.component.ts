@@ -50,7 +50,7 @@ export class ExamCardComponent implements OnInit {
   }
 
   goToExamProfile(exid: number) {
-    this.router.navigate([`exam/${exid}`]);
+    this.router.navigate([`examProfile/${exid}`]);
   }
 
   examTimer(): void {
