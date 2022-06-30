@@ -22,7 +22,7 @@ export class AuthorizationGuard implements CanActivate {
   ): | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const token = localStorage.getItem('token');
     if (token) {
-      if (state.url.indexOf('clint') >= 0) {
+      if (state.url.indexOf('profile') >= 0) {
         let user: any = localStorage.getItem('user');
         if (user) {
           user = JSON.parse(user);
