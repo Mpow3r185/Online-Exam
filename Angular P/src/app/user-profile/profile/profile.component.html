@@ -22,8 +22,8 @@
                       <h4>{{userService.selectedUser.username}}</h4>
                       <p class="text-secondary mb-1">{{userService.selectedUser.rolename}}</p>
                       <p class="text-muted font-size-sm">{{userService.selectedUser.address}}</p>
-                      <button class="btn btn-primary">Follow</button>
-                      <button class="btn btn-outline-primary">Message</button>
+                      <!-- <button class="btn btn-primary">Follow</button>
+                      <button class="btn btn-outline-primary">Message</button> -->
                     </div>
                   </div>
                 </div>
@@ -112,7 +112,7 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-12">
-                      <button (click)="openUpdateDailog(userService.selectedUser.id,userService.selectedUser.fullname,userService.selectedUser.email,
+                      <button class="btn btn-outline-primary" (click)="openUpdateDailog(userService.selectedUser.id,userService.selectedUser.fullname,userService.selectedUser.email,
 
                       userService.selectedUser.phoneNumbers,userService.selectedUser.address,userService.selectedUser.gender,userService.selectedUser.bod)">Edit</button>
 
