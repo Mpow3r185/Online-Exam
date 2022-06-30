@@ -198,7 +198,9 @@ export class HomeService {
       };
 
       this.http.post('https://localhost:44342/api/Account/SearchAccount', searchBody).subscribe((result: any) => {
-      this.selectedUser = result;
+        if(result[0].rolename == 'Student'){
+            this.selectedUser = result;
+          }
     },
     (error) => {
         this.toastr.error(error.message)
