@@ -10,6 +10,16 @@ export class AdminTestimonialComponent implements OnInit {
 
  
   constructor(public adminService:AdminService ) { }
+  
+   ngAfterViewInit(): void {
+    setTimeout(() => {
+      $('#dtTable4').DataTable({
+        pageLength: 5,
+        processing: true
+    });
+    }, 3000);
+  }
+  
   handleAccepted(a:any){
     if(a.status=="PENDING" || a.status=="REJECTED")
     {
