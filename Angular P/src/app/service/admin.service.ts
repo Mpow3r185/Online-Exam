@@ -20,19 +20,26 @@ export class AdminService {
 
 
 
+//--------------------------------------------------------
+//--  CRUD Operation for Table Testimonial except Create
+//--------------------------------------------------------
+
+
   // Get Testimonial
   async getTestimonials() {
+   
     this.http.get('https://localhost:44342/api/testimonial').subscribe((result) => {
       this.testimonials = result;
     }, error => {
       this.toastr.error('Unable to connect the server.')
     });
+
   }
 
   // update Testimonial
   updateTestimonial(body: any) {
+    SpinnerComponent.show();
     this.http.put('https://localhost:44342/api/testimonial', body).subscribe((result) => {
-      this.toastr.success('ok')
     }, error => {
       this.toastr.error('error')
     });
@@ -40,13 +47,13 @@ export class AdminService {
 
   // Delete Testimonial
   DeleteTestimonial(id: number) {
+    SpinnerComponent.show();
     this.http.delete('https://localhost:44342/api/testimonial/deleteTestimonial/' + id).subscribe((result) => {
-      this.toastr.success('rejected')
+    this.toastr.success('Testimonial Deleted Successfully.');
     }, error => {
       this.toastr.error('error')
     });
   }
-  
   
   
 //--------------------------------------------------------
