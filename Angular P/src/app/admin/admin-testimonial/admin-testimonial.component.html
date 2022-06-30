@@ -38,6 +38,7 @@
                                                   
                                                   <th>Status</th>
                                                   <th>Proccess</th>
+                                                  
                                                 </tr>
                                               </thead>
                                               <tbody class="font-weight-bold">
@@ -50,12 +51,10 @@
                                                   <td>{{obj.message}}</td>
                                                    <td>{{obj.status}}</td>
                                                   
-                                                  
-                                                  <td>
-                                                    <a class="btn  btn-sm bg-col-accept" role="button" aria-pressed="true" title="Accept" (click)="handleAccepted(obj)"><i class="fa fa-check-circle"></i></a> 
-                                                    <a data-target="#Delete_Clinic_@item.Id" data-toggle="modal" class="btn bg-col-Reject btn-sm text-white" role="button" aria-pressed="true" title="Reject" style="cursor:pointer;" (click)="deletetest(obj.id)"><i class="fa fa-close"></i></a>
+                                                   <td>
+                                                    <a (click)="openAcceptRejectDialog(obj)" class="btn btn-info btn-sm" role="button" aria-pressed="true" title="Edit"><i class="fa fa-edit"></i></a> 
+                                                    <a (click)="openDeleteDialog(obj.id)"class="btn btn-danger btn-sm text-white" role="button" aria-pressed="true" title="Delete" style="cursor:pointer;"><i class="fa fa-trash"></i></a>
                                                   </td>
-                                                 
                                                </tr>
                 
                                               </tbody>
@@ -76,6 +75,46 @@
         </div>
     </div>
 </div>
+
+<!-- Delete testimonial Dialog -->
+<ng-template #callDeleteDialog>
+  <div class="modal-header">
+    <h5 style="font-family: 'Cairo', sans-serif; font-weight: bold; color: black;" class="modal-title" id="exampleModalLabel">Deleted Testimonial</h5>
+    <button type="button" class="close text-danger" mat-button mat-dialog-close="no">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body py-3">
+        <h5 style="font-family: 'Cairo', sans-serif; color: black; font-weight: bold;">Are you sure you want to delete this testimonial ?</h5>
+        
+        
+</div>
+<div class="modal-footer">
+  <button class="btn btn-sm btn-secondary font-weight-bold" at-button mat-dialog-close="no">Close</button>
+  <button class="btn btn-sm btn-danger" mat-button mat-dialog-close="yes">Delete</button>
+</div>
+</ng-template>
+<!-- /End Delete testimonial Dialog -->
+
+<!-- Accept or Reject testimonial Dialog -->
+<ng-template #callDeleteDialog2>
+  <div class="modal-header">
+    <h5 style="font-family: 'Cairo', sans-serif; font-weight: bold; color: black;" class="modal-title" id="exampleModalLabel">Deleted Course</h5>
+    <button type="button" class="close text-danger" mat-button mat-dialog-close="no">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body py-3">
+        <h5 style="font-family: 'Cairo', sans-serif; color: black; font-weight: bold;">Are you sure you want to Accept/Reject this testimonial ?</h5>
+        
+        
+</div>
+<div class="modal-footer">
+  <button class="btn btn-sm btn-secondary font-weight-bold" at-button mat-dialog-close="no">Reject</button>
+  <button class="btn btn-sm btn-danger" mat-button mat-dialog-close="yes">Accept</button>
+</div>
+</ng-template>
+<!-- /End Delete testimonial Dialog -->
 
 
 
