@@ -11,6 +11,7 @@ import { HomeService } from 'src/app/service/home.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 SwiperCore.use([Navigation]);
