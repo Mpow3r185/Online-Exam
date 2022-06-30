@@ -29,8 +29,11 @@ export class ProfileComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     
+   SpinnerComponent.show();
     await this.userService.getUserById();
-    setTimeout(()=>{console.log(this.homeService.selectedUser);},2000) 
+    setTimeout(()=>{
+      SpinnerComponent.hide();
+    },2000) ;
    
     // let user: any = localStorage.getItem('token');
     // user = JSON.parse(user);
