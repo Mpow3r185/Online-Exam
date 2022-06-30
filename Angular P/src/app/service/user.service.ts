@@ -138,4 +138,22 @@ export class UserService {
       (error) => console.log(error)
     );
   }
+async editAccount(data: any): Promise<void>{
+   // body.imageName = this.displayImage;
+    console.log(data);
+    
+   data.rolename = this.homeService.selectedUser[0].rolename; data.status = this.homeService.selectedUser[0].status; 
+   data.profilePicture = this.homeService.selectedUser[0].profilePicture; data.username = this.homeService.selectedUser[0].username; 
+   data.password = this.homeService.selectedUser[0].password;
+    console.log(data);
+   this.http.put("https://localhost:44342/api/Account",data).subscribe((data:any)=>{
+        console.log(data);
+        this.toastr.success("Updated successfully");
+        
+    }, err=>{
+      console.log(err.message);
+    })
+    console.log(data);
+    
+  }
 }
