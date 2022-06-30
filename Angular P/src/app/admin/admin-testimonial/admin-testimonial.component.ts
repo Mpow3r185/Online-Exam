@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/service/admin.service';
+declare const $:any
 
 @Component({
   selector: 'app-admin-testimonial',
