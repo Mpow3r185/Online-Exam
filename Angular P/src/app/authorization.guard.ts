@@ -35,6 +35,7 @@ export class AuthorizationGuard implements CanActivate {
             setTimeout(() => {
               SpinnerComponent.hide();
             }, 2000);
+            this.router.navigate(['/page404']);
             setTimeout(() => {
               this.toastr.error('You do not have permission to access the page');
             }, 2000);
