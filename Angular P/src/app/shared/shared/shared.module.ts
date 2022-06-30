@@ -27,7 +27,7 @@ import {MatTableModule} from '@angular/material/table';
     MatButtonModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
-    MatTableModule
+    MatTableModule,
   ],
   exports: [
     CommonModule,
@@ -42,7 +42,7 @@ import {MatTableModule} from '@angular/material/table';
     MatButtonModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
-    MatTableModule
+    MatTableModule,
   ]
 })
 export class SharedModule { }

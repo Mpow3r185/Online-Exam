@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { HomeService } from 'src/app/service/home.service';
 import { UserService } from 'src/app/service/user.service';
+import { SpinnerComponent } from 'src/app/spinner/spinner.component';
 
 
 
