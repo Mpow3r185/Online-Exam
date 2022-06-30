@@ -1,6 +1,6 @@
 import { SpinnerComponent } from './../../../spinner/spinner.component';
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HomeService } from 'src/app/service/home.service';
 
@@ -16,7 +16,11 @@ export class ExamProfileComponent implements OnInit {
   timerStatus: string | undefined;
   private routeSub!: Subscription;
 
-  constructor(public homeService: HomeService, private route: ActivatedRoute) {}
+  constructor(
+    public homeService: HomeService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   async ngOnInit() {
     
@@ -92,6 +96,10 @@ export class ExamProfileComponent implements OnInit {
   // Number Of Registered Users
   getNumberOfRegisteredUsers(): number {
     return this.homeService.numberOfUsersBuyExam;
+  }
+
+  moveToExam() {
+    this.router.navigate([`exam/${this.homeService.exams.id}`])
   }
 
   // Unsubscribe to prevent memory leaks

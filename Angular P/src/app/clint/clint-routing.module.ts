@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { ExamComponent } from './exam/exam.component';
 import { Page404Component } from './page404/page404.component';
 import { CourseProfileComponent } from './course/course-profile/course-profile.component';
+import { ExamContentComponent } from './exam/exam-content/exam-content.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   },
   {
     path:'exam/:id',
+    component: ExamContentComponent
+  },
+  {
+    path:'examProfile/:id',
     component: ExamProfileComponent
   },
   {
