@@ -17,10 +17,14 @@ export class InternalNavBarComponent implements OnInit {
   constructor(public homeService: HomeService, private router: Router,  private toastr: ToastrService) {    }
 
   async ngOnInit() {
+    await this.homeService.getDynamicData(); 
     if (localStorage.getItem('token')) {
-      this.homeService.getUserByUserName();
-      await this.homeService.getDynamicData();      
-      this.accountStatus = true;
+     let user: any = localStorage.getItem('user');
+      user = JSON.parse(user);
+      if(user.role == 'Student'){
+        this.homeService.getUserByUserName();
+        this.accountStatus = true;
+      }
     }
   }
 
