@@ -16,12 +16,10 @@ export class NavBarComponent implements OnInit {
   }
 
   logOut() {
-    SpinnerComponent.show();
-    setTimeout(() => {
-      SpinnerComponent.hide();
-    }, 2000);
+   SpinnerComponent.show();
     setTimeout(() => {
       this.toastr.success("Logout Successfully");
+      SpinnerComponent.hide();
     }, 2000);
     localStorage.clear();
     this.router.navigate(['/auth/login']);
