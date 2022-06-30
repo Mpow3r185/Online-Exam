@@ -8,6 +8,9 @@ import { ToastNoAnimationModule, ToastrModule } from 'ngx-toastr';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SharedModule } from './shared/shared/shared.module';
 import { NgxScrollTopModule } from 'ngx-scrolltop';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './interceptor/token.interseptor';
+
 
 @NgModule({
   declarations: [AppComponent, SpinnerComponent],
@@ -20,6 +23,11 @@ import { NgxScrollTopModule } from 'ngx-scrolltop';
     SharedModule,
     NgxScrollTopModule
   ],
+  providers: [{
+     provide: HTTP_INTERCEPTORS,
+     useClass: TokenInterceptor,
+     multi: true
+   }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
