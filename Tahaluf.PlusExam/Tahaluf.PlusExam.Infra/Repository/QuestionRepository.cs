@@ -15,13 +15,15 @@ namespace Tahaluf.PlusExam.Infra.Repository
     public class QuestionRepository : IQuestionRepository
     {
         #region Fields
-         private readonly IGenericCRUD<Question> genericCRUD;
+        private readonly IGenericCRUD<Question> genericCRUD;
+        private readonly IDbContext dbContext;
         #endregion Fields
 
         #region Constructor
         public QuestionRepository(IDbContext DbContext)
         {
             genericCRUD = new GenericCRUD<Question>(DbContext);  
+            dbContext = DbContext;
         }
         #endregion Constructor
 
@@ -56,5 +58,18 @@ namespace Tahaluf.PlusExam.Infra.Repository
         #endregion UpdateQuestion
 
         #endregion CRUD_Operation
+
+        public List<Question> GetQeustionsByExamId(int exid)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("exid",
+                exid,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            return dbContext.Connection.Query<Question>(
+                "QuestionPackage.GetQeustionsByExamId", parameters,
+                commandType: CommandType.StoredProcedure).ToList();
+        }
     }
 }

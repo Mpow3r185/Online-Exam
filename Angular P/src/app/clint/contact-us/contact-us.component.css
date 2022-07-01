@@ -1,0 +1,12 @@
+.icon {
+    width: 60px;
+    height: 60px;
+    background: #001166;
+    border-radius: 50%;
+    margin: 0 auto
+}
+
+.icon i {
+    font-size: 20px;
+    color: #fff
+}

@@ -11,7 +11,6 @@ export class FooterComponent implements OnInit {
   constructor(public homeService: HomeService) { }
 
   ngOnInit(): void {
-    this.homeService.getDynamicData();
   }
 
 }

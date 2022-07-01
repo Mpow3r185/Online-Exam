@@ -22,6 +22,7 @@ export class HomeService {
   testimonial: any = [{}];
   usersBuyExam: any = [{}];
   numberOfUsersBuyExam: any = 0;
+  isBoughtExam: boolean|any = false;
 
   constructor(
     private http: HttpClient,
@@ -33,83 +34,56 @@ export class HomeService {
 
   // Call Async Functions
   private async run() {
-    SpinnerComponent.show();
-
     await this.getDynamicData();
-    await this.getPopularCourses();
-
-    SpinnerComponent.hide();
-  }
+   }
 
   // Get Exams
   async getExams(): Promise<void> {
-    SpinnerComponent.show();
-
     this.http.get('https://localhost:44342/api/exam').subscribe((result) => { 
       this.exams = result;
     }, error => {
       this.toastr.error('Unable to connect the server.')
     });
-
-    SpinnerComponent.hide();
   }
 
   // Get Exam By Id
   async getExamById(exid: number): Promise<void> {
-    SpinnerComponent.show();
-
     this.http.post(`https://localhost:44342/api/exam/getExamById/${exid}`, null).subscribe((result) => {
       this.exams = result;
     }, err => {
       this.toastr.error('Unable to connect the server.')
     })
-
-    SpinnerComponent.hide();
   }
 
   // Get Courses
   async getCourses(): Promise<void> {
-    SpinnerComponent.show();
-
     this.http.get('https://localhost:44342/api/course').subscribe((result:any) => {
       this.courses = result.filter((value:any)=> value.status=='ENABLE');
     }, err => {
       this.toastr.error('Unable to connect the server');
     });
-
-    SpinnerComponent.hide();
   }
   
   // Search Course
   async searchCourse(body: any) {
-    SpinnerComponent.show();
-
     this.http.post('https://localhost:44342/api/course/searchCourse', body).subscribe((result) => {
       this.courses = result;
     }, err => {
       this.toastr.error('Unable to connect the server');
     });
-
-    SpinnerComponent.hide();
   }
 
   // Get Dynamic Data
   async getDynamicData(): Promise<void> {
-    SpinnerComponent.show();
-
     this.http.get('https://localhost:44342/api/dynamicHome').subscribe((result) => {
       this.dynamicData = result;      
     }, err => {
       this.toastr.error('Unable to connect the server');
     });
-
-    SpinnerComponent.hide();
   }
   
   // Get Popular Courses Id
-  private async getPopularCourses(): Promise<void> {
-    SpinnerComponent.show();
-
+  async getPopularCourses(): Promise<void> {
     this.http.get('https://localhost:44342/api/course/getPopularCourses').subscribe((result: any) => {
       for (let item of result) {
           this.http.post(`https://localhost:44342/api/course/getCourseById/${item.courseId}`, null).subscribe((course) => {
@@ -123,74 +97,50 @@ export class HomeService {
     err => {
       this.toastr.error('Unable to connect the server');
     });
-
-    SpinnerComponent.hide();
   } 
   
   // Get Exams By Course Id
   async getExamsByCourseId(cid: number) {
-    SpinnerComponent.show();
-
     this.http.post(`https://localhost:44342/api/exam/getExamsByCourseId/${cid}`, null).subscribe((result) => {
       this.exams = result;      
     }, err => {
       this.toastr.error('Unable to connect the server');
     });
-
-    SpinnerComponent.hide();
   }
   
   async getAllServices(){
-    SpinnerComponent.show();
-
     this.http.get('https://localhost:44342/api/OurService').subscribe((result)=>{
         this.ourServiceData = result;
     }, err =>{
        this.toastr.error('Unable to connect the server');
     });
-
-    SpinnerComponent.hide();
   }
 
   // Search Exam
   async searchExam(body: any) {
-    SpinnerComponent.show();
-
     this.http.post('https://localhost:44342/api/exam/searchExam', body).subscribe((result) => {
       this.exams = result;
     });
-
-    SpinnerComponent.hide();
   }
 
   // Get Users Buy The Exam Id
   async GetUsersBuyExamId(exid: number): Promise<void> {
-    SpinnerComponent.show();
-
     this.http.post(`https://localhost:44342/api/exam/GetUsersBuyExamId/${exid}`, null).subscribe((result) => {
       this.usersBuyExam = result;
     });
-
-    SpinnerComponent.hide();
   }
 
   // Get Number Of Users Buy Exam By Exam Id
   async GetNumberOfUsersBuyByExamId(exid: number): Promise<void> {
-    SpinnerComponent.show();
-
     this.http.post(`https://localhost:44342/api/exam/GetNumberOfUsersBuyByExamId/${exid}`, null).subscribe((result) => {
       this.numberOfUsersBuyExam = result;      
     }, err => {
       this.toastr.error('Unable to connect sever.')
     });
-
-    SpinnerComponent.hide();
   }
 
   //To get info for user he just login
   async getUserByUserName() {
-      SpinnerComponent.show();
-
       let user: any = localStorage.getItem('user');
       user = JSON.parse(user);
       let searchBody = {
@@ -205,13 +155,9 @@ export class HomeService {
     (error) => {
         this.toastr.error(error.message)
     });
-    
-    SpinnerComponent.hide();
   }
 // Get Testimonials
-   getTestimonials() {
-    SpinnerComponent.show();
-
+   async getTestimonials() {
     this.http.get('https://localhost:44342/api/testimonial').subscribe((result:any) => {
       this.testimonial = result.filter((value:any)=>
         value.status=='ACCEPTED'
@@ -220,25 +166,34 @@ export class HomeService {
     }, err => {
       this.toastr.error(err.message,err.status);
     });
-
-    SpinnerComponent.hide();
   }
 
   // Create Testimonial
-  createTestimonial(test:any) {
-    SpinnerComponent.show();
+  createTestimonial(test:any) {    
+    let body: any = {
+      message:test.toString(),
+      accountId:this.selectedUser[0].id,
+      status:'PENDING'
+    };
     
-    let body:any={message:test.toString(),accountId:this.selectedUser[0].id,status:'PENDING'};
-    
-    this.http.post('https://localhost:44342/api/testimonial',body).subscribe(async (result) => {
+    this.http.post('https://localhost:44342/api/testimonial', body).subscribe(async (result) => {
       await delay(1000);
-      this.toastr.success('created');
+      this.toastr.success('Thank you for your valuable feedback');
 
     }, err => {
       this.toastr.error(err.message,err.status);
     });
+  }
 
-    SpinnerComponent.hide();
+  // Check If User Bought The Exam
+  async userIfBoughtExam(body: any) {  
+      
+    this.http.post('https://localhost:44342/api/exam/CheckIfUserBuyExam', body).subscribe((result) => {
+      this.isBoughtExam = result;
+      
+    }, error => {
+      this.toastr.error('Unable to connect a server', error.message);
+    })
   }
 }
 

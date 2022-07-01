@@ -84,7 +84,6 @@ export class AuthenticationService {
         localStorage.setItem('token', response.token);
         let data:any = jwtDecode(response.token);
         
-        //console.log(data);
         localStorage.setItem('user', JSON.stringify({...data}));
         
         //Check if user is Blocked Account
@@ -98,6 +97,7 @@ export class AuthenticationService {
                 SpinnerComponent.hide();
                 this.toastr.info("This User Is Blocked By Admin For Some Reasons");
               }else{
+                localStorage.setItem('AccountId', result[0].id);
                 if (data.role == 'Admin') {
                   this.router.navigate(['admin/dashboard']);
                 }

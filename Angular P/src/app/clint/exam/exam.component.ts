@@ -1,4 +1,4 @@
-import { SpinnerComponent } from 'src/app/spinner/spinner.component';
+import { SpinnerComponent } from './../../spinner/spinner.component';
 import { HomeService } from 'src/app/service/home.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -34,6 +34,8 @@ export class ExamComponent implements OnInit {
   constructor(public home: HomeService) { }
 
   ngOnInit(): void {
+    SpinnerComponent.show();
+
     this.home.getExams();
     
     this.filterIsOpened = true;
@@ -55,6 +57,8 @@ export class ExamComponent implements OnInit {
     this.filterByExameLevelIsOpened = false;
     this.filterByExamLevel = document.getElementById('filterByExamLevel') as HTMLInputElement;
     this.filterByExamLevelDetails = document.getElementById('filterByExamLevelDetails') as HTMLInputElement;
+
+    SpinnerComponent.hide();
   }
 
   handleFilterFunctionality(): void {    
@@ -69,7 +73,7 @@ export class ExamComponent implements OnInit {
     }
   }
 
-  handleFilterByDate(): void {    
+  handleFilterByDate(): void { 
     this.filterByDateIsOpened = !this.filterByDateIsOpened;
 
     if (this.filterByDateIsOpened) {
@@ -118,6 +122,8 @@ export class ExamComponent implements OnInit {
   }
 
   async examSearch() {
+    SpinnerComponent.show();
+
     const startDate: any = document.getElementById('startDate');
     const endDate: any = document.getElementById('endDate');
     const courseName: any = document.getElementById('courseName');
@@ -144,10 +150,16 @@ export class ExamComponent implements OnInit {
       ExLevelExpert: expertExamLevelValue
     }    
     await this.home.searchExam(searchBody);
+
+    SpinnerComponent.hide();
   }
 
   async examClear() {
+    SpinnerComponent.show();
+
     const emptyBody = {};
     await this.home.searchExam(emptyBody);
+    
+    SpinnerComponent.hide();
   }
 }

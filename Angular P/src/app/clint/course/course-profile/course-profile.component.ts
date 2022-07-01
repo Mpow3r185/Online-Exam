@@ -21,6 +21,7 @@ export class CourseProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    SpinnerComponent.show();
 
     // Get Course And Exams For That Course
     this.routeSub = this.route.params.subscribe(async params => {   
@@ -33,7 +34,7 @@ export class CourseProfileComponent implements OnInit {
       await this.homeService.getExamsByCourseId(body.cid);  // Get Exams
     });
 
-    
+    SpinnerComponent.hide();
   }
 
   // Unsubscribe to prevent memory leaks

@@ -1,3 +1,4 @@
+import { SpinnerComponent } from './../../spinner/spinner.component';
 import { AuthenticationService } from 'src/app/service/authentication.service';
 import { FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -31,6 +32,7 @@ export class HomeComponent implements OnInit {
   searchCourses: any = [];
   accountStatus: boolean = false;
   testimonialTextarea = new FormControl('', [Validators.required, Validators.minLength(10)]);
+  currentTestimonialIndex: number = 0;
 
   constructor(
     public homeService: HomeService,
@@ -51,20 +53,29 @@ export class HomeComponent implements OnInit {
         this.accountStatus = true;
       }
     }
-    this.homeService.getCourses();
-    this.homeService.getExams();
-    this.homeService.getTestimonials();
-  }
-  saveTesti(){
-    if(this.testimonialTextarea.valid){
-      this.homeService.createTestimonial(this.testimonialTextarea.value);
-    }else{
-      this.toastr.error('You Must Fill The Field First')
-    }
-  
+
+    SpinnerComponent.show();
+    
+    await this.homeService.getPopularCourses();
+    await this.homeService.getCourses();
+    await this.homeService.getExams();
+    await this.homeService.getTestimonials();
+    await delay(1000);
+
+    SpinnerComponent.hide();
   }
 
-  currentTestimonialIndex: number = 0;
+  saveTestimonial(){
+    SpinnerComponent.show();
+
+    if(this.testimonialTextarea.valid){
+      this.homeService.createTestimonial(this.testimonialTextarea.value);
+    } else {
+      this.toastr.error('You Must Fill The Field First')
+    }
+    SpinnerComponent.hide();
+  }
+
   animateTestimonial(index: number) {
     document.getElementById(`transporter${this.currentTestimonialIndex}`)!.classList.remove('disable-div');
     let sliderContainer = document.getElementById('testiSlider');
@@ -75,6 +86,8 @@ export class HomeComponent implements OnInit {
   }
 
   homeSearch() {
+    SpinnerComponent.show();
+
     this.searchCourses = [];
     this.searchExams = [];
     const searchContainer = document.getElementById('searchContainer');
@@ -113,5 +126,12 @@ export class HomeComponent implements OnInit {
     else {
       searchContainer!.style.display = 'none';
     }
+
+    SpinnerComponent.hide();
   }
+}
+
+
+function delay(ms: number) {
+  return new Promise( resolve => setTimeout(resolve, ms) );
 }

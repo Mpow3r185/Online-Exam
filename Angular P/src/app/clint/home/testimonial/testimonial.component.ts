@@ -9,11 +9,6 @@ import { HomeService } from 'src/app/service/home.service';
 export class TestimonialComponent implements OnInit {
 
   @Input() profileImage:string | undefined;
-  // @Input() name!: string;
-  // @Input() title!: string;
-  // @Input() message!: string;
-
-  //New2
   @Input() idd      : number | undefined;
   @Input() message  : string | undefined;
   @Input() status   : string | undefined;

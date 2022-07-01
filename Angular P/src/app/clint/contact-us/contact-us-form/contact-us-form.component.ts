@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ContactService } from 'src/app/service/contact.service';
 import { HomeService } from 'src/app/service/home.service';
+import { SpinnerComponent } from 'src/app/spinner/spinner.component';
 
 @Component({
   selector: 'app-contact-us-form',
@@ -8,14 +9,18 @@ import { HomeService } from 'src/app/service/home.service';
   styleUrls: ['./contact-us-form.component.css'],
 })
 export class ContactUsFormComponent implements OnInit {
-  constructor(public contactService: ContactService, public homeService: HomeService) {}
+  constructor(
+    public contactService: ContactService,
+    public homeService: HomeService) {}
 
-  ngOnInit(): void {
-    this.homeService.getDynamicData();
-  }
+  ngOnInit(): void {  }
   
 
   onSubmit() {
+    SpinnerComponent.show();
+
     this.contactService.createContact();
+
+    SpinnerComponent.show();
   }
 }

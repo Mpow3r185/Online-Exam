@@ -29,8 +29,9 @@ export class ExamCardComponent implements OnInit {
   timerExam!: string;
   timerStatus: string | undefined;
 
-  constructor(public homeService: HomeService, private router: Router) { 
-  }
+  constructor(
+    public homeService: HomeService,
+    private router: Router) { }
 
 
   ngOnInit(): void {

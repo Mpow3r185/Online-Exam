@@ -41,4 +41,17 @@ CREATE OR REPLACE PACKAGE Body QuestionPackage AS
         END IF;
     END QuestionCRUD;
     
+    -- Get Questions By Exam Id
+    PROCEDURE GetQeustionsByExamId(exid IN question.examId%type) AS
+        ref_cursor SYS_REFCURSOR;
+        
+    BEGIN
+        OPEN ref_cursor FOR
+        SELECT *
+        FROM Question
+        WHERE examId = exid;
+        
+        DBMS_SQL.RETURN_RESULT(ref_cursor);
+    END GetQeustionsByExamId;
+    
 END QuestionPackage;

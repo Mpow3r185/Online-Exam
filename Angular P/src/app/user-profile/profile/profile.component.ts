@@ -26,65 +26,48 @@ export class ProfileComponent implements OnInit {
 
   @ViewChild('callUpdateDailog') callUpdateDailog!: TemplateRef<any>
   previous_data: any = {};
-  constructor(public dialog: MatDialog,public userService: UserService,public homeService: HomeService) { }
 
-  async ngOnInit(): Promise<void> {
-    
-   SpinnerComponent.show();
-    await this.userService.getUserById();
-    setTimeout(()=>{
-      SpinnerComponent.hide();
-    },2000) ;
-   
-    // let user: any = localStorage.getItem('token');
-    // user = JSON.parse(user);
-    // console.log(localStorage.getItem('user'));
-    // console.log(user.primarysid);
-  
-      // console.log(this.updateform.value);
-    
-
-    
-  
-     
-  }
   updateform: FormGroup = new FormGroup({
-
     id: new FormControl('', Validators.required),
-
     fullName: new FormControl('', Validators.required),
-
     email: new FormControl('', Validators.required),
-
     phoneNumbers: new FormControl('', Validators.required),
-
     address: new FormControl('', Validators.required),
     gender: new FormControl('', Validators.required),
     bod: new FormControl('', Validators.required),
-    
-
    // profilePicture: new FormControl()
+  });
 
-  })
+  constructor(
+    public dialog: MatDialog,
+    public userService: UserService,
+    public homeService: HomeService) { }
+
+  async ngOnInit(): Promise<void> {
+    
+    SpinnerComponent.show();
+
+    await this.userService.getUserById();
+    await delay(2000);
+    
+    SpinnerComponent.hide();
+   
+    // let user: any = localStorage.getItem('token');
+    // user = JSON.parse(user);
+  }
+  
   openUpdateDailog(id1: any, fullName1: any, email1: any, phoneNumber1: any, address1: any, gender1: any, birthOfDate1: any) {
-
     this.previous_data = {
-
       id: id1,
-
       fullName: fullName1,
-
       email: email1,
-
       phoneNumbers: phoneNumber1,
-
       address: address1,
-
       gender: gender1,
-
       bod: birthOfDate1,
      // profilePicture: profilePicture1
     }
+
     // uploadImage(file: any){
     //   console.log(file);
     //   if(file.length == 0)
@@ -97,24 +80,21 @@ export class ProfileComponent implements OnInit {
    
 
     this.updateform.controls['id'].setValue(this.previous_data.id);
-
     this.dialog.open(this.callUpdateDailog);
 
   }
   async editProfile(): Promise<void> {
     console.log(this.previous_data.value);
-    setTimeout(() => {
-      console.log(this.updateform.value);
-     this.userService.editAccount(this.updateform.value);
-    }, 2000);
+    await delay(2000);
+    console.log(this.updateform.value);
+    this.userService.editAccount(this.updateform.value);
     
     //this.userService.updateUser();
-    
-
     // window.location.reload();
-
   }
-  
+}
 
 
+function delay(ms: number) {
+  return new Promise( resolve => setTimeout(resolve, ms) );
 }
