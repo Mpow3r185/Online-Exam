@@ -66,12 +66,14 @@ namespace Tahaluf.PlusExam.API.Controllers
         #endregion DeleteQuestion
 
         #endregion CRUD_Operation
-        
+
+        #region GetQeustionsByExamId
         [HttpPost]
         [Route("GetQeustionsByExamId/{exid}")]
         public List<Question> GetQeustionsByExamId(int exid)
         {
             return _questionService.GetQeustionsByExamId(exid);
         }
+        #endregion GetQeustionsByExamId
     }
 }

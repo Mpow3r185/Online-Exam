@@ -23,6 +23,7 @@ export class HomeService {
   usersBuyExam: any = [{}];
   numberOfUsersBuyExam: any = 0;
   isBoughtExam: boolean|any = false;
+  examContent: any;
 
   constructor(
     private http: HttpClient,
@@ -46,12 +47,23 @@ export class HomeService {
     });
   }
 
+  // Get Exam Content
+  async getExamContent(exid: number): Promise<void> {
+    this.http.post(`https://localhost:44342/api/exam/getExamContent/${exid}`, null).subscribe((result) => {
+      this.examContent = result;
+      
+    }, error => {
+      this.toastr.error('Unable to connect the server');
+    })
+  }
+
   // Get Exam By Id
-  async getExamById(exid: number): Promise<void> {
+  async getExamById(exid: number): Promise<void> {    
     this.http.post(`https://localhost:44342/api/exam/getExamById/${exid}`, null).subscribe((result) => {
       this.exams = result;
+      
     }, err => {
-      this.toastr.error('Unable to connect the server.')
+      this.toastr.error('Unable to connect the server.');
     })
   }
 
@@ -125,17 +137,17 @@ export class HomeService {
 
   // Get Users Buy The Exam Id
   async GetUsersBuyExamId(exid: number): Promise<void> {
-    this.http.post(`https://localhost:44342/api/exam/GetUsersBuyExamId/${exid}`, null).subscribe((result) => {
+    this.http.post(`https://localhost:44342/api/exam/getUsersBuyExamId/${exid}`, null).subscribe((result) => {
       this.usersBuyExam = result;
     });
   }
 
   // Get Number Of Users Buy Exam By Exam Id
-  async GetNumberOfUsersBuyByExamId(exid: number): Promise<void> {
+  async getNumberOfUsersBuyByExamId(exid: number): Promise<void> {
     this.http.post(`https://localhost:44342/api/exam/GetNumberOfUsersBuyByExamId/${exid}`, null).subscribe((result) => {
-      this.numberOfUsersBuyExam = result;      
+      this.numberOfUsersBuyExam = result;
     }, err => {
-      this.toastr.error('Unable to connect sever.')
+      this.toastr.error('Unable to connect sever.', err.message)
     });
   }
 
@@ -192,7 +204,7 @@ export class HomeService {
       this.isBoughtExam = result;
       
     }, error => {
-      this.toastr.error('Unable to connect a server', error.message);
+      this.toastr.error('Unable to connect a server');
     })
   }
 }

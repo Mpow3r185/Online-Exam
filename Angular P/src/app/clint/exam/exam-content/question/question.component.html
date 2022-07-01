@@ -1,0 +1,63 @@
+<!-- Question Container -->
+<div class="col-12 border-3px mb-5 mt-sm-5 mt-md-5 mt-lg-0 questionCard" style="height:fit-content;">
+    <div class="row">
+        <!-- Questions Text Container -->
+        <div class="container m-3">
+
+            <div class="row justify-content-start">
+
+                <!-- Question Number Text -->
+                <div>
+                    <p class="font-family-tahoma font-weight-bold">
+                        Q{{ questionNumber }}:
+                    </p>
+                </div>
+
+                <!-- Question Content Text -->
+                <div class="col-10">
+                    <p class="font-family-tahoma;"> {{ question.questionContent }} </p>
+                </div>
+
+            </div>
+            <hr class="mt-0" />
+            <input type="hidden" value="{{ question.id }}" class="hidden" />
+            <!-- Options Container -->
+            <div class="row">
+
+                <!-- Option 1 -->
+                <div class="col-12">
+                    <input type="radio" id="q{{ question.id }}-op1" name="q{{ question.id }}" value="OptionId" />
+                    <label class="px-2" class="px-2" class="px-2" for="q{{ question.id }}-op1">print ("Hello
+                        World");</label>
+                </div>
+
+                <div class="col-12">
+                    <input type="radio" id="q{{ question.id }}-op2" name="q{{ question.id }}" value="OptionId"
+                        value=21 />
+                    <label class="px-2" class="px-2" for="q{{ question.id }}-op2">cout &lt;&lt; "Hello
+                        World";</label>
+                </div>
+
+                <div class="col-12">
+                    <input type="radio" id="q{{ question.id }}-op3" name="q{{ question.id }}" value="OptionId"
+                        value=22 />
+                    <label class="px-2" class="px-2" for="q{{ question.id }}-op3">Console.WriteLine("Hello
+                        World");</label>
+                </div>
+
+                <div class="col-12">
+                    <input type="radio" id="q{{ question.id }}-op4" name="q{{ question.id }}" value="OptionId"
+                        value=23 />
+                    <label class="px-2" class="px-2" for="q{{ question.id }}-op4">System.out.println("Hello
+                        World");</label>
+                </div>
+
+                <div class="col-12">
+                    <input type="radio" id="q{{ question.id }}-op5" name="q{{ question.id }}" value="OptionId"
+                        value=24 />
+                    <label class="px-2" class="px-2" for="q{{ question.id }}-op5">None Of Above</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

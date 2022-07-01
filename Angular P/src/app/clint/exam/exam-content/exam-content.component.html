@@ -8,7 +8,7 @@
         <!-- Course Name -->
         <div class="container">
             <div class="row justify-content-center">
-                <span class="title font-size-40" title="Course Name">Python</span>
+                <span class="title font-size-40" title="Course Name"> {{ homeService.exams.title }} </span>
             </div>
         </div>
 
@@ -18,7 +18,7 @@
         <!-- Exam Name -->
         <div class="container">
             <div class="row justify-content-center">
-                <span class="title font-size-35" title="Exam Name">Python Basics</span>
+                <span class="title font-size-35" title="Exam Name"> {{ homeService.exams.courseName }} </span>
             </div>
         </div>
 
@@ -52,8 +52,10 @@
                         <div class="row justify-content-start m-1 questions-navigator-containter">
 
                             <!-- Question Nav Component -->
-                            <div class="border-1px m-1 p-2 question-container" id="q0" (click)="transport(0)">
-                                <p class="text-center font-weight-bold m-0 font-family-tahoma">Q1
+                            <div class="border-1px m-1 p-1 question-container"
+                                *ngFor="let question of homeService.examContent; let i=index" id="q{{ i }}"
+                                (click)="transport(i)">
+                                <p class="text-center font-weight-bold m-0 font-family-tahoma">Q{{i+1}}
                                 </p>
                             </div>
 
@@ -78,79 +80,18 @@
                     (window.resize)="onResize()">
                     <div id="slider" style="transition: 0.5s;">
 
-                        <!-- Question Container -->
-                        <div class="col-12 border-3px mb-5 mt-sm-5 mt-md-5 mt-lg-0 questionCard"
-                            style="height:fit-content;">
-                            <div class="row">
-
-                                <!-- Questions Text Container -->
-                                <div class="container m-3">
-
-                                    <div class="row justify-content-start">
-
-                                        <!-- Question Number Text -->
-                                        <div>
-                                            <p style="font-family: Tahoma; font-weight: bold;">
-                                                Q1:
-                                            </p>
-                                        </div>
-
-                                        <!-- Question Content Text -->
-                                        <div class="col-10">
-                                            <p class="font-family: Tahoma;"> What is a correct syntax to output
-                                                "Hello
-                                                World" in
-                                                C++?</p>
-                                        </div>
-
-                                    </div>
-                                    <hr class="mt-0" />
-                                    <input type="hidden" value=35 class="hidden" />
-                                    <!-- Options Container -->
-                                    <div class="row">
-
-                                        <!-- Option 1 -->
-                                        <div class="col-12">
-                                            <input type="radio" id="q0-op1" name="q0" value=20 />
-                                            <label class="px-2" class="px-2" class="px-2" for="q0-op1">print ("Hello
-                                                World");</label>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <input type="radio" id="q0-op2" name="q0" value=21 />
-                                            <label class="px-2" class="px-2" for="q0-op2">cout &lt;&lt; "Hello
-                                                World";</label>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <input type="radio" id="q0-op3" name="q0" value=22 />
-                                            <label class="px-2" class="px-2" for="q0-op3">Console.WriteLine("Hello
-                                                World");</label>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <input type="radio" id="q0-op4" name="q0" value=23 />
-                                            <label class="px-2" class="px-2" for="q0-op4">System.out.println("Hello
-                                                World");</label>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <input type="radio" id="q0-op5" name="q0" value=24 />
-                                            <label class="px-2" class="px-2" for="q2-op5">None Of Above</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <app-question *ngFor="let question of homeService.examContent; let i = index"
+                            [questionNumber]="i+1" [question]="question.question" [options]="question.options">
+                        </app-question>
 
                     </div>
                 </div>
-                <div class="col-12 mb-4 mt-md-3 mt-sm-3 mt-lg-3  mt-xl-0">
+                <div class=" col-12 mb-4 mt-md-3 mt-sm-3 mt-lg-3 mt-xl-0">
                     <div class="row justify-content-center">
                         <button class="btn btn-primary d-block mx-3 transporter-btn" id="prevBtn"
-                            (click)="transport(0)">Previous</button>
+                            (click)="transport(currentQuestionNumber-1)">Previous</button>
                         <button class="btn btn-primary d-block mx-3 transporter-btn" id="nextBtn"
-                            (click)="transport(1)">Next</button>
+                            (click)="transport(currentQuestionNumber+1)">Next</button>
                     </div>
 
                 </div>

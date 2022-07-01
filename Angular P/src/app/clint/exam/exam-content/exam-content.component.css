@@ -56,6 +56,8 @@ div.question-container {
     background-color: #EEE;
     cursor: pointer;
     transition: 0.5s;
+    width:56px; 
+    height: 38px;
 }
 
 div.question-container:hover {

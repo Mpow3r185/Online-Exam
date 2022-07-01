@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class ExamContentComponent implements OnInit {
 
-  private currentQuestionNumber: number = 0;                        // Number of the Exam Displayed
+  currentQuestionNumber: number = 0;                        // Number of the Exam Displayed
   private sizes?: number[];                                         // Height of Every Question Container
   private heightContainersCumulativeSum?: number[];                 // Cumulative Sum of Sizes array
   userAnswers: Map<number, number> = new Map<number, number>();     // User Answers <QuestionId, OptionId>
@@ -26,12 +26,16 @@ export class ExamContentComponent implements OnInit {
   
   // Constructor
   constructor(
-    private homeService: HomeService,
+    public homeService: HomeService,
     private route: ActivatedRoute,
     private router: Router
     ) { 
-      this.routeSub = this.route.params.subscribe(async params => {        
+      this.routeSub = this.route.params.subscribe(async params => {     
+        
+        await this.homeService.getExamContent(Number(params['id']));
         await this.homeService.getExamById(Number(params['id']));
+
+        
       });
     }
 
@@ -39,6 +43,7 @@ export class ExamContentComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     SpinnerComponent.show();
 
+    await delay(15000);
     document.querySelector('#prevBtn')?.setAttribute('disabled', '');                  // Disable Previous Button
     document.querySelector(`#q0`)?.classList.add('q-active');                            
     this.questionsContainers = document.querySelectorAll('.questionCard');
@@ -62,10 +67,10 @@ export class ExamContentComponent implements OnInit {
 
     // Display First Question
     this.parentContainer.style.height = `${this.sizes[0]}px`;
-
-    await delay(1000);
+    
     SpinnerComponent.hide();
-
+    console.log(this.homeService.examContent);
+    
     this.examTimer();
   }
 
@@ -145,19 +150,17 @@ export class ExamContentComponent implements OnInit {
 
   timerFunc(distance: number) {
     let days: number;
-    let hours: number;
-    let minutes: number;
-    let seconds: number;
+    let hours: number|string;
+    let minutes: number|string;
+    let seconds: number|string;
 
     let timer = setInterval( () => {
       days = Math.floor(distance / (1000 * 60 * 60 * 24));
       hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      console.log(hours, minutes, seconds);
       
       hours += days * 24;
-      this.timerExam = hours + ":" + minutes + ":" + seconds;
 
       if (hours === 0 && minutes === 0 && seconds === 0) {
         // Navigate to submit API function in service
@@ -165,6 +168,12 @@ export class ExamContentComponent implements OnInit {
         this.router.navigate([`examProfile/${this.homeService.exams.id}`]);
         // Call Exit Message Dialog
       }
+
+      if (hours < 10) { hours = `0${hours}`; }
+      if (minutes < 10) { minutes = `0${minutes}`; }
+      if (seconds < 10) { seconds = `0${seconds}`; }
+
+      this.timerExam = hours + ":" + minutes + ":" + seconds;
 
       distance -= 1000; // Decrease by 1 second
     }, 1000);

@@ -27,8 +27,8 @@ export class ExamProfileComponent implements OnInit {
 
     this.routeSub = this.route.params.subscribe(async params => {
       await this.homeService.getExamById(Number(params['id']));
-      await this.homeService.GetNumberOfUsersBuyByExamId(Number(params['id']));
-
+      await this.homeService.getNumberOfUsersBuyByExamId(Number(params['id']));
+      
       this.homeService.userIfBoughtExam({
         examId: Number(params['id']),
         accountId: Number(localStorage.getItem('AccountId'))
@@ -36,8 +36,6 @@ export class ExamProfileComponent implements OnInit {
     });
 
     await delay(1000);    
-
-    console.log(this.homeService.isBoughtExam);
     
     SpinnerComponent.hide();
 
@@ -69,17 +67,25 @@ export class ExamProfileComponent implements OnInit {
   timerFunc(distance: number) {
     let timer = setInterval(() => {
       let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      let hours: string|number = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      let minutes: string|number = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds: string|number = Math.floor((distance % (1000 * 60)) / 1000);
         
       hours += days * 24;
-      this.timerExam = hours + ":" + minutes + ":" + seconds;
 
       if (days == 0 && hours == 0 && minutes == 0 && seconds == 0) {
         clearInterval(timer);
         this.examTimer();
       }
+
+      
+      if (hours < 10) { hours = `0${hours}`; }
+      if (minutes < 10) { minutes = `0${minutes}`; }
+      if (seconds < 10) { seconds = `0${seconds}`; }
+      
+      this.timerExam = hours + ":" + minutes + ":" + seconds;
+
+      
       distance -= 1000;
     }, 1000);
   }

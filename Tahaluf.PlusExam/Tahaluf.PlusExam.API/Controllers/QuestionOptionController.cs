@@ -66,5 +66,12 @@ namespace Tahaluf.PlusExam.API.Controllers
         #endregion DeleteQuestionOption
 
         #endregion CRUD_Operation
+
+        #region GetQuestionOptionByQuestionId
+        public List<QuestionOption> GetQuestionOptionByQuestionId(int qid)
+        {
+            return _questionOptionService.GetQuestionOptionByQuestionId(qid);
+        }
+        #endregion GetQuestionOptionByQuestionId
     }
 }
