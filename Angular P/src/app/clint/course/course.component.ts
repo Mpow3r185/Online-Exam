@@ -24,11 +24,19 @@ export class CourseComponent implements OnInit {
     private router: Router) { }
 
   async ngOnInit(): Promise<void> {
+    SpinnerComponent.show();
+
     await this.homeService.getCourses();
+
+    SpinnerComponent.hide();
   }
 
   courseSearch(event: any) {
+    SpinnerComponent.show();
+
     this.homeService.searchCourse({ cName:  event.target.value.toLowerCase()});
+
+    SpinnerComponent.hide();
   }
 }
 

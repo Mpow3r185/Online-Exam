@@ -7,10 +7,17 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ContactUsInfoCardComponent implements OnInit {
   @Input() contactInfo: any;
+
   constructor() { }
   
 
   ngOnInit(): void {
+    console.log(this.contactInfo);
   }
 
+}
+
+
+function delay(ms: number) {
+  return new Promise( resolve => setTimeout(resolve, ms) );
 }

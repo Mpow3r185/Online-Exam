@@ -52,5 +52,10 @@ namespace Tahaluf.PlusExam.Infra.Service
         #endregion UpdateQuestion
 
         #endregion CRUD_Operation
+
+        public List<Question> GetQeustionsByExamId(int exid)
+        {
+            return _questionRepository.GetQeustionsByExamId(exid);
+        }
     }
 }

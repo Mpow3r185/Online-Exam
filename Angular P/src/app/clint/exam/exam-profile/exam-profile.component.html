@@ -44,10 +44,25 @@
                 </div>
 
                 <!-- Buy Exam Or Enter Exam Container -->
-                <div class="container mb-3">
-                    <button type="button" class="btn btn-primary d-block mx-auto" (click)="moveToExam()">Buy
-                        Now</button>
+                <div class="container mb-30" *ngIf="timerExam != 'EXPIRED'">
+                    <div class="container mb-30" *ngIf="homeService.isBoughtExam && timerStatus =='ENDS AFTER'">
+                        <button type="button" class="btn btn-primary d-block mx-auto" (click)="moveToExam()">Enter
+                            Now</button>
+                    </div>
+
+                    <div class="container mb-30" *ngIf="!homeService.isBoughtExam && timerStatus =='ENDS AFTER'">
+                        <button type="button" class="btn btn-primary d-block mx-auto">Buy
+                            Now</button>
+                    </div>
+
+                    <div class="container mb-30" *ngIf="!homeService.isBoughtExam && timerStatus =='START AFTER'">
+                        <button type="button" class="btn btn-primary d-block mx-auto">Buy
+                            Now</button>
+                    </div>
                 </div>
+
+                <!-- Buy Exam Or Enter Exam Container -->
+
 
                 <!-- Exam Timer -->
                 <div class="container mt-3">

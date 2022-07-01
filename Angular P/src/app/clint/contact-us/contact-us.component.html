@@ -5,7 +5,11 @@
         <div class="col-md-8">
             <div class="row mb-5">
                 <div *ngFor="let item of contactUsInfo" class="col-md-4 text-center py-4">
-                    <app-contact-us-info-card [contactInfo]="item"></app-contact-us-info-card>
+                    <div class="icon mb-3 d-flex align-items-center justify-content-center">
+                        <i class="{{item.icon}}"></i>
+                    </div>
+                    <h5 style="color: #001166;">{{ item.title }}</h5>
+                    <span>{{ item.subtitle }}</span>
                 </div>
             </div>
         </div>

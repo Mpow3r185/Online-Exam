@@ -14,8 +14,7 @@ export class AboutUsComponent implements OnInit {
   ngOnInit(): void {
     SpinnerComponent.show();
     this.home.getAllServices();
-    this.home.getDynamicData();
-    setTimeout(() => SpinnerComponent.hide(), 2000);
+    SpinnerComponent.hide();
   }
 
 }

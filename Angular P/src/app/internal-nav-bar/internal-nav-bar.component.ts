@@ -14,10 +14,13 @@ export class InternalNavBarComponent implements OnInit {
   isScrolled: boolean = false;
   accountStatus: boolean = false;
   
-  constructor(public homeService: HomeService, private router: Router,  private toastr: ToastrService) {    }
+  constructor(
+    public homeService: HomeService, 
+    private router: Router, 
+    private toastr: ToastrService) { }
 
   async ngOnInit() {
-    await this.homeService.getDynamicData(); 
+
     if (localStorage.getItem('token')) {
      let user: any = localStorage.getItem('user');
       user = JSON.parse(user);
@@ -29,13 +32,7 @@ export class InternalNavBarComponent implements OnInit {
   }
 
   logOut() {
-    SpinnerComponent.show();
-    setTimeout(() => {
-      SpinnerComponent.hide();
-    }, 2000);
-    setTimeout(() => {
-      this.toastr.success("Logout Successfully");
-    }, 2000);
+    this.toastr.success("Logout Successfully");
     localStorage.clear();
     this.router.navigate(['/auth/login']);
   }

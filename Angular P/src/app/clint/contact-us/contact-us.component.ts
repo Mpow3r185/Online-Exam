@@ -15,29 +15,36 @@ export class ContactUsComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     SpinnerComponent.show();
-    setTimeout(() => SpinnerComponent.hide(), 2000);
-    await this.homeService.getDynamicData();
-    setTimeout(() => this.getContactInfo(), 1000);
+
+    await delay(1000);
     
+    this.contactUsInfo = [{
+      icon: "fal fa-map",
+      title: "Address",
+      subtitle: this.homeService.dynamicData[0].address
+    },
+    {
+      icon: "fal fa-mobile",
+      title: "Phone",
+      subtitle: this.homeService.dynamicData[0].phoneNumber
+    },
+    {
+      icon: "fal fa-envelope",
+      title: "Email",
+      subtitle: this.homeService.dynamicData[0].email
+    }
+  ];
+    
+    SpinnerComponent.hide();
   }
 
-  getContactInfo() {
-      this.contactUsInfo = [{
-        icon: "fal fa-map",
-        title: "Address",
-        subtitle: this.homeService.dynamicData[0].address
-      },
-      {
-        icon: "fal fa-mobile",
-        title: "Phone",
-        subtitle: this.homeService.dynamicData[0].phoneNumber
-      },
-      {
-        icon: "fal fa-envelope",
-        title: "Email",
-        subtitle: this.homeService.dynamicData[0].email
-      }
-    ];
+  async getContactInfo() {
+      
   }
 
+}
+
+
+function delay(ms: number) {
+  return new Promise( resolve => setTimeout(resolve, ms) );
 }

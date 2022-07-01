@@ -23,19 +23,32 @@ export class ExamProfileComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    
+    SpinnerComponent.show();
+
     this.routeSub = this.route.params.subscribe(async params => {
       await this.homeService.getExamById(Number(params['id']));
       await this.homeService.GetNumberOfUsersBuyByExamId(Number(params['id']));
+
+      this.homeService.userIfBoughtExam({
+        examId: Number(params['id']),
+        accountId: Number(localStorage.getItem('AccountId'))
+      });      
     });
-    await delay(1000);
+
+    await delay(1000);    
+
+    console.log(this.homeService.isBoughtExam);
+    
+    SpinnerComponent.hide();
 
     this.examTimer();
     this.getExamDuration();
   }
 
   async examTimer() {
+    SpinnerComponent.show();
     await delay(1000);
+    SpinnerComponent.hide();
 
     let startTime = new Date(this.homeService.exams.startDate).getTime();
     let endTime = new Date(this.homeService.exams.endDate).getTime();

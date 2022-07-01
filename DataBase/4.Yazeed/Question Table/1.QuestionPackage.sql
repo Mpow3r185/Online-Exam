@@ -9,13 +9,18 @@
 */
 
 CREATE OR REPLACE PACKAGE QuestionPackage AS
-    --Question CRUD operation
+
+    -- Question CRUD operation
     PROCEDURE QuestionCRUD(
-               func IN VARCHAR DEFAULT NULL,
-               Qid Question.id%TYPE, 
-	       QContent Question.questioncontent%TYPE,
-	       QType Question.type%TYPE ,
-	       QScore Question.score%TYPE, 
-	       QStatues Question.status%TYPE, 
-	       QExamId Question.examid%TYPE);
+           func IN VARCHAR DEFAULT NULL,
+           Qid Question.id%TYPE DEFAULT NULL, 
+	       QContent Question.questioncontent%TYPE DEFAULT NULL,
+	       QType Question.type%TYPE DEFAULT NULL,
+	       QScore Question.score%TYPE DEFAULT NULL, 
+	       QStatues Question.status%TYPE DEFAULT NULL, 
+	       QExamId Question.examid%TYPE DEFAULT NULL);
+           
+    -- Get Questions By Exam Id
+    PROCEDURE GetQeustionsByExamId(exid IN question.examId%type);
+    
 END QuestionPackage;

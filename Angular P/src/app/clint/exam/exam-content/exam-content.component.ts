@@ -1,3 +1,4 @@
+import { SpinnerComponent } from './../../../spinner/spinner.component';
 import { HomeService } from './../../../service/home.service';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -35,7 +36,9 @@ export class ExamContentComponent implements OnInit {
     }
 
 
-  async ngOnInit(): Promise<void> {         
+  async ngOnInit(): Promise<void> {
+    SpinnerComponent.show();
+
     document.querySelector('#prevBtn')?.setAttribute('disabled', '');                  // Disable Previous Button
     document.querySelector(`#q0`)?.classList.add('q-active');                            
     this.questionsContainers = document.querySelectorAll('.questionCard');
@@ -61,6 +64,8 @@ export class ExamContentComponent implements OnInit {
     this.parentContainer.style.height = `${this.sizes[0]}px`;
 
     await delay(1000);
+    SpinnerComponent.hide();
+
     this.examTimer();
   }
 

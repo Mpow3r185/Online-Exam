@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 using Tahaluf.PlusExam.Core.Data;
 using Tahaluf.PlusExam.Core.DTO;
 using Tahaluf.PlusExam.Core.RepositoryInterface;
+using Tahaluf.PlusExam.Core.ServiceInterface;
+using Tahaluf.PlusExam.Infra.Service;
 
 namespace Tahaluf.PlusExam.API.Controllers
 {
@@ -13,12 +16,14 @@ namespace Tahaluf.PlusExam.API.Controllers
     {
         #region Fields
         private readonly IExamService examService;
+        private readonly IQuestionService questionService;
         #endregion Fields
 
         #region Constructor
-        public ExamController(IExamService _examService)
+        public ExamController(IExamService _examService, IQuestionService _questionService)
         {
             examService = _examService;
+            questionService = _questionService;
         }
         #endregion Constructor
 
@@ -95,6 +100,16 @@ namespace Tahaluf.PlusExam.API.Controllers
         }
         #endregion GetUsersBuyExamId
 
+        #region CheckIfUserBuyExam
+        [HttpPost]
+        [Route("CheckIfUserBuyExam")]
+        public bool CheckIfUserBuyExam(CheckBuyExamDTO data)
+        {
+            List<Account> account = examService.GetUsersBuyExamId(data.ExamId).Where((account) => account.Id == data.AccountId).ToList();
+             return (account.Count > 0) ? true : false;
+        }
+        #endregion CheckIfUserBuyExam
+
         #region GetNumberOfUsersBuyByExamId
         [HttpPost]
         [Route("GetNumberOfUsersBuyByExamId/{exid}")]
@@ -103,5 +118,13 @@ namespace Tahaluf.PlusExam.API.Controllers
             return examService.GetNumberOfUsersBuyByExamId(exid);
         }
         #endregion GetNumberOfUsersBuyByExamId
+
+        /*
+        [HttpPost]
+        [Route("getExamContent/{exid}")]
+        public List<QuestionContentDTO> getExamContent(int exid)
+        {
+            List<Question> questions = this.questionService.
+        }*/
     }
 }
