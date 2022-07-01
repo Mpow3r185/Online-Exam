@@ -22,5 +22,8 @@ namespace Tahaluf.PlusExam.Core.RepositoryInterface
         
         //Financial Matters
         List<FinancialDTO> FinancialMatters();
+        
+        //Get Invice By User Id
+        List<InvoiceDTO> getInvoiceByUserId(int id);
     }
 }
