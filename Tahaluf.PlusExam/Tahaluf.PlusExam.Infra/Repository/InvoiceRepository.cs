@@ -68,5 +68,21 @@ namespace Tahaluf.PlusExam.Infra.Repository
         }
         #endregion FinancialMatters
         
+        
+        #region getInvoiceByUserId
+        public List<InvoiceDTO> getInvoiceByUserId(int id)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("uid",
+                id,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            return dbContext.Connection.Query<InvoiceDTO>(
+                "InvoicePackage.getInvoiceByUserId", parameters,
+                commandType: CommandType.StoredProcedure).ToList();
+        }
+        #endregion getInvoiceByUserId
+        
     }
 }

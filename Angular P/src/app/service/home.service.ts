@@ -147,7 +147,7 @@ export class HomeService {
     this.http.post(`https://localhost:44342/api/exam/GetNumberOfUsersBuyByExamId/${exid}`, null).subscribe((result) => {
       this.numberOfUsersBuyExam = result;
     }, err => {
-      this.toastr.error('Unable to connect sever.', err.message)
+      this.toastr.error('Unable to connect server.')
     });
   }
 

@@ -71,5 +71,14 @@ namespace Tahaluf.PlusExam.API.Controllers
         }
         #endregion Financial_Matters
         
+        #region getInvoiceByUserId
+        [HttpGet]
+        [Route("GetInvoiceByUserId/{id}")]
+        public List<InvoiceDTO> getInvoiceByUserId(int id)
+        {
+            return InvoiceService.getInvoiceByUserId(id);
+        }
+        #endregion getInvoiceByUserId
+        
     }
 }
