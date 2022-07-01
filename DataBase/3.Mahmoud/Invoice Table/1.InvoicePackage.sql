@@ -9,5 +9,7 @@ create or replace PACKAGE InvoicePackage AS
         acc_id IN invoice.accountid%type DEFAULT NULL);
 
     PROCEDURE ObtainsFinancial;
+    
+    PROCEDURE getInvoiceByUserId(uid IN account.id%type DEFAULT NULL);
 
 END InvoicePackage;
