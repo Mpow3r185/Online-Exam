@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Http;
+using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using MimeKit;
 using System.Collections.Generic;
 using System.IO;
 using Tahaluf.PlusExam.Core.Data;
@@ -185,6 +187,52 @@ namespace Tahaluf.PlusExam.API.Controllers
             return accountService.GetAccountById(accid);
         }
         #endregion GetAccountById
+        
+        #region SendEmail
+        [HttpPost]
+        [Route("SendEmail")]
+        public bool SendEmail(EmailDTO emailDTO)
+        {
+            Account account = accountService.GetAccountById(emailDTO.studentId);
+
+            MimeMessage message = new MimeMessage();
+
+            //Email From
+            //dabdalhammed@hotmail.com
+            //pass: ro02-9Us7L@u2i_eFOSO
+            MailboxAddress from = new MailboxAddress("Tahaluf PlusExam", emailDTO.SendFrom);
+            message.From.Add(from);
+
+            //Email TO
+            MailboxAddress to = new MailboxAddress("Student", account.Email);
+            message.To.Add(to);
+
+            //Email Subject
+            message.Subject = "Exam Password";
+
+            //Email Body
+            BodyBuilder builder = new BodyBuilder();
+            builder.HtmlBody = $"<h1>Hello {account.Fullname}<h1>,<br>" +
+                $"<h3>Greeting from Tahaluf PlusExam Center!!<h3><br>" +
+                $"We thank you for buying the exam,<br>" +
+                $"The Exam Password: {emailDTO.examPassword}<br>" +
+                $"Please don't share this password with anyone.<br>" +
+                $"With regards Tahaluf PlusExam.";
+            message.Body = builder.ToMessageBody();
+
+            using (var cliente = new SmtpClient())
+            {
+                cliente.Connect("smtp-mail.outlook.com", 587, false);
+                //liente.Connect("smtp.gmail.com", 465, true);
+                cliente.Authenticate(emailDTO.SendFrom, emailDTO.emailPassword);
+                cliente.Send(message);
+                cliente.Disconnect(true);
+            }
+
+            return true;
+        }
+        #endregion SendEmail
+        
 
     }
 }
