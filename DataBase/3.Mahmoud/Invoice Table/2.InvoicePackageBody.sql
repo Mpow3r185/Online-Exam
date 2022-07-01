@@ -52,6 +52,19 @@ PROCEDURE ObtainsFinancial AS O_all sys_refcursor;
         on I.examid = E.id;
         DBMS_SQL.RETURN_RESULT(O_all);
     END ObtainsFinancial;
+    
+    
+    
+PROCEDURE getInvoiceByUserId(uid IN account.id%type DEFAULT NULL) AS O_all sys_refcursor;
+    BEGIN
+        open O_all for
+        select I.creationdate as creationDate,E.title As examName,E.examlevel as examLevel, E.cost As examCost 
+        from Invoice I
+        JOIN Account A ON I.accountid = A.id
+        JOIN Exam E on I.examid = E.id
+        WHERE I.accountid = uid;
+        DBMS_SQL.RETURN_RESULT(O_all);
+    END getInvoiceByUserId;
 
 
 
