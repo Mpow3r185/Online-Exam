@@ -18,5 +18,8 @@ namespace Tahaluf.PlusExam.Core.ServiceInterface
 
         // Delete QuestionsOptions
         bool DeleteQuestionOption(int id);
+
+        // Get QuestionOption By Question Id
+        List<QuestionOption> GetQuestionOptionByQuestionId(int qid);
     }
 }

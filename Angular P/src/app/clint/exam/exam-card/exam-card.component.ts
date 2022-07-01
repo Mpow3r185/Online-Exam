@@ -75,17 +75,23 @@ export class ExamCardComponent implements OnInit {
   timerFunc(distance: number) {
     let timer = setInterval(() => {
       let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        
+      let hours: number|string = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      let minutes: number|string = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds: number|string = Math.floor((distance % (1000 * 60)) / 1000);
+
       hours += days * 24;
-      this.timerExam = hours + ":" + minutes + ":" + seconds;
 
       if (days == 0 && hours == 0 && minutes == 0 && seconds == 0) {
         clearInterval(timer);
         this.examTimer();
       }
+      
+      if (hours < 10) { hours = `0${hours}`; }
+      if (minutes < 10) { minutes = `0${minutes}`; }
+      if (seconds < 10) { seconds = `0${seconds}`; }
+      
+      this.timerExam = hours + ":" + minutes + ":" + seconds;
+
       distance -= 1000;
     }, 1000);
   }

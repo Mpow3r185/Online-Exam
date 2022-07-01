@@ -17,13 +17,15 @@ namespace Tahaluf.PlusExam.API.Controllers
         #region Fields
         private readonly IExamService examService;
         private readonly IQuestionService questionService;
+        private readonly IQuestionOptionService questionOptionService;
         #endregion Fields
 
         #region Constructor
-        public ExamController(IExamService _examService, IQuestionService _questionService)
+        public ExamController(IExamService _examService, IQuestionService _questionService, IQuestionOptionService _questionOptionService)
         {
             examService = _examService;
             questionService = _questionService;
+            questionOptionService = _questionOptionService;
         }
         #endregion Constructor
 
@@ -119,12 +121,26 @@ namespace Tahaluf.PlusExam.API.Controllers
         }
         #endregion GetNumberOfUsersBuyByExamId
 
-        /*
+        
         [HttpPost]
         [Route("getExamContent/{exid}")]
         public List<QuestionContentDTO> getExamContent(int exid)
         {
-            List<Question> questions = this.questionService.
-        }*/
+            List<Question> questions = this.questionService.GetQeustionsByExamId(exid);
+            List<QuestionContentDTO> questionContentDTOs = new List<QuestionContentDTO>(questions.Count);
+
+            foreach(Question question in questions)
+            {
+                if (question.Status == "ENABLE")
+                {
+                    QuestionContentDTO questionContentDTO = new QuestionContentDTO();
+                    questionContentDTO.Question = question;
+                    questionContentDTO.Options = questionOptionService.GetQuestionOptionByQuestionId(question.Id);
+                    questionContentDTOs.Add(questionContentDTO);
+                }
+            }
+
+            return questionContentDTOs;
+        }
     }
 }
