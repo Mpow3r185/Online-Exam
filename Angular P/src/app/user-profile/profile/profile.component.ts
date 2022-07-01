@@ -1,9 +1,10 @@
 import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { HomeService } from 'src/app/service/home.service';
 import { UserService } from 'src/app/service/user.service';
-import { SpinnerComponent } from 'src/app/spinner/spinner.component';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -14,50 +15,34 @@ import { SpinnerComponent } from 'src/app/spinner/spinner.component';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  // @Input() id: number | undefined;
-  // @Input() fullName: string | undefined;
-  // @Input() email: string | undefined;
-  // @Input() phoneNumber: number | undefined;
-  // @Input() address!: string | undefined;
-  // @Input() gender: string | undefined;
-  // @Input() birthOfDate: string | undefined;
-  // @Input() profilePicture: string | undefined;
   
-
   @ViewChild('callUpdateDailog') callUpdateDailog!: TemplateRef<any>
   previous_data: any = {};
-
-  updateform: FormGroup = new FormGroup({
-    id: new FormControl('', Validators.required),
-    fullName: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
-    phoneNumbers: new FormControl('', Validators.required),
-    address: new FormControl('', Validators.required),
-    gender: new FormControl('', Validators.required),
-    bod: new FormControl('', Validators.required),
-   // profilePicture: new FormControl()
-  });
-
-  constructor(
-    public dialog: MatDialog,
-    public userService: UserService,
-    public homeService: HomeService) { }
+  constructor(private toaster: ToastrService, public dialog: MatDialog,public userService: UserService,public homeService: HomeService) { }
 
   async ngOnInit(): Promise<void> {
     
-    SpinnerComponent.show();
-
     await this.userService.getUserById();
-    await delay(2000);
-    
-    SpinnerComponent.hide();
-   
-    // let user: any = localStorage.getItem('token');
-    // user = JSON.parse(user);
-  }
+    //setTimeout(()=>{console.log(this.userService.selectedUser);},2000) 
   
-  openUpdateDailog(id1: any, fullName1: any, email1: any, phoneNumber1: any, address1: any, gender1: any, birthOfDate1: any) {
+     
+  }
+  updateform: FormGroup = new FormGroup({
+
+    id: new FormControl(),
+    fullName: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
+    phoneNumbers: new FormControl(),
+    address: new FormControl('', Validators.required),
+    gender: new FormControl('', Validators.required),
+    bod: new FormControl('', Validators.required),
+    profilePicture: new FormControl()
+
+  })
+  openUpdateDailog(id1: any, fullName1: any, email1: any, phoneNumber1: any, address1: any, gender1: any, birthOfDate1: any,profilePicture1: any) {
+
     this.previous_data = {
+
       id: id1,
       fullName: fullName1,
       email: email1,
@@ -65,36 +50,49 @@ export class ProfileComponent implements OnInit {
       address: address1,
       gender: gender1,
       bod: birthOfDate1,
-     // profilePicture: profilePicture1
+      profilePicture: profilePicture1
     }
-
-    // uploadImage(file: any){
-    //   console.log(file);
-    //   if(file.length == 0)
-    //      return ;
-    //   let imageUploaded=<File>file[0];
-    //   const formData = new FormData();
-    //   formData.append('file',imageUploaded, imageUploaded.name);    
-    //   this.home.uploadImage(formData);
-    // }
    
 
     this.updateform.controls['id'].setValue(this.previous_data.id);
+    this.updateform.controls['gender'].setValue(this.previous_data.gender);
+    this.updateform.controls['profilePicture'].setValue(this.previous_data.profilePicture);
+
     this.dialog.open(this.callUpdateDailog);
 
   }
-  async editProfile(): Promise<void> {
-    console.log(this.previous_data.value);
-    await delay(2000);
+ 
+  editProfile(img:any) {
     console.log(this.updateform.value);
-    this.userService.editAccount(this.updateform.value);
-    
-    //this.userService.updateUser();
-    // window.location.reload();
+    if(img.length == 0){
+      this.updateform.controls['gender'].setValue(this.previous_data.gender);
+      if(this.updateform.valid){
+        console.log(this.updateform.value);
+        this.userService.editAccount(this.updateform.value);
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000); 
+      }
+      else{
+        this.toaster.error('You Must Fill The Fields First');
+      }  
+    }else{
+      let fileToUpload = <File>img[0];
+      const formData = new FormData();
+      formData.append('file', fileToUpload, fileToUpload.name);
+      this.updateform.controls['gender'].setValue(this.previous_data.gender);
+      if(this.updateform.valid){
+        this.userService.editAccountWithImage(this.updateform.value,formData);
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000); 
+      }
+      else{
+        this.toaster.error('You Must Fill The Fields First');
+      }  
+    }
   }
-}
+  
 
 
-function delay(ms: number) {
-  return new Promise( resolve => setTimeout(resolve, ms) );
 }
