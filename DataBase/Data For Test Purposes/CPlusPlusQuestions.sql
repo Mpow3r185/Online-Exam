@@ -389,13 +389,31 @@ INSERT INTO QuestionOption VALUES(4087, 'stop', 2025);
 -- Q25 Correct Answer
 INSERT INTO CorrectAnswer VALUES(5024, 4086);
 
+
 -----------------------------------------------------------
 -- Q26 Questions
+INSERT INTO Question (id, questionContent, type, score, examId)
+VALUES (2027, 'Multiple Test',
+'Multiple', 2, 203);
+
+-- Q26 Questions Options
+INSERT INTO QuestionOption VALUES(4090, 'a', 2027);
+INSERT INTO QuestionOption VALUES(4091, 'b', 2027);
+INSERT INTO QuestionOption VALUES(4092, 'c', 2027);
+INSERT INTO QuestionOption VALUES(4093, 'd', 2027);
+
+-- Q26 Correct Answer
+INSERT INTO CorrectAnswer VALUES(5025, 4090);
+INSERT INTO CorrectAnswer VALUES(5026, 4093);
+
+
+-----------------------------------------------------------
+-- Q27 Questions
 INSERT INTO Question (id, questionContent, type, score, examId)
 VALUES (2026, 'Integer data type in c++ is called',
 'Fill', 1.5, 203);
 
--- Q26 Questions Options
+-- Q27 Questions Options
 INSERT INTO QuestionOption VALUES(4089, 'int', 2026);
 
 

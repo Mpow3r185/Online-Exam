@@ -24,39 +24,28 @@
             <!-- Options Container -->
             <div class="row">
 
-                <!-- Option 1 -->
-                <div class="col-12">
-                    <input type="radio" id="q{{ question.id }}-op1" name="q{{ question.id }}" value="OptionId" />
-                    <label class="px-2" class="px-2" class="px-2" for="q{{ question.id }}-op1">print ("Hello
-                        World");</label>
-                </div>
+                <!-- Options -->
+                <ng-container *ngIf="question.type === 'Single'">
+                    <!-- Single Option (Radio) -->
+                    <app-single-option class="col-12" *ngFor="let option of options; let i = index"
+                        [questionId]="question.id" [optionId]="option.id" [optionContent]="option.optionContent"
+                        [optionNumber]="i+1"></app-single-option>
 
-                <div class="col-12">
-                    <input type="radio" id="q{{ question.id }}-op2" name="q{{ question.id }}" value="OptionId"
-                        value=21 />
-                    <label class="px-2" class="px-2" for="q{{ question.id }}-op2">cout &lt;&lt; "Hello
-                        World";</label>
-                </div>
+                </ng-container>
 
-                <div class="col-12">
-                    <input type="radio" id="q{{ question.id }}-op3" name="q{{ question.id }}" value="OptionId"
-                        value=22 />
-                    <label class="px-2" class="px-2" for="q{{ question.id }}-op3">Console.WriteLine("Hello
-                        World");</label>
-                </div>
+                <ng-container *ngIf="question.type === 'Multiple'">
+                    <!-- Multiple Option (Checkbox) -->
+                    <app-multiple-option class="col-12" *ngFor="let option of options; let i = index"
+                        [questionId]="question.id" [optionId]="option.id" [optionContent]="option.optionContent"
+                        [optionNumber]="i+1"></app-multiple-option>
+                </ng-container>
 
-                <div class="col-12">
-                    <input type="radio" id="q{{ question.id }}-op4" name="q{{ question.id }}" value="OptionId"
-                        value=23 />
-                    <label class="px-2" class="px-2" for="q{{ question.id }}-op4">System.out.println("Hello
-                        World");</label>
-                </div>
+                <ng-container *ngIf="question.type === 'Fill'">
+                    <!-- Fill Option (Textarea) -->
+                    <app-fill-option class="col-12" [questionId]="question.id"></app-fill-option>
+                </ng-container>
 
-                <div class="col-12">
-                    <input type="radio" id="q{{ question.id }}-op5" name="q{{ question.id }}" value="OptionId"
-                        value=24 />
-                    <label class="px-2" class="px-2" for="q{{ question.id }}-op5">None Of Above</label>
-                </div>
+
             </div>
         </div>
     </div>

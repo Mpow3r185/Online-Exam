@@ -6,7 +6,7 @@ create or replace PACKAGE BODY ReportPackage AS
     BEGIN
         OPEN ref_cursor FOR
         select count(*) "TotalUsers"
-        from Account 
+        from Account
         where roleName='Student';
 
         DBMS_SQL.RETURN_RESULT(ref_cursor);
@@ -88,5 +88,31 @@ create or replace PACKAGE BODY ReportPackage AS
         DBMS_SQL.RETURN_RESULT(ref_cursor);
     END GetNumOfCertificate;
 
+    --Get UserDetails for Report
+    PROCEDURE GetUserDetails(accId IN Account.ID%TYPE) As
+    ref_cursor SYS_REFCURSOR;
+    BEGIN
+        OPEN ref_cursor FOR
+        SELECT Account.Id AS AccId,Account.fullName,Account.Address,
+        Account.ProfilePicture,Course.courseName,
+            Exam.title, Exam.cost, Exam.examLevel, 
+            Certificate.creatioDate,
+            Score.grade
+        FROM Account
+        JOIN Certificate
+        ON Account.id = Certificate.accountId
+
+        JOIN Exam
+        ON Exam.id = Certificate.ExamId
+        
+        JOIN Course
+        ON Course.id = Exam.courseId
+        
+        JOIN Score
+        ON Account.id = Score.accountId
+        WHERE Score.examId = Exam.id AND Account.id = accId;
+        
+        DBMS_SQL.RETURN_RESULT(ref_cursor);
+    END GetUserDetails;
 
 End ReportPackage;

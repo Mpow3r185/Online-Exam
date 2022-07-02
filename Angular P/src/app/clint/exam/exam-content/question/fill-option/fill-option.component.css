@@ -1,0 +1,5 @@
+textarea {
+    word-wrap: break-word;
+    height: 130px;
+    resize: none;
+}

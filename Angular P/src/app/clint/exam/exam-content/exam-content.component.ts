@@ -179,6 +179,11 @@ export class ExamContentComponent implements OnInit {
     }, 1000);
   }
 
+  // Unsubscribe to prevent memory leaks
+  ngOnDestroy() {
+    this.routeSub.unsubscribe();
+  }
+
 }
 
 
