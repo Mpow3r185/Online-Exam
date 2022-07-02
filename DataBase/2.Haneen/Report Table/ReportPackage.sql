@@ -17,5 +17,8 @@ create or replace PACKAGE ReportPackage AS
 
     -- Get Number of Certificates
     PROCEDURE GetNumOfCertificate ;
-    
+
+    --Get UserDetails for Report
+    PROCEDURE GetUserDetails(accId IN Account.ID%TYPE);
+
 END ReportPackage;

@@ -25,6 +25,9 @@ import { Page404Component } from './page404/page404.component';
 import { CourseProfileComponent } from './course/course-profile/course-profile.component';
 import { ExamContentComponent } from './exam/exam-content/exam-content.component';
 import { QuestionComponent } from './exam/exam-content/question/question.component';
+import { SingleOptionComponent } from './exam/exam-content/question/single-option/single-option.component';
+import { MultipleOptionComponent } from './exam/exam-content/question/multiple-option/multiple-option.component';
+import { FillOptionComponent } from './exam/exam-content/question/fill-option/fill-option.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,10 @@ import { QuestionComponent } from './exam/exam-content/question/question.compone
     Page404Component,
     CourseProfileComponent,
     ExamContentComponent,
-    QuestionComponent
+    QuestionComponent,
+    SingleOptionComponent,
+    MultipleOptionComponent,
+    FillOptionComponent
   ],
   imports: [
     ClintRoutingModule,

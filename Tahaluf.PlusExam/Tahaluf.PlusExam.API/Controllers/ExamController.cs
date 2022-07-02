@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Tahaluf.PlusExam.Core.Data;
@@ -140,7 +141,18 @@ namespace Tahaluf.PlusExam.API.Controllers
                 }
             }
 
-            return questionContentDTOs;
+            List<QuestionContentDTO> randomQuestions = new List<QuestionContentDTO>(GetExamById(exid).NumberOfQuestions);
+            List<int> qIsAvailable = Enumerable.Range(0, questionContentDTOs.Count).ToList();
+            Random random = new Random();
+
+            while(randomQuestions.Count < randomQuestions.Capacity)
+            {
+                int randomIndex = random.Next(0, qIsAvailable.Count);
+                randomQuestions.Add(questionContentDTOs[qIsAvailable[randomIndex]]);
+                qIsAvailable.RemoveAt(randomIndex);
+            }
+
+            return randomQuestions;
         }
     }
 }
