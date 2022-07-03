@@ -25,9 +25,17 @@ namespace Tahaluf.PlusExam.API.Controllers
         // Get Number of Users
         [HttpGet]
         [Route("NumberOfUsers")]
-        public List<AllUsersDTO> NumberOfUsers()
+        public AllUsersDTO NumberOfUsers()
         {
             return reportService.NumberOfUsers();   
+        }
+
+        // Get Number of FailUsers
+        [HttpGet]
+        [Route("NumberOfFailUsers")]
+        public AllUsersDTO NumberOfFailUsers()
+        {
+            return reportService.NumberOfFailUsers();
         }
 
         // Get Total exam's cost for all Courses
@@ -71,6 +79,13 @@ namespace Tahaluf.PlusExam.API.Controllers
             return reportService.NumberOfCertificates();    
         }
 
+        // Get Student Details for Student Report
 
+        [HttpPost]
+        [Route("StdDetails/{accId}")]
+        public List<ReportDTO> stdDetails(int accId)
+        {
+            return reportService.StdDetailsReport(accId);
+        }
     }
 }
