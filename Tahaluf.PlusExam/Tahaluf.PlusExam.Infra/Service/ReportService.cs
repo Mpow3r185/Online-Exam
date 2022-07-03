@@ -21,12 +21,17 @@ namespace Tahaluf.PlusExam.Infra.Service
         #endregion Constructor
 
         // Get Number of Users
-        public List<AllUsersDTO> NumberOfUsers()
+        public AllUsersDTO NumberOfUsers()
         {
             return reportRepository.NumberOfUsers();
         }
 
-       
+        // Get Number of Fail Users
+        public AllUsersDTO NumberOfFailUsers()
+        {
+            return reportRepository.NumberOfFailUsers();
+        }
+
         // Get Total exam's cost for all Courses
         public List<TotalCostDTO> TotalCost()
         {
@@ -56,5 +61,13 @@ namespace Tahaluf.PlusExam.Infra.Service
         {
             return reportRepository.NumberOfCertificates();
         }
+
+        // Get Student Details for Student Report
+
+        public List<ReportDTO> StdDetailsReport(int accId)
+        {
+            return reportRepository.StdDetailsReport(accId);
+        }
+       
     }
 }
