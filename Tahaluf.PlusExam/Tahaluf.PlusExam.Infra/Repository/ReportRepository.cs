@@ -23,14 +23,20 @@ namespace Tahaluf.PlusExam.Infra.Repository
         }
         #endregion Constructor
 
-        // Get Number of Users
-        public List<AllUsersDTO> NumberOfUsers()
+       // Get Number of Users
+        public AllUsersDTO NumberOfUsers()
         {
             IEnumerable<AllUsersDTO> result = dbContext.Connection.Query<AllUsersDTO>("ReportPackage.NumOfUsers", commandType: CommandType.StoredProcedure);
-            return result.ToList();
+            return result.FirstOrDefault();
         }
 
-        
+        // Get Number of Fail Users
+        public AllUsersDTO NumberOfFailUsers()
+        {
+            IEnumerable<AllUsersDTO> result = dbContext.Connection.Query<AllUsersDTO>("ReportPackage.GETNUMOFFAILSTUDENTS", commandType: CommandType.StoredProcedure);
+            return result.FirstOrDefault();
+        }
+
         // Get Total exam's cost for all Courses
         public List<TotalCostDTO> TotalCost()
         {
@@ -70,6 +76,22 @@ namespace Tahaluf.PlusExam.Infra.Repository
         {    
             IEnumerable<AllUsersDTO> result = dbContext.Connection.Query<AllUsersDTO>("ReportPackage.GetNumOfCertificate", commandType: CommandType.StoredProcedure);
             return result.SingleOrDefault();
+        }
+
+        // Get Student Details for Student Report
+
+        public List<ReportDTO> StdDetailsReport(int accId)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("accId",
+                accId,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            return dbContext.Connection.Query<ReportDTO>(
+                "ReportPackage.GetUserDetails", parameters,
+                commandType: CommandType.StoredProcedure).ToList();
+
         }
     }
 }
