@@ -8,7 +8,10 @@ namespace Tahaluf.PlusExam.Core.ServiceInterface
     public interface IReportService
     {
         // Get Number of Users
-        List<AllUsersDTO> NumberOfUsers();
+        AllUsersDTO NumberOfUsers();
+
+        // Get Number of Fail Users
+        AllUsersDTO NumberOfFailUsers();
 
         // Get Total exam's cost for all Courses
         List<TotalCostDTO> TotalCost();
@@ -24,6 +27,9 @@ namespace Tahaluf.PlusExam.Core.ServiceInterface
 
         // Get Number Of Certificates
         AllUsersDTO NumberOfCertificates();
+
+        // Get Student Details for Student Report
+        List<ReportDTO> StdDetailsReport(int accId);
 
     }
 }
