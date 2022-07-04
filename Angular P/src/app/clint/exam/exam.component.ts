@@ -132,7 +132,7 @@ export class ExamComponent implements OnInit {
 
     const startDateValue = (startDate.value === '') ? null : startDate.value;
     const endDateValue = (endDate.value === '') ? null : endDate.value;
-    const courseNameValue = (courseName.value === '') ? null : courseName.value.toLowerCase();
+    const courseNameValue = (courseName.value === '') ? null : courseName.value.toLowerCase();    
     const examNameValue = (examName.value === '') ? null : examName.value.toLowerCase();
     const beginnerExamLevelValue = (!examLevel[0].checked) ? null : 'Beginner';
     const intermediateExamLevelValue = (!examLevel[1].checked) ? null : 'Intermediate';
@@ -142,7 +142,7 @@ export class ExamComponent implements OnInit {
     const searchBody = {
       stDate: startDateValue,
       enDate: endDateValue,
-      cName: courseNameValue,
+      courseName: courseNameValue,
       exTitle: examNameValue,
       ExLevelBeginner: beginnerExamLevelValue,
       ExLevelIntermediate: intermediateExamLevelValue,

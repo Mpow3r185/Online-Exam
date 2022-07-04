@@ -18,5 +18,11 @@ namespace Tahaluf.PlusExam.Core.RepositoryInterface
 
         // Delete Score
         bool DeleteScore(int id);
+
+        // Calculate Score
+        void CalculateScore(int accid, int exid);
+
+        // Get Score By Exam Id And Account Id
+        Score GetScoreByExamIdAndAccountId(Score score);
     }
 }

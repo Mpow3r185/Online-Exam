@@ -410,10 +410,31 @@ INSERT INTO CorrectAnswer VALUES(5026, 4093);
 -----------------------------------------------------------
 -- Q27 Questions
 INSERT INTO Question (id, questionContent, type, score, examId)
+VALUES (2028, 'Data Types in c++',
+'Multiple', 1, 203);
+
+-- Q26 Questions Options
+INSERT INTO QuestionOption VALUES(4094, 'int', 2028);
+INSERT INTO QuestionOption VALUES(4095, 'bool', 2028);
+INSERT INTO QuestionOption VALUES(4096, 'undefined', 2028);
+INSERT INTO QuestionOption VALUES(4097, 'string', 2028);
+INSERT INTO QuestionOption VALUES(4098, 'byte', 2028);
+INSERT INTO QuestionOption VALUES(4099, 'number', 2028);
+
+-- Q27 Correct Answer
+INSERT INTO CorrectAnswer VALUES(5027, 4094);
+INSERT INTO CorrectAnswer VALUES(5028, 4095);
+INSERT INTO CorrectAnswer VALUES(5029, 4097);
+INSERT INTO CorrectAnswer VALUES(5030, 4098);
+
+
+-----------------------------------------------------------
+-- Q28 Questions
+INSERT INTO Question (id, questionContent, type, score, examId)
 VALUES (2026, 'Integer data type in c++ is called',
 'Fill', 1.5, 203);
 
--- Q27 Questions Options
+-- Q28 Questions Options
 INSERT INTO QuestionOption VALUES(4089, 'int', 2026);
 
 
