@@ -237,4 +237,53 @@ async getAccountById(accId: number): Promise<void>{
    });
  }
   
+  
+
+//--------------------------------------------------------
+//--  CRUD Operation for Table Service
+//--------------------------------------------------------
+
+/**
+*  Create Service
+*/
+CreateServices(body:any){
+  SpinnerComponent.show();
+  this.http.post('https://localhost:44342/api/OurService',body).subscribe((result)=>{
+    this.toastr.success('Service Created Successfully');     
+  },err =>{
+    SpinnerComponent.hide();
+    console.log(err.message,err.status);
+     this.toastr.error('Unable to connect the server');
+  })
+}
+
+/**
+*  Update Service
+*/
+UpdateServices(body:any){
+  SpinnerComponent.show();
+  this.http.put('https://localhost:44342/api/OurService',body).subscribe((result)=>{
+    this.toastr.success('Service Updated Successfully');
+  },err =>{
+    console.log(err.message,err.status);
+    SpinnerComponent.hide();
+     this.toastr.error('Unable to connect the server');
+  })
+}
+
+/**
+*  Delete Service
+*/
+DeleteServices(id:number){
+  SpinnerComponent.show();
+  this.http.delete(`https://localhost:44342/api/OurService/DeleteService/${id}`).subscribe((result)=>{
+    this.toastr.success('Service Deleted Successfully');
+  },err =>{
+    console.log(err.message,err.status);
+    SpinnerComponent.hide();
+     this.toastr.error('Unable to connect the server');
+  })
+}
+
+  
 }

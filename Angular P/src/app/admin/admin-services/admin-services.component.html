@@ -1,0 +1,134 @@
+<div class="overflow-hidden dark-edition bg-white">
+    <div class="wrapper">
+        <app-side-bar></app-side-bar>
+        <div class="main-panel">
+            <app-nav-bar></app-nav-bar>
+
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 mb-30">
+                            <div class="card card-statistics h-100">
+                                        <div class="card-body">
+                                        <div class="x_panel">
+                                          <div class="x_title">
+                                            <h2>OurService Information</h2>
+                                            <ul class="nav navbar-right panel_toolbox">
+                                              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                              </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                          </div>
+                                          <div class="x_content">
+                                              <div class="row">
+                                                  <div class="col-sm-12">
+                                                    <div class="card-box table-responsive">
+                                            <p class="text-muted font-13 m-b-30">
+                                                <button  class="btn btn-success btn-lg font-weight-bold" (click)="CreateServiceDialog()"
+                                                 aria-pressed="true">Add Service</button>
+                                               <br><br>
+                                            </p>
+                                            <table id="dtTable1" class="table table-hover table-sm table-bordered p-0" style="width:100%;text-align: center">
+                                              <thead class="font-weight-bold" style="background-color: #001166;">
+                                                <tr>
+                                                  <th style="color:#fff; font-weight:bold;">#</th>
+                                                  <th style="color:#fff; font-weight:bold;">Title</th>
+                                                  <th style="color:#fff; font-weight:bold;">Description</th>
+                                                  <th style="color:#fff; font-weight:bold;">Processes</th>
+                                                </tr>
+                                              </thead>
+                                              <tbody class="font-weight-bold text-dark">
+                                                <tr *ngFor="let item of homeService.ourServiceData let i = index;">
+                                                  <td style="color:#000; font-weight:bold;">{{i+1}}</td>
+                                                  <td style="color:#000; font-weight:bold;">{{ item.title }}</td>
+                                                  <td style="color:#000; font-weight:bold;">{{ item.text }}</td>
+                                                  <td >
+                                                    <a (click)="openUpdateDialog(item.id,item.title,item.text)" class="btn btn-info btn-sm" role="button" aria-pressed="true" title="Edit"><i class="fa fa-edit"></i></a> 
+                                                    <a (click)="openDeleteDialog(item.id,item.title)" class="btn btn-danger btn-sm text-white" role="button" aria-pressed="true" title="Delete" style="cursor:pointer;"><i class="fa fa-trash"></i></a>
+                                                  </td>
+                                                </tr>
+                            
+                                              </tbody>
+                                            </table>
+											
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                   </div>
+                                  </div>
+                                  </div>
+                                  </div>
+                        
+                        </div>
+                        
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Update Course Dialog -->
+<ng-template #callUpdateDialog>
+  <div class="modal-header mb-3">
+    <h5 style="font-family: 'Cairo', sans-serif; font-weight: bold; color: black;" class="modal-title" id="exampleModalLabel">Update Service</h5>
+    <button type="button" class="close text-danger" mat-button mat-dialog-close="no">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+  <form class="example-form" [formGroup]="updateForm">
+    <div class="row">
+      <div class="col-md-12">
+          <mat-form-field class="w-100 example-full-width" appearance="fill">
+            <mat-label>Service Title</mat-label>
+            <input type="text" matInput formControlName="title" [(ngModel)]="previous_data.title">
+            <mat-error *ngIf="updateForm.controls.title.hasError('required')">
+              This Filed is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-12">
+        <mat-form-field class="example-full-width w-100" appearance="fill">
+          <mat-label>Description </mat-label>
+          <textarea type="text" matInput formControlName="text" [(ngModel)]="previous_data.text"></textarea>
+          <mat-error *ngIf="updateForm.controls.text.hasError('required')">
+            This Filed is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    
+      <div class="modal-footer mt-3">
+        <button class="btn btn-sm btn-secondary text-danger" at-button mat-dialog-close="no">Close</button>
+       <button class="btn btn-sm btn-success" (click)="updateCourse()" [mat-dialog-close]="true">Update </button>
+      </div>
+  </form>
+       
+</ng-template>
+<!-- /End Update Course Dialog -->
+
+
+<!-- Delete course Dialog -->
+<ng-template #callDeleteDialog>
+  <div class="modal-header">
+    <h5 style="font-family: 'Cairo', sans-serif; font-weight: bold; color: black;" class="modal-title" id="exampleModalLabel">Deleted Service</h5>
+    <button type="button" class="close text-danger" mat-button mat-dialog-close="no">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body py-3">
+        <h5 style="font-family: 'Cairo', sans-serif; color: black; font-weight: bold;">Are you sure you want to delete this?</h5>
+        <label style="color: #001166; font-weight:bold;">Service Name :{{serviceTitle}}</label>
+        
+</div>
+<div class="modal-footer">
+  <button class="btn btn-sm btn-secondary font-weight-bold" at-button mat-dialog-close="no">Close</button>
+  <button class="btn btn-sm btn-danger" mat-button mat-dialog-close="yes">Delete</button>
+</div>
+</ng-template>
+<!-- /End Delete course Dialog -->
