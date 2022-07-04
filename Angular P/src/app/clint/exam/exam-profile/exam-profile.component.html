@@ -44,7 +44,7 @@
                 </div>
 
                 <!-- User is Examined -->
-                <div *ngIf="isExamined; else isNotExamined" class="container mx-5 submitted-container">
+                <div *ngIf="isExamined; else isNotExamined" class="container mx-5 p-4 submitted-container">
                     <div class="row justify-content-around h-100">
                         <div class="row col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 flex-column justify-content-center"
                             style="color: #818181;">
@@ -76,13 +76,13 @@
                                     <!-- User Score Is Less Than Success Mark -->
                                     <span style="color: #d70926" title="Fail"
                                         *ngIf="homeService.score.grade < homeService.exams.successMark; else isSuccess">
-                                        {{ homeService.score.grade }}
+                                        {{ homeService.score.grade }}%
                                     </span>
 
                                     <!-- User Score Is Greater Or Equal Success Mark -->
                                     <ng-template #isSuccess>
                                         <span style="color: #006e00" title="Success">
-                                            {{ homeService.score.grade }}
+                                            {{ homeService.score.grade }}%
                                         </span>
                                     </ng-template>
                                 </div>

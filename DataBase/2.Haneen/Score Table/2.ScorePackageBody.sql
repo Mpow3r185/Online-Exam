@@ -53,6 +53,7 @@ PROCEDURE CalculateScore(
     multipleQuestionsMarks Score.grade%type;
     fillQuestionsMarks Score.grade%type;
     succMark Exam.SuccessMark%type;
+    numOfQuestions Exam.numberOfQuestions%type;
     fullMark Question.score%type;
     st Score.status%type;
     
@@ -72,8 +73,8 @@ BEGIN
     multipleQuestionsMarks := 0;
     fillQuestionsMarks := 0;
 
-    SELECT successMark
-    INTO succMark
+    SELECT successMark, numberOfQuestions
+    INTO succMark, numOfQuestions
     FROM Exam
     WHERE id = exid;
 
@@ -91,6 +92,8 @@ BEGIN
     JOIN CorrectAnswer CA ON QO.Id = CA.QuestionOptionId
     WHERE Q.type = 'Single'
     AND examId = exid AND accountId = accid;
+    
+    IF totalMark IS NULL THEN totalMark := 0; END IF;
     
     -- For Multiple Marks
     OPEN multipleQuestions FOR
@@ -117,7 +120,7 @@ BEGIN
             N => numOfIncorrectOptions);
             
         mtQScore := ((numOfCorrectOptions / numOfOptions * mtScore) - (numOfIncorrectOptions / numOfOptions * mtScore));
-        IF mtQScore < 0 THEN
+        IF mtQScore < 0 OR mtQScore IS NULL THEN
             mtQScore := 0;
         END IF;
         multiplequestionsmarks := multiplequestionsmarks + mtQScore;
@@ -131,12 +134,11 @@ BEGIN
     JOIN QuestionOption QO ON FR.questionId = QO.questionId
     JOIN Question Q ON QO.questionId = Q.id
     WHERE QO.optionContent LIKE FR.answer AND FR.accountId = accid;
-
+    
+    IF fillQuestionsMarks IS NULL THEN fillQuestionsMarks := 0; END IF;
+    
     totalMark := totalMark + fillQuestionsMarks + multiplequestionsmarks;
-
-    IF totalMark IS NULL THEN
-        totalMark := 0;
-    END IF;
+    totalMark := ROUND((totalMark / numOfQuestions) * 100, 1);
 
     IF totalMark >= succMark THEN
         -- Create Certificate
