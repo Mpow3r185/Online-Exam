@@ -85,3 +85,4 @@ export class StudentReportComponent implements OnInit {
   return this.adminService.NumOfUsers;
 }
 }
+
