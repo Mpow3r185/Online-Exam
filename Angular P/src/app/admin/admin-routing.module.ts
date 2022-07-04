@@ -37,6 +37,10 @@ const routes: Routes = [
   {
     path: 'stdDetailsReport/:id',
     component: StdReportDetailsComponent
+  },
+  {
+    path:'service',
+    component:AdminServicesComponent
   }
 ];
 
