@@ -5,6 +5,8 @@ import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
 import { AdminTestimonialComponent } from './admin-testimonial/admin-testimonial.component';
+import { StudentReportComponent } from './student-report/student-report.component';
+import { StdReportDetailsComponent } from './student-report/std-report-details/std-report-details.component';
 
 
 const routes: Routes = [
@@ -27,6 +29,14 @@ const routes: Routes = [
   {
     path: 'testimonial',
     component: AdminTestimonialComponent,
+  },
+  {
+    path: 'studentReport',
+    component: StudentReportComponent
+  },
+  {
+    path: 'stdDetailsReport/:id',
+    component: StdReportDetailsComponent
   }
 ];
 
