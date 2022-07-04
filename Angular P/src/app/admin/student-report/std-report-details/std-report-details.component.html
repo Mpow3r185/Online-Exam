@@ -1,0 +1,93 @@
+<div class="overflow-hidden dark-edition bg-white">
+  <div class="wrapper">
+    <app-side-bar></app-side-bar>
+    <div class="main-panel">
+      <app-nav-bar></app-nav-bar>
+
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 mb-30">
+              <div class="card card-statistics h-100">
+                <div class="card-body">
+                  <div class="x_panel">
+                    <div class="x_title">
+                      <h2>User Detalis</h2>
+
+                      <div class="container clearfix"></div>
+                    </div>
+                    <div class="x_title">
+                      <p class="text-muted font-13 m-b-30">
+                        <button class="btn btn-info" (click)="back()"><i class="fa fa-arrow-left" aria-hidden="true"
+                            style="font-size:x-small; padding-right: 5px;"></i> Back</button>
+                        <button class="btn btn-danger" (click)="makePDF()">Download PDF</button>
+
+                      </p>
+
+                      <div class="container clearfix"></div>
+                    </div>
+                    <div id="content" #content>
+                    <div class="row x_title">
+                      <div class="col-md-12 col-sm-12 mb-30">
+                        <img src="../../../../assets/images/profile_picture/{{adminService.account.profilePicture}}"
+                          alt="StudentImg" class="rounded-circle" width="150">
+                      </div>
+                      <div class="col-md-12 col-sm-12 mb-30 ">
+                        <h3>{{adminService.account.fullname}}</h3>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                      <div class="row">
+                        <div class="col-sm-12" id="excel-table">
+                          <div class="card-box table-responsive ">
+
+                            <div id="content" #content>
+                              <table class="table table-hover table-sm table-bordered p-0"
+                                style="width:100%;text-align: center">
+                                <thead class="text-white" style="background-color: #001166;">
+                                  <tr>
+                                    <th>#</th>
+                                    <th style="color:#fff; font-weight: bold;">Course Name</th>
+                                    <th style="color:#fff; font-weight:bold;">Exam Name</th>
+                                    <th style="color:#fff; font-weight:bold;">Exam Level</th>
+                                    <th style="color:#fff; font-weight:bold;">Cost</th>
+                                    <th style="color:#fff; font-weight:bold;">Date</th>
+                                    <th style="color:#fff; font-weight:bold;">Mark</th>
+
+
+
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let item of adminService.fullUserDetails let i = index;">
+                                    <td style="color:#000; font-weight:bold;">{{i+1}}</td>
+                                    <td style="font-weight: bold; color:#000;">{{ item.courseName }}</td>
+                                    <td style="font-weight: bold; color:#000;">{{ item.title }}</td>               
+                                    <td style="font-weight: bold; color:#000;">{{ item.examLevel }}</td>
+                                    <td style="font-weight: bold; color:#000;">{{ item.cost }}</td>
+                                    <td style="color:#000; font-weight:bold;">{{ item.creatioDate|date }}</td>
+                                    <td style="color:#000; font-weight:bold;">{{item.grade}}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
