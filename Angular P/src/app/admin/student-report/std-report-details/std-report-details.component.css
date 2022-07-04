@@ -3,7 +3,6 @@
 @import '../../../../assets/admin-dashboard/css/material-dashboard.min.css';
 
 
-
 .x_panel {
     position: relative;
     width: 100%;
@@ -14,7 +13,6 @@
     border: 1px solid #E6E9ED;
     -webkit-column-break-inside: avoid;
     -moz-column-break-inside: avoid;
-    column-break-inside: avoid;
     opacity: 1;
     -webkit-transition: all .2s ease;
     transition: all .2s ease; }
