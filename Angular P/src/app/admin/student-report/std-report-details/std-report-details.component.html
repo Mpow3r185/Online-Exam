@@ -20,13 +20,15 @@
                       <p class="text-muted font-13 m-b-30">
                         <button class="btn btn-info" (click)="back()"><i class="fa fa-arrow-left" aria-hidden="true"
                             style="font-size:x-small; padding-right: 5px;"></i> Back</button>
-                        <button class="btn btn-danger" (click)="makePDF()">Download PDF</button>
+                        <button printSectionId="section"
+                        ngxPrint
+                         class="btn btn-danger" >Download PDF</button>
 
                       </p>
 
                       <div class="container clearfix"></div>
                     </div>
-                    <div id="content" #content>
+                    <div id="section" >
                     <div class="row x_title">
                       <div class="col-md-12 col-sm-12 mb-30">
                         <img src="../../../../assets/images/profile_picture/{{adminService.account.profilePicture}}"
