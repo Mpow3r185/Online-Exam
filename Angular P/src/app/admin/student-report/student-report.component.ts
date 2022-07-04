@@ -26,7 +26,7 @@ export class StudentReportComponent implements OnInit {
 
  ngAfterViewInit(): void {
    setTimeout(() => {
-     $('#dtTable2').DataTable({
+     $('#dtTable3').DataTable({
        pageLength: 5,
        processing: true
    });
