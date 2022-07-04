@@ -11,7 +11,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {MatTableModule} from '@angular/material/table';
-//import {NgxPrintModule} from 'ngx-print';
+import {NgxPrintModule} from 'ngx-print';
 
 @NgModule({
   declarations: [],
@@ -23,7 +23,7 @@ import {MatTableModule} from '@angular/material/table';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    //NgxPrintModule,
+    NgxPrintModule,
     HttpClientModule,
     MatDialogModule,
     MatButtonModule,
@@ -39,7 +39,7 @@ import {MatTableModule} from '@angular/material/table';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    //NgxPrintModule,
+    NgxPrintModule,
     HttpClientModule,
     MatDialogModule,
     MatButtonModule,
