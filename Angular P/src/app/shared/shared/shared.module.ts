@@ -12,6 +12,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {MatTableModule} from '@angular/material/table';
 import {NgxPrintModule} from 'ngx-print';
+import { AvatarModule } from 'ngx-avatar';
 
 @NgModule({
   declarations: [],
@@ -30,6 +31,7 @@ import {NgxPrintModule} from 'ngx-print';
     NgxPaginationModule,
     Ng2SearchPipeModule,
     MatTableModule,
+    AvatarModule
   ],
   exports: [
     CommonModule,
@@ -46,6 +48,7 @@ import {NgxPrintModule} from 'ngx-print';
     NgxPaginationModule,
     Ng2SearchPipeModule,
     MatTableModule,
+    AvatarModule
   ]
 })
 export class SharedModule { }
