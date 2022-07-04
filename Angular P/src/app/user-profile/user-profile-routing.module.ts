@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: 'myprofile',
     component: ProfileComponent,
+  },
+  {
+    path: 'invoice',
+    component: InvoiceComponent,
   }
 ];
 
