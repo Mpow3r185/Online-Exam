@@ -12,6 +12,11 @@ export class AdminService {
   testimonials: any = [{}];
   CoursesData:any;
   AccountsData:any;
+  fullUserDetails:any=[{}];
+  account: any;
+  NumOfUsers:any;
+  TotalCertificates:any;
+  FailUsers:any;
 
   constructor(
     private http: HttpClient,
