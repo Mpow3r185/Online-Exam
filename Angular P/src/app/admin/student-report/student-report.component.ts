@@ -5,7 +5,6 @@ import { AdminService } from 'src/app/service/admin.service';
 import { SpinnerComponent } from 'src/app/spinner/spinner.component';
 declare const $:any;
 import * as XLSX from 'xlsx';
-import  jsPDF from 'jspdf';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-student-report',
@@ -67,15 +66,7 @@ export class StudentReportComponent implements OnInit {
    XLSX.writeFile(wb, this.fileName);
 
  }
- makePDF()
- {
-   let pdf=new jsPDF('p','pt','a1');
-   pdf.html(this.el.nativeElement,{
-    callback:(pdf)=>{
-      pdf.save("demo.pdf");
-    }
-   });
- }
+ 
 
  studentDetailsReport(accId:number){
    this.router.navigate([`/admin/stdDetailsReport/${accId}`]);
