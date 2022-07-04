@@ -21,6 +21,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { CreateCourseComponent } from './admin-courses/create-course/create-course.component';
 import { StudentReportComponent } from './student-report/student-report.component';
 import { StdReportDetailsComponent } from './student-report/std-report-details/std-report-details.component';
+import { AdminServicesComponent } from './admin-services/admin-services.component';
+import { CreateServiceComponent } from './admin-services/create-service/create-service.component';
 
 
 
@@ -38,7 +40,9 @@ import { StdReportDetailsComponent } from './student-report/std-report-details/s
     AdminTestimonialComponent,
     CreateCourseComponent,
     StudentReportComponent,
-    StdReportDetailsComponent
+    StdReportDetailsComponent,
+    AdminServicesComponent,
+    CreateServiceComponent
   ],
   imports: [
     SharedModule,
