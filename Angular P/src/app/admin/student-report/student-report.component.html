@@ -16,12 +16,16 @@
                                           
                                             <p class="col-sm-12 text-muted font-13 m-b-30">
                                                 <button class="btn btn-info" (click)="exportexcel()">Export to Excel</button>
-                                                <button class="btn btn-danger" (click)="makePDF()">Download PDF</button>
+                                                <button printSectionId="section"
+                                                styleSheetFile="assets/cssReport.css"
+                                                ngxPrint
+                                                class="btn btn-danger" >Download PDF</button>
                                             </p>
                                             <div class="clearfix"></div>
                                           </div>
-                                          <div class="container">
-                                            <div class="row">
+                                          <div id="section">
+                                            <div class="container" >
+                                            <div class="row" >
                                               <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
                                                 <div class="card card-stats" style="background-color:#f9f9f9;">
                                                     <div class="card-header card-header-warning card-header-icon">
@@ -67,8 +71,9 @@
                                                   <div class="col-sm-12" id="excel-table" >
                                                     <div class="card-box table-responsive " >
                                                        
-                                                        <div id="content" #content>
-                                                            <table id="dtTable2" class="table table-hover table-sm table-bordered p-0" style="width:100%;text-align: center">
+                                                        <div >
+                                                            <table id="dtTable2" class="table table-hover table-sm table-bordered p-0 " style="width:100%;text-align: center">
+                                                              
                                                                 <thead class="text-white" style="background-color: #001166;">
                                                                   <tr>
                                                                       <th>#</th>
@@ -103,6 +108,9 @@
                                         </div>
                                       </div>
                                     </div>
+                                          </div>
+                                          
+                                    
                                    </div>
                                   </div>
                                   </div>
@@ -116,6 +124,11 @@
         </div>
     </div>
 </div>
+
+
+
+
+
 
 
 
