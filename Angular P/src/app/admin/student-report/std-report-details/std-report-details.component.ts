@@ -4,8 +4,6 @@ import { ToastrService } from 'ngx-toastr';
 import { AdminService } from 'src/app/service/admin.service';
 import { SpinnerComponent } from 'src/app/spinner/spinner.component';
 declare const $:any;
-import * as XLSX from 'xlsx';
-import  {jsPDF} from 'jspdf';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -47,43 +45,11 @@ export class StdReportDetailsComponent implements OnInit {
     setTimeout(() => {
       SpinnerComponent.hide();
     }, 3500);
-//  let a:any=[];
-  
-//   for(let i of this.adminService.certificate)
-//   {
-//    if(i.accId==student.id)
-//     a.push(i);
-   
-    
-//   }
+
   
   }
   
-  fileName= 'ExcelSheet.xlsx';
   
-  exportexcel(): void
-  {
-    /* pass here the table id */
-    let element = document.getElementById('excel-table');
-    const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
- 
-    /* generate workbook and add the worksheet */
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
- 
-    /* save to file */  
-    XLSX.writeFile(wb, this.fileName);
- 
-  }
-  makePDF()
-  {
-    let pdf=new jsPDF('p','pt','a1');
-    pdf.html(this.el.nativeElement,{
-     callback:(pdf)=>{
-       pdf.save("demo.pdf");
-     }
-    });
-  }
   back(){
     this.router.navigate(['/admin/studentReport'])
   }
