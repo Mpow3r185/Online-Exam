@@ -176,4 +176,60 @@ export class AdminService {
   })
 }
   
+  // Get full User Details By Id
+async getFullUserDetailsById(accId: number): Promise<void> {
+  SpinnerComponent.show();  
+  this.http.post(`https://localhost:44342/api/report/stdDetails/${accId}`, null).subscribe((result) => {
+    this.fullUserDetails = result;
+  }, err => {
+    this.toastr.error('Unable to connect the server.')
+  })
+
+  SpinnerComponent.hide();
+}
+
+async getAccountById(accId: number): Promise<void>{
+  this.http.post(`https://localhost:44342/api/Account/getAccountById/${accId}`, null).subscribe((result) => {
+    this.account = result;
+    console.log(result);
+    
+  }, error => {
+    this.toastr.error('Unable to connect the server');
+  });
+}
+
+
+//Get Number of Users
+ getNumOfUsers()
+ {
+   this.http.get('https://localhost:44342/api/report/NumberOfUsers').subscribe((result) => {            
+     this.NumOfUsers = result;      
+   }, error => {
+     this.toastr.error('Unable to connect the server.');
+     this.toastr.error(error.message,error.status);
+   });
+ }
+
+ //Get Number of Users
+ getNumOfCertificates()
+ {
+   this.http.get('https://localhost:44342/api/report/NumberOfCertificates').subscribe((result) => {            
+     this.TotalCertificates = result;      
+   }, error => {
+     this.toastr.error('Unable to connect the server.');
+     this.toastr.error(error.message,error.status);
+   });
+ }
+
+ //Get Number of Fail Users
+ getNumOfFailUsers()
+ {
+   this.http.get('https://localhost:44342/api/report/NumberOfFailUsers').subscribe((result) => {            
+     this.FailUsers = result;      
+   }, error => {
+     this.toastr.error('Unable to connect the server.');
+     this.toastr.error(error.message,error.status);
+   });
+ }
+  
 }
