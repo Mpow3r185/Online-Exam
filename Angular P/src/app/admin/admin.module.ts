@@ -19,6 +19,8 @@ import { AdminTestimonialComponent } from './admin-testimonial/admin-testimonial
 import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
 import { CreateCourseComponent } from './admin-courses/create-course/create-course.component';
+import { StudentReportComponent } from './student-report/student-report.component';
+import { StdReportDetailsComponent } from './student-report/std-report-details/std-report-details.component';
 
 
 
@@ -34,7 +36,9 @@ import { CreateCourseComponent } from './admin-courses/create-course/create-cour
     TestimonialViewComponent,
     AdminCoursesComponent,
     AdminTestimonialComponent,
-    CreateCourseComponent
+    CreateCourseComponent,
+    StudentReportComponent,
+    StdReportDetailsComponent
   ],
   imports: [
     SharedModule,
