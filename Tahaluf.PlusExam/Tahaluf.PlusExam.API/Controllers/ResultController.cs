@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Tahaluf.PlusExam.Core.Data;
+using Tahaluf.PlusExam.Core.DTO;
 using Tahaluf.PlusExam.Core.ServiceInterface;
+using Tahaluf.PlusExam.Infra.Service;
 
 namespace Tahaluf.PlusExam.API.Controllers
 {
@@ -12,12 +14,16 @@ namespace Tahaluf.PlusExam.API.Controllers
     {
         #region Fields
         private readonly IResultService _resultService;
+        private readonly IFillResultService _fillResultService;
+        private readonly IScoreService _coreService;
         #endregion Field
 
         #region Constructor
-        public ResultController(IResultService resultService)
+        public ResultController(IResultService resultService, IFillResultService fillResultService, IScoreService scoreService)
         {
             _resultService = resultService;
+            _fillResultService = fillResultService;
+            _coreService = scoreService;
         }
         #endregion Constructor
 
@@ -66,5 +72,39 @@ namespace Tahaluf.PlusExam.API.Controllers
         #endregion DeleteResult
 
         #endregion CRUD_Operation
+
+        [HttpPost]
+        [Route("submit")]
+        public void Submit(ExamSubmitDTO examSubmit)
+        {
+            int accountId = examSubmit.AccountId;
+            int examId = examSubmit.ExamId;
+
+            foreach (UserResultsDTO userResult in examSubmit.Results)
+            {
+                // Single & Multiple Question
+                if (userResult.fillResult is null)
+                {
+                    Result result = new Result();
+                    result.AccountId = accountId;
+                    result.QuestionOptionId = userResult.optionId;
+
+                    _resultService.CreateResult(result);
+                }
+
+                // Fill Question
+                else
+                {
+                    FillResult fillResult = new FillResult();
+                    fillResult.QuestionId = userResult.questionId;
+                    fillResult.AccountId = accountId;
+                    fillResult.Answer = userResult.fillResult;
+
+                    _fillResultService.CreateFillResult(fillResult);
+                }
+            }
+
+            _coreService.CalculateScore(accountId, examId);
+        }
     }
 }

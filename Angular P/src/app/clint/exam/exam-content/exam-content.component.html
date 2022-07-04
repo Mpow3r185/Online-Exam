@@ -66,9 +66,21 @@
 
                     <!-- Submit All Button -->
                     <div class="container d-flex mb-3">
-                        <button class="btn btn-primary m-auto d-block submit-btn font-weight-bold">
+                        <button class="btn btn-primary m-auto d-block submit-btn font-weight-bold"
+                            (click)="openDialog('10ms', '10ms')">
                             Submit All
                         </button>
+
+                        <ng-template #submitDialog>
+                            <h1 mat-dialog-title>Submit And Finish</h1>
+                            <div mat-dialog-content style="width: 500px;">
+                                Do you want to finish the exam?
+                            </div>
+                            <div mat-dialog-actions>
+                                <button mat-button mat-dialog-close>Back</button>
+                                <button mat-button mat-dialog-close cdkFocusInitial (click)="submit()">Yes</button>
+                            </div>
+                        </ng-template>
                     </div>
 
                 </div>

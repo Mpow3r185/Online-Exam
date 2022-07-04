@@ -5,6 +5,7 @@ PROCEDURE ScoreCRUD(
     SCOREID SCORE.ID%TYPE DEFAULT NULL,
     SCGRADE SCORE.GRADE%TYPE DEFAULT NULL,
     SCSTATUS SCORE.STATUS%TYPE DEFAULT NULL,
+    SCCreateDate SCORE.creationDate%type DEFAULT NULL,
     EXID SCORE.EXAMID%TYPE DEFAULT NULL,
     ACCID SCORE.ACCOUNTID%TYPE DEFAULT NULL)
     AS
@@ -20,6 +21,7 @@ PROCEDURE ScoreCRUD(
             UPDATE SCORE SET
             GRADE     = SCGRADE,
             STATUS    = SCSTATUS,
+            CREATIONDATE = SCCreateDate,
             EXAMID    = EXID,
             ACCOUNTID = ACCID
             WHERE ID  = SCOREID;
@@ -48,12 +50,28 @@ PROCEDURE CalculateScore(
     exid IN exam.id%type) AS 
 
     totalMark Score.grade%type;
+    multipleQuestionsMarks Score.grade%type;
     fillQuestionsMarks Score.grade%type;
     succMark Exam.SuccessMark%type;
     fullMark Question.score%type;
     st Score.status%type;
+    
+    mtQid Question.id%type;
+    mtScore NUMBER;
+    mtQScore NuMBER;
+    numOfCorrectOptions INT;
+    numOfIncorrectOptions INT;
+    numOfOptions INT;
+    
+    scid Score.id%type;
+    
+    multipleQuestions SYS_REFCURSOR;
 
 BEGIN
+    totalMark := 0;
+    multipleQuestionsMarks := 0;
+    fillQuestionsMarks := 0;
+
     SELECT successMark
     INTO succMark
     FROM Exam
@@ -64,15 +82,47 @@ BEGIN
     FROM Question
     WHERE examId = exid;
 
-    -- For Single And Multiple Marks
+    -- For Single Marks
     SELECT SUM(Q.score) AS Score
     INTO totalMark
     FROM Result R
     JOIN QuestionOption QO ON R.QuestionOptionId = QO.Id
     JOIN Question Q ON QO.QuestionId = Q.Id
     JOIN CorrectAnswer CA ON QO.Id = CA.QuestionOptionId
-    WHERE Q.type = 'Single' OR Q.type = 'Multiple'
+    WHERE Q.type = 'Single'
     AND examId = exid AND accountId = accid;
+    
+    -- For Multiple Marks
+    OPEN multipleQuestions FOR
+    SELECT id
+    FROM Question
+    WHERE Question.type = 'Multiple' AND Question.examId = exid;
+    
+    LOOP
+    FETCH multipleQuestions INTO mtQid;
+    EXIT WHEN multipleQuestions%NOTFOUND;
+        QuestionPackage.GetScoreForQuestion(QID => mtQid, POINTS => mtScore);
+        QuestionPackage.GetNumOptionsForTypicalAnswer(QID => mtQid, N => numOfOptions);
+        
+        QuestionPackage.GetNumberCorrectAnswers(
+            QID => mtQid,
+            EXID => exid,
+            ACCID => accid,
+            N => numOfCorrectOptions);
+            
+        QuestionPackage.GetNumberIncorrectAnswers(
+            QID => mtQid,
+            EXID => exid,
+            ACCID => accid,
+            N => numOfIncorrectOptions);
+            
+        mtQScore := ((numOfCorrectOptions / numOfOptions * mtScore) - (numOfIncorrectOptions / numOfOptions * mtScore));
+        IF mtQScore < 0 THEN
+            mtQScore := 0;
+        END IF;
+        multiplequestionsmarks := multiplequestionsmarks + mtQScore;
+        
+    END LOOP;
 
     -- For Fill Marks
     SELECT SUM(Q.score) AS Score
@@ -82,7 +132,7 @@ BEGIN
     JOIN Question Q ON QO.questionId = Q.id
     WHERE QO.optionContent LIKE FR.answer AND FR.accountId = accid;
 
-    totalMark := totalMark + fillQuestionsMarks;
+    totalMark := totalMark + fillQuestionsMarks + multiplequestionsmarks;
 
     IF totalMark IS NULL THEN
         totalMark := 0;
@@ -100,11 +150,39 @@ BEGIN
     ELSE 
         st := 'Fail';
     END IF;
-
+    
+    SELECT id
+    INTO scid
+    FROM Score
+    WHERE examId = exid AND accountId = accid;
+    
     -- Create Score
-    ScorePackage.ScoreCRUD('Create',totalMark, st, exid, accid);
+    ScorePackage.ScoreCRUD(
+        FUNC => 'UPDATE',
+        SCOREID => scid,
+        SCGRADE => totalMark, 
+        SCSTATUS => st,
+        SCCreateDate => CURRENT_TIMESTAMP,
+        EXID => exid, 
+        ACCID => accid);
 
 END CalculateScore;
+
+
+-- Get Score By Exam Id And Account Id
+    PROCEDURE GetScoreByExamIdAndAccountId(
+        accid IN account.id%type,
+        exid IN exam.id%type) AS
+        
+        ref_cursor SYS_REFCURSOR;
+    BEGIN
+        OPEN ref_cursor FOR
+        SELECT *
+        FROM Score
+        WHERE examId = exid AND accountId = accid;
+        
+        DBMS_SQL.RETURN_RESULT(ref_cursor);
+    END GetScoreByExamIdAndAccountId;
 
 ------------------------------------------------------
 END SCOREPACKAGE;

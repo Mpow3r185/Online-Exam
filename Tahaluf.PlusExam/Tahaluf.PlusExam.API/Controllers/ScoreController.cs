@@ -66,5 +66,17 @@ namespace Tahaluf.PlusExam.API.Controllers
         #endregion DeleteScore
 
         #endregion CRUD_Operation
+
+        public void CalculateScore(int accid, int exid)
+        {
+            _scoreService.CalculateScore(accid, exid);
+        }
+
+        [HttpPost]
+        [Route("GetScoreByExamIdAndAccountId")]
+        public Score GetScoreByExamIdAndAccountId(Score score)
+        {
+            return _scoreService.GetScoreByExamIdAndAccountId(score);
+        }
     }
 }

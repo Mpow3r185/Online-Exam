@@ -56,7 +56,7 @@ div.question-container {
     background-color: #EEE;
     cursor: pointer;
     transition: 0.5s;
-    width:56px; 
+    width:56px;
     height: 38px;
 }
 
@@ -70,6 +70,14 @@ div.question-container:hover p {
     animation-iteration-count: infinite;
     animation-direction: alternate-reverse;
     animation-timing-function: ease-in;
+}
+
+div.q-empty {
+    border-color: #D70926 !important;
+}
+
+div.q-full {
+    border-color: #005300 !important;
 }
 
 .q-active {

@@ -43,25 +43,98 @@
                     </p>
                 </div>
 
-                <!-- Buy Exam Or Enter Exam Container -->
-                <div class="container mb-30" *ngIf="timerExam != 'EXPIRED'">
-                    <div class="container mb-30" *ngIf="homeService.isBoughtExam && timerStatus =='ENDS AFTER'">
-                        <button type="button" class="btn btn-primary d-block mx-auto" (click)="moveToExam()">Enter
-                            Now</button>
+                <!-- User is Examined -->
+                <div *ngIf="isExamined; else isNotExamined" class="container mx-5 submitted-container">
+                    <div class="row justify-content-around h-100">
+                        <div class="row col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 flex-column justify-content-center"
+                            style="color: #818181;">
+                            <div class="container">
+                                <div class="text-center" style="font-size: 0.8rem;">
+                                    Your answer submitted at
+                                </div>
+                            </div>
+
+                            <div class="container">
+                                <div class="text-center" style="font-size: 0.9rem;">
+                                    {{ homeService.score.creationDate | date: 'medium' }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class=" row col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 flex-column justify-content-center"
+                            style="color: #818181;">
+                            <div class="container">
+                                <div class="text-center" style="font-size: 0.8rem;">
+                                    Your mark
+                                </div>
+                            </div>
+
+                            <!-- Mark is permitted yet (SHOW) -->
+                            <div class="container" *ngIf="homeService.exams.markStatus === 'SHOW'; else markIsHide">
+                                <div class="text-center" style="font-weight: bolder;">
+
+                                    <!-- User Score Is Less Than Success Mark -->
+                                    <span style="color: #d70926" title="Fail"
+                                        *ngIf="homeService.score.grade < homeService.exams.successMark; else isSuccess">
+                                        {{ homeService.score.grade }}
+                                    </span>
+
+                                    <!-- User Score Is Greater Or Equal Success Mark -->
+                                    <ng-template #isSuccess>
+                                        <span style="color: #006e00" title="Success">
+                                            {{ homeService.score.grade }}
+                                        </span>
+                                    </ng-template>
+                                </div>
+                            </div>
+
+                            <!-- Mark is not permitted yet (HIDE) -->
+                            <ng-template #markIsHide>
+                                <div class="container" *ngIf="homeService.exams.markStatus === 'HIDE'">
+                                    <div class="text-center" style="font-size: 0.9rem;">
+                                        Marks not permitted yet
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </div>
                     </div>
 
-                    <div class="container mb-30" *ngIf="!homeService.isBoughtExam && timerStatus =='ENDS AFTER'">
-                        <button type="button" class="btn btn-primary d-block mx-auto">Buy
-                            Now</button>
-                    </div>
-
-                    <div class="container mb-30" *ngIf="!homeService.isBoughtExam && timerStatus =='START AFTER'">
-                        <button type="button" class="btn btn-primary d-block mx-auto">Buy
-                            Now</button>
-                    </div>
                 </div>
 
-                <!-- Buy Exam Or Enter Exam Container -->
+                <!-- User is not Examine yet -->
+                <ng-template #isNotExamined>
+                    <!-- Buy Exam Or Enter Exam Container -->
+                    <div class="container mb-30" *ngIf="timerExam != 'EXPIRED'">
+                        <div class="container mb-30" *ngIf="!isLogin; else isLoginTrue">
+                            <button type="button" class="btn btn-primary d-block mx-auto" (click)="moveToLogin()">Sign
+                                In</button>
+                        </div>
+
+                        <ng-template #isLoginTrue>
+                            <div class="container mb-30" *ngIf="homeService.isBoughtExam && timerStatus =='ENDS AFTER'">
+                                <button type="button" class="btn btn-primary d-block mx-auto"
+                                    (click)="moveToExam()">Enter
+                                    Now</button>
+                            </div>
+
+                            <div class="container mb-30"
+                                *ngIf="!homeService.isBoughtExam && timerStatus =='ENDS AFTER'">
+                                <button type="button" class="btn btn-primary d-block mx-auto">Buy
+                                    Now</button>
+                            </div>
+
+                            <div class="container mb-30"
+                                *ngIf="!homeService.isBoughtExam && timerStatus =='START AFTER'">
+                                <button type="button" class="btn btn-primary d-block mx-auto">Buy
+                                    Now</button>
+                            </div>
+                        </ng-template>
+
+                    </div>
+
+                    <!-- Buy Exam Or Enter Exam Container -->
+                </ng-template>
+
 
 
                 <!-- Exam Timer -->

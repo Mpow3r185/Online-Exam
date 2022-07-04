@@ -1,8 +1,9 @@
 import { SpinnerComponent } from './../../../spinner/spinner.component';
 import { HomeService } from './../../../service/home.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-exam-content',
@@ -15,7 +16,7 @@ export class ExamContentComponent implements OnInit {
   currentQuestionNumber: number = 0;                        // Number of the Exam Displayed
   private sizes?: number[];                                         // Height of Every Question Container
   private heightContainersCumulativeSum?: number[];                 // Cumulative Sum of Sizes array
-  userAnswers: Map<number, number> = new Map<number, number>();     // User Answers <QuestionId, OptionId>
+  userAnswers: Map<number, number|string|null> = new Map<number, number|string|null>();     // User Answers <QuestionId, OptionId>
   timerExam!: string;
 
   private questionsContainers: any;
@@ -23,22 +24,29 @@ export class ExamContentComponent implements OnInit {
   private sliderContainer: any;
 
   private routeSub!: Subscription;
+  @ViewChild('submitDialog') submitDialog!: TemplateRef<any>
   
   // Constructor
   constructor(
     public homeService: HomeService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
     ) { 
       this.routeSub = this.route.params.subscribe(async params => {     
         
         await this.homeService.getExamContent(Number(params['id']));
         await this.homeService.getExamById(Number(params['id']));
 
-        
+        this.homeService.createDefaultScore(
+          Number(params['id']), 
+          Number(localStorage.getItem('AccountId')));
       });
     }
 
+    openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+      this.dialog.open(this.submitDialog);
+    }
 
   async ngOnInit(): Promise<void> {
     SpinnerComponent.show();
@@ -69,7 +77,6 @@ export class ExamContentComponent implements OnInit {
     this.parentContainer.style.height = `${this.sizes[0]}px`;
     
     SpinnerComponent.hide();
-    console.log(this.homeService.examContent);
     
     this.examTimer();
   }
@@ -94,18 +101,64 @@ export class ExamContentComponent implements OnInit {
 
   // Transport Between Questions
   transport(questionNumber: number) {
-    let questionAnswer;
+    let questionId: number = this.homeService.examContent[this.currentQuestionNumber].question.id;
 
-    // Check If User Answer The Question or let it Empty
-    if (document.querySelector(`input[name="q${this.currentQuestionNumber}]:checked`) === null) {
-      questionAnswer = null; 
-    } else {
-      questionAnswer = (<HTMLInputElement>document.querySelector(`input[name="q${this.currentQuestionNumber}"]:checked`)).value;
+    // Check If User Answer The Question or left it Empty
+    if (document.querySelectorAll(`input[name=q${questionId}]:checked`).length > 0) {
+      document.getElementById(`q${this.currentQuestionNumber}`)?.classList.remove('q-empty');
+      document.getElementById(`q${this.currentQuestionNumber}`)?.classList.add('q-full');
+
+      this.homeService.examContent[this.currentQuestionNumber].question.type === 'Fill';
+
+      // Check Question Type 
+      // Single
+      if (this.homeService.examContent[this.currentQuestionNumber].question.type === 'Single') {
+        let questionAnswer = Number((<HTMLInputElement>document.querySelectorAll(`input[name=q${questionId}]:checked`)[0]).value);
+
+        // Save The Answer
+        this.userAnswers.set(questionId, questionAnswer);
+      } 
+      
+      // Multiple
+      else if (this.homeService.examContent[this.currentQuestionNumber].question.type === 'Multiple') {
+        let checked = document.querySelectorAll(`input[name=q${questionId}]:checked`);
+        let answers: any = [];    // Checked Checkbox (Option Id)
+
+        checked.forEach((option) => {
+          answers.push(Number((<HTMLInputElement>option).value));
+        });
+
+        // Save The Answer
+        this.userAnswers.set(questionId, answers);
+      }
+    }
+    
+    // Question Fill
+    else if (this.homeService.examContent[this.currentQuestionNumber].question.type === 'Fill') {
+      let textAreaValue = (<HTMLInputElement>document.getElementById(`q${questionId}-f`)).value;
+      if (textAreaValue.length > 0){
+        document.getElementById(`q${this.currentQuestionNumber}`)?.classList.remove('q-empty');
+        document.getElementById(`q${this.currentQuestionNumber}`)?.classList.add('q-full');
+  
+        let questionAnswer = textAreaValue;
+              
+        // Save The Answer
+        this.userAnswers.set(questionId, questionAnswer);  
+      }
+
+      else {
+        document.getElementById(`q${this.currentQuestionNumber}`)?.classList.remove('q-full');
+        document.getElementById(`q${this.currentQuestionNumber}`)?.classList.add('q-empty');
+      }
+    
     }
 
-    // Save The Answer
-    let questionId = (<HTMLInputElement>document.querySelectorAll('.hidden')[this.currentQuestionNumber]).value;  // Get Question Id
-    this.userAnswers.set(Number(questionId), Number(questionAnswer));   // Save User Answer
+    // If They didn't Answer The Question
+    else {
+      document.getElementById(`q${this.currentQuestionNumber}`)?.classList.remove('q-full');
+      document.getElementById(`q${this.currentQuestionNumber}`)?.classList.add('q-empty');
+    }    
+
 
     document.querySelector(`#q${this.currentQuestionNumber}`)?.classList.remove('q-active');
 
@@ -132,7 +185,9 @@ export class ExamContentComponent implements OnInit {
   } else {
       document.querySelector('#prevBtn')?.removeAttribute('disabled');
   }
-
+  
+  document.querySelector(`#q${questionNumber}`)?.classList.remove('q-full');
+  document.querySelector(`#q${questionNumber}`)?.classList.remove('q-empty');
   document.querySelector(`#q${questionNumber}`)?.classList.add('q-active');
   }
 
@@ -179,11 +234,20 @@ export class ExamContentComponent implements OnInit {
     }, 1000);
   }
 
+  async submit() {
+    SpinnerComponent.show();
+    await delay(5000);
+
+    this.transport(this.currentQuestionNumber);    
+    this.homeService.submit(this.userAnswers, this.homeService.exams.id);
+
+    SpinnerComponent.hide();
+  }
+
   // Unsubscribe to prevent memory leaks
   ngOnDestroy() {
     this.routeSub.unsubscribe();
   }
-
 }
 
 

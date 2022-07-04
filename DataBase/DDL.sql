@@ -294,6 +294,8 @@ CREATE TABLE SCORE
   examId NUMBER,
   accountId NUMBER NOT NULL,
   
+  creationDate TIMESTAMP DEFAULT(CURRENT_TIMESTAMP) NOT NULL,
+  
   CONSTRAINT exam_score_fk
   FOREIGN KEY(examId)
   REFERENCES exam(id)

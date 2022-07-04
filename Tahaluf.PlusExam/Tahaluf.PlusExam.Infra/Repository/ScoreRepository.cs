@@ -62,6 +62,38 @@ namespace Tahaluf.PlusExam.Infra.Repository
         #endregion DeleteScore
 
         #endregion CRUD_Operation
+
+        public void CalculateScore(int accid, int exid)
+        {
+            dbContext.Connection.ExecuteAsync(
+                "ScorePackage.CalculateScore", 
+                generateExidAndAccidParameter(exid, accid),
+                commandType: CommandType.StoredProcedure);
+        }
+
+        public Score GetScoreByExamIdAndAccountId(Score score)
+        {
+            return dbContext.Connection.Query<Score>(
+                "ScorePackage.GetScoreByExamIdAndAccountId",
+                generateExidAndAccidParameter(score.ExamId, score.AccountId),
+                commandType: CommandType.StoredProcedure).FirstOrDefault();
+        }
+
+        private DynamicParameters generateExidAndAccidParameter(int? exid, int accid)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("accid",
+                accid,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("exid",
+                exid,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            return parameters;
+        }
     }
 }
 

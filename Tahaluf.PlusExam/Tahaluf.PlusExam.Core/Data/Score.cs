@@ -10,14 +10,12 @@ namespace Tahaluf.PlusExam.Core.Data
     {
         [Key]
         public int Id { get; set; }
-        [Required]
         public float Grade { get; set; }
-        [Required]
         public string Status { get; set; }
+        public DateTime CreationDate { get; set; }
         public int? ExamId { get; set; }
         [ForeignKey("ExamId")]
         public virtual Exam Exam { get; set; }
-        [Required]
         public int AccountId { get; set; }
         [ForeignKey("AccountId")]
         public virtual Account Account { get; set; }

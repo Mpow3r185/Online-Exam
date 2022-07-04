@@ -51,5 +51,15 @@ namespace Tahaluf.PlusExam.Infra.Service
         #endregion UpdateScore
 
         #endregion CRUD_Operation
+
+        public void CalculateScore(int accid, int exid)
+        {
+            _scoreRepository.CalculateScore(accid, exid);
+        }
+
+        public Score GetScoreByExamIdAndAccountId(Score score)
+        {
+            return _scoreRepository.GetScoreByExamIdAndAccountId(score);
+        }
     }
 }

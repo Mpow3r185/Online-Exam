@@ -12,6 +12,8 @@ import { HomeService } from 'src/app/service/home.service';
 export class ExamProfileComponent implements OnInit {
 
   isExpanded: boolean = true;
+  isLogin: boolean = (localStorage.getItem('token')) ? true : false;
+  isExamined: boolean = true;
   timerExam!: string;
   timerStatus: string | undefined;
   private routeSub!: Subscription;
@@ -28,15 +30,18 @@ export class ExamProfileComponent implements OnInit {
     this.routeSub = this.route.params.subscribe(async params => {
       await this.homeService.getExamById(Number(params['id']));
       await this.homeService.getNumberOfUsersBuyByExamId(Number(params['id']));
-      
+      await this.homeService.GetScoreByExamIdAndAccountId(Number(params['id']), Number(localStorage.getItem('AccountId')));
+
       this.homeService.userIfBoughtExam({
         examId: Number(params['id']),
         accountId: Number(localStorage.getItem('AccountId'))
       });      
     });
 
-    await delay(1000);    
-    
+    await delay(4000);    
+    if (!this.homeService.score) { this.isExamined = false; }
+    console.log(this.isExamined);
+        
     SpinnerComponent.hide();
 
     this.examTimer();
@@ -119,6 +124,10 @@ export class ExamProfileComponent implements OnInit {
 
   moveToExam() {
     this.router.navigate([`exam/${this.homeService.exams.id}`])
+  }
+
+  moveToLogin() {
+    this.router.navigate(['auth/login']);
   }
 
   // Unsubscribe to prevent memory leaks

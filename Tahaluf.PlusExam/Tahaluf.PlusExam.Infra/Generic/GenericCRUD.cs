@@ -1336,6 +1336,11 @@ namespace Tahaluf.PlusExam.Infra.Generic
                 score.Status, dbType: DbType.String,
                 direction: ParameterDirection.Input);
 
+            parameters.Add("SCCreateDate",
+                score.CreationDate,
+                dbType: DbType.DateTime,
+                direction: ParameterDirection.Input);
+
             parameters.Add("EXID",
                 score.ExamId,
                 dbType: DbType.Int32,

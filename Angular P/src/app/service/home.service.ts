@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -24,11 +25,13 @@ export class HomeService {
   numberOfUsersBuyExam: any = 0;
   isBoughtExam: boolean|any = false;
   examContent: any;
+  score: any;
 
   constructor(
     private http: HttpClient,
     private toastr: ToastrService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
     ) {
       this.run();
     }
@@ -129,7 +132,7 @@ export class HomeService {
   }
 
   // Search Exam
-  async searchExam(body: any) {
+  async searchExam(body: any) {    
     this.http.post('https://localhost:44342/api/exam/searchExam', body).subscribe((result) => {
       this.exams = result;
     });
@@ -206,6 +209,84 @@ export class HomeService {
     }, error => {
       this.toastr.error('Unable to connect a server');
     })
+  }
+
+  // Create Default Score
+  createDefaultScore(exid: number, accid: number) {
+    const body = {
+      grade: 0,
+      status: 'Fail',
+      examId: exid,
+      accountId: accid
+    };
+
+    this.http.post('https://localhost:44342/api/score', body).subscribe((result) => {},
+      error => {
+        this.toastr.error('Unable to connect server');
+        this.router.navigate([`examProfile/${exid}`]);
+     })
+  }
+
+  // Get Score By Exam Id And Account Id
+  async GetScoreByExamIdAndAccountId(exid: number, accid: number) {
+    const body = {
+      accountId: accid,
+      examId: exid
+    };
+
+    this.http.post('https://localhost:44342/api/score/GetScoreByExamIdAndAccountId', body).subscribe((result) => {
+      this.score = result;
+      console.log(result);
+    }, error => {
+      this.toastr.error('Unable to connect server');
+    });
+  }
+
+  // Submit UserExamResults
+  submit(results: Map<number, number|string|null>, exid: number) {
+    const res = []; 
+    for (let key of results.keys()) {      
+      let value = results.get(key);
+      let result;
+      
+      if (Array.isArray(value)) {
+        for (let optionId of value) {
+          result = {
+            questionId: key,
+            optionId: optionId,
+          };
+
+          res.push(result);
+        }
+      }
+      
+      else {
+        if (Number.isInteger(value)) {
+        result = {
+          questionId: key,
+          optionId: value
+        }} else {
+          result = {
+            questionId: key,
+            fillResult: value
+          }
+        }
+        res.push(result);
+      }
+    }    
+
+    const submitExam = {
+      results: res,
+      examId: exid,
+      accountId: Number(localStorage.getItem('AccountId'))
+    }
+      
+    this.http.post('https://localhost:44342/api/result/submit', submitExam).subscribe(() => {
+      this.toastr.success('Your answers is saved');
+      this.router.navigate([`examProfile/${exid}`]);
+    }, error => {
+      this.toastr.error(error.message);
+    });
   }
 }
 
