@@ -9,6 +9,9 @@ import { HomeService } from './home.service';
   providedIn: 'root',
 })
 export class UserService {
+  
+   InvoicesData:any;
+  
   updateForm: FormGroup = new FormGroup({
     Id: new FormControl(),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -181,4 +184,16 @@ export class UserService {
          SpinnerComponent.hide();
        })  
    }
+
+//Get invoice By User Id
+  async GetInvoicesByUserId(){
+    let userId = this.homeService.selectedUser[0].id;
+    this.http.get(`https://localhost:44342/api/Invoice/GetInvoiceByUserId/${userId}`).subscribe((result: any) => {
+      this.InvoicesData = result;
+    },
+    (error) => {
+      this.toastr.error('Unable to connect server.')
+    });
+  }
+
 }
