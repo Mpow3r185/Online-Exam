@@ -26,6 +26,7 @@ export class HomeService {
   isBoughtExam: boolean|any = false;
   examContent: any;
   score: any;
+  zoomMeeting: any;
 
   constructor(
     private http: HttpClient,
@@ -286,6 +287,15 @@ export class HomeService {
       this.router.navigate([`examProfile/${exid}`]);
     }, error => {
       this.toastr.error(error.message);
+    });
+  }
+
+  // Get Zoom Meeting Link By Exam Id
+  async getZoomMeetingLinkByExamId(exid: number) {
+    this.http.post(`https://localhost:44342/api/zoomMeeting/GetZoomMeetingByExamId/${exid}`, null).subscribe((result) => {
+      this.zoomMeeting = result;
+    }, error => {
+      this.toastr.error('Unable to connect server');
     });
   }
 }

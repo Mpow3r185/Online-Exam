@@ -86,8 +86,8 @@ CREATE OR REPLACE PACKAGE BODY ExamPackage AS
             SELECT Exam.*, Course.courseName
             FROM Exam
             JOIN Course ON (Exam.courseId = Course.id)
-            WHERE (exTitle IS NULL OR title LIKE '%' || exTitle || '%')
-            AND (cName IS NULL OR courseName LIKE '%' || cName || '%')
+            WHERE (exTitle IS NULL OR title LIKE '%' || LOWER(exTitle) || '%')
+            AND (cName IS NULL OR courseName LIKE '%' || LOWER(cName) || '%')
             AND ((examLevel = exLevelBeginner)
             OR (examLevel = exLevelIntermediate)
             OR (examLevel = exLevelAdvanced)
@@ -164,7 +164,7 @@ CREATE OR REPLACE PACKAGE BODY ExamPackage AS
 
         DBMS_SQL.RETURN_RESULT(ref_cursor);
     END GetExamsByCourseId;
-    
+
     -- Get Exam By Id
     PROCEDURE GetExamById(exid IN exam.id%type) AS
         ref_cursor SYS_REFCURSOR;
@@ -174,10 +174,10 @@ CREATE OR REPLACE PACKAGE BODY ExamPackage AS
         FROM Exam
         JOIN Course ON Course.id = Exam.courseId
         WHERE Exam.id = exid;
-        
+
         DBMS_SQL.RETURN_RESULT(ref_cursor);
     END GetExamById;
-    
+
     -- Get Users Buy The Exam Id
     PROCEDURE GetUsersBuyExamId(exid IN exam.id%type) AS
         ref_cursor SYS_REFCURSOR;
@@ -189,7 +189,7 @@ CREATE OR REPLACE PACKAGE BODY ExamPackage AS
         JOIN Exam ON Exam.id = Invoice.examId
         WHERE exid = Exam.id
         ORDER BY Invoice.creationDate DESC;
-        
+
         DBMS_SQL.RETURN_RESULT(ref_cursor);
     END GetUsersBuyExamId;
 

@@ -34,7 +34,8 @@ export class CreateExamComponent implements OnInit {
     endDate: new FormControl('', Validators.required),
     markStatus: new FormControl('', Validators.required),
     status: new FormControl('', Validators.required),
-    examImage: new FormControl('', Validators.required)
+    examImage: new FormControl('', Validators.required),
+    zoomMeeting: new FormControl('')
   });
 
   saveExam() {
@@ -43,7 +44,7 @@ export class CreateExamComponent implements OnInit {
     body['markStatus'] = this.selectMarkStatus;
     body['examLevel'] = this.selectExamLevel;
     body['courseId'] = this.adminService.courseId;
-    console.log(body);
+    body['examImage'] = body['examImage'].split('\\').pop();
     
     this.adminService.createExam(body);
     

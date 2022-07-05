@@ -253,6 +253,22 @@ namespace Tahaluf.PlusExam.Infra.Generic
                         return true;
                     }
 
+                // Zoom Meeting Table
+                case "ZoomMeeting":
+                    {
+                        DynamicParameters zoomMeetingDynamicParameters = GenerateZoomMeetingParameters(entity);
+                        zoomMeetingDynamicParameters.Add("func",
+                                "CREATE",
+                                dbType: DbType.String,
+                                direction: ParameterDirection.Input);
+
+                        dbContext.Connection.ExecuteAsync(
+                            "ZoomMeetingPackage.ZoomMeetingCRUD", zoomMeetingDynamicParameters,
+                            commandType: CommandType.StoredProcedure);
+
+                        return true;
+                    }
+
             }
             return true;
         }
@@ -558,6 +574,25 @@ namespace Tahaluf.PlusExam.Infra.Generic
                             commandType: CommandType.StoredProcedure);
                         return true;
                     }
+
+                // Zoom Meeting Table
+                case "ZoomMeeting":
+                    {
+                        DynamicParameters zoomMeetingDynamicParameters = new DynamicParameters();
+                        zoomMeetingDynamicParameters.Add("func",
+                            "DELETE",
+                            dbType: DbType.String);
+
+                        zoomMeetingDynamicParameters.Add("zoomId",
+                            id,
+                            dbType: DbType.Int32,
+                            direction: ParameterDirection.Input);
+
+                        dbContext.Connection.ExecuteAsync(
+                            "ZoomMeetingPackage.ZoomMeetingCRUD", zoomMeetingDynamicParameters,
+                            commandType: CommandType.StoredProcedure);
+                        return true;
+                    }
             }
 
             return true;
@@ -679,7 +714,15 @@ namespace Tahaluf.PlusExam.Infra.Generic
                        "OurServicePackage.OurServiceCRUD",
                        commandType: CommandType.StoredProcedure).ToList();
                     }
-                    
+
+                // Zoom Meeting Table
+                case "ZoomMeeting":
+                    {
+                        return dbContext.Connection.Query<ZoomMeeting>(
+                       "ZoomMeetingPackage.ZoomMeetingCRUD",
+                       commandType: CommandType.StoredProcedure).ToList();
+                    }
+
             }
 
             return null;
@@ -903,6 +946,21 @@ namespace Tahaluf.PlusExam.Infra.Generic
 
                         dbContext.Connection.ExecuteAsync(
                             "TestimonialPackage.TestimonialCRD", testimonialDynamicParameters,
+                            commandType: CommandType.StoredProcedure);
+
+                        return true;
+                    }
+
+                // Zoom Meeting Table
+                case "ZoomMeeting":
+                    {
+                        DynamicParameters zoomMeetingDynamicParameters = GenerateZoomMeetingParameters(entity);
+                        zoomMeetingDynamicParameters.Add("func",
+                                            "UPDATE",
+                                            dbType: DbType.String);
+
+                        dbContext.Connection.ExecuteAsync(
+                            "ZoomMeetingPackage.ZoomMeetingCRUD", zoomMeetingDynamicParameters,
                             commandType: CommandType.StoredProcedure);
 
                         return true;
@@ -1171,6 +1229,11 @@ namespace Tahaluf.PlusExam.Infra.Generic
                 exam.CreationDate,
                 dbType: DbType.DateTime,
                 direction: ParameterDirection.Input);
+
+            parameters.Add("eximg",
+                exam.ExamImage,
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
             #endregion DynamicParameters
 
             return parameters;
@@ -1403,7 +1466,7 @@ namespace Tahaluf.PlusExam.Infra.Generic
             return parameters;
         }
         
-        // Dynamic Parameters For Our Service tabel 
+        // Dynamic Parameters For Our Service Table 
         private DynamicParameters GenerateOurServiceParameters(dynamic service)
         {
             #region DynamicParameters
@@ -1421,6 +1484,30 @@ namespace Tahaluf.PlusExam.Infra.Generic
             parameters.Add("Stext",
                 service.Text,
                 dbType: DbType.String,
+                direction: ParameterDirection.Input);
+            #endregion DynamicParameters
+
+            return parameters;
+        }
+
+        // Dynamic Parameters For Zoom Meeting Table
+        private DynamicParameters GenerateZoomMeetingParameters(dynamic zoomMeeting)
+        {
+            #region DynamicParameters
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("zoomId",
+                zoomMeeting.Id,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("link",
+                zoomMeeting.ZoomLink,
+                dbType: DbType.String,
+                direction: ParameterDirection.Input);
+
+            parameters.Add("exid",
+                zoomMeeting.ExamId,
+                dbType: DbType.Int32,
                 direction: ParameterDirection.Input);
             #endregion DynamicParameters
 

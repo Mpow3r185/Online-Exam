@@ -16,7 +16,7 @@ namespace Tahaluf.PlusExam.Core.Data
 
         public int? CourseId { get; set; }
         [ForeignKey("CourseId")]
-        
+
         [Required, NotNull, MaxLength(50)]
         public string Title { get; set; }
 
@@ -26,9 +26,9 @@ namespace Tahaluf.PlusExam.Core.Data
         [MaxLength(300)]
         public string Description { get; set; }
 
-        [NotNull, MaxLength(12)]
+        [Required, NotNull, MaxLength(12)]
         public string ExamLevel { get; set; }
-        
+
         public decimal SuccessMark { get; set; }
         public int NumberOfQuestions { get; set; }
 
@@ -39,14 +39,14 @@ namespace Tahaluf.PlusExam.Core.Data
 
         [Required, NotNull]
         public DateTime EndDate { get; set; }
-        
+
         public string MarkStatus { get; set; }
 
         [MaxLength(7)]
         public string Status { get; set; }
 
         public DateTime CreationDate { get; set; }
-        
+
         public string ExamImage { get; set; }
         public string CourseName { get; set; }
 

@@ -236,16 +236,17 @@ export class ExamContentComponent implements OnInit {
 
   async submit() {
     SpinnerComponent.show();
-    await delay(5000);
 
     this.transport(this.currentQuestionNumber);    
     this.homeService.submit(this.userAnswers, this.homeService.exams.id);
+    await delay(8000);
 
     SpinnerComponent.hide();
   }
 
   // Unsubscribe to prevent memory leaks
-  ngOnDestroy() {
+  async ngOnDestroy() {
+    await this.submit();
     this.routeSub.unsubscribe();
   }
 }

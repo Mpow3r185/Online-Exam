@@ -289,10 +289,37 @@ DeleteServices(id:number){
 
 // Create Exam
 createExam(body: any) {
+  console.log(body);
+
+  let zoomMeetingLink = body['zoomMeeting'];
+  delete body['zoomMeeting'];
+  
   this.http.post('https://localhost:44342/api/exam', body).subscribe((result) => {
+    
+    const searchBody: object = 
+    { 
+      exTitle: body.title,
+      stDate: body.startDate,
+      enDate: body.endDate,
+      price: body.cost
+    };
+    this.http.post('https://localhost:44342/api/exam/searchExam', searchBody).subscribe((result: any) => {
+      const exam = result[0];
+      const zoomMeetingBody: object = {
+        zoomLink: zoomMeetingLink,
+        examId: exam.id
+      };
+
+      this.http.post(`https://localhost:44342/api/zoomMeeting`, zoomMeetingBody).subscribe((result) => {
+        this.toastr.success("Created Exam Successfully");
+      })
+    }, error => {
+      this.toastr.error('Unable to connect server');
+    })
+
     this.toastr.success('Created exam successfully');
   }, error => {
-    this.toastr.error('Unable to connect server');
+    this.toastr.error(error.message);
   })
 }
 
