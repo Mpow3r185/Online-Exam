@@ -1,114 +1,126 @@
 <div class="overflow-hidden dark-edition bg-white">
-    <div class="wrapper">
-        <app-side-bar></app-side-bar>
-        <div class="main-panel">
-            <app-nav-bar></app-nav-bar>
+  <div class="wrapper">
+    <app-side-bar></app-side-bar>
+    <div class="main-panel">
+      <app-nav-bar></app-nav-bar>
 
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 mb-30">
-                            <div class="card card-statistics h-100">
-                                        <div class="card-body">
-                                        <div class="x_panel">
-                                          <div class="x_title">
-                                            <h2>Courses Information</h2>
-                                            <ul class="nav navbar-right panel_toolbox">
-                                              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                              </li>
-                                            </ul>
-                                            <div class="clearfix"></div>
-                                          </div>
-                                          <div class="x_content">
-                                              <div class="row">
-                                                  <div class="col-sm-12">
-                                                    <div class="card-box table-responsive">
-                                            <p class="text-muted font-13 m-b-30">
-                                                <button  class="btn btn-success btn-lg" (click)="CreateCourseDialog()"
-                                                 aria-pressed="true">Add Course</button>
-                                               <br><br>
-                                            </p>
-                                            <table id="dtTable" class="table table-hover table-sm table-bordered p-0" style="width:100%;text-align: center">
-                                              <thead class="font-weight-bold" style="background-color: #001166; color:#fff">
-                                                <tr>
-                                                  <th style="color:#fff; font-weight:bold;">#</th>
-                                                  <th style="color:#fff; font-weight:bold;">Course Name</th>
-                                                  <th style="color:#fff; font-weight:bold;">Description</th>
-                                                  <th style="color:#fff; font-weight:bold;">Status</th>
-                                                  <th style="color:#fff; font-weight:bold;">Course Image</th>
-                                                  <th style="color:#fff; font-weight:bold;">Processes</th>
-                                                </tr>
-                                              </thead>
-                                              <tbody class="font-weight-bold text-dark">
-                                                <tr *ngFor="let course of adminService.CoursesData let i = index;">
-                                                  <td style="color:#000; font-weight:bold;">{{i+1}}</td>
-                                                  <td style="color:#000; font-weight:bold;">{{ course.courseName }}</td>
-                                                  <td style="color:#000; font-weight:bold;">{{ course.description }}</td>
-                                                  <td style="color:#000; font-weight:bold;">{{ course.status }}</td>
-                                                  <td style="color:#000; font-weight:bold;"><img src="../../../assets/images/course_images/{{course.courseImage}}" alt="{{course.courseImage}}" width=100 height=100/></td>
-                                                  <td>
-                                                    <a (click)="openUpdateDialog(course.id,course.courseName,course.description,
-                                                    course.status,course.courseImage)" class="btn btn-info btn-sm" role="button" aria-pressed="true" title="Edit"><i class="fa fa-edit"></i></a> 
-                                                    <a (click)="openDeleteDialog(course.id,course.courseName)" class="btn btn-danger btn-sm text-white" role="button" aria-pressed="true" title="Delete" style="cursor:pointer;"><i class="fa fa-trash"></i></a>
-                                                  </td>
-												 
-                                                </tr>
-                            
-                                              </tbody>
-                                            </table>
-											
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                   </div>
-                                  </div>
-                                  </div>
-                                  </div>
-                        
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 mb-30">
+              <div class="card card-statistics h-100">
+                <div class="card-body">
+                  <div class="x_panel">
+                    <div class="x_title">
+                      <h2>Courses Information</h2>
+                      <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                      </ul>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="card-box table-responsive">
+                            <p class="text-muted font-13 m-b-30">
+                              <button class="btn btn-success btn-lg" (click)="CreateCourseDialog()"
+                                aria-pressed="true">Add Course</button>
+                              <br><br>
+                            </p>
+                            <table id="dtTable" class="table table-hover table-sm table-bordered p-0"
+                              style="width:100%;text-align: center">
+                              <thead class="font-weight-bold" style="background-color: #001166; color:#fff">
+                                <tr>
+                                  <th style="color:#fff; font-weight:bold;">#</th>
+                                  <th style="color:#fff; font-weight:bold;">Course Name</th>
+                                  <th style="color:#fff; font-weight:bold;">Description</th>
+                                  <th style="color:#fff; font-weight:bold;">Status</th>
+                                  <th style="color:#fff; font-weight:bold;">Course Image</th>
+                                  <th style="color:#fff; font-weight:bold;">Processes</th>
+                                </tr>
+                              </thead>
+                              <tbody class="font-weight-bold text-dark">
+                                <tr *ngFor="let course of adminService.CoursesData let i = index;">
+                                  <td style="color:#000; font-weight:bold;">{{i+1}}</td>
+                                  <td style="color:#000; font-weight:bold;">{{ course.courseName }}</td>
+                                  <td style="color:#000; font-weight:bold;">{{ course.description }}</td>
+                                  <td style="color:#000; font-weight:bold;">{{ course.status }}</td>
+                                  <td style="color:#000; font-weight:bold;"><img
+                                      src="../../../assets/images/course_images/{{course.courseImage}}"
+                                      alt="{{course.courseImage}}" width=100 height=100 /></td>
+                                  <td>
+                                    <a (click)="openUpdateDialog(course.id,course.courseName,course.description,
+                                                    course.status,course.courseImage)" class="btn btn-info btn-sm"
+                                      role="button" aria-pressed="true" title="Edit"><i class="fa fa-edit"></i></a>
+                                    <a (click)="openDeleteDialog(course.id,course.courseName)"
+                                      class="btn btn-danger btn-sm text-white" role="button" aria-pressed="true"
+                                      title="Delete" style="cursor:pointer;"><i class="fa fa-trash"></i></a>
+
+                                    <a (click)="openAddExamDialog(course.id)" class="btn btn-success btn-sm text-white"
+                                      role="button" aria-pressed="true" title="Add Exam" style="cursor:pointer;"><i
+                                        class="fa fa-plus"></i></a>
+                                  </td>
+
+                                </tr>
+
+                              </tbody>
+                            </table>
+
+                          </div>
                         </div>
-                        
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
 
+          </div>
+
         </div>
+      </div>
+
     </div>
+  </div>
 </div>
 
 
 <!-- Update Course Dialog -->
 <ng-template #callUpdateDialog>
   <div class="modal-header mb-3">
-    <h5 style="font-family: 'Cairo', sans-serif; font-weight: bold; color: black;" class="modal-title" id="exampleModalLabel">Update Course</h5>
+    <h5 style="font-family: 'Cairo', sans-serif; font-weight: bold; color: black;" class="modal-title"
+      id="exampleModalLabel">Update Course</h5>
     <button type="button" class="close text-danger" mat-button mat-dialog-close="no">
-        <span aria-hidden="true">&times;</span>
+      <span aria-hidden="true">&times;</span>
     </button>
-</div>
+  </div>
   <form class="example-form" [formGroup]="updateForm">
     <div class="row">
       <div class="col-md-12">
-          <mat-form-field class="w-100 example-full-width" appearance="fill">
-            <mat-label>Course Name </mat-label>
-            <input type="text" matInput formControlName="courseName" [(ngModel)]="previous_data.courseName">
-            <mat-error *ngIf="updateForm.controls.courseName.hasError('required')">
-              This Filed is <strong>required</strong>
-            </mat-error>
+        <mat-form-field class="w-100 example-full-width" appearance="fill">
+          <mat-label>Course Name </mat-label>
+          <input type="text" matInput formControlName="courseName" [(ngModel)]="previous_data.courseName">
+          <mat-error *ngIf="updateForm.controls.courseName.hasError('required')">
+            This Filed is <strong>required</strong>
+          </mat-error>
         </mat-form-field>
       </div>
     </div>
-    
+
     <div class="row">
       <div class="col-md-12">
         <mat-form-field class="example-full-width w-100" appearance="fill">
           <mat-label>Description </mat-label>
-          <textarea type="text" matInput formControlName="description" [(ngModel)]="previous_data.description"></textarea>
+          <textarea type="text" matInput formControlName="description"
+            [(ngModel)]="previous_data.description"></textarea>
           <mat-error *ngIf="updateForm.controls.description.hasError('required')">
             This Filed is <strong>required</strong>
           </mat-error>
         </mat-form-field>
       </div>
     </div>
-    
+
     <div class="row">
       <div class="col-md-12">
         <mat-form-field class="example-full-width w-100" appearance="fill">
@@ -123,20 +135,21 @@
         </mat-form-field>
       </div>
     </div>
-     
-      
-      <div class="row">
-        <div class="col-md-3">
-            <input type="file" #file formControlName="courseImage" [(ngModel)]="previous_data.courseImage" />
-        </div>
+
+
+    <div class="row">
+      <div class="col-md-3">
+        <input type="file" #file formControlName="courseImage" [(ngModel)]="previous_data.courseImage" />
       </div>
-    
-      <div class="modal-footer mt-3">
-        <button class="btn btn-sm btn-secondary text-danger" at-button mat-dialog-close="no">Close</button>
-       <button class="btn btn-sm btn-success" (click)="updateCourse(file.files)" [mat-dialog-close]="true">Update </button>
-      </div>
+    </div>
+
+    <div class="modal-footer mt-3">
+      <button class="btn btn-sm btn-secondary text-danger" at-button mat-dialog-close="no">Close</button>
+      <button class="btn btn-sm btn-success" (click)="updateCourse(file.files)" [mat-dialog-close]="true">Update
+      </button>
+    </div>
   </form>
-       
+
 </ng-template>
 <!-- /End Update Course Dialog -->
 
@@ -144,19 +157,21 @@
 <!-- Delete course Dialog -->
 <ng-template #callDeleteDialog>
   <div class="modal-header">
-    <h5 style="font-family: 'Cairo', sans-serif; font-weight: bold; color: black;" class="modal-title" id="exampleModalLabel">Deleted Course</h5>
+    <h5 style="font-family: 'Cairo', sans-serif; font-weight: bold; color: black;" class="modal-title"
+      id="exampleModalLabel">Deleted Course</h5>
     <button type="button" class="close text-danger" mat-button mat-dialog-close="no">
-        <span aria-hidden="true">&times;</span>
+      <span aria-hidden="true">&times;</span>
     </button>
-</div>
-<div class="modal-body py-3">
-        <h5 style="font-family: 'Cairo', sans-serif; color: black; font-weight: bold;">Are you sure you want to delete this?</h5>
-        <label style="color: #001166; font-weight:bold;">Course Name :{{CourseNameD}}</label>
-        
-</div>
-<div class="modal-footer">
-  <button class="btn btn-sm btn-secondary font-weight-bold" at-button mat-dialog-close="no">Close</button>
-  <button class="btn btn-sm btn-danger" mat-button mat-dialog-close="yes">Delete</button>
-</div>
+  </div>
+  <div class="modal-body py-3">
+    <h5 style="font-family: 'Cairo', sans-serif; color: black; font-weight: bold;">Are you sure you want to delete this?
+    </h5>
+    <label style="color: #001166; font-weight:bold;">Course Name :{{CourseNameD}}</label>
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-sm btn-secondary font-weight-bold" at-button mat-dialog-close="no">Close</button>
+    <button class="btn btn-sm btn-danger" mat-button mat-dialog-close="yes">Delete</button>
+  </div>
 </ng-template>
 <!-- /End Delete course Dialog -->

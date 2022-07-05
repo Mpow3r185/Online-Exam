@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { AdminService } from 'src/app/service/admin.service';
 import { SpinnerComponent } from 'src/app/spinner/spinner.component';
+import { CreateExamComponent } from '../admin-exams/create-exam/create-exam.component';
 import { CreateCourseComponent } from './create-course/create-course.component';
 declare const $:any;
 
@@ -19,6 +20,7 @@ export class AdminCoursesComponent implements OnInit,AfterViewInit {
   
   //This For Delete Course Dialog
   @ViewChild('callDeleteDialog') callDeleteDialog!: TemplateRef<any>;
+
   @Input() CourseNameD: string | undefined;
   
  
@@ -123,6 +125,11 @@ export class AdminCoursesComponent implements OnInit,AfterViewInit {
     })
   }
 
-
+  //-------------------------------------------------------
+  //Add Exam Dialog
+  openAddExamDialog(cid: number) {
+    this.adminService.courseId = cid;
+    this.dialog.open(CreateExamComponent);
+  }
 
 }

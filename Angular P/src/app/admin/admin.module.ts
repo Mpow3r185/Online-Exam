@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { AdminRoutingModule } from './admin-routing.module';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -23,6 +22,9 @@ import { StudentReportComponent } from './student-report/student-report.componen
 import { StdReportDetailsComponent } from './student-report/std-report-details/std-report-details.component';
 import { AdminServicesComponent } from './admin-services/admin-services.component';
 import { CreateServiceComponent } from './admin-services/create-service/create-service.component';
+import { AdminExamsComponent } from './admin-exams/admin-exams.component';
+import { CreateExamComponent } from './admin-exams/create-exam/create-exam.component';
+
 
 
 
@@ -42,7 +44,9 @@ import { CreateServiceComponent } from './admin-services/create-service/create-s
     StudentReportComponent,
     StdReportDetailsComponent,
     AdminServicesComponent,
-    CreateServiceComponent
+    CreateServiceComponent,
+    AdminExamsComponent,
+    CreateExamComponent
   ],
   imports: [
     SharedModule,

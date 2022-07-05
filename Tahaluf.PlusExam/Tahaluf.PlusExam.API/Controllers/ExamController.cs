@@ -36,6 +36,8 @@ namespace Tahaluf.PlusExam.API.Controllers
         [HttpPost]
         public bool CreateExam(Exam exam)
         {
+            //exam.Passcode = ''
+
             return examService.CreateExam(exam);
         }
         #endregion CreateExam

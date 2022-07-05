@@ -20,13 +20,13 @@ namespace Tahaluf.PlusExam.Core.Data
         [Required, NotNull, MaxLength(50)]
         public string Title { get; set; }
 
-        [Required, NotNull, MaxLength(8)]
+        [NotNull, MaxLength(8)]
         public string Passcode { get; set; }
 
         [MaxLength(300)]
         public string Description { get; set; }
 
-        [Required, NotNull, MaxLength(12)]
+        [NotNull, MaxLength(12)]
         public string ExamLevel { get; set; }
         
         public decimal SuccessMark { get; set; }

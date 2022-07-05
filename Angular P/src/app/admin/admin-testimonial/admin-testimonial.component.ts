@@ -36,7 +36,6 @@ export class AdminTestimonialComponent implements OnInit {
       this.adminService.updateTestimonial(body);
       this.toastr.success('Accepted');
     }
-    console.log(a);
      
   }
   handleRejected(a:any){
@@ -52,7 +51,6 @@ export class AdminTestimonialComponent implements OnInit {
       this.adminService.updateTestimonial(body);
       this.toastr.success('Rejected');
     }
-    console.log(a);
      
   }
 
