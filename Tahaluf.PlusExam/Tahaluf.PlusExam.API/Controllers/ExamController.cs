@@ -36,7 +36,14 @@ namespace Tahaluf.PlusExam.API.Controllers
         [HttpPost]
         public bool CreateExam(Exam exam)
         {
-            //exam.Passcode = ''
+            string passcode, pass;
+            do
+            {
+                passcode = GenerateRandomPasscode();
+                pass = GetExams().Select(exam => exam.Passcode).FirstOrDefault(passc => passc == passcode);
+            } while (!(pass is null));
+            exam.Passcode = passcode;
+            exam.CreationDate = DateTime.Now;
 
             return examService.CreateExam(exam);
         }
@@ -155,6 +162,22 @@ namespace Tahaluf.PlusExam.API.Controllers
             }
 
             return randomQuestions;
+        }
+
+        private string GenerateRandomPasscode()
+        {
+            Random random = new Random();
+            string alpha = "QWERTYUIOPASDFGHJKLZXCVBNM0123456789";
+            int randomLength = random.Next(4, 8);
+
+            string passcode = "";
+            for (int i = 0; i < randomLength; i++)
+            {
+                int randomIndex = random.Next(alpha.Length);
+                passcode += alpha[randomIndex];
+            }
+
+            return passcode;
         }
     }
 }

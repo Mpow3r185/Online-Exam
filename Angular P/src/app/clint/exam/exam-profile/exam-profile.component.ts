@@ -122,8 +122,20 @@ export class ExamProfileComponent implements OnInit {
     return this.homeService.numberOfUsersBuyExam;
   }
 
-  moveToExam() {
+  async moveToExam() {
+    await this.openZoomMeeting();
     this.router.navigate([`exam/${this.homeService.exams.id}`])
+  }
+
+  async openZoomMeeting() {
+    await this.homeService.getZoomMeetingLinkByExamId(this.homeService.exams.id);
+    SpinnerComponent.show();
+    await delay(2000);
+    SpinnerComponent.hide();
+
+    if (this.homeService.zoomMeeting.zoomLink) {
+      window.open(this.homeService.zoomMeeting.zoomLink);
+    }
   }
 
   moveToLogin() {
