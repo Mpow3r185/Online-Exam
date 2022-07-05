@@ -53,9 +53,12 @@
                                     <th style="color:#fff; font-weight: bold;">Course Name</th>
                                     <th style="color:#fff; font-weight:bold;">Exam Name</th>
                                     <th style="color:#fff; font-weight:bold;">Exam Level</th>
-                                    <th style="color:#fff; font-weight:bold;">Cost</th>
                                     <th style="color:#fff; font-weight:bold;">Date</th>
+
+                                    <th style="color:#fff; font-weight:bold;">Cost</th>
                                     <th style="color:#fff; font-weight:bold;">Mark</th>
+                                    <th style="color:#fff; font-weight:bold;">Status</th>
+
 
 
 
@@ -67,9 +70,11 @@
                                     <td style="font-weight: bold; color:#000;">{{ item.courseName }}</td>
                                     <td style="font-weight: bold; color:#000;">{{ item.title }}</td>               
                                     <td style="font-weight: bold; color:#000;">{{ item.examLevel }}</td>
+                                    <td style="font-weight: bold; color:#000;">{{ item.creationDate|date }}</td>
                                     <td style="font-weight: bold; color:#000;">{{ item.cost }}</td>
-                                    <td style="color:#000; font-weight:bold;">{{ item.creatioDate|date }}</td>
+                                   
                                     <td style="color:#000; font-weight:bold;">{{item.grade}}</td>
+                                    <td style="color:#000; font-weight:bold;">{{ item.status }}</td>
                                   </tr>
                                 </tbody>
                               </table>
