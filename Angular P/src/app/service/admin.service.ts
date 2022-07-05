@@ -17,6 +17,7 @@ export class AdminService {
   NumOfUsers:any;
   TotalCertificates:any;
   FailUsers:any;
+  courseId!: number;
 
   constructor(
     private http: HttpClient,
@@ -282,6 +283,16 @@ DeleteServices(id:number){
     console.log(err.message,err.status);
     SpinnerComponent.hide();
      this.toastr.error('Unable to connect the server');
+  })
+}
+
+
+// Create Exam
+createExam(body: any) {
+  this.http.post('https://localhost:44342/api/exam', body).subscribe((result) => {
+    this.toastr.success('Created exam successfully');
+  }, error => {
+    this.toastr.error('Unable to connect server');
   })
 }
 
