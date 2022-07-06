@@ -26,17 +26,16 @@ import { CreateExamComponent } from './admin-exams/create-exam/create-exam.compo
 
 
 
-
 @NgModule({
   declarations: [
     SideBarComponent,
+    AdminTestimonialComponent,
     DashboardComponent,
     AdminProfileComponent,
     EditProfileComponent,
     NavBarComponent,
     UsersComponent,
     DashboardCardComponent,
-    TestimonialViewComponent,
     AdminCoursesComponent,
     CreateCourseComponent,
     StudentReportComponent,
@@ -50,7 +49,7 @@ import { CreateExamComponent } from './admin-exams/create-exam/create-exam.compo
     SharedModule,
     AdminRoutingModule,
     MatTableModule,
-     MatSelectModule
+    MatSelectModule
   ],
   providers: [UserService, HomeService,AdminService]
 })
