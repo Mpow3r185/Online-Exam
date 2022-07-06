@@ -569,3 +569,6 @@ C:\Users\dabda\OneDrive\Desktop\Online-Exam-1\Tahaluf.PlusExam\Tahaluf.PlusExam.
 C:\Users\dabda\OneDrive\Desktop\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.API\bin\Debug\netcoreapp3.1\MailKit.dll
 C:\Users\dabda\OneDrive\Desktop\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.API\bin\Debug\netcoreapp3.1\MimeKit.dll
 C:\Users\dabda\OneDrive\Desktop\Online-Exam\Tahaluf.PlusExam\Tahaluf.PlusExam.API\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
+C:\Users\dabda\OneDrive\Desktop\Online-Exam-1\Tahaluf.PlusExam\Tahaluf.PlusExam.API\bin\Debug\netcoreapp3.1\MailKit.dll
+C:\Users\dabda\OneDrive\Desktop\Online-Exam-1\Tahaluf.PlusExam\Tahaluf.PlusExam.API\bin\Debug\netcoreapp3.1\MimeKit.dll
+C:\Users\dabda\OneDrive\Desktop\Online-Exam-1\Tahaluf.PlusExam\Tahaluf.PlusExam.API\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll

@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+import { AdminExamsComponent } from './admin-exams/admin-exams.component';
+import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminCoursesComponent } from './admin-courses/admin-courses.component';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path:'service',
     component:AdminServicesComponent
+  },
+  {
+    path: 'exams',
+    component: AdminExamsComponent
   }
 ];
 

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { HomeService } from './home.service';
 import { SpinnerComponent } from 'src/app/spinner/spinner.component';
+import { renderFlagCheckIfStmt } from '@angular/compiler/src/render3/view/template';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,8 @@ export class AdminService {
   TotalCertificates:any;
   FailUsers:any;
   courseId!: number;
- exams:any;
+  exams: any;
+  zoomMeeting: any;
 
   constructor(
     private http: HttpClient,
@@ -381,5 +383,112 @@ DeleteExam(id:number) {
   });
 }
 
+// Get All Exams
+async getAllExams(): Promise<void> {
+  this.http.get('https://localhost:44342/api/exam').subscribe((result) => {
+    this.exams = result;
+  }, error => {
+    this.toastr.error('Unable to connect server');
+  });
+}
+
+DeleteExam(id:number) {
+  SpinnerComponent.show();
+  this.http.delete(`https://localhost:44342/api/exam/DeleteExam/${id}`).subscribe((result) => { 
+    this.toastr.success('Exam Deleted Successfully.');
+  }, error => {
+    this.toastr.error('Unable to connect the server.');
+    SpinnerComponent.hide();
+  });
+}
+/*
+//Update Exam When he dose't uploaded an Image 
+updateExam(body: any) {
+  SpinnerComponent.show();
+    this.http.put('https://localhost:44342/api/exam', body).subscribe((res) => { 
+      this.toastr.success("Exam Updated Successfully")
+    }, err => {
+      this.toastr.error("Unable to connect the server.");
+      SpinnerComponent.hide();
+    })
+}
+
+ //Update Course When he uploaded an Image 
+updateExamWithImage(body: any, img:FormData) {
+  SpinnerComponent.show();
+    this.http.post('https://localhost:44342/api/exam/Upload', img).subscribe((ResultImage: any) => {
+
+      body.examImage = ResultImage.examImage;
+      this.http.put('https://localhost:44342/api/exam', body).subscribe((res) => { 
+         this.toastr.success("Exam Updated Successfully")
+      }, err => {
+        this.toastr.error("Unable to connect the server.");
+        SpinnerComponent.hide();
+      })
+
+    }, err => {
+      console.log(err);
+      SpinnerComponent.hide();
+    })
+}*/
+
+// Update Exam
+updateExam(body: any) {
   
+  const zoomLink = body['zoomMeeting'];
+  delete body['zoomMeeting'];
+  console.log(body, zoomLink);
+  
+  if (zoomLink == undefined || zoomLink == '') {
+    this.http.put('https://localhost:44342/api/exam', body).subscribe((result) => {
+      this.toastr.success('Exam updated successfully');
+    }, error => {
+      this.toastr.error('Unable to connect server');
+    });
+  }
+
+  else {
+    this.http.put('https://localhost:44342/api/exam', body).subscribe(async (result) => {
+    this.toastr.success('Exam updated successfully');
+
+    SpinnerComponent.show();
+    await this.getZoomMeetingLinkByExamId(body.id);
+    await delay(1500);
+    SpinnerComponent.hide();
+    
+    const zoomMeetingBody: object = {
+      zoomLink: zoomLink,
+      examId: body.id
+    };
+    if(this.zoomMeeting) {
+      this.http.put('https://localhost:44342/api/zoomMeeting', zoomMeetingBody).subscribe((result) => {
+        this.toastr.success('Zoom link is updated');
+      });
+    }
+
+    else {
+      this.http.post('https://localhost:44342/api/zoomMeeting', zoomMeetingBody).subscribe((result) => {
+        this.toastr.success('Zoom link is created');
+      });
+    }
+    
+  }, error => {
+    this.toastr.error('Unable to connect server');
+  });
+  }
+}
+
+// Get Zoom Meeting Link By Exam Id
+async getZoomMeetingLinkByExamId(exid: number) {
+  this.http.post(`https://localhost:44342/api/zoomMeeting/GetZoomMeetingByExamId/${exid}`, null).subscribe((result) => {
+    this.zoomMeeting = result;
+  }, error => {
+    this.toastr.error('Unable to connect server');
+  });
+}
+
+}
+
+function delay(ms: number) {
+  return new Promise( resolve => setTimeout(resolve, ms) );
 }

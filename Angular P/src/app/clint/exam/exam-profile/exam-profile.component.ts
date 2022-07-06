@@ -133,7 +133,7 @@ export class ExamProfileComponent implements OnInit {
     await delay(2000);
     SpinnerComponent.hide();
 
-    if (this.homeService.zoomMeeting.zoomLink) {
+    if (this.homeService.zoomMeeting) {
       window.open(this.homeService.zoomMeeting.zoomLink);
     }
   }

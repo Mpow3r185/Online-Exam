@@ -2,7 +2,7 @@
 
 CREATE OR REPLACE PACKAGE BODY ExamPackage AS
 
-    -- Exam CRUD Operations
+        -- Exam CRUD Operations
     PROCEDURE ExamCRUD(
         func IN VARCHAR DEFAULT NULL,
         exid IN exam.id%type DEFAULT NULL,
@@ -39,6 +39,8 @@ CREATE OR REPLACE PACKAGE BODY ExamPackage AS
                 courseId = cid,
                 title = LOWER(exTitle),
                 passcode = UPPER(passc),
+                markStatus = markSt,
+                numberOfQuestions = numOfQuestions,
                 description = des,
                 examLevel = INITCAP(exLevel),
                 successMark = succMark,
