@@ -11,7 +11,6 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { UsersComponent } from './users/users.component';
 import { DashboardCardComponent } from './dashboard-card/dashboard-card.component';
 import { HomeService } from '../service/home.service';
-import { TestimonialViewComponent } from './dashboard-card/testimonial-view/testimonial-view.component';
 import { AdminService } from '../service/admin.service';
 import { AdminCoursesComponent } from './admin-courses/admin-courses.component';
 import { AdminTestimonialComponent } from './admin-testimonial/admin-testimonial.component';
@@ -39,7 +38,6 @@ import { CreateExamComponent } from './admin-exams/create-exam/create-exam.compo
     DashboardCardComponent,
     TestimonialViewComponent,
     AdminCoursesComponent,
-    AdminTestimonialComponent,
     CreateCourseComponent,
     StudentReportComponent,
     StdReportDetailsComponent,
