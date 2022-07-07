@@ -325,31 +325,6 @@ createExam(body: any) {
     this.toastr.error(error.message);
   })
 }
-/*
-  *  Get All Exams
-  */
-getAllExams() {
-  this.http.get('https://localhost:44342/api/exam').subscribe((result) => {            
-    this.exams = result;      
-    
-    console.log(this.exams,result);
-  }, error => {
-    this.toastr.error('Unable to connect the server.');
-    this.toastr.error(error.message,error.status);
-  });
-
-}
-  
- //Update Exam When he dose't uploaded an Image 
- updateExam(body: any) {
-  SpinnerComponent.show();
-    this.http.put('https://localhost:44342/api/exam', body).subscribe((res) => { 
-      this.toastr.success("Exam Updated Successfully")
-    }, err => {
-      this.toastr.error("Unable to connect the server.");
-      SpinnerComponent.hide();
-    })   
-}
 
  //Update Course When he uploaded an Image 
 updateExamWithImage(body: any, img:FormData) {
@@ -370,19 +345,6 @@ updateExamWithImage(body: any, img:FormData) {
     })  
 }
 
-/*
-  * Delete Exam
-  */
-DeleteExam(id:number) {
-  SpinnerComponent.show();
-  this.http.delete(`https://localhost:44342/api/exam/DeleteExam/${id}`).subscribe((result) => { 
-    this.toastr.success('Exam Deleted Successfully.');
-  }, error => {
-    this.toastr.error('Unable to connect the server.');
-    SpinnerComponent.hide();
-  });
-}
-
 // Get All Exams
 async getAllExams(): Promise<void> {
   this.http.get('https://localhost:44342/api/exam').subscribe((result) => {
@@ -401,36 +363,7 @@ DeleteExam(id:number) {
     SpinnerComponent.hide();
   });
 }
-/*
-//Update Exam When he dose't uploaded an Image 
-updateExam(body: any) {
-  SpinnerComponent.show();
-    this.http.put('https://localhost:44342/api/exam', body).subscribe((res) => { 
-      this.toastr.success("Exam Updated Successfully")
-    }, err => {
-      this.toastr.error("Unable to connect the server.");
-      SpinnerComponent.hide();
-    })
-}
 
- //Update Course When he uploaded an Image 
-updateExamWithImage(body: any, img:FormData) {
-  SpinnerComponent.show();
-    this.http.post('https://localhost:44342/api/exam/Upload', img).subscribe((ResultImage: any) => {
-
-      body.examImage = ResultImage.examImage;
-      this.http.put('https://localhost:44342/api/exam', body).subscribe((res) => { 
-         this.toastr.success("Exam Updated Successfully")
-      }, err => {
-        this.toastr.error("Unable to connect the server.");
-        SpinnerComponent.hide();
-      })
-
-    }, err => {
-      console.log(err);
-      SpinnerComponent.hide();
-    })
-}*/
 
 // Update Exam
 updateExam(body: any) {
