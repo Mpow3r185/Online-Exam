@@ -1,3 +1,7 @@
+@import '../../../assets/admin-dashboard/css/material-dashboard.css';
+@import '../../../assets/admin-dashboard/demo/demo.css';
+@import '../../../assets/admin-dashboard/css/material-dashboard.min.css';
+
  body{
         margin-top:20px;
         color: #1a202c;
