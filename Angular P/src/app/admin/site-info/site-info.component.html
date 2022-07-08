@@ -1,0 +1,368 @@
+<!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+    {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+  </button> -->
+<div class="overflow-hidden dark-edition bg-white">
+    <div class="wrapper">
+        <app-side-bar></app-side-bar>
+        <div class="main-panel">
+            <app-nav-bar></app-nav-bar>
+
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 mb-30">
+                            <div class="card card-statistics h-100">
+                                <div class="card-body">
+                                    <div class="x_panel">
+                                        <mat-stepper [linear]="isLinear" #stepper>
+                                            <mat-step [stepControl]="updateform">
+                                                <form class="example-form" [formGroup]="updateform">
+                                                    <button class="btn btn-outline-primary"
+                                                (click)="update(homeService.dynamicData[0].webSiteName, homeService.dynamicData[0].title1, homeService.dynamicData[0].subTitle1, homeService.dynamicData[0].title2, homeService.dynamicData[0].subTitle2, homeService.dynamicData[0].popularParagraph, homeService.dynamicData[0].footerParagraph, homeService.dynamicData[0].aboutParagraph,
+                                            homeService.dynamicData[0].contactParagraph,homeService.dynamicData[0].phoneNumber,homeService.dynamicData[0].email,homeService.dynamicData[0].address,homeService.dynamicData[0].logoDark,homeService.dynamicData[0].logoLight,homeService.dynamicData[0].imgSlider1,homeService.dynamicData[0].imgSlider2,
+                                            homeService.dynamicData[0].imgSlider3,homeService.dynamicData[0].footerBackground, homeService.dynamicData[0].aboutBackground, homeService.dynamicData[0].contactImage, homeService.dynamicData[0].headerBackgroud, homeService.dynamicData[0].faviconIcon)">Click here to retrieve previous data</button>
+                                                    <ng-template matStepLabel>Home Page</ng-template>
+                                                    <div class="row">
+                                                        <div *ngIf="true" class="col-md-5">
+
+                                                            <mat-form-field class="example-full-width w-100"
+                                                                appearance="fill">
+                                                                <mat-label>WebSite Name</mat-label>
+                                                                <input matInput placeholder=""
+                                                                    formControlName="webSiteName"
+                                                                    [(ngModel)]="previous_data.webSiteName">
+                                                            </mat-form-field>
+                                                        </div>
+                                                        <div class="col" style="margin-left: 275px; margin-top: 50px;">
+                                                            <div class="row">
+                                                                <img src="../../../assets/images/siteImage/{{homeService.dynamicData[0].logoDark}}"
+                                                                    alt="Admin" multiple width="150">
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <input type="file" #file1
+                                                                            formControlName="logoDark"
+                                                                            [(ngModel)]="previous_data.logoDark"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div *ngIf="true" class="col-md-5">
+
+                                                            <mat-form-field class="example-full-width w-100"
+                                                                appearance="fill">
+                                                                <mat-label>Title 1</mat-label>
+                                                                <input matInput placeholder="" formControlName="title1"
+                                                                    [(ngModel)]="previous_data.title1">
+                                                            </mat-form-field>
+                                                        </div>
+                                                        <div class="col" style="margin-left: 275px; margin-top: 50px;">
+                                                            <div class="row">
+                                                                <img src="../../../assets/images/siteImage/{{homeService.dynamicData[0].logoLight}}"
+                                                                    alt="Admin" multiple width="150">
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <input type="file" #file2
+                                                                            formControlName="logoLight"
+                                                                            [(ngModel)]="previous_data.logoLight" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div *ngIf="true" class="col-md-5">
+
+                                                            <mat-form-field class="example-full-width w-100"
+                                                                appearance="fill">
+                                                                <mat-label>Sub Title 1</mat-label>
+                                                                <input matInput placeholder=""
+                                                                    formControlName="subTitle1"
+                                                                    [(ngModel)]="previous_data.subTitle1">
+                                                            </mat-form-field>
+                                                        </div>
+                                                        <div class="col" style="margin-left: 275px; margin-top: 50px;">
+                                                            <div class="row">
+                                                                <img src="../../../assets/images/siteImage/{{homeService.dynamicData[0].imgSlider1}}"
+                                                                    alt="Admin" width="150">
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <input type="file" #file3
+                                                                            formControlName="imgSlider1"
+                                                                            [(ngModel)]="previous_data.imgSlider1" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div *ngIf="true" class="col-md-5">
+
+                                                            <mat-form-field class="example-full-width w-100"
+                                                                appearance="fill">
+                                                                <mat-label>Title 2</mat-label>
+                                                                <input matInput placeholder="" formControlName="title2"
+                                                                    [(ngModel)]="previous_data.title2">
+                                                            </mat-form-field>
+                                                        </div>
+                                                        <div class="col" style="margin-left: 275px; margin-top: 50px;">
+                                                            <div class="row">
+                                                                <img src="../../../assets/images/siteImage/{{homeService.dynamicData[0].imgSlider2}}"
+                                                                    alt="Admin" multiple width="150">
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <input type="file" #file4
+                                                                            formControlName="imgSlider2"
+                                                                            [(ngModel)]="previous_data.imgSlider2" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div *ngIf="true" class="col-md-5">
+
+                                                            <mat-form-field class="example-full-width w-100"
+                                                                appearance="fill">
+                                                                <mat-label>Sub Title 2</mat-label>
+                                                                <input matInput placeholder=""
+                                                                    formControlName="subTitle2"
+                                                                    [(ngModel)]="previous_data.subTitle2">
+                                                            </mat-form-field>
+                                                        </div>
+                                                        <div class="col" style="margin-left: 275px; margin-top: 50px;">
+                                                            <div class="row">
+                                                                <img src="../../../assets/images/siteImage/{{homeService.dynamicData[0].imgSlider3}}"
+                                                                    alt="Admin" multiple width="150">
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <input type="file" #file5
+                                                                            formControlName="imgSlider3"
+                                                                            [(ngModel)]="previous_data.imgSlider3" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div *ngIf="true" class="col-md-5">
+
+                                                            <mat-form-field class="example-full-width w-100"
+                                                                appearance="fill">
+                                                                <mat-label>Popular Paragraph</mat-label>
+                                                                <input matInput placeholder=""
+                                                                    formControlName="popularParagraph"
+                                                                    [(ngModel)]="previous_data.popularParagraph">
+                                                            </mat-form-field>
+                                                        </div>
+                                                        <div class="col" style="margin-left: 275px; margin-top: 50px;">
+                                                            <div class="row">
+                                                                <img src="../../../assets/images/siteImage/{{homeService.dynamicData[0].footerBackground}}"
+                                                                    alt="Admin" multiple width="150">
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <input type="file" #file6
+                                                                            formControlName="footerBackground"
+                                                                            [(ngModel)]="previous_data.footerBackground" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div *ngIf="true" class="col-md-5">
+
+                                                            <mat-form-field class="example-full-width w-100"
+                                                                appearance="fill">
+                                                                <mat-label>Footer Paragraph</mat-label>
+                                                                <input matInput placeholder=""
+                                                                    formControlName="footerParagraph"
+                                                                    [(ngModel)]="previous_data.footerParagraph">
+                                                            </mat-form-field>
+                                                        </div>
+                                                        <div class="col" style="margin-left: 275px; margin-top: 50px;">
+                                                            <div class="row">
+                                                                <img src="../../../assets/images/siteImage/{{homeService.dynamicData[0].headerBackgroud}}"
+                                                                    alt="Admin" multiple width="150">
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <input type="file" #file7
+                                                                            formControlName="headerBackgroud"
+                                                                            [(ngModel)]="previous_data.headerBackgroud" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>                                                        
+                                                        </div>                                                  
+                                                    </div>
+                                                    <div class="row col-md-5 example-full-width w-100">
+                                                        <div class="col" style="margin-left: 740px; margin-top: 50px;">
+                                                            <div class="row">
+                                                            <img src="../../../assets/images/siteImage/{{homeService.dynamicData[0].faviconIcon}}" alt="Admin" multiple  width="150">
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                  <input type="file" #file8 formControlName="faviconIcon" [(ngModel)]="previous_data.faviconIcon" />
+                                                                </div>
+                                                              </div>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div>
+                                                        <button mat-button matStepperNext>Next</button>
+                                                    </div>
+
+                                                </form>
+
+                                            </mat-step>
+                                            <mat-step [stepControl]="updateform" label="About Us">
+                                                <form class="example-form" [formGroup]="updateform">
+                                                    <div class="row">
+                                                        <div *ngIf="true" class="col-md-5">
+
+                                                            <mat-form-field class="example-full-width w-100"
+                                                                appearance="fill">
+                                                                <mat-label>About us Paragraph</mat-label>
+                                                                <input matInput placeholder=""
+                                                                    formControlName="aboutParagraph"
+                                                                    [(ngModel)]="previous_data.aboutParagraph">
+                                                            </mat-form-field>
+                                                        </div>
+                                                        <div class="col" style="margin-left: 275px; margin-top: 50px;">
+                                                            <div class="row">
+                                                                <img src="../../../assets/images/siteImage/{{homeService.dynamicData[0].aboutBackground}}"
+                                                                    alt="Admin" width="150">
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <input type="file" #file9
+                                                                            formControlName="aboutBackground"
+                                                                            [(ngModel)]="previous_data.aboutBackground" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <button mat-button matStepperPrevious>Back</button>
+                                                        <button mat-button matStepperNext>Next</button>
+                                                    </div>
+                                                </form>
+                                            </mat-step>
+                                            <mat-step [stepControl]="updateform" label="Contact Us">
+                                                <form class="example-form" [formGroup]="updateform">
+                                                    <div class="row">
+                                                        <div *ngIf="true" class="col-md-5">
+
+                                                            <mat-form-field class="example-full-width w-100"
+                                                                appearance="fill">
+                                                                <mat-label>Contact Us Paragraph</mat-label>
+                                                                <input matInput placeholder=""
+                                                                    formControlName="contactParagraph"
+                                                                    [(ngModel)]="previous_data.contactParagraph">
+                                                            </mat-form-field>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div *ngIf="true" class="col-md-5">
+
+                                                            <mat-form-field class="example-full-width w-100"
+                                                                appearance="fill">
+                                                                <mat-label>PhoneNumber</mat-label>
+                                                                <input matInput placeholder=""
+                                                                    formControlName="phoneNumber"
+                                                                    [(ngModel)]="previous_data.phoneNumber">
+                                                            </mat-form-field>
+                                                        </div>
+                                                        <div class="col" style="margin-left: 275px; margin-top: 50px;">
+                                                            <div class="row">
+                                                            <img src="../../../assets/images/siteImage/{{homeService.dynamicData[0].contactImage}}" alt="Admin"  width="150">
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                  <input type="file" #file10 formControlName="contactImage" [(ngModel)]="previous_data.contactImage" />
+                                                                </div>
+                                                              </div>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div *ngIf="true" class="col-md-5">
+
+                                                            <mat-form-field class="example-full-width w-100"
+                                                                appearance="fill">
+                                                                <mat-label>Email</mat-label>
+                                                                <input matInput placeholder="" formControlName="email"
+                                                                    [(ngModel)]="previous_data.email">
+                                                            </mat-form-field>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div *ngIf="true" class="col-md-5">
+
+                                                            <mat-form-field class="example-full-width w-100"
+                                                                appearance="fill">
+                                                                <mat-label>Address</mat-label>
+                                                                <input matInput placeholder="" formControlName="address"
+                                                                    [(ngModel)]="previous_data.address">
+                                                            </mat-form-field>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <button mat-button matStepperPrevious>Back</button>
+                                                        <button mat-button matStepperNext>Next</button>
+                                                    </div>
+                                                </form>
+                                            </mat-step>
+                                            <mat-step>
+                                                <ng-template matStepLabel>Done</ng-template>
+                                                <p>You are now done.</p>
+                                                <div>
+                                                    <button mat-button matStepperPrevious>Back</button>
+                                                    <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
+                                                    <button class="btn btn-outline-primary"
+                                                        (click)="updateHome(file1.files,file2.files,file3.files,file4.files,file5.files,file6.files,file7.files,file8.files,file9.files,file10.files)">Update</button>
+                                                </div>
+                                            </mat-step>
+                                            
+                                        </mat-stepper>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #callUpdateDailog>
+    <div class="modal-header mb-3">
+        <h5 style="font-family: 'Cairo', sans-serif; font-weight: bold; color: black;" class="modal-title"
+            id="exampleModalLabel">Update Course</h5>
+        <button class="btn btn-sm btn-success"
+            (click)="updateHome(file1.files,file2.files,file3.files,file4.files,file5.files,file6.files,file7.files,file8.files,file9.files,file10.files)"
+            [mat-dialog-close]="true">Yes</button>
+
+    </div>
+</ng-template>
