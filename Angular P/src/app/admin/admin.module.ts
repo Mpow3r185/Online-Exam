@@ -23,6 +23,8 @@ import { AdminServicesComponent } from './admin-services/admin-services.componen
 import { CreateServiceComponent } from './admin-services/create-service/create-service.component';
 import { AdminExamsComponent } from './admin-exams/admin-exams.component';
 import { CreateExamComponent } from './admin-exams/create-exam/create-exam.component';
+import { SiteInfoComponent } from './site-info/site-info.component';
+import {MatStepperModule} from '@angular/material/stepper';
 
 
 
@@ -43,13 +45,15 @@ import { CreateExamComponent } from './admin-exams/create-exam/create-exam.compo
     AdminServicesComponent,
     CreateServiceComponent,
     AdminExamsComponent,
-    CreateExamComponent
+    CreateExamComponent,
+    SiteInfoComponent
   ],
   imports: [
     SharedModule,
     AdminRoutingModule,
     MatTableModule,
-    MatSelectModule
+    MatSelectModule,
+    MatStepperModule
   ],
   providers: [UserService, HomeService,AdminService]
 })
