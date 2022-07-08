@@ -13,14 +13,16 @@ export class CreateExamComponent implements OnInit {
   selectStatus!:string;
   selectMarkStatus!: string;
   selectExamLevel!: string;
+  selectCourseId!: string;
 
 
   constructor(
-    private adminService:AdminService,
+    public adminService:AdminService,
     private toastr: ToastrService) {      
      }
 
   ngOnInit(): void {
+    this.adminService.getAllCourses();
   }
 
   createForm: FormGroup = new FormGroup({
@@ -35,7 +37,8 @@ export class CreateExamComponent implements OnInit {
     markStatus: new FormControl('', Validators.required),
     status: new FormControl('', Validators.required),
     examImage: new FormControl('', Validators.required),
-    zoomMeeting: new FormControl('')
+    zoomMeeting: new FormControl(''),
+    courseId: new FormControl('', Validators.required)
   });
 
   saveExam() {
@@ -43,8 +46,8 @@ export class CreateExamComponent implements OnInit {
     body['status'] = this.selectStatus;
     body['markStatus'] = this.selectMarkStatus;
     body['examLevel'] = this.selectExamLevel;
-    body['courseId'] = this.adminService.courseId;
-    body['examImage'] = body['examImage'].split('\\').pop();
+    body['courseId'] = Number(this.selectCourseId);
+    body['examImage'] = body['examImage'].split('\\').pop();    
     
     this.adminService.createExam(body);
     

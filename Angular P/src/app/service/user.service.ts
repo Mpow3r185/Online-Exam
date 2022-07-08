@@ -187,7 +187,7 @@ export class UserService {
 
 //Get invoice By User Id
   async GetInvoicesByUserId(){
-    let userId = this.homeService.selectedUser[0].id;
+    let userId = localStorage.getItem('AccountId');
     this.http.get(`https://localhost:44342/api/Invoice/GetInvoiceByUserId/${userId}`).subscribe((result: any) => {
       this.InvoicesData = result;
     },

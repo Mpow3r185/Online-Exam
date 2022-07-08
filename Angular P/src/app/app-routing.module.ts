@@ -29,6 +29,13 @@ const routes: Routes = [
       (m) => m.UserProfileModule,
     ),
      canActivate: [AuthorizationGuard]
+  },
+  {
+    path:'exam',
+    loadChildren: () => import('./exam/exam.module').then(
+      (m) => m.ExamModule
+    ),
+    canActivate: [AuthorizationGuard]
   }
 ];
 

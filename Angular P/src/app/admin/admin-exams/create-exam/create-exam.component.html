@@ -8,6 +8,24 @@
         </button>
     </div>
     <form class="example-form" [formGroup]="createForm">
+
+        <div class="row py-1">
+            <div class="col-md-12">
+                <mat-form-field class="w-100 example-full-width" appearance="fill">
+                    <mat-label>Course Name</mat-label>
+                    <mat-select formControlName="courseId" [(value)]="selectCourseId">
+                        <mat-option *ngFor="let course of adminService.CoursesData" value="{{ course.id }}">
+                            {{
+                            course.courseName | titlecase }}</mat-option>
+                    </mat-select>
+
+                    <mat-error *ngIf="createForm.controls.title.hasError('required')">
+                        This Filed is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
         <div class="row py-1">
             <div class="col-md-12">
                 <mat-form-field class="w-100 example-full-width" appearance="fill">

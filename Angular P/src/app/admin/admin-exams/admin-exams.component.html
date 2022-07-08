@@ -25,7 +25,7 @@
                                                     <div class="card-box table-responsive">
                                                         <p class="text-muted font-13 m-b-30">
                                                             <button class="btn btn-success btn-lg"
-                                                                aria-pressed="true">Add
+                                                                (click)="openCreateExamDialog()" aria-pressed="true">Add
                                                                 Exam</button>
                                                             <br><br>
                                                         </p>
@@ -199,6 +199,7 @@
                                                                                                 role="button"
                                                                                                 aria-pressed="true"
                                                                                                 title="Delete"
+                                                                                                (click)="deleteExam(element)"
                                                                                                 style="cursor:pointer;"><i
                                                                                                     class="fa fa-trash"></i></a>
 
@@ -318,17 +319,31 @@
 </div>
 
 
-<!-- Update Course Dialog -->
+<!-- Update Exam Dialog -->
 <ng-template #callUpdateDialog>
     <mat-dialog-content class="col-12 m-0 mat-typography" style="width: 600px;">
         <div class="modal-header mb-3">
             <h5 style="font-family: 'Cairo', sans-serif; font-weight: bold; color: black;" class="modal-title"
-                id="exampleModalLabel">Create Exam</h5>
+                id="exampleModalLabel">Update Exam</h5>
             <button type="button" class="close text-danger" mat-button mat-dialog-close="no">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <form class="example-form" [formGroup]="updateForm">
+
+            <div class="row py-1  mt-2">
+                <div class="col-md-12">
+                    <mat-form-field class="example-full-width w-100" appearance="fill">
+                        <mat-label>Course Name </mat-label>
+                        <mat-select formControlName="courseId" [(ngModel)]="exam.courseId">
+                            <mat-option *ngFor="let course of adminService.CoursesData" value="{{ course.id }}">
+                                {{
+                                course.courseName | titlecase }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
             <div class="row py-1">
                 <div class="col-md-12">
                     <mat-form-field class="w-100 example-full-width" appearance="fill">
@@ -493,8 +508,7 @@
             <div class="row py-1 mt-2">
                 <div class="col-md-6">
                     <label class="form-check-label mb-2" for="examImg" style="color: #6c757d;">Exam Image</label>
-                    <input type="file" #file id="examImg" formControlName="examImage" required="Must Fill This First"
-                        [(ngModel)]="exam.examImage" />
+                    <input type="file" #file id="examImg" formControlName="examImage" [(ngModel)]="exam.examImage" />
                 </div>
             </div>
 
@@ -508,6 +522,28 @@
 
     </mat-dialog-content>
 </ng-template>
-
-
 <!-- /End Update Exam Dialog -->
+
+<!-- Delete Exam Dialog -->
+<ng-template #callDeleteDialog>
+    <div class="modal-header">
+        <h5 style="font-family: 'Cairo', sans-serif; font-weight: bold; color: black;" class="modal-title"
+            id="exampleModalLabel">Deleted Exam</h5>
+        <button type="button" class="close text-danger" mat-button mat-dialog-close="no">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body py-3">
+        <h5 style="font-family: 'Cairo', sans-serif; color: black; font-weight: bold;">Are you sure you want to delete
+            exam and all related data?
+        </h5>
+        <label style="color: #001166; font-weight:bold;">Exam Name: {{exam.title}}</label>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-sm btn-secondary font-weight-bold" at-button mat-dialog-close="no">Close</button>
+        <button class="btn btn-sm btn-danger" mat-button mat-dialog-close="yes"
+            (click)="submitDeleteExam(exam.id)">Delete</button>
+    </div>
+</ng-template>
+<!-- /End Delete Exam Dialog -->
