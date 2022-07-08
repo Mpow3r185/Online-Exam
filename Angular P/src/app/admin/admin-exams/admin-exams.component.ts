@@ -1,9 +1,12 @@
+import { CreateExamComponent } from './create-exam/create-exam.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminService } from './../../service/admin.service';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ThisReceiver } from '@angular/compiler';
+import { ToastrService } from 'ngx-toastr';
+import { SpinnerComponent } from 'src/app/spinner/spinner.component';
 
 
 @Component({
@@ -21,6 +24,7 @@ import { ThisReceiver } from '@angular/compiler';
 export class AdminExamsComponent implements OnInit {
   
   @ViewChild('callUpdateDialog') callUpdateDialog!: TemplateRef<any>;
+  @ViewChild('callDeleteDialog') callDeleteDialog!: TemplateRef<any>;
 
   dataSource: any;
   columnsToDisplay = ['courseName', 'title', 'successMark', 'startDate', 'endDate', 'examLevel', 'cost'];
@@ -40,23 +44,26 @@ export class AdminExamsComponent implements OnInit {
     endDate: new FormControl('', Validators.required),
     markStatus: new FormControl('', Validators.required),
     status: new FormControl('', Validators.required),
-    examImage: new FormControl('',Validators.required),
-    zoomMeeting: new FormControl('')
+    examImage: new FormControl(''),
+    zoomMeeting: new FormControl(''),
+    courseId: new FormControl('')
   });
 
   constructor(
     public adminService: AdminService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private toastr: ToastrService
     ) { }
 
   async ngOnInit(): Promise<void> {
     await this.adminService.getAllExams();
+    await this.adminService.getAllCourses();
     await delay(2000);
     
     this.dataSource = this.adminService.exams;
   }
 
-    updateExam(exam: any) {
+  updateExam(exam: any) {  
     this.oldExamData = exam;
     this.exam = {...exam};
 
@@ -64,8 +71,21 @@ export class AdminExamsComponent implements OnInit {
   }
 
   saveExam() {
-    this.exam['examImage'] = this.exam['examImage'].split('\\').pop();
+    for(let exam of this.adminService.exams) {
+      if (this.exam['title'].toLowerCase() == exam['title'].toLowerCase() && exam['id'] != this.exam['id']) {
+        this.toastr.error('Exam title is already exists');
+        return;
+      }
+    }
 
+    this.exam['courseId'] = Number(this.exam['courseId']);
+    for(let course of this.adminService.CoursesData) {
+      if (course.id == this.updateForm.controls['courseId'].value) {
+        this.oldExamData['courseName'] = course.courseName;
+        break;
+      }
+    }
+    this.exam['examImage'] = this.exam['examImage'].split('\\').pop();
     this.oldExamData['title'] = this.exam['title'];
     this.oldExamData['description'] = this.exam['description'];
     this.oldExamData['examImage'] = this.exam['examImage'];
@@ -82,10 +102,30 @@ export class AdminExamsComponent implements OnInit {
     this.oldExamData['passcode'] = this.exam['passcode'];
     this.oldExamData['successMark'] = this.exam['successMark'];
     
-
+    
     this.adminService.updateExam(this.exam);
   }
 
+  // Delete Exam
+  deleteExam(exam: any): void {
+    this.exam = exam;
+    this.dialog.open(this.callDeleteDialog);
+  }
+
+  // Submit Delete Exam
+  async submitDeleteExam(exid: number) {    
+    SpinnerComponent.show();
+    console.log(exid);
+    
+    this.adminService.DeleteExam(exid);
+    
+    SpinnerComponent.hide();
+    window.location.reload();
+  }
+
+  openCreateExamDialog() {
+    this.dialog.open(CreateExamComponent);
+  }
 }
 
 export interface PeriodicElement {

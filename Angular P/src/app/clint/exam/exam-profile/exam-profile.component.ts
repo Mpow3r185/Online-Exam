@@ -124,7 +124,7 @@ export class ExamProfileComponent implements OnInit {
 
   async moveToExam() {
     await this.openZoomMeeting();
-    this.router.navigate([`exam/${this.homeService.exams.id}`])
+    this.router.navigate([`exam/exam/${this.homeService.exams.id}`])
   }
 
   async openZoomMeeting() {

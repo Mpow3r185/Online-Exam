@@ -1,9 +1,9 @@
-import { SpinnerComponent } from './../../../spinner/spinner.component';
-import { HomeService } from './../../../service/home.service';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { HomeService } from 'src/app/service/home.service';
+import { SpinnerComponent } from 'src/app/spinner/spinner.component';
 
 @Component({
   selector: 'app-exam-content',

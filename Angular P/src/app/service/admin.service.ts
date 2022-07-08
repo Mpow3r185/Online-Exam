@@ -72,7 +72,7 @@ export class AdminService {
   /*
   *  Get All Courses
   */
-  getAllCourses() {
+  async getAllCourses() {
     this.http.get('https://localhost:44342/api/course').subscribe((result) => {            
       this.CoursesData = result;      
     }, error => {
@@ -319,9 +319,7 @@ createExam(body: any) {
     }, error => {
       this.toastr.error('Unable to connect server');
     })
-
-    this.toastr.success('Created exam successfully');
-  }, error => {
+   }, error => {
     this.toastr.error(error.message);
   })
 }
@@ -355,12 +353,10 @@ async getAllExams(): Promise<void> {
 }
 
 DeleteExam(id:number) {
-  SpinnerComponent.show();
   this.http.delete(`https://localhost:44342/api/exam/DeleteExam/${id}`).subscribe((result) => { 
     this.toastr.success('Exam Deleted Successfully.');
   }, error => {
     this.toastr.error('Unable to connect the server.');
-    SpinnerComponent.hide();
   });
 }
 
@@ -370,7 +366,6 @@ updateExam(body: any) {
   
   const zoomLink = body['zoomMeeting'];
   delete body['zoomMeeting'];
-  console.log(body, zoomLink);
   
   if (zoomLink == undefined || zoomLink == '') {
     this.http.put('https://localhost:44342/api/exam', body).subscribe((result) => {
