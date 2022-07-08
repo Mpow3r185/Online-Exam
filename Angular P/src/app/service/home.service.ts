@@ -97,6 +97,70 @@ export class HomeService {
       this.toastr.error('Unable to connect the server');
     });
   }
+
+  async updateDynamicData(body: any): Promise<void> {
+    console.log(body);
+    this.http.put('https://localhost:44342/api/dynamicHome',body).subscribe((result) => { 
+      this.toastr.success('Updated successfully');
+      console.log(result); 
+    }, err => {
+      this.toastr.error('Unable to connect the server');
+    });
+  }
+  updateDynamicDataWithImage(body: any, img:FormData) {
+    
+    //SpinnerComponent.show();
+    console.log(img.toString());
+    console.log(img);
+    console.log(body)
+       this.http.post('https://localhost:44342/api/dynamicHome/Upload', img).subscribe((ResultImage: any) => {
+        console.log(body);
+        
+       if(ResultImage.logoDark != null)
+          body.logoDark = ResultImage.logoDark;
+
+        if(ResultImage.logoLight != null)
+           body.logoLight = ResultImage.logoLight;
+
+        if(ResultImage.imgSlider1 != null)
+           body.imgSlider1 = ResultImage.imgSlider1;
+
+       if(ResultImage.imgSlider2 != null)
+          body.imgSlider2 = ResultImage.imgSlider2;
+
+        if(ResultImage.imgSlider3 != null)
+           body.imgSlider3 = ResultImage.imgSlider3;
+
+        if(ResultImage.footerBackground != null)
+           body.footerBackground = ResultImage.footerBackground;
+
+        if(ResultImage.headerBackgroud != null)  
+           body.headerBackgroud = ResultImage.headerBackgroud;
+
+        if(ResultImage.faviconIcon != null)   
+        body.faviconIcon = ResultImage.faviconIcon;
+
+        if(ResultImage.aboutBackground != null)
+         body.aboutBackground = ResultImage.aboutBackground;
+
+        if(ResultImage.contactImage != null)
+         body.contactImage = ResultImage.contactImage;
+
+        // console.log(ResultImage.logoDark != null);
+        // console.log(ResultImage.logoLight != null);
+        this.http.put('https://localhost:44342/api/dynamicHome', body).subscribe((res) => { 
+          console.log(body);
+           this.toastr.success("Home Updated Successfully")
+        }, err => {
+          this.toastr.error("Unable to connect the server.");
+         // SpinnerComponent.hide();
+        })
+        
+      }, err => {
+        console.log(err);
+        //SpinnerComponent.hide();
+      })  
+  }
   
   // Get Popular Courses Id
   async getPopularCourses(): Promise<void> {
