@@ -1,6 +1,6 @@
 <footer *ngFor="let obj of homeService.dynamicData"
     class="footer-area section-padding-100-0 bg-img gradient-background-overlay"
-    style="background-image:url(/assets/images/{{obj.footerBackground}}); background-attachment: fixed;">
+    style="background-image:url(/assets/images/siteImage/{{obj.footerBackground}}); background-attachment: fixed;">
     <div class="main-footer-area">
         <div class="container">
             <div class="row justify-content-center">
@@ -11,7 +11,7 @@
                         <div class="widget-title">
                             <h6>About Us</h6>
                         </div>
-                        <img src="../../assets/images/{{obj.logoLight}}" alt="" width=100>
+                        <img src="../../assets/images/siteImage/{{obj.logoLight}}" alt="" width=100>
 
                         <p>{{obj.footerParagraph}}</p>
 
