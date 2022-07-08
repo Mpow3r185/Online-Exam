@@ -9,6 +9,7 @@ import { AdminTestimonialComponent } from './admin-testimonial/admin-testimonial
 import { StudentReportComponent } from './student-report/student-report.component';
 import { StdReportDetailsComponent } from './student-report/std-report-details/std-report-details.component';
 import { AdminServicesComponent } from './admin-services/admin-services.component';
+import { SiteInfoComponent } from './site-info/site-info.component';
 
 
 const routes: Routes = [
@@ -47,6 +48,10 @@ const routes: Routes = [
   {
     path: 'exams',
     component: AdminExamsComponent
+  },
+  {
+    path: 'siteInfo',
+    component: SiteInfoComponent,
   }
 ];
 
