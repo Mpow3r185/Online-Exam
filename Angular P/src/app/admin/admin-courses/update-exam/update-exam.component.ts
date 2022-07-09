@@ -1,27 +1,18 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from 'src/app/service/admin.service';
 
 @Component({
-  selector: 'app-create-exam',
-  templateUrl: './create-exam.component.html',
-  styleUrls: ['./create-exam.component.css']
+  selector: 'app-update-exam',
+  templateUrl: './update-exam.component.html',
+  styleUrls: ['./update-exam.component.css']
 })
-export class CreateExamComponent implements OnInit {
+export class UpdateExamComponent implements OnInit {
 
   selectStatus!:string;
   selectMarkStatus!: string;
   selectExamLevel!: string;
-  selectCourseId!: string;
-
-  constructor(
-    public adminService:AdminService,
-    private toastr: ToastrService) {}
-
-  ngOnInit(): void {
-    this.adminService.getAllCourses();
-  }
 
   createForm: FormGroup = new FormGroup({
     title: new FormControl('', [Validators.required,Validators.maxLength(50)]),
@@ -36,18 +27,25 @@ export class CreateExamComponent implements OnInit {
     status: new FormControl('', Validators.required),
     examImage: new FormControl('', Validators.required),
     zoomMeeting: new FormControl(''),
-    courseId: new FormControl('', Validators.required)
+    courseId: new FormControl(this.adminService.courseId)
   });
 
+  constructor(
+    public adminService: AdminService,
+    private toastr: ToastrService
+  ) { }
+
+  ngOnInit(): void {
+    this.adminService.getAllCourses();
+  }
+
+  
+
   saveExam() {
-    let body: any = this.createForm.value;
-    body['status'] = this.selectStatus;
-    body['markStatus'] = this.selectMarkStatus;
-    body['examLevel'] = this.selectExamLevel;
-    body['courseId'] = Number(this.selectCourseId);
-    body['examImage'] = body['examImage'].split('\\').pop();    
-    
-    this.adminService.createExam(body); 
+    let body = this.createForm.value;
+    body['examImage'] = body['examImage'].split('\\').pop();
+
+    this.adminService.createExam(body);    
   }
 
 }
