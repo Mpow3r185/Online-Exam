@@ -113,7 +113,7 @@
                         <ng-template #isLoginTrue>
                             <div class="container mb-30" *ngIf="homeService.isBoughtExam && timerStatus =='ENDS AFTER'">
                                 <button type="button" class="btn btn-primary d-block mx-auto"
-                                    (click)="moveToExam()">Enter
+                                    (click)="openPasscodeDialog()">Enter
                                     Now</button>
                             </div>
 
@@ -214,7 +214,7 @@
                                 </div>
 
                                 <div class="col-6 text-left">
-                                    {{ getExamDuration() }} Minutes
+                                    {{ examDuration }} Minutes
                                 </div>
                             </div>
                         </li>
@@ -294,3 +294,21 @@
 </div>
 
 <app-footer></app-footer>
+
+<!-- Passcode Dialog -->
+<ng-template #passcodeDialog>
+
+    <h1 mat-dialog-title>{{ homeService.exams.title }}</h1>
+    <div mat-dialog-content>
+        <p>Please enter the passcode it's sent to your email when you purchased the exam</p>
+        <mat-form-field appearance="fill">
+            <mat-label>Passcode</mat-label>
+            <input matInput [(ngModel)]="passcode" required maxlength="8" minlength="4">
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button mat-dialog-close>Back</button>
+        <button mat-button (click)="moveToExam()" mat-dialog-close cdkFocusInitial>Ok</button>
+    </div>
+
+</ng-template>

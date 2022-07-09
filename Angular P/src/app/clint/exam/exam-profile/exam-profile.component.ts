@@ -1,5 +1,7 @@
+import { ToastrService } from 'ngx-toastr';
+import { MatDialog } from '@angular/material/dialog';
 import { SpinnerComponent } from './../../../spinner/spinner.component';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HomeService } from 'src/app/service/home.service';
@@ -11,17 +13,23 @@ import { HomeService } from 'src/app/service/home.service';
 })
 export class ExamProfileComponent implements OnInit {
 
+  @ViewChild('passcodeDialog') passcodeDialog!: TemplateRef<any>;
+
   isExpanded: boolean = true;
   isLogin: boolean = (localStorage.getItem('token')) ? true : false;
   isExamined: boolean = true;
   timerExam!: string;
   timerStatus: string | undefined;
+  passcode!: string;
+  examDuration!: number;
   private routeSub!: Subscription;
 
   constructor(
     public homeService: HomeService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog,
+    private toastr: ToastrService
   ) {}
 
   async ngOnInit() {
@@ -40,12 +48,11 @@ export class ExamProfileComponent implements OnInit {
 
     await delay(4000);    
     if (!this.homeService.score) { this.isExamined = false; }
-    console.log(this.isExamined);
         
     SpinnerComponent.hide();
 
     this.examTimer();
-    this.getExamDuration();
+    this.examDuration = this.getExamDuration();
   }
 
   async examTimer() {
@@ -112,7 +119,7 @@ export class ExamProfileComponent implements OnInit {
     let endTime = new Date(this.homeService.exams.endDate).getTime();
 
     let durationTime = endTime - startTime;
-    let durationMinutes = Math.ceil((durationTime % (1000 * 60 * 60)) / (1000 * 60));
+    let durationMinutes = Math.round((Math.abs(endTime - startTime)) / (1000 * 60));  
 
     return durationMinutes;
   }
@@ -122,9 +129,17 @@ export class ExamProfileComponent implements OnInit {
     return this.homeService.numberOfUsersBuyExam;
   }
 
-  async moveToExam() {
-    await this.openZoomMeeting();
-    this.router.navigate([`exam/exam/${this.homeService.exams.id}`])
+  openPasscodeDialog() {
+    this.dialog.open(this.passcodeDialog);
+  }
+
+  async moveToExam() {    
+    if (this.passcode.toUpperCase() == this.homeService.exams.passcode) {
+      await this.router.navigate([`exam/exam/${this.homeService.exams.id}`]);
+      await this.openZoomMeeting();
+    } else {
+      this.toastr.error('Invalid passcode, try again');
+    }
   }
 
   async openZoomMeeting() {
