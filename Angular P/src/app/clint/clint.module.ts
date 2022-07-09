@@ -23,6 +23,7 @@ import { ExamCardComponent } from './exam/exam-card/exam-card.component';
 import { ExamProfileComponent } from './exam/exam-profile/exam-profile.component';
 import { Page404Component } from './page404/page404.component';
 import { CourseProfileComponent } from './course/course-profile/course-profile.component';
+import { PaypalDialogComponent } from './exam/exam-profile/paypal-dialog/paypal-dialog.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { CourseProfileComponent } from './course/course-profile/course-profile.c
     ExamCardComponent,
     ExamProfileComponent,
     Page404Component,
-    CourseProfileComponent
+    CourseProfileComponent,
+    PaypalDialogComponent
   ],
   imports: [
     ClintRoutingModule,

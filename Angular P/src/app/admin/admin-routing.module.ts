@@ -14,7 +14,7 @@ import { SiteInfoComponent } from './site-info/site-info.component';
 
 const routes: Routes = [
   {
-    path: 'dashboard',
+    path: '',
     component: DashboardComponent,
   },
    {

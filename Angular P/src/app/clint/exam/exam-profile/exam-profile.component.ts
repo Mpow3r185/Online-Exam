@@ -1,3 +1,4 @@
+import { PaypalDialogComponent } from './paypal-dialog/paypal-dialog.component';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 import { SpinnerComponent } from './../../../spinner/spinner.component';
@@ -30,7 +31,8 @@ export class ExamProfileComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog,
     private toastr: ToastrService
-  ) {}
+  ) {
+  }
 
   async ngOnInit() {
     SpinnerComponent.show();
@@ -54,6 +56,11 @@ export class ExamProfileComponent implements OnInit {
     this.examTimer();
     this.examDuration = this.getExamDuration();
   }
+
+  openPayPalDialog() { 
+    this.dialog.open(PaypalDialogComponent);
+  }
+
 
   async examTimer() {
     SpinnerComponent.show();
