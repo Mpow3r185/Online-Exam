@@ -25,6 +25,7 @@ import { AdminExamsComponent } from './admin-exams/admin-exams.component';
 import { CreateExamComponent } from './admin-exams/create-exam/create-exam.component';
 import { SiteInfoComponent } from './site-info/site-info.component';
 import {MatStepperModule} from '@angular/material/stepper';
+import { UpdateExamComponent } from './admin-courses/update-exam/update-exam.component';
 
 
 
@@ -46,7 +47,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     CreateServiceComponent,
     AdminExamsComponent,
     CreateExamComponent,
-    SiteInfoComponent
+    SiteInfoComponent,
+    UpdateExamComponent
   ],
   imports: [
     SharedModule,

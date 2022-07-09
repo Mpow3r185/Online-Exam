@@ -124,7 +124,8 @@ export class AdminExamsComponent implements OnInit {
   }
 
   openCreateExamDialog() {
-    this.dialog.open(CreateExamComponent);
+    
+    this.dialog.open(CreateExamComponent, { data: 'CREATE' });
   }
 }
 

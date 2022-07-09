@@ -1,0 +1,188 @@
+<!-- Update Exam Dialog -->
+<mat-dialog-content class="col-12 m-0 mat-typography" style="width: 600px;">
+    <div class="modal-header mb-3">
+        <h5 style="font-family: 'Cairo', sans-serif; font-weight: bold; color: black;" class="modal-title"
+            id="exampleModalLabel">Update Exam</h5>
+        <button type="button" class="close text-danger" mat-button mat-dialog-close="no">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form class="example-form" [formGroup]="createForm">
+
+        <div class="row py-1">
+            <div class="col-md-12">
+                <mat-form-field class="w-100 example-full-width" appearance="fill">
+                    <mat-label>Exam Name</mat-label>
+                    <input type="text" matInput formControlName="title">
+                    <mat-error *ngIf="createForm.controls.title.hasError('maxlength')">
+                        Max Length<strong> 50</strong>
+                    </mat-error>
+                    <mat-error *ngIf="createForm.controls.title.hasError('required')">
+                        This Filed is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row py-1 mt-2">
+            <div class="col-md-12">
+                <mat-form-field class="example-full-width w-100" appearance="fill">
+                    <mat-label>Description </mat-label>
+                    <textarea style="height: 123px!important" type="text" matInput
+                        formControlName="description"></textarea>
+                    <mat-error *ngIf="createForm.controls.description.hasError('maxlength')">
+                        Max Length<strong> 150</strong>
+                    </mat-error>
+
+                    <mat-error *ngIf="createForm.controls.description.hasError('required')">
+                        This Filed is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row py-1  mt-2">
+            <div class="col-md-12">
+                <mat-form-field class="example-full-width w-100" appearance="fill">
+                    <mat-label>Exam Level </mat-label>
+                    <mat-select formControlName="examLevel" [(value)]="selectExamLevel">
+                        <mat-option value="Beginner">Beginner</mat-option>
+                        <mat-option value="Intermediate">Intermediate</mat-option>
+                        <mat-option value="Advanced">Advanced</mat-option>
+                        <mat-option value="Expert">Expert</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="createForm.controls.examLevel.hasError('required')">
+                        This Filed is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row py-1 mt-2">
+            <div class="col-md-6 mt-2 mt-sm-2 mt-md-0">
+                <mat-form-field class="example-full-width w-100" appearance="fill">
+                    <mat-label>Start Date</mat-label>
+                    <input type="datetime-local" matInput formControlName="startDate">
+                    <mat-error *ngIf="createForm.controls.startDate.hasError('required')">
+                        This Filed is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="col-md-6 mt-2 mt-sm-2 mt-md-0">
+                <mat-form-field class="example-full-width w-100" appearance="fill">
+                    <mat-label>End Date</mat-label>
+                    <input type="datetime-local" matInput formControlName="endDate">
+
+                    <mat-error *ngIf="createForm.controls.endDate.hasError('required')">
+                        This Filed is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row py-1  mt-2">
+            <div class="col-md-6 mt-2 mt-sm-2 mt-md-0">
+                <mat-form-field class="example-full-width w-100" appearance="fill">
+                    <mat-label>Mark Status</mat-label>
+                    <mat-select formControlName="markStatus" [(value)]="selectMarkStatus" required>
+                        <mat-option value="HIDE">HIDE</mat-option>
+                        <mat-option value="SHOW">SHOW</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="createForm.controls.markStatus.hasError('required')">
+                        This Filed is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="col-md-6 mt-2 mt-sm-2 mt-md-0">
+                <mat-form-field class="example-full-width w-100" appearance="fill">
+                    <mat-label>Status</mat-label>
+                    <mat-select formControlName="status" [(value)]="selectStatus" required>
+                        <mat-option value="ENABLE">ENABLE</mat-option>
+                        <mat-option value="DISABLE">DISABLE</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="createForm.controls.status.hasError('required')">
+                        This Filed is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row py-1 mt-2">
+            <div class="col-md-4">
+                <mat-form-field class="example-full-width w-100" appearance="fill">
+                    <mat-label>Success Mark %</mat-label>
+                    <input type="number" step="10" matInput formControlName="successMark">
+                    <mat-error *ngIf=" createForm.controls.successMark.hasError('max')">
+                        Max Value<strong> 100</strong>
+                    </mat-error>
+
+                    <mat-error *ngIf="createForm.controls.successMark.hasError('min')">
+                        Min Value<strong> 0</strong>
+                    </mat-error>
+
+                    <mat-error *ngIf="createForm.controls.successMark.hasError('required')">
+                        This Filed is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="col-md-4 mt-2 mt-sm-2 mt-md-0">
+                <mat-form-field class="example-full-width w-100" appearance="fill">
+                    <mat-label>Number Of Questions</mat-label>
+                    <input type="number" step="10" matInput formControlName="numberOfQuestions">
+                    <mat-error *ngIf="createForm.controls.numberOfQuestions.hasError('min')">
+                        Min Value<strong> 1</strong>
+                    </mat-error>
+
+                    <mat-error *ngIf="createForm.controls.numberOfQuestions.hasError('required')">
+                        This Filed is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="col-md-4 mt-2 mt-sm-2 mt-md-0">
+                <mat-form-field class="example-full-width w-100" appearance="fill">
+                    <mat-label>Cost $</mat-label>
+                    <input type="number" step="10" matInput formControlName="cost">
+                    <mat-error *ngIf="createForm.controls.cost.hasError('min')">
+                        Min Value<strong> 0</strong>
+                    </mat-error>
+
+                    <mat-error *ngIf="createForm.controls.cost.hasError('required')">
+                        This Filed is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row py-1 mt-2">
+            <div class="col-12">
+                <mat-form-field class="example-full-width w-100" appearance="fill">
+                    <mat-label>Zoom Link</mat-label>
+                    <input type="text" matInput formControlName="zoomMeeting">
+                </mat-form-field>
+
+            </div>
+        </div>
+
+        <div class="row py-1 mt-2">
+            <div class="col-md-6">
+                <label class="form-check-label mb-2" for="examImg" style="color: #6c757d;">Exam Image</label>
+                <input type="file" #file id="examImg" formControlName="examImage" required="Must Fill This First" />
+            </div>
+        </div>
+
+    </form>
+
+    <mat-dialog-actions>
+        <button class="btn btn-sm btn-danger" mat-button mat-dialog-close>Cancel</button>
+        <button class="btn btn-sm btn-success" mat-button [mat-dialog-close]="true" [disabled]="!createForm.valid"
+            (click)="saveExam()">Update</button>
+    </mat-dialog-actions>
+
+</mat-dialog-content>
+
+
+<!-- /End Update Exam Dialog -->
