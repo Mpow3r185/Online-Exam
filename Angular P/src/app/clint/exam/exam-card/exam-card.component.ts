@@ -28,6 +28,7 @@ export class ExamCardComponent implements OnInit {
   course: any = [{}];
   timerExam!: string;
   timerStatus: string | undefined;
+  examDuration!: number;
 
   constructor(
     public homeService: HomeService,
@@ -36,7 +37,7 @@ export class ExamCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.examTimer();
-    this.getExamDuration();
+    this.examDuration = this.getExamDuration();
   }
   
   // Return Number Represt Duration of Exam in Minutes
@@ -44,8 +45,7 @@ export class ExamCardComponent implements OnInit {
     let startTime = new Date(this.startDate).getTime();
     let endTime = new Date(this.endDate).getTime();
 
-    let durationTime = endTime - startTime;
-    let durationMinutes = Math.ceil((durationTime % (1000 * 60 * 60)) / (1000 * 60));    
+    let durationMinutes = Math.round((Math.abs(endTime - startTime)) / (1000 * 60));  
 
     return durationMinutes;
   }
