@@ -196,4 +196,15 @@ export class UserService {
     });
   }
 
+//Get invoice By User Id
+  async GetCertificateByUserId(){
+    let userId = localStorage.getItem('AccountId');
+    this.http.get(`https://localhost:44342/api/Certificate/GetCertificateByUserId/${userId}`).subscribe((result: any) => {
+      this.CertificateData = result;
+    },
+    (error) => {
+      this.toastr.error('Unable to connect server.')
+    });
+  }
+
 }
