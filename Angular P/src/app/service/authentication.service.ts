@@ -99,7 +99,7 @@ export class AuthenticationService {
               }else{
                 localStorage.setItem('AccountId', result[0].id);
                 if (data.role == 'Admin') {
-                  this.router.navigate(['admin/dashboard']);
+                  this.router.navigate(['admin/']);
                 }
                 else if (data.role == 'Student') {
                   SpinnerComponent.hide();
