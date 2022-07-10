@@ -16,17 +16,33 @@ import {MatSelectModule} from '@angular/material/select';
 })
 export class ProfileComponent implements OnInit {
   
+  selectImage:boolean = false;
+  
   @ViewChild('callUpdateDailog') callUpdateDailog!: TemplateRef<any>
   previous_data: any = {};
   constructor(private toaster: ToastrService, public dialog: MatDialog,public userService: UserService,public homeService: HomeService) { }
 
   async ngOnInit(): Promise<void> {
     
-    await this.userService.getUserById();
-    //setTimeout(()=>{console.log(this.userService.selectedUser);},2000) 
-  
+    SpinnerComponent.show();
+
+    await this.userService.getUserById();    
+   
+
+    setTimeout(() => {
+      let img:any = this.userService.selectedUser.profilePicture;
+
+      if(img.includes("default.png")){
+        this.selectImage = true;
+      }else{
+        this.selectImage = false;
+      }
+
+      SpinnerComponent.hide();
+    }, 3000);
      
   }
+  
   updateform: FormGroup = new FormGroup({
 
     id: new FormControl(),
