@@ -8,5 +8,7 @@ create or replace PACKAGE CertificatePackage AS
         exam_id IN Certificate.examid%type DEFAULT NULL,
         acc_id IN Certificate.accountid%type DEFAULT NULL);
 
+    --Get Certificate
+    PROCEDURE getCertificateByUserId(uid IN account.id%type DEFAULT NULL);
 
 END CertificatePackage;
