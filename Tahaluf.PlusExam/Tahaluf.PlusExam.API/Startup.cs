@@ -87,6 +87,8 @@ namespace Tahaluf.PlusExam.API
             services.AddScoped<IDynamicHomeRepository, DynamicHomeRepository>();
             // Zoom Meeting Repository
             services.AddScoped<IZoomMeetingRepository, ZoomMeetingRepository>();
+            // Website Data Repository
+            services.AddScoped<IWebsiteDataRepository, WebsiteDataRepository>();
 
 
             // Question Service
@@ -127,8 +129,10 @@ namespace Tahaluf.PlusExam.API
             services.AddScoped<IOurServiceService, OurServiceService>();
             // Fill DynamicHome Service
             services.AddScoped<IDynamicHomeService, DynamicHomeService>();
-            // Fill DynamicHome Service
+            // Zoom Meeting Service
             services.AddScoped<IZoomMeetingService, ZoomMeetingService>();
+            // Website Data Service
+            services.AddScoped<IWebsiteDataService, WebsiteDataService>();
 
             //Configure Jwt Authentication
             services.AddAuthentication(opt =>

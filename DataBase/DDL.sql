@@ -415,5 +415,15 @@ CREATE TABLE ZoomMeeting
     ON DELETE CASCADE
 );
 
+--------------------------------------------------------
+--  DDL for Table WebsiteData
+--------------------------------------------------------
+
+CREATE TABLE WebsiteData
+(
+    email VARCHAR(320) NOT NULL,
+    password VARCHAR(320) NOT NULL
+);
+
 
 -- End Code

@@ -17,5 +17,6 @@ DROP TABLE Question;
 DROP TABLE Exam;
 DROP TABLE Course;
 DROP TABLE ZoomMeeting;
+DROP TABLE WebsiteData;
 
 -- End Code

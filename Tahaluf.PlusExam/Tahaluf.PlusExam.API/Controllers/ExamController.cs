@@ -163,11 +163,18 @@ namespace Tahaluf.PlusExam.API.Controllers
             List<int> qIsAvailable = Enumerable.Range(0, questionContentDTOs.Count).ToList();
             Random random = new Random();
 
-            while(randomQuestions.Count < randomQuestions.Capacity)
+            try
             {
-                int randomIndex = random.Next(0, qIsAvailable.Count);
-                randomQuestions.Add(questionContentDTOs[qIsAvailable[randomIndex]]);
-                qIsAvailable.RemoveAt(randomIndex);
+                while (randomQuestions.Count < randomQuestions.Capacity)
+                {
+                    int randomIndex = random.Next(0, qIsAvailable.Count);
+                    randomQuestions.Add(questionContentDTOs[qIsAvailable[randomIndex]]);
+                    qIsAvailable.RemoveAt(randomIndex);
+                }
+            }
+            catch
+            {
+                return null;
             }
 
             return randomQuestions;
