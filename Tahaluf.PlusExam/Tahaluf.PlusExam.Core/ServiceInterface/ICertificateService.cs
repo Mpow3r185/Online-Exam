@@ -18,8 +18,10 @@ namespace Tahaluf.PlusExam.Core.ServiceInterface
         // Update Certificate
         bool UpdateCertificate(Certificate certificate);
 
-
         // Delete Certificate
         bool DeleteCertificate(int id);
+        
+        //Get Certificate By User Id
+        List<CertificateDTO> getCertificateByUserId(int id);
     }
 }
