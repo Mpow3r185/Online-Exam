@@ -7,13 +7,18 @@ import { ClintModule } from '../clint/clint.module';
 import {MatSelectModule} from '@angular/material/select';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { InvoiceDetailsComponent } from './invoice/invoice-details/invoice-details.component';
+import { CertificateComponent } from './certificate/certificate.component';
+import { CertificatedetailsComponent } from './certificate/certificatedetails/certificatedetails.component';
+
 
 
 @NgModule({
   declarations: [
     ProfileComponent,
     InvoiceComponent,
-    InvoiceDetailsComponent
+    InvoiceDetailsComponent,
+    CertificateComponent,
+    CertificatedetailsComponent
   ],
   imports: [
     CommonModule,
