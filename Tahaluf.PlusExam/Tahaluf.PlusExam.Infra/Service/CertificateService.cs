@@ -51,5 +51,13 @@ namespace Tahaluf.PlusExam.Infra.Service
         #endregion DeleteCertificate
 
         #endregion CRUD_Operation
+        
+        #region getCertificateByUserId
+        public List<CertificateDTO> getCertificateByUserId(int id)
+        {
+            return certificateRepository.getCertificateByUserId(id);
+        }
+        #endregion getCertificateByUserId
+        
     }
 }
