@@ -60,5 +60,21 @@ namespace Tahaluf.PlusExam.Infra.Repository
         #endregion DeleteCertificate
 
         #endregion CRUD_Operation
+        
+        #region getCertificateByUserId
+        public List<CertificateDTO> getCertificateByUserId(int id)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("uid",
+                id,
+                dbType: DbType.Int32,
+                direction: ParameterDirection.Input);
+
+            return dbContext.Connection.Query<CertificateDTO>(
+                "CertificatePackage.getCertificateByUserId", parameters,
+                commandType: CommandType.StoredProcedure).ToList();
+        }
+        #endregion getCertificateByUserId
+        
     }
 }
