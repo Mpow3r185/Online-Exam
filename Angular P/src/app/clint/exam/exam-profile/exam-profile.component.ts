@@ -140,10 +140,10 @@ export class ExamProfileComponent implements OnInit {
     this.dialog.open(this.passcodeDialog);
   }
 
-  async moveToExam() {    
-    if (this.passcode.toUpperCase() == this.homeService.exams.passcode) {
-      await this.router.navigate([`exam/exam/${this.homeService.exams.id}`]);
-      await this.openZoomMeeting();
+  async moveToExam() {
+    if (this.passcode.toUpperCase() == this.homeService.exams.passcode) {      
+      this.router.navigate([`exam/exam/${this.homeService.exams.id}`]);
+      this.openZoomMeeting();
     } else {
       this.toastr.error('Invalid passcode, try again');
     }
@@ -151,9 +151,7 @@ export class ExamProfileComponent implements OnInit {
 
   async openZoomMeeting() {
     await this.homeService.getZoomMeetingLinkByExamId(this.homeService.exams.id);
-    SpinnerComponent.show();
-    await delay(2000);
-    SpinnerComponent.hide();
+    await delay(1000);
 
     if (this.homeService.zoomMeeting) {
       window.open(this.homeService.zoomMeeting.zoomLink);

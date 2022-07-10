@@ -53,12 +53,5 @@ namespace Tahaluf.PlusExam.Core.Data
         public string headerBackgroud { get; set; }
         [MaxLength(1000), NotNull]
         public string faviconIcon { get; set; }
-
-
-
-
-
-
-
     }
 }

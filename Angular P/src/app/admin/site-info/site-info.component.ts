@@ -69,7 +69,6 @@ export class SiteInfoComponent implements OnInit {
 
   update(webSiteName1: any, title: any, subTitle: any, titleTwo: any, subTitleTwo: any, popularPara: any, footerPara: any, aboutPara: any, contactPara: any, phoneNum: any, email1: any, location: any,
     darkLogo: any, lightLogo: any, silder1: any, silder2: any, silder3: any, footerImg: any, aboutImg: any, contactImg: any, headerImg: any, faviconImg: any) {
-    console.log(webSiteName1);
     this.previous_data = {
 
       webSiteName: webSiteName1,
@@ -94,37 +93,23 @@ export class SiteInfoComponent implements OnInit {
       contactImage: contactImg,
       headerBackgroud: headerImg,
       faviconIcon: faviconImg
-     
 
-      
-      
     }
-    console.log(this.previous_data.logoDark);
-    console.log(this.previous_data.imgSlider2);
-    console.log(this.previous_data.footerBackground);
      //this.updateform.controls['logoDark'].setValue(this.previous_data.logoDark);
     // this.updateform.controls['logoLight'].setValue(this.previous_data.logoLight);
     // this.updateform.controls['imgSlider1'].setValue(this.previous_data.imgSlider1);
     // this.updateform.controls['imgSlider2'].setValue(this.previous_data.imgSlider2);
     // this.updateform.controls['imgSlider3'].setValue(this.previous_data.imgSlider3);
     // this.updateform.controls['footerBackground'].setValue(this.previous_data.footerBackground);
-    console.log(this.previous_data.logoDark);
-    console.log(this.previous_data.imgSlider2);
-    console.log(this.previous_data.footerBackground);
-    console.log(this.previous_data);
   //  this.dialog.open(this.callUpdateDailog);
   }
   updateHome1(){
-    console.log(this.updateform.value);
-    console.log(this.previous_data.address);
     this.homeService.updateDynamicData(this.updateform.value);
   }
   updateHome(img1:any,img2:any,img3:any,img4:any,img5:any,img6:any,img7:any,img8:any,img9:any,img10:any) {
 
-    console.log(this.updateform.value);
     if(img1.length == 0 && img2.length == 0 && img3.length == 0 && img4.length == 0 && img5.length == 0 && img6.length == 0 && img7.length == 0 && img8.length == 0 && img9.length == 0 && img10.length == 0){
       if(this.updateform.valid){
-        console.log(this.updateform.value);
         this.homeService.updateDynamicData(this.updateform.value);
         setTimeout(() => {
          // window.location.reload();
@@ -134,7 +119,6 @@ export class SiteInfoComponent implements OnInit {
         this.toaster.error('You Must Fill The Fields First');
       }  
     }else{
-      console.log(this.updateform.value);
       const formData = new FormData();
       
       if(img1.length!=0){

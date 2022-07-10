@@ -39,6 +39,14 @@ namespace Tahaluf.PlusExam.API.Controllers
         [Route("DeleteCourse/{cid}")]
         public bool DeleteCourse(int cid)
         {
+            Course course = GetCourseById(cid);
+            
+            string fullImagePath = $"C:\\Users\\dabda\\OneDrive\\Desktop\\Online-Exam\\Angular P\\src\\assets\\images\\course_images\\{course.CourseImage}";
+            if (System.IO.File.Exists(fullImagePath))
+            {
+                System.IO.File.Delete(fullImagePath);
+            }
+
             return courseService.DeleteCourse(cid);
         }
         #endregion DeleteCourse
@@ -86,9 +94,11 @@ namespace Tahaluf.PlusExam.API.Controllers
         {
             try
             {
+                string dynamicPath = "C:\\Users\\dabda\\OneDrive\\Desktop\\Online-Exam\\Angular P\\src\\assets\\images\\course_images";
+
                 var image = Request.Form.Files[0];
                 var imageName = Guid.NewGuid() + "_" + image.FileName;
-                var fullPath = Path.Combine("Image", imageName);
+                var fullPath = Path.Combine(dynamicPath, imageName);
                 using (var stream = new FileStream(fullPath, FileMode.Create))
                 {
                     image.CopyTo(stream);

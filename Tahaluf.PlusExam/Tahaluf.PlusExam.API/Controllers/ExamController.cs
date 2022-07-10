@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Tahaluf.PlusExam.Core.Data;
 using Tahaluf.PlusExam.Core.DTO;
@@ -54,6 +55,14 @@ namespace Tahaluf.PlusExam.API.Controllers
         [Route("deleteExam/{exid}")]
         public bool DeleteExam(int exid)
         {
+            Exam exam = GetExamById(exid);
+
+            string fullImagePath = $"C:\\Users\\dabda\\OneDrive\\Desktop\\Online-Exam\\Angular P\\src\\assets\\images\\exam_images\\${exam.ExamImage}";
+            if (System.IO.File.Exists(fullImagePath))
+            {
+                System.IO.File.Delete(fullImagePath);
+            }
+
             return examService.DeleteExam(exid);
         }
         #endregion DeleteExam
@@ -162,6 +171,33 @@ namespace Tahaluf.PlusExam.API.Controllers
             }
 
             return randomQuestions;
+        }
+
+        [HttpPost]
+        [Route("Upload")]
+        public Exam UploadImage()
+        {
+            try
+            {
+                string dynamicPath = "C:\\Users\\dabda\\OneDrive\\Desktop\\Online-Exam\\Angular P\\src\\assets\\images\\exam_images";
+
+                var image = Request.Form.Files[0];
+                var imageName = Guid.NewGuid() + "_" + image.FileName;
+                var fullPath = Path.Combine(dynamicPath, imageName);
+                using (var stream = new FileStream(fullPath, FileMode.Create))
+                {
+                        image.CopyTo(stream);
+                }
+
+                Exam exam = new Exam();
+                exam.ExamImage = imageName;
+                return exam;
+
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         private string GenerateRandomPasscode()

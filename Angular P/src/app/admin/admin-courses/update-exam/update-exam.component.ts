@@ -41,11 +41,12 @@ export class UpdateExamComponent implements OnInit {
 
   
 
-  saveExam() {
+  saveExam(img: any) {
+    let fileToUpload = <File>img[0];
+    const formData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
     let body = this.createForm.value;
-    body['examImage'] = body['examImage'].split('\\').pop();
-
-    this.adminService.createExam(body);    
+    this.adminService.createExam(body, formData);    
   }
 
 }

@@ -54,7 +54,6 @@ PROCEDURE CalculateScore(
     fillQuestionsMarks Score.grade%type;
     succMark Exam.SuccessMark%type;
     numOfQuestions Exam.numberOfQuestions%type;
-    fullMark Question.score%type;
     st Score.status%type;
     
     mtQid Question.id%type;
@@ -63,6 +62,7 @@ PROCEDURE CalculateScore(
     numOfCorrectOptions INT;
     numOfIncorrectOptions INT;
     numOfOptions INT;
+    scorePerQ NUMBER;
     
     scid Score.id%type;
     
@@ -72,16 +72,19 @@ BEGIN
     totalMark := 0;
     multipleQuestionsMarks := 0;
     fillQuestionsMarks := 0;
+    scorePerQ := 0;
 
     SELECT successMark, numberOfQuestions
     INTO succMark, numOfQuestions
     FROM Exam
     WHERE id = exid;
 
-    SELECT SUM(score)
-    INTO fullMark
+    SELECT score
+    INTO scorePerQ
     FROM Question
-    WHERE examId = exid;
+    WHERE examId = exid
+    FETCH NEXT 1 ROWS ONLY;
+    IF scorePerQ IS NULL THEN scorePerQ := 0; END IF;
 
     -- For Single Marks
     SELECT SUM(Q.score) AS Score
@@ -112,14 +115,19 @@ BEGIN
             EXID => exid,
             ACCID => accid,
             N => numOfCorrectOptions);
+        IF numOfCorrectOptions IS NULL THEN numOfCorrectOptions := 0; END IF;
             
         QuestionPackage.GetNumberIncorrectAnswers(
             QID => mtQid,
             EXID => exid,
             ACCID => accid,
             N => numOfIncorrectOptions);
-            
-        mtQScore := ((numOfCorrectOptions / numOfOptions * mtScore) - (numOfIncorrectOptions / numOfOptions * mtScore));
+        IF numOfIncorrectOptions IS NULL THEN numOfIncorrectOptions := 0; END IF;
+        
+        IF numOfCorrectOptions = 0 THEN CONTINUE;
+        ELSE mtQScore := ((numOfCorrectOptions / numOfOptions * mtScore) - (numOfIncorrectOptions / numOfOptions * mtScore));
+        END IF;
+        
         IF mtQScore < 0 OR mtQScore IS NULL THEN
             mtQScore := 0;
         END IF;
@@ -138,7 +146,7 @@ BEGIN
     IF fillQuestionsMarks IS NULL THEN fillQuestionsMarks := 0; END IF;
     
     totalMark := totalMark + fillQuestionsMarks + multiplequestionsmarks;
-    totalMark := ROUND((totalMark / numOfQuestions) * 100, 1);
+    totalMark := ROUND((totalMark / 100 * scorePerQ) * 100, 1);
 
     IF totalMark >= succMark THEN
         -- Create Certificate

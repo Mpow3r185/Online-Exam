@@ -70,14 +70,13 @@ export class AdminExamsComponent implements OnInit {
     this.dialog.open(this.callUpdateDialog);
   }
 
-  saveExam() {
+  saveExam(img: any) {
     for(let exam of this.adminService.exams) {
       if (this.exam['title'].toLowerCase() == exam['title'].toLowerCase() && exam['id'] != this.exam['id']) {
         this.toastr.error('Exam title is already exists');
         return;
       }
     }
-
     this.exam['courseId'] = Number(this.exam['courseId']);
     for(let course of this.adminService.CoursesData) {
       if (course.id == this.updateForm.controls['courseId'].value) {
@@ -85,6 +84,12 @@ export class AdminExamsComponent implements OnInit {
         break;
       }
     }
+
+    let fileToUpload = <File>img[0];
+    const formData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+    
+    
     this.exam['examImage'] = this.exam['examImage'].split('\\').pop();
     this.oldExamData['title'] = this.exam['title'];
     this.oldExamData['description'] = this.exam['description'];
@@ -101,9 +106,9 @@ export class AdminExamsComponent implements OnInit {
     this.oldExamData['numberOfQuestions'] = this.exam['numberOfQuestions'];
     this.oldExamData['passcode'] = this.exam['passcode'];
     this.oldExamData['successMark'] = this.exam['successMark'];
+    console.log(formData, img, fileToUpload);
     
-    
-    this.adminService.updateExam(this.exam);
+    this.adminService.updateExam(this.exam, formData);
   }
 
   // Delete Exam
