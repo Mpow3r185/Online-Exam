@@ -109,7 +109,7 @@ export class AdminService {
    *  Update Course
    */
 
-  //Update Course When he dose't uploaded an Image 
+  //Update Course When he doesn't uploaded an Image 
    updateCourse(body: any) {
     SpinnerComponent.show();
       this.http.put('https://localhost:44342/api/course', body).subscribe((res) => { 
@@ -124,7 +124,6 @@ export class AdminService {
   updateCourseWithImage(body: any, img:FormData) {
     SpinnerComponent.show();
       this.http.post('https://localhost:44342/api/course/Upload', img).subscribe((ResultImage: any) => {
-        
         body.courseImage = ResultImage.courseImage;
         this.http.put('https://localhost:44342/api/course', body).subscribe((res) => { 
            this.toastr.success("Course Updated Successfully")
@@ -291,13 +290,17 @@ DeleteServices(id:number){
 
 
 // Create Exam
-createExam(body: any) {
-  console.log(body);
-
+createExam(body: any, img: FormData) {
+  
   let zoomMeetingLink = body['zoomMeeting'];
   delete body['zoomMeeting'];
   
-  this.http.post('https://localhost:44342/api/exam', body).subscribe((result) => {
+  this.http.post('https://localhost:44342/api/exam/Upload', img).subscribe((resultImage: any) => {
+    console.log(resultImage);
+    
+    body.examImage = resultImage.examImage;
+
+    this.http.post('https://localhost:44342/api/exam', body).subscribe((result) => {
     
     const searchBody: object = 
     { 
@@ -321,7 +324,9 @@ createExam(body: any) {
     })
    }, error => {
     this.toastr.error(error.message);
-  })
+  });
+  });
+  
 }
 
  //Update Course When he uploaded an Image 
@@ -362,58 +367,113 @@ DeleteExam(id:number) {
 
 
 // Update Exam
-updateExam(body: any) {
+updateExam(body: any, img: FormData|null) {
   
-  const zoomLink = body['zoomMeeting'];
-  delete body['zoomMeeting'];
-  
-  if (zoomLink == undefined || zoomLink == '') {
-    this.http.put('https://localhost:44342/api/exam', body).subscribe((result) => {
-      this.toastr.success('Exam updated successfully');
-    }, error => {
-      this.toastr.error('Unable to connect server');
-    });
-  }
-
-  else {
-    this.http.put('https://localhost:44342/api/exam', body).subscribe(async (result) => {
-    this.toastr.success('Exam updated successfully');
-
-    SpinnerComponent.show();
-    await this.getZoomMeetingLinkByExamId(body.id);
-    await delay(1500);
-    SpinnerComponent.hide();
+  if (img == null) {
+    const zoomLink = body['zoomMeeting'];
+    delete body['zoomMeeting'];
     
-    const zoomMeetingBody: object = {
-      zoomLink: zoomLink,
-      examId: body.id
-    };
-    if(this.zoomMeeting) {
-      this.http.put('https://localhost:44342/api/zoomMeeting', zoomMeetingBody).subscribe((result) => {
-        this.toastr.success('Zoom link is updated');
+    if (zoomLink == undefined || zoomLink == '') {
+      this.http.put('https://localhost:44342/api/exam', body).subscribe((result) => {
+        this.toastr.success('Exam updated successfully');
+      }, error => {
+        this.toastr.error('Unable to connect server');
       });
     }
 
     else {
-      this.http.post('https://localhost:44342/api/zoomMeeting', zoomMeetingBody).subscribe((result) => {
-        this.toastr.success('Zoom link is created');
+      this.http.put('https://localhost:44342/api/exam', body).subscribe(async (result) => {
+      this.toastr.success('Exam updated successfully');
+
+      SpinnerComponent.show();
+      await this.getZoomMeetingLinkByExamId(body.id);
+      await delay(1500);
+      SpinnerComponent.hide();
+      
+      const zoomMeetingBody: object = {
+        zoomLink: zoomLink,
+        examId: body.id
+      };
+      if(this.zoomMeeting) {
+        this.http.put('https://localhost:44342/api/zoomMeeting', zoomMeetingBody).subscribe((result) => {
+          this.toastr.success('Zoom link is updated');
+        });
+      }
+
+      else {
+        this.http.post('https://localhost:44342/api/zoomMeeting', zoomMeetingBody).subscribe((result) => {
+          this.toastr.success('Zoom link is created');
+        });
+      }
+      
+    }, error => {
+      this.toastr.error('Unable to connect server');
+    });
+    }
+  }
+  else {
+    const zoomLink = body['zoomMeeting'];
+    delete body['zoomMeeting'];
+    
+    if (zoomLink == undefined || zoomLink == '') {
+      this.http.post('https://localhost:44342/api/exam/Upload', img).subscribe((resultImage: any) => {
+        body.examImage = resultImage.examImage;
+        console.log(body);
+      this.http.put('https://localhost:44342/api/exam', body).subscribe((result) => {
+        this.toastr.success('Exam updated successfully');
+      }, error => {
+        this.toastr.error('Unable to connect server');
       });
+    });
+    }
+
+    else {
+      this.http.post('https://localhost:44342/api/exam/Upload', img).subscribe((resultImage: any) => {
+        body.examImage = resultImage.examImage;
+        console.log(body);
+        
+        this.http.put('https://localhost:44342/api/exam', body).subscribe(async (result) => {
+          this.toastr.success('Exam updated successfully');
+  
+          SpinnerComponent.show();
+          await this.getZoomMeetingLinkByExamId(body.id);
+          await delay(1500);
+          SpinnerComponent.hide();
+          
+          const zoomMeetingBody: object = {
+            zoomLink: zoomLink,
+            examId: body.id
+          };
+          if(this.zoomMeeting) {
+            this.http.put('https://localhost:44342/api/zoomMeeting', zoomMeetingBody).subscribe((result) => {
+              this.toastr.success('Zoom link is updated');
+            });
+          }
+  
+          else {
+            this.http.post('https://localhost:44342/api/zoomMeeting', zoomMeetingBody).subscribe((result) => {
+              this.toastr.success('Zoom link is created');
+            });
+          }
+          
+        }, error => {
+          this.toastr.error('Unable to connect server');
+        });
+      });
+        
+      }
     }
     
-  }, error => {
-    this.toastr.error('Unable to connect server');
-  });
   }
-}
 
-// Get Zoom Meeting Link By Exam Id
-async getZoomMeetingLinkByExamId(exid: number) {
-  this.http.post(`https://localhost:44342/api/zoomMeeting/GetZoomMeetingByExamId/${exid}`, null).subscribe((result) => {
-    this.zoomMeeting = result;
-  }, error => {
-    this.toastr.error('Unable to connect server');
-  });
-}
+  // Get Zoom Meeting Link By Exam Id
+  async getZoomMeetingLinkByExamId(exid: number) {
+    this.http.post(`https://localhost:44342/api/zoomMeeting/GetZoomMeetingByExamId/${exid}`, null).subscribe((result) => {
+      this.zoomMeeting = result;
+    }, error => {
+      this.toastr.error('Unable to connect server');
+    });
+  }
 
 }
 

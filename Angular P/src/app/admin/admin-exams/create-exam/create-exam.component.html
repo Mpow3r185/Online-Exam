@@ -196,7 +196,7 @@
     <mat-dialog-actions>
         <button class="btn btn-sm btn-danger" mat-button mat-dialog-close>Cancel</button>
         <button class="btn btn-sm btn-success" mat-button [mat-dialog-close]="true" [disabled]="!createForm.valid"
-            (click)="saveExam()">Create</button>
+            (click)="saveExam(file.files)">Create</button>
     </mat-dialog-actions>
 
 </mat-dialog-content>

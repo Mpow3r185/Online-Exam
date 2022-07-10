@@ -15,14 +15,6 @@ export class CreateExamComponent implements OnInit {
   selectExamLevel!: string;
   selectCourseId!: string;
 
-  constructor(
-    public adminService:AdminService,
-    private toastr: ToastrService) {}
-
-  ngOnInit(): void {
-    this.adminService.getAllCourses();
-  }
-
   createForm: FormGroup = new FormGroup({
     title: new FormControl('', [Validators.required,Validators.maxLength(50)]),
     description: new FormControl('', [Validators.required, Validators.maxLength(150)]),
@@ -39,15 +31,36 @@ export class CreateExamComponent implements OnInit {
     courseId: new FormControl('', Validators.required)
   });
 
-  saveExam() {
+  constructor(
+    public adminService:AdminService,
+    private toastr: ToastrService) {}
+
+  ngOnInit(): void {
+    this.adminService.getAllCourses();
+  }
+
+  async saveExam(img: any) {    
+    let fileToUpload = <File>img[0];
+    const formData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+
+    
+    
     let body: any = this.createForm.value;
     body['status'] = this.selectStatus;
     body['markStatus'] = this.selectMarkStatus;
     body['examLevel'] = this.selectExamLevel;
     body['courseId'] = Number(this.selectCourseId);
     body['examImage'] = body['examImage'].split('\\').pop();    
+    await delay(2000);
+    this.adminService.createExam(body, formData);
     
-    this.adminService.createExam(body); 
+    window.location.reload();
   }
 
+}
+
+
+function delay(ms: number) {
+  return new Promise( resolve => setTimeout(resolve, ms) );
 }

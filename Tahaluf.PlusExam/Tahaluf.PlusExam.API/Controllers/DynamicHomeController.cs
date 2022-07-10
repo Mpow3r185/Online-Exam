@@ -48,10 +48,12 @@ namespace Tahaluf.PlusExam.API.Controllers
         {
             try
             {
+                string dynamicPath = "C:\\Users\\Mahmoud Hamarsheh\\Desktop\\PE\\Online-Exam\\Angular P\\src\\assets\\images\\siteImage";
+
                 DynamicHome dynamicHome = new DynamicHome();
                 var image1 = Request.Form.Files[0];
                 var imageName1 = Guid.NewGuid() + "_" + image1.FileName;
-                var fullPath1 = Path.Combine("C:\\Users\\Mahmoud Hamarsheh\\Desktop\\PE\\Online-Exam\\Angular P\\src\\assets\\images\\siteImage", imageName1);
+                var fullPath1 = Path.Combine("", imageName1);
                 using (var stream = new FileStream(fullPath1, FileMode.Create))
                 {
                     image1.CopyTo(stream);
@@ -61,7 +63,7 @@ namespace Tahaluf.PlusExam.API.Controllers
 
                 var image2 = Request.Form.Files[1];
                 var imageName2 = Guid.NewGuid() + "_" + image2.FileName;
-                var fullPath2 = Path.Combine("C:\\Users\\Mahmoud Hamarsheh\\Desktop\\PE\\Online-Exam\\Angular P\\src\\assets\\images\\siteImage", imageName2);
+                var fullPath2 = Path.Combine(dynamicPath, imageName2);
                 using (var stream = new FileStream(fullPath2, FileMode.Create))
                 {
                     image2.CopyTo(stream);
@@ -71,7 +73,7 @@ namespace Tahaluf.PlusExam.API.Controllers
 
                 var image3 = Request.Form.Files[2];
                 var imageName3 = Guid.NewGuid() + "_" + image3.FileName;
-                var fullPath3 = Path.Combine("C:\\Users\\Mahmoud Hamarsheh\\Desktop\\PE\\Online-Exam\\Angular P\\src\\assets\\images\\siteImage", imageName3);
+                var fullPath3 = Path.Combine(dynamicPath, imageName3);
                 using (var stream = new FileStream(fullPath3, FileMode.Create))
                 {
                     image3.CopyTo(stream);
@@ -80,7 +82,7 @@ namespace Tahaluf.PlusExam.API.Controllers
 
                 var image4 = Request.Form.Files[3];
                 var imageName4 = Guid.NewGuid() + "_" + image4.FileName;
-                var fullPath4 = Path.Combine("C:\\Users\\Mahmoud Hamarsheh\\Desktop\\PE\\Online-Exam\\Angular P\\src\\assets\\images\\siteImage", imageName4);
+                var fullPath4 = Path.Combine(dynamicPath, imageName4);
                 using (var stream = new FileStream(fullPath4, FileMode.Create))
                 {
                     image4.CopyTo(stream);
@@ -89,7 +91,7 @@ namespace Tahaluf.PlusExam.API.Controllers
 
                 var image5 = Request.Form.Files[4];
                 var imageName5 = Guid.NewGuid() + "_" + image5.FileName;
-                var fullPath5 = Path.Combine("C:\\Users\\Mahmoud Hamarsheh\\Desktop\\PE\\Online-Exam\\Angular P\\src\\assets\\images\\siteImage", imageName5);
+                var fullPath5 = Path.Combine(dynamicPath, imageName5);
                 using (var stream = new FileStream(fullPath5, FileMode.Create))
                 {
                     image5.CopyTo(stream);
@@ -107,7 +109,7 @@ namespace Tahaluf.PlusExam.API.Controllers
 
                 var image7 = Request.Form.Files[6];
                 var imageName7 = Guid.NewGuid() + "_" + image7.FileName;
-                var fullPath7 = Path.Combine("C:\\Users\\Mahmoud Hamarsheh\\Desktop\\PE\\Online-Exam\\Angular P\\src\\assets\\images\\siteImage", imageName7);
+                var fullPath7 = Path.Combine(dynamicPath, imageName7);
                 using (var stream = new FileStream(fullPath7, FileMode.Create))
                 {
                     image7.CopyTo(stream);
@@ -117,7 +119,7 @@ namespace Tahaluf.PlusExam.API.Controllers
 
                 var image8 = Request.Form.Files[7];
                 var imageName8 = Guid.NewGuid() + "_" + image8.FileName;
-                var fullPath8 = Path.Combine("C:\\Users\\Mahmoud Hamarsheh\\Desktop\\PE\\Online-Exam\\Angular P\\src\\assets\\images\\siteImage", imageName8);
+                var fullPath8 = Path.Combine(dynamicPath, imageName8);
                 using (var stream = new FileStream(fullPath8, FileMode.Create))
                 {
                     image8.CopyTo(stream);
@@ -126,7 +128,7 @@ namespace Tahaluf.PlusExam.API.Controllers
 
                 var image9 = Request.Form.Files[8];
                 var imageName9 = Guid.NewGuid() + "_" + image9.FileName;
-                var fullPath9 = Path.Combine("C:\\Users\\Mahmoud Hamarsheh\\Desktop\\PE\\Online-Exam\\Angular P\\src\\assets\\images\\siteImage", imageName9);
+                var fullPath9 = Path.Combine(dynamicPath, imageName9);
                 using (var stream = new FileStream(fullPath9, FileMode.Create))
                 {
                     image9.CopyTo(stream);
@@ -137,7 +139,7 @@ namespace Tahaluf.PlusExam.API.Controllers
 
                 var image10 = Request.Form.Files[9];
                 var imageName10 = Guid.NewGuid() + "_" + image10.FileName;
-                var fullPath10 = Path.Combine("C:\\Users\\Mahmoud Hamarsheh\\Desktop\\PE\\Online-Exam\\Angular P\\src\\assets\\images\\siteImage", imageName10);
+                var fullPath10 = Path.Combine(dynamicPath, imageName10);
                 using (var stream = new FileStream(fullPath10, FileMode.Create))
                 {
                     image10.CopyTo(stream);

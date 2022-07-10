@@ -110,9 +110,6 @@ export class HomeService {
   updateDynamicDataWithImage(body: any, img:FormData) {
     
     //SpinnerComponent.show();
-    console.log(img.toString());
-    console.log(img);
-    console.log(body)
        this.http.post('https://localhost:44342/api/dynamicHome/Upload', img).subscribe((ResultImage: any) => {
         console.log(body);
         
@@ -361,6 +358,20 @@ export class HomeService {
     }, error => {
       this.toastr.error('Unable to connect server');
     });
+  }
+
+  // Create Invoice
+  async createInvoice(exid: number, accid: number): Promise<void> {
+    let body = {
+      accountId: accid,
+      examId: exid
+    };
+
+    this.http.post('https://localhost:44342/api/invoice', body).subscribe((result) => {
+      this.toastr.success('Your purchase was successful, thank you');
+    }, error => {
+      this.toastr.error('Unable to connect server');
+    })
   }
 }
 

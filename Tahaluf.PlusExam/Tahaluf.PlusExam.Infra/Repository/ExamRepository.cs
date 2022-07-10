@@ -2,6 +2,7 @@ using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Tahaluf.PlusExam.Core.Common;
@@ -33,6 +34,10 @@ namespace Tahaluf.PlusExam.Infra.Repository
         #region CreateExam
         public bool CreateExam(Exam exam)
         {
+            //var fileName = Guid.NewGuid().ToString() + "_" + exam.ExamImage;
+            //exam.ExamImage = fileName;
+            //this.UploadExamImage(fileName);
+
             return genericCRUD.Create(exam);
         }
         #endregion CreateExam
@@ -176,5 +181,15 @@ namespace Tahaluf.PlusExam.Infra.Repository
                 "ExamPackage.GetUsersBuyExamId", parameters,
                 commandType: CommandType.StoredProcedure).Count();
         }
+
+        /*private void UploadExamImage(string file)
+        {
+            
+            var fullPath = Path.Combine("C:\\Users\\dabda\\OneDrive\\Desktop\\Online-Exam\\Angular P\\src\\assets", file);
+            using (var stream = new FileStream(fullPath, FileMode.Create))
+            {
+                //image1.CopyTo(stream);
+            }
+        }*/
     }
 }

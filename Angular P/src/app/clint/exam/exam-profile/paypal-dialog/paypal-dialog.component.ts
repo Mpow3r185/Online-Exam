@@ -27,7 +27,8 @@ export class PaypalDialogComponent implements OnInit {
         currency: "USD",
         value: `${this.homeService.exams.cost}`,
         onApprove: (details) => {
-          this.toastr.success("Transaction Successfull")
+          this.homeService.createInvoice(this.homeService.exams.id, Number(localStorage.getItem('AccountId')));  // Create Invoice
+          this.toastr.success("Transaction Successfull");
         },
       }
     )
