@@ -60,5 +60,15 @@ namespace Tahaluf.PlusExam.API.Controllers
         #endregion DeleteCertificate
 
         #endregion CRUD_Operation
+        
+         #region getCertificateByUserId
+        [HttpGet]
+        [Route("GetCertificateByUserId/{id}")]
+        public List<CertificateDTO> getCertificateByUserId(int id)
+        {
+            return certificateService.getCertificateByUserId(id);
+        }
+        #endregion getCertificateByUserId
+        
     }
 }
