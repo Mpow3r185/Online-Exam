@@ -42,4 +42,18 @@ create or replace PACKAGE BODY CertificatePackage AS
         DBMS_SQL.RETURN_RESULT(ref_cursor);
     END IF;
 END CertificateCRUD;
+
+
+PROCEDURE getCertificateByUserId(uid IN account.id%type DEFAULT NULL) AS O_all sys_refcursor;
+    BEGIN
+        open O_all for
+        select C.creatiodate as creationDate,E.title As examName,E.examlevel as examLevel, E.startdate ExamDate
+        from Certificate C
+        JOIN Account A ON C.accountid = A.id
+        JOIN Exam E on C.examid = E.id
+        WHERE C.accountid = uid;
+        DBMS_SQL.RETURN_RESULT(O_all);
+    END getCertificateByUserId;
+
+
 END CertificatePackage;
