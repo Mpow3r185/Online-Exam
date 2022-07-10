@@ -9,6 +9,7 @@ using Tahaluf.PlusExam.Core.Data;
 using Tahaluf.PlusExam.Core.GenericInterface;
 using Tahaluf.PlusExam.Core.RepositoryInterface;
 using Tahaluf.PlusExam.Infra.Generic;
+using Tahaluf.PlusExam.Core.DTO;
 
 namespace Tahaluf.PlusExam.Infra.Repository
 {
