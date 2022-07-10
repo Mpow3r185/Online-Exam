@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
 import { UserProfileModule } from './user-profile.module';
 import { InvoiceComponent } from './invoice/invoice.component';
+import { CertificateComponent } from './certificate/certificate.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'invoice',
     component: InvoiceComponent,
+  },
+  {
+    path: 'certificate',
+    component: CertificateComponent,
   }
 ];
 
