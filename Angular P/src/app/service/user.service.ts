@@ -107,7 +107,7 @@ export class UserService {
     let user: any = localStorage.getItem('user');
     user = JSON.parse(user);
 
-    SpinnerComponent.show();
+   // SpinnerComponent.show();
 
     let searchBody = {
       username: user.unique_name
@@ -120,9 +120,6 @@ export class UserService {
       .subscribe(
         (result: any) => {
           this.selectedUser = result;
-          setTimeout(() => {
-            SpinnerComponent.hide()
-          }, 2000);
         },
         (error) => console.log(error)
       );
