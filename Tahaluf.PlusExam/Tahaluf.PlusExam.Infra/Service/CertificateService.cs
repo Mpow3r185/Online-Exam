@@ -4,6 +4,7 @@ using System.Text;
 using Tahaluf.PlusExam.Core.Data;
 using Tahaluf.PlusExam.Core.RepositoryInterface;
 using Tahaluf.PlusExam.Core.ServiceInterface;
+using Tahaluf.PlusExam.Core.DTO;
 
 namespace Tahaluf.PlusExam.Infra.Service
 {
