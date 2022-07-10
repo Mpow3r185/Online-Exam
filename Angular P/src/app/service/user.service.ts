@@ -197,7 +197,7 @@ export class UserService {
     });
   }
 
-//Get invoice By User Id
+//Get Certificate By User Id
   async GetCertificateByUserId(){
     let userId = localStorage.getItem('AccountId');
     this.http.get(`https://localhost:44342/api/Certificate/GetCertificateByUserId/${userId}`).subscribe((result: any) => {
