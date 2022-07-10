@@ -12,9 +12,11 @@ import { SpinnerComponent } from 'src/app/spinner/spinner.component';
 export class DashboardCardComponent implements OnInit {
   numOfUser!: number;
   numOfCourse!: number;
+  numOfExam!: number;
 
   lastFiveUser:any;
   lastFiveCourse:any;
+  lastFiveExam:any;
 
   constructor(public homeService: HomeService, public adminService: AdminService) { }
 
@@ -22,13 +24,16 @@ export class DashboardCardComponent implements OnInit {
     SpinnerComponent.show();
     this.adminService.getAllCourses();
     this.adminService.getAllAccounts();
+    this.adminService.getAllExams();
 
     setTimeout(() => {
       this.numOfUser = this.adminService.AccountsData.length;
       this.numOfCourse = this.adminService.CoursesData.length;
+      this.numOfExam = this.adminService.exams.length;
 
       this.lastFiveUser = this.adminService.AccountsData.slice(Math.max(this.numOfUser - 5, 1));
       this.lastFiveCourse = this.adminService.CoursesData.slice(Math.max(this.numOfCourse - 5, 1));
+      this.lastFiveExam = this.adminService.exams.slice(Math.max(this.numOfExam - 5, 1));
 
     }, 2000);
 
