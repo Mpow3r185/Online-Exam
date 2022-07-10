@@ -11,6 +11,7 @@ import { HomeService } from './home.service';
 export class UserService {
   
    InvoicesData:any;
+  CertificateData:any;
   
   updateForm: FormGroup = new FormGroup({
     Id: new FormControl(),
