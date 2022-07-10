@@ -1,3 +1,4 @@
+import { SpinnerComponent } from './../../../../spinner/spinner.component';
 import { ToastrService } from 'ngx-toastr';
 import { HomeService } from './../../../../service/home.service';
 import { Component, OnInit } from '@angular/core';
@@ -26,14 +27,25 @@ export class PaypalDialogComponent implements OnInit {
         id: "#myPaypalButtons",
         currency: "USD",
         value: `${this.homeService.exams.cost}`,
-        onApprove: (details) => {
+        onApprove: async (details) => {
           this.homeService.createInvoice(this.homeService.exams.id, Number(localStorage.getItem('AccountId')));  // Create Invoice
           this.toastr.success("Transaction Successfull");
+          SpinnerComponent.show();
+          await delay(1500);
+          SpinnerComponent.hide();
+          this.dialog.closeAll();
+          window.location.reload();
+          
+          
+          
         },
       }
     )
   }
 
-  
+}
 
+
+function delay(ms: number) {
+  return new Promise( resolve => setTimeout(resolve, ms) );
 }
