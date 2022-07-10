@@ -37,10 +37,10 @@
                         <i class="material-icons">library_books</i>
                     </div>
                     <p class="card-category font-weight-bold" style="color: #001166; font-size: 17px; font-family: fantasy;"> No.of Exam</p>
-                    <h3 class="card-title" style="color: #001166; font-size: 25px; font-weight: bold;">{{numOfUser}}</h3>
+                    <h3 class="card-title" style="color: #001166; font-size: 25px; font-weight: bold;">{{numOfExam}}</h3>
                 </div>
                 <div class="card-footer">
-                    <a routerLink="/admin/users" class="card-link" style="color: #001166;font-weight: 600;">See Details <i class="fa fa-long-arrow-right"></i></a>
+                    <a routerLink="/admin/exams" class="card-link" style="color: #001166;font-weight: 600;">See Details <i class="fa fa-long-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -138,27 +138,23 @@
                     <div class="tab-pane fade" id="profile-02" role="tabpanel" aria-labelledby="profile-02-tab">
                      <br>
                      <table class="table table-hover table-sm table-bordered p-0" style="width:100%;text-align: center">
-                      <thead class="bg-dark text-white font-weight-bold">
+                      <thead style="background-color: #001166;">
                         <tr>
-                           <th>#</th>
-                          <th>Patient Name</th>
-                          <th>Doctor Name</th>
-                          <th>Appointment Time</th>
-                          <th>Appointment Date</th>
+                          <th style="font-weight: bold;color: #fff;">#</th>
+                          <th style="font-weight: bold;color: #fff;">Exam Name</th>
+                          <th style="font-weight: bold;color: #fff;">Exam Level</th>
+                          <th style="font-weight: bold;color: #fff;">Exam Cost</th>
+                          <th style="font-weight: bold;color: #fff;">Exam Date</th>
                         </tr>
                       </thead>
-                      <tbody class="font-weight-bold">
-                    
-                           
-                        <tr>
-                          <td>1</td>
-                          <td>qq</td>
-                          <td>aa</td>
-                          <td>www</td>
-                         <td>dd</td>
+                      <tbody class="font-weight-bold">  
+                        <tr *ngFor="let item of lastFiveExam let i = index;">
+                          <td>{{i+1}}</td>
+                          <td>{{item.title}}</td>
+                          <td>{{item.examLevel}}</td>
+                          <td>{{item.cost}}</td>
+                         <td>{{item.startDate | date}}</td>
                        </tr>
-                       
-               
                       </tbody>
                     </table>
                             </div>
