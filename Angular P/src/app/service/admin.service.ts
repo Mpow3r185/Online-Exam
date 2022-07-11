@@ -21,6 +21,8 @@ export class AdminService {
   courseId!: number;
   exams: any;
   zoomMeeting: any;
+  profitReport: any;
+  profitReportDetails: any;
 
   constructor(
     private http: HttpClient,
@@ -234,6 +236,24 @@ async getAccountById(accId: number): Promise<void>{
  {
    this.http.get('https://localhost:44342/api/report/NumberOfFailUsers').subscribe((result) => {            
      this.FailUsers = result;      
+   }, error => {
+     this.toastr.error('Unable to connect the server.');
+     this.toastr.error(error.message,error.status);
+   });
+ }
+ getProfitReport()
+ {
+   this.http.get('https://localhost:44342/api/Invoice/FinancialMatters').subscribe((result) => {            
+     this.profitReport = result;      
+   }, error => {
+     this.toastr.error('Unable to connect the server.');
+     this.toastr.error(error.message,error.status);
+   });
+ }
+ getProfitReportDetails()
+ {
+   this.http.get('https://localhost:44342/api/Invoice/invoicesDetails').subscribe((result) => {            
+     this.profitReportDetails = result;      
    }, error => {
      this.toastr.error('Unable to connect the server.');
      this.toastr.error(error.message,error.status);
