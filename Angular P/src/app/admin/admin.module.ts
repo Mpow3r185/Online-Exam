@@ -26,13 +26,15 @@ import { CreateExamComponent } from './admin-exams/create-exam/create-exam.compo
 import { SiteInfoComponent } from './site-info/site-info.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { UpdateExamComponent } from './admin-courses/update-exam/update-exam.component';
-import { FullCalendarModule } from '@fullcalendar/angular'; 
-import dayGridPlugin from '@fullcalendar/daygrid'; 
-import interactionPlugin from '@fullcalendar/interaction'; 
-FullCalendarModule.registerPlugins([ 
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import { ProfitReportComponent } from './profit-report/profit-report.component';
+FullCalendarModule.registerPlugins([
   dayGridPlugin,
   interactionPlugin
-]);
+])
+
 
 
 
@@ -55,7 +57,10 @@ FullCalendarModule.registerPlugins([
     AdminExamsComponent,
     CreateExamComponent,
     SiteInfoComponent,
-    UpdateExamComponent
+    UpdateExamComponent,
+    ProfitReportComponent
+    
+    
   ],
   imports: [
     SharedModule,
