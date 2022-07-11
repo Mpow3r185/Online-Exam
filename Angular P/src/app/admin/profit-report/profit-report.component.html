@@ -34,7 +34,7 @@
                                                                 </div>
                                                                 <p class="card-category">Total Profit</p>
                                                                 <h3 class="card-title">
-                                                                    {{adminService.profitReport[0].profit}}</h3>
+                                                                    ${{adminService.profitReport[0].profit}}</h3>
                                                             </div>
                                                             <div class="card-footer"></div>
                                                         </div>
@@ -48,7 +48,7 @@
                                                                 </div>
                                                                 <p class="card-category">Average Of Profit </p>
                                                                 <h3 class="card-title">
-                                                                    {{adminService.profitReport[0].avgOfProfit}}</h3>
+                                                                    ${{adminService.profitReport[0].avgOfProfit}}</h3>
                                                             </div>
                                                             <div class="card-footer"></div>
                                                         </div>
@@ -110,7 +110,7 @@
                                                                                 item.email }}</td>
                                                                             <td style="color:#000; font-weight:bold;">{{
                                                                                 item.examName }}</td>
-                                                                            <td style="color:#000; font-weight:bold;">{{
+                                                                            <td style="color:#000; font-weight:bold;">${{
                                                                                 item.examCost }}</td>
                                                                             <td style="color:#000; font-weight:bold;">{{
                                                                                 item.creationDate | date }}</td>
