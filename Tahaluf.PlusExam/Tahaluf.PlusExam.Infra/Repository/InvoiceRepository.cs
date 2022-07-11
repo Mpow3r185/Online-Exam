@@ -84,5 +84,13 @@ namespace Tahaluf.PlusExam.Infra.Repository
         }
         #endregion getInvoiceByUserId
         
+        #region InvoicesDetails
+        public List<InvoiceDetailsDTO> invoicesDetails()
+        {
+            IEnumerable<InvoiceDetailsDTO> result = dbContext.Connection.Query<InvoiceDetailsDTO>("InvoicePackage.GETINVOICESDETAILS", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+        #endregion InvoicesDetails
+        
     }
 }
