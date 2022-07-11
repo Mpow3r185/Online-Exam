@@ -154,6 +154,15 @@ namespace Tahaluf.PlusExam.API.Controllers
             return true;
         }
         #endregion SendEmail
+        
+        #region invoicesDetails
+        [HttpGet]
+        [Route("invoicesDetails")]
+        public List<InvoiceDetailsDTO> invoicesDetails()
+        {
+            return InvoiceService.invoicesDetails();
+        }
+        #endregion invoicesDetails
 
     }
 }
