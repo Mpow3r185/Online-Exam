@@ -10,6 +10,7 @@ import { StudentReportComponent } from './student-report/student-report.componen
 import { StdReportDetailsComponent } from './student-report/std-report-details/std-report-details.component';
 import { AdminServicesComponent } from './admin-services/admin-services.component';
 import { SiteInfoComponent } from './site-info/site-info.component';
+import { ProfitReportComponent } from './profit-report/profit-report.component';
 
 
 const routes: Routes = [
@@ -52,6 +53,11 @@ const routes: Routes = [
   {
     path: 'siteInfo',
     component: SiteInfoComponent,
+  }
+  ,
+  {
+    path: 'profitReport',
+    component: ProfitReportComponent,
   }
 ];
 
