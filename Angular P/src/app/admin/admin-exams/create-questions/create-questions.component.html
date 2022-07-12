@@ -1,0 +1,237 @@
+<div class="container-fluid p-0">
+
+    <!-- Exam Header Container -->
+    <div class="container my-5">
+
+        <!-- Course Name -->
+        <div class="container">
+            <div class="row justify-content-center">
+                <span class="title font-size-40" title="Course Name">{{ adminService.exams.courseName | titlecase
+                    }}</span>
+            </div>
+        </div>
+
+        <!-- Separator -->
+        <hr class="mx-auto separator" />
+
+        <!-- Exam Name -->
+        <div class="container">
+            <div class="row justify-content-center">
+                <span class="title font-size-35" title="Exam Name">{{ adminService.exams.title | titlecase }}</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Exam Body Container -->
+    <div class="container my-5">
+
+        <div class="row justify-content-around">
+
+            <!-- Navigate Side (Left Container) -->
+            <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
+
+                <!-- Navigator Container -->
+                <div class="row border-3px">
+                    <div class="w-100 pb-5">
+
+                        <!-- Question Nav Container -->
+                        <div class="row justify-content-start m-1 questions-navigator-containter">
+
+
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Save Questions Button -->
+                    <div class="container d-flex mb-3">
+                        <button class="btn btn-primary m-auto d-block submit-btn font-weight-bold">
+                            Save Questions
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Question Side (Right Container) -->
+            <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 px-0">
+                <div style="height:fit-content; width: 100%; overflow-y: hidden;" id="cont_1">
+                    <div id="slider" style="transition: 0.5s;">
+
+                        <!-- Question Container -->
+                        <div class="col-12 border-3px mb-5 mt-sm-5 mt-md-5 mt-lg-0 questionCard"
+                            style="height:fit-content;">
+                            <div class="row">
+
+                                <!-- Questions Text Container -->
+                                <div class="container m-3">
+
+                                    <div class="row justify-content-start">
+
+                                        <!-- Question Text -->
+                                        <div class="col-12 my-2">
+                                            <textarea maxlength="500" class="px-2 py-1 w-100" id="questionTextarea"
+                                                style="min-height: 70px; max-height: 250px;"
+                                                placeholder="Question Text"></textarea>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row justify-content-around">
+                                        <mat-form-field appearance="fill" [formControl]="typeControl" class="col-4">
+                                            <mat-label>Type</mat-label>
+                                            <mat-select value="Single" [(ngModel)]="selectedType">
+                                                <mat-option value="Single">Single</mat-option>
+                                                <mat-option value="Multiple">Multiple</mat-option>
+                                                <mat-option value="Fill">Fill</mat-option>
+                                            </mat-select>
+
+                                            <mat-error *ngIf="typeControl.hasError('required')">
+                                                This Filed is <strong>required</strong>
+                                            </mat-error>
+                                        </mat-form-field>
+
+                                        <mat-form-field appearance="fill" [formControl]="statusControl" class="col-4">
+                                            <mat-label>Status</mat-label>
+                                            <mat-select value="DISABLE">
+                                                <mat-option value="ENABLE">ENABLE</mat-option>
+                                                <mat-option value="DISABLE">DISABLE</mat-option>
+                                            </mat-select>
+
+                                            <mat-error *ngIf="statusControl.hasError('required')">
+                                                This Filed is <strong>required</strong>
+                                            </mat-error>
+                                        </mat-form-field>
+
+                                        <mat-form-field appearance="fill" [formControl]="scoreControl" class="col-4">
+                                            <mat-label>Score</mat-label>
+                                            <input matInput type="number" [formControl]="scoreControl" min="1">
+
+                                            <mat-error *ngIf="scoreControl.hasError('required')">
+                                                This Filed is <strong>required</strong>
+                                            </mat-error>
+
+                                            <mat-error *ngIf="scoreControl.hasError('min')">
+                                                Minimum value is <strong>1</strong>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <hr class="mt-0" />
+                                    <!-- Options Container -->
+                                    <div class="row " id="optionsContainer-{{ Qcounter }}">
+
+                                        <!-- Single Question -->
+                                        <ng-container [(ngModel)]="selectedType" *ngIf="selectedType == 'Single'">
+                                            <div class="col-12" id="div-par">
+
+
+                                                <div class="row justify-content-start mt-3"
+                                                    id="textarea-cont{{Qcounter}}{{Ocounter}}">
+
+                                                    <!-- Option TextArea -->
+                                                    <div class="col-10">
+                                                        <textarea minlength="1" maxlength="300" class="px-2 py-1 w-100"
+                                                            required style="min-height: 35px; max-height: 250px;"
+                                                            placeholder="Option Text"
+                                                            id="optionTextarea-{{ Qcounter }}"></textarea>
+                                                    </div>
+
+                                                    <!-- Option Add -->
+                                                    <div class="col-1">
+                                                        <a class="btn btn-success btn-sm text-white" role="button"
+                                                            aria-pressed="true" title="Add Option"
+                                                            style="cursor:pointer;" (click)="addOption(Qcounter)">
+                                                            <i class="fa fa-plus"></i></a>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </ng-container>
+
+                                        <!-- Multiple Question -->
+                                        <ng-container [(ngModel)]="selectedType" *ngIf="selectedType == 'Multiple'">
+                                            <div class="col-12" id="div-par">
+
+
+                                                <div class="row justify-content-start mt-3"
+                                                    id="textarea-cont{{Qcounter}}{{Ocounter}}">
+
+                                                    <!-- Option TextArea -->
+                                                    <div class="col-10">
+                                                        <textarea minlength="1" maxlength="300" class="px-2 py-1 w-100"
+                                                            required style="min-height: 35px; max-height: 250px;"
+                                                            placeholder="Option Text"
+                                                            id="optionTextarea-{{ Qcounter }}"></textarea>
+                                                    </div>
+
+                                                    <!-- Option Add -->
+                                                    <div class="col-1">
+                                                        <a class="btn btn-success btn-sm text-white" role="button"
+                                                            aria-pressed="true" title="Add Option"
+                                                            style="cursor:pointer;" (click)="addOption(Qcounter)">
+                                                            <i class="fa fa-plus"></i></a>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </ng-container>
+
+                                        <!-- Fill Question -->
+                                        <ng-container [(ngModel)]="selectedType" *ngIf="selectedType == 'Fill'">
+                                            <div class="col-12" id="div-par">
+
+
+                                                <div class="row justify-content-start mt-3"
+                                                    id="textarea-cont{{Qcounter}}{{Ocounter}}">
+
+                                                    <!-- Option TextArea -->
+                                                    <div class="col-10">
+                                                        <textarea minlength="1" maxlength="300" class="px-2 py-1 w-100"
+                                                            required style="min-height: 35px; max-height: 250px;"
+                                                            placeholder="Option Text"
+                                                            id="optionTextarea-{{ Qcounter }}"></textarea>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </ng-container>
+
+                                        <div class="row w-100">
+                                            <button class="btn btn-dark d-block mx-auto my-3"
+                                                (click)="clearQuestionForm()">Clear</button>
+
+                                            <button class="btn btn-primary d-block mx-auto my-3"
+                                                (click)="addQuestion()">Add Question</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row justify-content-around">
+                    <div class="row col-3"></div>
+                    <div class="row col-8 border-3px" id="submitedQuestionContainer">
+
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

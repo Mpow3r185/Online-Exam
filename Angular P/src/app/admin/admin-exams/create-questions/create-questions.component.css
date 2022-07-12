@@ -1,0 +1,118 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  span.title {
+    font-family: Verdana;
+    font-weight: bold;
+    color: #016;
+    letter-spacing: 3px;
+    font-variant: small-caps;
+}
+
+.font-size-40 {
+    font-size: 40px;
+}
+
+.font-size-35 {
+    font-size: 30px;
+}
+
+hr.separator {
+    background-color: #D70926;
+    width: 40%;
+    height: 2px;
+    border-radius: 10px;
+}
+
+
+.font-family-digital {
+    font-family: 'digital-7';
+    font-size: 3rem;
+}
+
+.border-3px {
+    border: 3px solid #000;
+    border-radius: 10px;
+}
+
+.border-1px {
+    border: 2px solid #016;
+    border-radius: 10px;
+}
+
+div.questions-navigator-containter {
+    max-height: 406px;
+    overflow-y: auto;
+}
+
+div.question-container {
+    background-color: #EEE;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+div.question-container:hover {
+    box-shadow: 1px 1px 5px 1px #808080;
+}
+
+div.question-container:hover p {
+    animation-name: animate-paraghraph;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+    animation-timing-function: ease-in;
+}
+
+.q-active {
+    background-color: #016 !important;
+    border-color: #eee;
+    color: #fff;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    transition: 1s !important;
+}
+
+@keyframes animate-paraghraph {
+    from {
+        transform: translateY(-3px);
+    }
+
+    to {
+        transform: translateY(3px);
+    }
+}
+
+.font-family-tahoma {
+    font-family: Tahoma, sans-serif;
+}
+
+.submit-btn {
+    background-color: #016;
+    border: 1px solid #eee;
+    transition: 0.5s;
+}
+
+.submit-btn:hover {
+    background-color: #eee !important;
+    border: 1px solid #016 in !important;
+    color: #016 !important;
+    box-shadow: 2px 2px 6px 3px #016;
+}
+
+button.transporter-btn {
+    background-color: #fff;
+    border: solid 1px #016;
+    color: #016;
+}
+
+button.transporter-btn:hover {
+    background-color: #016;
+    border: solid 1px #fff;
+    color: #fff;
+}
+
+.display-none {
+    display: none;
+}

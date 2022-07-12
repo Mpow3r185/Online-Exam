@@ -1,3 +1,4 @@
+import { CreateQuestionsComponent } from './admin-exams/create-questions/create-questions.component';
 import { AdminExamsComponent } from './admin-exams/admin-exams.component';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -52,6 +53,10 @@ const routes: Routes = [
   {
     path: 'siteInfo',
     component: SiteInfoComponent,
+  },
+  {
+    path: 'createQuestions/:id',
+    component: CreateQuestionsComponent
   }
 ];
 

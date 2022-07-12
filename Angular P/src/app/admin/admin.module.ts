@@ -28,7 +28,8 @@ import {MatStepperModule} from '@angular/material/stepper';
 import { UpdateExamComponent } from './admin-courses/update-exam/update-exam.component';
 import { FullCalendarModule } from '@fullcalendar/angular'; 
 import dayGridPlugin from '@fullcalendar/daygrid'; 
-import interactionPlugin from '@fullcalendar/interaction'; 
+import interactionPlugin from '@fullcalendar/interaction';
+import { CreateQuestionsComponent } from './admin-exams/create-questions/create-questions.component';
 FullCalendarModule.registerPlugins([ 
   dayGridPlugin,
   interactionPlugin
@@ -55,7 +56,8 @@ FullCalendarModule.registerPlugins([
     AdminExamsComponent,
     CreateExamComponent,
     SiteInfoComponent,
-    UpdateExamComponent
+    UpdateExamComponent,
+    CreateQuestionsComponent
   ],
   imports: [
     SharedModule,

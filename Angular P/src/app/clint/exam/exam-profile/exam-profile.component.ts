@@ -136,7 +136,7 @@ export class ExamProfileComponent implements OnInit {
     return this.homeService.numberOfUsersBuyExam;
   }
 
-  openPasscodeDialog() {
+  async openPasscodeDialog() {
     this.dialog.open(this.passcodeDialog);
   }
 

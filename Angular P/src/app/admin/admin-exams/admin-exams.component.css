@@ -181,3 +181,140 @@ div.description-label {
   font-weight: bold;
   letter-spacing: 2px;
 }	
+
+
+table td {
+  border: none !important;
+}
+
+table thead {
+  font-size: 0.9rem;
+  background-color: #016;
+  color: #fff;
+}
+
+table {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+table .row-element td {
+  color: #8b92a9 !important;
+  font-size: .875rem;
+  line-height: 2.5rem;
+  border: none !important;
+}
+
+table tbody tr.row-element {
+  transition: 0.1s;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+table tbody tr:hover {
+  background-color: #efefef;
+}
+
+table tr.expanded,
+table tr.expanded button.btn-light {
+  background-color: #efefef !important;
+}
+
+table tr.expanded {
+  border-bottom: none !important;
+
+}
+
+table tr.expanded i {
+  transform: rotate(180deg);
+}
+
+table tbody tr:hover button.btn-light {
+  background-color: #efefef;
+
+}
+
+tr.cus-bottom-border {
+  border-bottom: 1px solid #8b92a947;
+}
+
+i.fa-angle-down {
+  font-size: 1.2rem;
+  font-weight: bolder;
+  color: #000;
+}
+
+button.btn-light {
+  background-color: #fff;
+  border: none;
+  transition: 0.1s;
+}
+
+table tr.row-details {
+  background-color: #efefef;
+  border-bottom: 1px solid #8b92a947;
+}
+
+div.description-label {
+  letter-spacing: 3px;
+  font-family: Verdana;
+  font-size: 1.08rem;
+  font-weight: bolder;
+}
+
+div.description-container {
+  letter-spacing: 0.2px;
+  max-height: 145px;
+  min-height: 145px;
+  height: 145px;
+  overflow-y: auto;
+}
+
+
+.cus-border {
+  border-radius: 5px;
+  border: 1px solid silver;
+  font-size: .875rem;
+}
+
+
+.cus-st {
+  background-color: #dedede;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: .875rem;
+}
+
+.font-family-tahoma {
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+}
+
+div.exam-img {
+  height: 167px;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 0 8px 0.3px grey;
+}
+
+h3.ex-title {
+  font-family: tahoma;
+  font-weight: bolder;
+  color: #d70926;
+  font-size: 1.1rem;
+}
+
+.display-none {
+  display: none !important;
+}
+
+.transition-3 {
+  transition: 0.3s;
+}
+
+.transition-5 {
+  transition: 0.5s;
+}
+
+table thead th {
+  color: #fff !important;
+}
