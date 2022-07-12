@@ -11,6 +11,8 @@ import { StdReportDetailsComponent } from './student-report/std-report-details/s
 import { AdminServicesComponent } from './admin-services/admin-services.component';
 import { SiteInfoComponent } from './site-info/site-info.component';
 import { ProfitReportComponent } from './profit-report/profit-report.component';
+import { AdminQuestionsComponent } from './admin-questions/admin-questions.component';
+
 
 
 const routes: Routes = [
