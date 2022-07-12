@@ -128,6 +128,7 @@ namespace Tahaluf.PlusExam.API.Controllers
             }
 
             return true;
+        }
         
         [HttpPost]
         [Route("GetQeustionsDetailsByExamId/{exid}")]
