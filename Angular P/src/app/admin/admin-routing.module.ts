@@ -58,6 +58,15 @@ const routes: Routes = [
   {
     path: 'profitReport',
     component: ProfitReportComponent,
+  },
+  {
+    path: 'questions/:id',
+    component: AdminQuestionsComponent
+  }
+  ,
+  {
+    path: 'questions',
+    component: AdminQuestionsComponent
   }
 ];
 
