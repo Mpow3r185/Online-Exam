@@ -35,7 +35,7 @@ export class StudentReportComponent implements OnInit {
 
  ngOnInit(): void {
    SpinnerComponent.show();
-   this.adminService.getAllAccounts();
+   this.adminService.getAllAccountWithoutAdmin();
    this.adminService.getNumOfUsers();
    this.adminService.getNumOfCertificates();
    this.adminService.getNumOfFailUsers();
