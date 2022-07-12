@@ -496,6 +496,8 @@ updateExam(body: any, img: FormData|null) {
   async getExamById(exid: number): Promise<void> {    
     this.http.post(`https://localhost:44342/api/exam/getExamById/${exid}`, null).subscribe((result) => {
       this.exams = result;
+    });
+  }
       
 
 // Get Qeustions By ExamId
