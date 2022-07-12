@@ -543,6 +543,17 @@ updateExam(body: any, img: FormData|null) {
 
   }
 
+  // Get Exam By CourseId
+  async getExamsByCourseId(cId: number): Promise<void> {
+    this.http.post(`https://localhost:44342/api/exam/GetExamsByCourseId/${cId}`, null).subscribe((result) => {
+      this.exams = result;
+
+    }, err => {
+      this.toastr.error('Unable to connect the server.');
+    })
+  }
+
+
 }
 
 function delay(ms: number) {
