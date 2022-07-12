@@ -30,6 +30,9 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { ProfitReportComponent } from './profit-report/profit-report.component';
+import { AdminQuestionsComponent } from './admin-questions/admin-questions.component';
+import { CreateQuestionComponent } from './admin-questions/create-question/create-question.component';
+
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
   interactionPlugin
@@ -58,7 +61,9 @@ FullCalendarModule.registerPlugins([
     CreateExamComponent,
     SiteInfoComponent,
     UpdateExamComponent,
-    ProfitReportComponent
+    ProfitReportComponent,
+    AdminQuestionsComponent,
+    CreateQuestionComponent,
     
     
   ],
