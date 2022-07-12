@@ -552,7 +552,18 @@ updateExam(body: any, img: FormData|null) {
       this.toastr.error('Unable to connect the server.');
     })
   }
+     
+getAllAccountWithoutAdmin() {
+  this.http.get('https://localhost:44342/api/account').subscribe((result:any) => {  
+       
+    this.AccountsData = result.filter((value:any)=> value.rolename!='Admin'); 
+ 
 
+  }, error => {
+    this.toastr.error('Unable to connect the server.');
+    this.toastr.error(error.message,error.status);
+  });
+}
 
 }
 
