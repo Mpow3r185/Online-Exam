@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Tahaluf.PlusExam.Core.Data;
+using Tahaluf.PlusExam.Core.DTO;
 using Tahaluf.PlusExam.Core.ServiceInterface;
 
 namespace Tahaluf.PlusExam.API.Controllers
@@ -75,5 +76,19 @@ namespace Tahaluf.PlusExam.API.Controllers
             return _questionService.GetQeustionsByExamId(exid);
         }
         #endregion GetQeustionsByExamId
+        
+        [HttpPost]
+        [Route("GetQeustionsDetailsByExamId/{exid}")]
+        public List<QuestionsDetailsDTO> GetQeustionsDetailsByExamId(int exid)
+        {
+            return _questionService.GetQeustionsDetailsByExamId(exid);
+        }
+
+        [HttpGet]
+        [Route("GetAllQeustionsDetails")]
+        public List<QuestionsDetailsDTO> GetAllQeustionsDetails()
+        {
+            return _questionService.GetAllQeustionsDetails();
+        }
     }
 }
