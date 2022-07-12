@@ -67,5 +67,12 @@ namespace Tahaluf.PlusExam.Infra.Service
         }
         #endregion getInvoiceByUserId
         
+        #region invoicesDetails
+        public List<InvoiceDetailsDTO> invoicesDetails()
+        {
+            return invoiceRepository.invoicesDetails();
+        }
+        #endregion invoicesDetails
+        
     }
 }

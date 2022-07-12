@@ -21,6 +21,9 @@ export class AdminService {
   courseId!: number;
   exams: any;
   zoomMeeting: any;
+  profitReport: any;
+  profitReportDetails: any;
+  questions: any = [{}];
 
   constructor(
     private http: HttpClient,
@@ -231,6 +234,24 @@ async getAccountById(accId: number): Promise<void>{
  {
    this.http.get('https://localhost:44342/api/report/NumberOfFailUsers').subscribe((result) => {            
      this.FailUsers = result;      
+   }, error => {
+     this.toastr.error('Unable to connect the server.');
+     this.toastr.error(error.message,error.status);
+   });
+ }
+ getProfitReport()
+ {
+   this.http.get('https://localhost:44342/api/Invoice/FinancialMatters').subscribe((result) => {            
+     this.profitReport = result;      
+   }, error => {
+     this.toastr.error('Unable to connect the server.');
+     this.toastr.error(error.message,error.status);
+   });
+ }
+ getProfitReportDetails()
+ {
+   this.http.get('https://localhost:44342/api/Invoice/invoicesDetails').subscribe((result) => {            
+     this.profitReportDetails = result;      
    }, error => {
      this.toastr.error('Unable to connect the server.');
      this.toastr.error(error.message,error.status);
@@ -476,10 +497,75 @@ updateExam(body: any, img: FormData|null) {
     this.http.post(`https://localhost:44342/api/exam/getExamById/${exid}`, null).subscribe((result) => {
       this.exams = result;
       
+
+// Get Qeustions By ExamId
+  async GetQeustionsDetailsByExamId(exId: number): Promise<void> {
+    this.http.post(`https://localhost:44342/api/question/GetQeustionsDetailsByExamId/${exId}`, null).subscribe((result) => {
+      this.questions = result;
+
     }, err => {
       this.toastr.error('Unable to connect the server.');
     })
   }
+
+  // Get All Questions
+  async getAllQuestions(): Promise<void> {
+    this.http.get('https://localhost:44342/api/question/GetAllQeustionsDetails').subscribe((result) => {
+      this.questions = result;
+    }, error => {
+      this.toastr.error('Unable to connect server');
+    });
+  }
+
+  // Delete Question
+  DeleteQuestion(id: number) {
+    this.http.delete(`https://localhost:44342/api/question/DeleteQuestion/${id}`).subscribe((result) => {
+      this.toastr.success('Question Deleted Successfully.');
+    }, error => {
+      this.toastr.error('Unable to connect the server.');
+    });
+  }
+
+
+  // Update Question
+
+  UpdateQuestion(body: any) {
+    SpinnerComponent.show();
+    this.http.put('https://localhost:44342/api/question', body).subscribe((result) => {
+      this.toastr.success('Question Updated Successfully');
+      setTimeout(() => {
+        SpinnerComponent.hide();
+      }, 3500);
+    }, err => {
+      console.log(err.message, err.status);
+      SpinnerComponent.hide();
+      this.toastr.error('Unable to connect the server');
+    })
+
+  }
+
+  // Get Exam By CourseId
+  async getExamsByCourseId(cId: number): Promise<void> {
+    this.http.post(`https://localhost:44342/api/exam/GetExamsByCourseId/${cId}`, null).subscribe((result) => {
+      this.exams = result;
+
+    }, err => {
+      this.toastr.error('Unable to connect the server.');
+    })
+  }
+
+     
+getAllAccountWithoutAdmin() {
+  this.http.get('https://localhost:44342/api/account').subscribe((result:any) => {  
+       
+    this.AccountsData = result.filter((value:any)=> value.rolename!='Admin'); 
+ 
+
+  }, error => {
+    this.toastr.error('Unable to connect the server.');
+    this.toastr.error(error.message,error.status);
+  });
+}
 
 }
 

@@ -25,5 +25,8 @@ namespace Tahaluf.PlusExam.Core.ServiceInterface
         
         //Get Invice By User Id
         List<InvoiceDTO> getInvoiceByUserId(int id);
+        
+        //Get Invoices Details as a list
+        List<InvoiceDetailsDTO> invoicesDetails();
     }
 }

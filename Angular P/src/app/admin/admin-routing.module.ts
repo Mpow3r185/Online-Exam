@@ -11,6 +11,9 @@ import { StudentReportComponent } from './student-report/student-report.componen
 import { StdReportDetailsComponent } from './student-report/std-report-details/std-report-details.component';
 import { AdminServicesComponent } from './admin-services/admin-services.component';
 import { SiteInfoComponent } from './site-info/site-info.component';
+import { ProfitReportComponent } from './profit-report/profit-report.component';
+import { AdminQuestionsComponent } from './admin-questions/admin-questions.component';
+
 
 
 const routes: Routes = [
@@ -57,6 +60,20 @@ const routes: Routes = [
   {
     path: 'createQuestions/:id',
     component: CreateQuestionsComponent
+  }
+  ,
+  {
+    path: 'profitReport',
+    component: ProfitReportComponent,
+  },
+  {
+    path: 'questions/:id',
+    component: AdminQuestionsComponent
+  }
+  ,
+  {
+    path: 'questions',
+    component: AdminQuestionsComponent
   }
 ];
 

@@ -1,0 +1,105 @@
+@import '../../../assets/admin-dashboard/css/material-dashboard.css';
+@import '../../../assets/admin-dashboard/demo/demo.css';
+@import '../../../assets/admin-dashboard/css/material-dashboard.min.css';
+
+
+
+.x_panel {
+    position: relative;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px 17px;
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #E6E9ED;
+    -webkit-column-break-inside: avoid;
+    -moz-column-break-inside: avoid;
+    column-break-inside: avoid;
+    opacity: 1;
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease; }
+  
+  .x_title {
+    border-bottom: 2px solid #E6E9ED;
+    padding: 1px 5px 6px;
+    margin-bottom: 10px; }
+  
+  .x_title .filter {
+    width: 40%;
+    float: right; }
+  
+  .x_title h2 {
+    margin: 5px 0 6px;
+    float: left;
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #001166;
+    font-weight: 600;
+  }
+  
+  .x_title h2 small {
+    margin-left: 10px; }
+  
+  .x_title span {
+    color: #BDBDBD; }
+  
+  .x_content {
+    padding: 0 3px 6px;
+    position: relative;
+    width: 100%;
+    float: left;
+    clear: both;
+    margin-top: 5px; }
+  
+  .x_content h4 {
+    font-size: 16px;
+    font-weight: 500; }
+  
+  
+.clearfix:after, form:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+
+ .card{
+  box-shadow: 0 1px 4px 0 rgb(0 0 0 / 67%) !important;
+ }   
+ .card-title{
+  color:#340101 !important;
+ }
+ p.card-category{
+  color:#051e71 !important;
+  font-size: 16px !important;
+  text-align: center !important;
+ }
+
+ div.card-icon{
+  background: linear-gradient(184deg,#be0101,#102070) !important;
+ }
+ h3.card-title{
+  text-align: center !important;
+ }
+  button.btn.btn-info{
+  background-color:rgb(5, 105, 5) !important;
+  border-color: #08b102 !important;
+    
+ } 
+
+ .btn.btn .btn-info:hover{
+  background-color: #048f0e  !important;
+    border-color: #0dd406 !important;
+  box-shadow: 0 14px 26px -12px rgb(6 177 2 / 42%), 0 4px 23px 0 rgb(0 0 0 / 12%), 0 8px 10px -5px rgba(0, 252, 80, 0.2);
+}
+
+button.btn.btn-danger{
+  background-color:#a90906 !important;
+}
+
+
+
+
+

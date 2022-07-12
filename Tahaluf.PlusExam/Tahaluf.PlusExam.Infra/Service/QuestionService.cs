@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Tahaluf.PlusExam.Core.Data;
+using Tahaluf.PlusExam.Core.DTO;
 using Tahaluf.PlusExam.Core.RepositoryInterface;
 using Tahaluf.PlusExam.Core.ServiceInterface;
 
@@ -56,6 +57,18 @@ namespace Tahaluf.PlusExam.Infra.Service
         public List<Question> GetQeustionsByExamId(int exid)
         {
             return _questionRepository.GetQeustionsByExamId(exid);
+        }
+        // Get Qeustions Details By ExamId
+        public List<QuestionsDetailsDTO> GetQeustionsDetailsByExamId(int exid)
+        {
+
+            return _questionRepository.GetQeustionsDetailsByExamId(exid);
+        }
+
+        // Get All Qeustions Details
+        public List<QuestionsDetailsDTO> GetAllQeustionsDetails()
+        {
+            return _questionRepository.GetAllQeustionsDetails();
         }
     }
 }

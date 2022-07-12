@@ -128,6 +128,19 @@ namespace Tahaluf.PlusExam.API.Controllers
             }
 
             return true;
+        
+        [HttpPost]
+        [Route("GetQeustionsDetailsByExamId/{exid}")]
+        public List<QuestionsDetailsDTO> GetQeustionsDetailsByExamId(int exid)
+        {
+            return _questionService.GetQeustionsDetailsByExamId(exid);
+        }
+
+        [HttpGet]
+        [Route("GetAllQeustionsDetails")]
+        public List<QuestionsDetailsDTO> GetAllQeustionsDetails()
+        {
+            return _questionService.GetAllQeustionsDetails();
         }
     }
 }

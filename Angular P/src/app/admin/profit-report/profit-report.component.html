@@ -1,0 +1,146 @@
+<div class="overflow-hidden dark-edition bg-white">
+    <div class="wrapper">
+        <app-side-bar></app-side-bar>
+        <div class="main-panel">
+            <app-nav-bar></app-nav-bar>
+
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 mb-30">
+                            <div class="card card-statistics h-100">
+                                <div class="card-body">
+                                    <div class="x_panel">
+                                        <div class="x_title row">
+                                            <h2 class="col-sm-12">Profit Reports</h2>
+
+                                            <p class="col-sm-12 text-muted font-13 m-b-30">
+                                                <button class="btn btn-info" (click)="exportexcel()">Export to
+                                                    Excel</button>
+                                                <button printSectionId="section" styleSheetFile="assets/cssReport.css"
+                                                    ngxPrint class="btn btn-danger">Download PDF</button>
+                                            </p>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div id="section">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                                        <div class="card card-stats" style="background-color:#f9f9f9;">
+                                                            <div
+                                                                class="card-header card-header-warning card-header-icon">
+                                                                <div class="card-icon">
+                                                                    <i class="fa fa-money"></i>
+                                                                </div>
+                                                                <p class="card-category">Total Profit</p>
+                                                                <h3 class="card-title">
+                                                                    ${{adminService.profitReport[0].profit}}</h3>
+                                                            </div>
+                                                            <div class="card-footer"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                                        <div class="card card-stats" style="background-color:#f9f9f9;">
+                                                            <div
+                                                                class="card-header card-header-warning card-header-icon">
+                                                                <div class="card-icon">
+                                                                    <i class="fa fa-percent" aria-hidden="true"></i>
+                                                                </div>
+                                                                <p class="card-category">Average Of Profit </p>
+                                                                <h3 class="card-title">
+                                                                    ${{adminService.profitReport[0].avgOfProfit}}</h3>
+                                                            </div>
+                                                            <div class="card-footer"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                                        <div class="card card-stats" style="background-color:#f9f9f9;">
+                                                            <div
+                                                                class="card-header card-header-warning card-header-icon">
+                                                                <div class="card-icon">
+                                                                    <i class="fas fa-file-invoice-dollar" aria-hidden="true"></i>
+                                                                </div>
+                                                                <p class="card-category">Number Of Invoice </p>
+                                                                <h3 class="card-title">
+                                                                    {{adminService.profitReport[0].numberOfInvoice}}</h3>
+                                                            </div>
+                                                            <div class="card-footer"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="x_content">
+                                                <div class="row">
+                                                    <div class="col-sm-12" id="excel-table">
+                                                        <div class="card-box table-responsive ">
+
+                                                            <div>
+                                                                <table id="dtTable3"
+                                                                    class="table table-hover table-sm table-bordered p-0 "
+                                                                    style="width:100%;text-align: center">
+
+                                                                    <thead class="text-white"
+                                                                        style="background-color: #001166;">
+                                                                        <tr>
+                                                                            <th>#</th>
+                                                                            <th style="color:#fff; font-weight: bold;">
+                                                                                Full Name</th>
+                                                                            <th style="color:#fff; font-weight:bold;">
+                                                                                Email</th>
+                                                                            <th style="color:#fff; font-weight:bold;">
+                                                                                Exam Name</th>
+                                                                            <th style="color:#fff; font-weight:bold;">
+                                                                                Cost</th>
+                                                                            <th style="color:#fff; font-weight:bold;">
+                                                                                Creation Date</th>
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr
+                                                                            *ngFor="let item of adminService.profitReportDetails let i = index;">
+                                                                            <td style="color:#000; font-weight:bold;">
+                                                                                {{i+1}}</td>
+                                                                            <td style="font-weight: bold; color:#000;">
+                                                                                {{ item.fullName }}</td>
+                                                                            <td style="color:#000; font-weight:bold;">{{
+                                                                                item.email }}</td>
+                                                                            <td style="color:#000; font-weight:bold;">{{
+                                                                                item.examName }}</td>
+                                                                            <td style="color:#000; font-weight:bold;">${{
+                                                                                item.examCost }}</td>
+                                                                            <td style="color:#000; font-weight:bold;">{{
+                                                                                item.creationDate | date }}</td>
+
+                                                                           
+
+                                                                        </tr>
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
