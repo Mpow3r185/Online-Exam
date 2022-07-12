@@ -101,7 +101,6 @@ export class AdminService {
       });  
 
     }, err => {
-      console.log(err);
       SpinnerComponent.hide();
     })
 
@@ -136,7 +135,6 @@ export class AdminService {
         })
         
       }, err => {
-        console.log(err);
         SpinnerComponent.hide();
       })  
   }
@@ -202,7 +200,6 @@ async getFullUserDetailsById(accId: number): Promise<void> {
 async getAccountById(accId: number): Promise<void>{
   this.http.post(`https://localhost:44342/api/Account/getAccountById/${accId}`, null).subscribe((result) => {
     this.account = result;
-    console.log(result);
     
   }, error => {
     this.toastr.error('Unable to connect the server');
@@ -276,7 +273,6 @@ CreateServices(body:any){
     this.toastr.success('Service Created Successfully');     
   },err =>{
     SpinnerComponent.hide();
-    console.log(err.message,err.status);
      this.toastr.error('Unable to connect the server');
   })
 }
@@ -289,7 +285,6 @@ UpdateServices(body:any){
   this.http.put('https://localhost:44342/api/OurService',body).subscribe((result)=>{
     this.toastr.success('Service Updated Successfully');
   },err =>{
-    console.log(err.message,err.status);
     SpinnerComponent.hide();
      this.toastr.error('Unable to connect the server');
   })
@@ -303,7 +298,6 @@ DeleteServices(id:number){
   this.http.delete(`https://localhost:44342/api/OurService/DeleteService/${id}`).subscribe((result)=>{
     this.toastr.success('Service Deleted Successfully');
   },err =>{
-    console.log(err.message,err.status);
     SpinnerComponent.hide();
      this.toastr.error('Unable to connect the server');
   })
@@ -316,9 +310,7 @@ createExam(body: any, img: FormData) {
   let zoomMeetingLink = body['zoomMeeting'];
   delete body['zoomMeeting'];
   
-  this.http.post('https://localhost:44342/api/exam/Upload', img).subscribe((resultImage: any) => {
-    console.log(resultImage);
-    
+  this.http.post('https://localhost:44342/api/exam/Upload', img).subscribe((resultImage: any) => {    
     body.examImage = resultImage.examImage;
 
     this.http.post('https://localhost:44342/api/exam', body).subscribe((result) => {
@@ -364,7 +356,6 @@ updateExamWithImage(body: any, img:FormData) {
       })
       
     }, err => {
-      console.log(err);
       SpinnerComponent.hide();
     })  
 }
@@ -439,7 +430,6 @@ updateExam(body: any, img: FormData|null) {
     if (zoomLink == undefined || zoomLink == '') {
       this.http.post('https://localhost:44342/api/exam/Upload', img).subscribe((resultImage: any) => {
         body.examImage = resultImage.examImage;
-        console.log(body);
       this.http.put('https://localhost:44342/api/exam', body).subscribe((result) => {
         this.toastr.success('Exam updated successfully');
       }, error => {
@@ -451,7 +441,6 @@ updateExam(body: any, img: FormData|null) {
     else {
       this.http.post('https://localhost:44342/api/exam/Upload', img).subscribe((resultImage: any) => {
         body.examImage = resultImage.examImage;
-        console.log(body);
         
         this.http.put('https://localhost:44342/api/exam', body).subscribe(async (result) => {
           this.toastr.success('Exam updated successfully');
@@ -496,6 +485,18 @@ updateExam(body: any, img: FormData|null) {
     });
   }
 
+  // Search Exam
+  async searchExam(body: any) {    
+    this.http.post('https://localhost:44342/api/exam/searchExam', body).subscribe((result) => {
+      this.exams = result;
+    });
+  }
+
+  // Get Exam By Id
+  async getExamById(exid: number): Promise<void> {    
+    this.http.post(`https://localhost:44342/api/exam/getExamById/${exid}`, null).subscribe((result) => {
+      this.exams = result;
+      
 
 // Get Qeustions By ExamId
   async GetQeustionsDetailsByExamId(exId: number): Promise<void> {
@@ -552,6 +553,7 @@ updateExam(body: any, img: FormData|null) {
       this.toastr.error('Unable to connect the server.');
     })
   }
+
      
 getAllAccountWithoutAdmin() {
   this.http.get('https://localhost:44342/api/account').subscribe((result:any) => {  

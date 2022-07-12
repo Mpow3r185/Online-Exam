@@ -61,10 +61,10 @@ FullCalendarModule.registerPlugins([
     CreateExamComponent,
     SiteInfoComponent,
     UpdateExamComponent,
+    CreateQuestionsComponent
     ProfitReportComponent,
     AdminQuestionsComponent,
     CreateQuestionComponent,
-    
     
   ],
   imports: [

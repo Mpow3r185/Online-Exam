@@ -344,3 +344,30 @@ button.toast-close-button {
 
 
 /* End Search Filed */
+
+div.question-container {
+    background-color: #EEE;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+div.question-container:hover {
+    box-shadow: 1px 1px 5px 1px #808080;
+}
+
+div.question-container:hover p {
+    animation-name: animate-paraghraph;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+    animation-timing-function: ease-in;
+}
+
+.font-family-tahoma {
+    font-family: Tahoma, sans-serif;
+}
+
+.border-1px {
+    border: 2px solid #016;
+    border-radius: 10px;
+}
