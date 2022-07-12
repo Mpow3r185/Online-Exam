@@ -23,6 +23,7 @@ export class AdminService {
   zoomMeeting: any;
   profitReport: any;
   profitReportDetails: any;
+  questions: any = [{}];
 
   constructor(
     private http: HttpClient,
@@ -493,6 +494,53 @@ updateExam(body: any, img: FormData|null) {
     }, error => {
       this.toastr.error('Unable to connect server');
     });
+  }
+
+
+// Get Qeustions By ExamId
+  async GetQeustionsDetailsByExamId(exId: number): Promise<void> {
+    this.http.post(`https://localhost:44342/api/question/GetQeustionsDetailsByExamId/${exId}`, null).subscribe((result) => {
+      this.questions = result;
+
+    }, err => {
+      this.toastr.error('Unable to connect the server.');
+    })
+  }
+
+  // Get All Questions
+  async getAllQuestions(): Promise<void> {
+    this.http.get('https://localhost:44342/api/question/GetAllQeustionsDetails').subscribe((result) => {
+      this.questions = result;
+    }, error => {
+      this.toastr.error('Unable to connect server');
+    });
+  }
+
+  // Delete Question
+  DeleteQuestion(id: number) {
+    this.http.delete(`https://localhost:44342/api/question/DeleteQuestion/${id}`).subscribe((result) => {
+      this.toastr.success('Question Deleted Successfully.');
+    }, error => {
+      this.toastr.error('Unable to connect the server.');
+    });
+  }
+
+
+  // Update Question
+
+  UpdateQuestion(body: any) {
+    SpinnerComponent.show();
+    this.http.put('https://localhost:44342/api/question', body).subscribe((result) => {
+      this.toastr.success('Question Updated Successfully');
+      setTimeout(() => {
+        SpinnerComponent.hide();
+      }, 3500);
+    }, err => {
+      console.log(err.message, err.status);
+      SpinnerComponent.hide();
+      this.toastr.error('Unable to connect the server');
+    })
+
   }
 
 }
