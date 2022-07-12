@@ -63,13 +63,7 @@ export class AdminQuestionsComponent implements OnInit {
     this.dataSource=this.adminService.questions;
   }
 
-  async getOptionsByQId(question:any): Promise<void>
-  {
-    this.question = question;
-    await this.adminService.GetOptionsWithCorrectAnsByQId(question.id);
-    await delay(2000);
-    this.dataSource=this.adminService.options;
-  }
+  
 
 // Delete Question
 deleteQuestion(question: any): void {
