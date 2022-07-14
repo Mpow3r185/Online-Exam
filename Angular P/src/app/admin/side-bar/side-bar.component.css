@@ -18,5 +18,14 @@
     margin-top: 0;
     text-shadow: 1px 1px #000;
  }
+li.active a {
+  
+  background: linear-gradient(47deg,#001166,#be0808) !important;
+  box-shadow: 0 4px 20px 0rgba(0,0,0,.14),0 7px 10px -5pxrgba(0,188,212,.4);
+}  
+
+li.active i{
+  color:#fff !important;
+}
 
     
