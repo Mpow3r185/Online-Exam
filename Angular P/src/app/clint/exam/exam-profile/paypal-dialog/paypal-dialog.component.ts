@@ -35,9 +35,6 @@ export class PaypalDialogComponent implements OnInit {
           SpinnerComponent.hide();
           this.dialog.closeAll();
           window.location.reload();
-          
-          
-          
         },
       }
     )

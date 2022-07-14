@@ -54,8 +54,8 @@ export class AdminCoursesComponent implements OnInit,AfterViewInit {
   //For Update Course Information
   updateForm: FormGroup = new FormGroup({
     id: new FormControl(),
-    courseName: new FormControl('', Validators.required),
-    description: new FormControl('', Validators.required),
+    courseName: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    description: new FormControl('', Validators.maxLength(300)),
     status: new FormControl('', Validators.required),
     courseImage: new FormControl()
   });

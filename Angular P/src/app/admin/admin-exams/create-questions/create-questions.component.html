@@ -1,3 +1,4 @@
+<app-side-bar></app-side-bar>
 <div class="container-fluid p-0">
 
     <!-- Exam Header Container -->
@@ -47,7 +48,8 @@
 
                     <!-- Save Questions Button -->
                     <div class="container d-flex mb-3">
-                        <button class="btn btn-primary m-auto d-block submit-btn font-weight-bold">
+                        <button class="btn btn-primary m-auto d-block submit-btn font-weight-bold"
+                            (click)="saveAllQuestions()">
                             Save Questions
                         </button>
                     </div>
@@ -221,8 +223,9 @@
 
             <div class="container">
                 <div class="row justify-content-around">
-                    <div class="row col-3"></div>
-                    <div class="row col-8 border-3px" id="submitedQuestionContainer">
+                    <div class="row col-0 col-sm-0 col-md-0 col-lg-3 col-xl-3"></div>
+                    <div class="row col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 border-3px"
+                        id="submitedQuestionContainer">
 
 
 

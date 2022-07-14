@@ -91,8 +91,12 @@ export class AdminExamsComponent implements OnInit {
     }
 
     let fileToUpload = <File>img[0];
-    const formData = new FormData();
-    formData.append('file', fileToUpload, fileToUpload.name);
+    let formData: null|FormData = new FormData();
+    if (fileToUpload) {
+      formData.append('file', fileToUpload, fileToUpload.name);
+    } else {
+      formData = null;
+    }
     
     
     this.exam['examImage'] = this.exam['examImage'].split('\\').pop();
@@ -111,6 +115,7 @@ export class AdminExamsComponent implements OnInit {
     this.oldExamData['numberOfQuestions'] = this.exam['numberOfQuestions'];
     this.oldExamData['passcode'] = this.exam['passcode'];
     this.oldExamData['successMark'] = this.exam['successMark'];
+    console.log(this.exam);
     
     this.adminService.updateExam(this.exam, formData);
   }

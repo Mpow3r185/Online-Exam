@@ -118,15 +118,9 @@
                             </div>
 
                             <div class="container mb-30"
-                                *ngIf="!homeService.isBoughtExam && timerStatus =='ENDS AFTER'">
+                                *ngIf="!homeService.isBoughtExam && (timerStatus =='ENDS AFTER' || timerStatus =='START AFTER')">
                                 <button type="button" class="btn btn-primary d-block mx-auto"
                                     (click)="openPayPalDialog()">Buy
-                                    Now</button>
-                            </div>
-
-                            <div class="container mb-30"
-                                *ngIf="!homeService.isBoughtExam && timerStatus =='START AFTER'">
-                                <button type="button" class="btn btn-primary d-block mx-auto">Buy
                                     Now</button>
                             </div>
                         </ng-template>
@@ -280,7 +274,14 @@
                                 </div>
 
                                 <div class="col-6 text-left">
-                                    ${{ homeService.exams.cost }}
+                                    <ng-container *ngIf="homeService.exams.cost <= 0">
+                                        FREE
+                                    </ng-container>
+
+                                    <ng-container *ngIf="homeService.exams.cost > 0">
+                                        ${{ homeService.exams.cost }}
+                                    </ng-container>
+
                                 </div>
                             </div>
                         </li>
