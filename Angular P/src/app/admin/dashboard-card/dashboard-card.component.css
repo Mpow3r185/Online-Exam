@@ -2,6 +2,69 @@
 @import '../../../assets/admin-dashboard/demo/demo.css';
 @import '../../../assets/admin-dashboard/css/material-dashboard.min.css';
 @import '../../../assets/admin-dashboard/css/material-dashboard.min.css';
+
 ul {
     list-style: none;
 }
+
+.card {
+    box-shadow: 0 1px 4px 0 rgb(0 0 0 / 67%) !important;
+}
+
+.card-title {
+    color: #340101 !important;
+}
+
+p.card-category {
+    color: #051e71 !important;
+    font-size: 16px !important;
+    text-align: center !important;
+}
+
+div.card-icon {
+    background: linear-gradient(184deg, #be0101, #102070) !important;
+}
+
+h3.card-title {
+    text-align: center !important;
+}
+
+#home-01-tab,
+#home-02-tab,
+#profile-02-tab {
+    color:#102070 !important;
+}
+
+td {
+    color: black !important;
+}
+
+div.card {
+    color:#102070 !important;
+    background-color: #f9f9f9 !important;
+}
+div.card-header.card-header-info{
+    background: linear-gradient(360deg,#92091e,#102070) !important;
+}
+h4.card-title{
+    color:#f9f9f9 !important;
+
+}
+.nav-link.active{
+    background-color:#a60606 !important;
+    color:white !important;
+}
+
+.nav-link.active#home-01-tab,.nav-link.active#home-02-tab,.nav-link.active#profile-02-tab{
+    color:white !important;
+}
+.btn-light{
+    background-color: rgb(234, 237, 247) !important;
+}
+
+.calender{
+    padding: 20px;
+    
+}
+
+
