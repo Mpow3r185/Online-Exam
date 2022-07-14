@@ -1,8 +1,9 @@
+import { SpinnerComponent } from './../../../spinner/spinner.component';
 import { FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AdminService } from 'src/app/service/admin.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -14,6 +15,7 @@ export class CreateQuestionsComponent implements OnInit {
 
   private routeSub!: Subscription;
   private questions: Question[] = [];
+  private exid?: number;
 
   public selectedType: string = 'Single';
   public Qcounter: number = 0;
@@ -26,10 +28,12 @@ export class CreateQuestionsComponent implements OnInit {
   constructor(
     public adminService: AdminService,
     private toastr: ToastrService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { 
     this.routeSub = this.route.params.subscribe(async params => {
-      await this.adminService.getExamById(Number(params['id']));    
+      await this.adminService.getExamById(Number(params['id']));
+      this.exid = Number(params['id']);
     });    
    }
 
@@ -93,8 +97,8 @@ export class CreateQuestionsComponent implements OnInit {
     }
 
     // Get Question Type
-    let type: questionType = questionType.Single;
-    switch (this.selectedType) {
+    let type: string = this.selectedType;;
+    /*switch (this.selectedType) {
       case 'Single':
         type = questionType.Single;
         break;
@@ -106,19 +110,19 @@ export class CreateQuestionsComponent implements OnInit {
       case 'Fill':
         type = questionType.Fill;
         break;
-    }    
+    } */ 
 
     const question: Question = new Question((<HTMLInputElement>document.getElementById('questionTextarea')).value, type);
     question.score = this.scoreControl.value;
     question.status = this.statusControl.value;
     
     const options = document.getElementsByName(`q${this.Qcounter}`);
-    if (options.length == 0 && (type == questionType.Fill && (<HTMLInputElement>document.getElementById(`optionTextarea-${this.Qcounter}`)).value == '')) {
+    if (options.length == 0 && (type == 'Fill' && (<HTMLInputElement>document.getElementById(`optionTextarea-${this.Qcounter}`)).value == '')) {
       this.toastr.error('There Is No Options');
       return;
     }
     
-    if (type == questionType.Single || type == questionType.Multiple) {
+    if (type == 'Single' || type == 'Multiple') {
       console.log(type);
       
       let thereIsCorrectOption: boolean = false;
@@ -254,7 +258,7 @@ export class CreateQuestionsComponent implements OnInit {
     rowContainer3.classList.add('row');
 
     const question = this.questions[this.questions.length - 1];
-    if (question.type == questionType.Fill) {
+    if (question.type == 'Fill') {
       const optionContainer = document.createElement('div');
       optionContainer.classList.add('col-12');
 
@@ -275,7 +279,7 @@ export class CreateQuestionsComponent implements OnInit {
       rowContainer3.appendChild(optionContainer);
     }
     else {
-      const inputType = (question.type == questionType.Single) ? 'radio' : 'checkbox';
+      const inputType = (question.type == 'Single') ? 'radio' : 'checkbox';
       for (let i=0; i<question.options.length; i++) {
 
         const optionContainer = document.createElement('div');
@@ -311,6 +315,16 @@ export class CreateQuestionsComponent implements OnInit {
 
     this.Qcounter++;
     this.Ocounter = 0;
+  }
+
+  async saveAllQuestions() {
+    SpinnerComponent.show();
+
+    this.adminService.CreateExamQuestions(this.questions, this.exid);
+  
+    await delay(10000);
+    this.router.navigate(['/admin/exams']);
+    SpinnerComponent.hide();
   }
 
   clearQuestionForm() {
@@ -366,18 +380,23 @@ class FillOption extends Option {
   
 }
 
-class Question {
+export class Question {
   public text: string = 'Unavailable';
-  public type: questionType = questionType.Single;
-  public status: status = status.DISABLE;
+  public type: string = 'Single';
+  public status: string = 'DISBALE';
   public score: number = 1;
   public options: ChooseOption[];
   public fillOption?: FillOption;
 
-  constructor(text: string, type: questionType = questionType.Single) {
+  constructor(text: string, type: string = 'Single') {
     this.text = text;
     this.type = type;
     this.options = [];
     this.fillOption;
   }
+}
+
+
+function delay(ms: number) {
+  return new Promise( resolve => setTimeout(resolve, ms) );
 }

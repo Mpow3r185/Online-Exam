@@ -23,4 +23,11 @@ namespace Tahaluf.PlusExam.Core.DTO
         OK,
         BLOCK
     }
+
+    public enum QuestionTypes
+    {
+        Single,
+        Multiple,
+        Fill
+    }
 }

@@ -57,8 +57,18 @@ export class ExamProfileComponent implements OnInit {
     this.examDuration = this.getExamDuration();
   }
 
-  openPayPalDialog() { 
-    this.dialog.open(PaypalDialogComponent);
+  async openPayPalDialog() { 
+    if (this.homeService.exams.cost > 0) {
+      this.dialog.open(PaypalDialogComponent);
+    } else {
+      this.homeService.createInvoice(this.homeService.exams.id, Number(localStorage.getItem('AccountId')));
+
+      SpinnerComponent.show();
+      await delay(2000);
+      SpinnerComponent.hide();
+      window.location.reload();
+    }
+    
   }
 
 

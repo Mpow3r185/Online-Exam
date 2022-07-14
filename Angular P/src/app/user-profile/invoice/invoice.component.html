@@ -1,48 +1,51 @@
 <app-internal-nav-bar></app-internal-nav-bar>
 <div class="container py-5">
-    <div class="content mt-5 py-5">
-        <div class="row">
-        
-            <div class="card-body">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Invoices</h2>
-                    <div class="clearfix"></div>
-                  </div>
-                    
-                   
-                    <table id="dtTable" class="table table-hover table-sm table-bordered p-0" style="width:100%;text-align: center">
-                      <thead class="font-weight-bold" style="background-color: #001166; color:#fff">
-                        <tr>
-                          <th>#</th>
-                          <th>Exam Name</th>
-                          <th>Exam Level</th>
-                          <th>Exam Cost</th>
-                          <th>Exam purchase date</th>
-                          <th>Processes</th>
-                        </tr>
-                      </thead>
-                      <tbody class="font-weight-bold text-dark">
-                         <tr *ngIf="userService.InvoicesData.length == 0">
-                          <td colspan="6" class="text-danger font-weight-bold">you don't have no invoices yet</td>
-                        </tr>
-                        <tr *ngFor="let obj of userService.InvoicesData let i = index;">
-                          <td>{{i+1}}</td>
-                          <td>{{ obj.examName }}</td>
-                          <td>{{ obj.examLevel  }}</td>
-                          <td>${{ obj.examCost }}</td>
-                          <td>{{ obj.creationDate | date }}</td>
-                          <td>
-                            <button (click)="openDetailsDialog(obj.examName,obj.examLevel,obj.examCost,obj.creationDate)" class="btn btn-warning btn-sm text-white" role="button" aria-pressed="true" title="Details"><i class="fa fa-eye"></i></button> 
-                           </td>
-                        </tr>
-    
-                      </tbody>
-                    </table>
-                </div>
-            </div>                             
+  <div class="content mt-5 py-5">
+    <div class="row">
+
+      <div class="card-body">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Invoices</h2>
+            <div class="clearfix"></div>
+          </div>
+
+
+          <table id="dtTable" class="table table-hover table-sm table-bordered p-0"
+            style="width:100%;text-align: center">
+            <thead class="font-weight-bold" style="background-color: #001166; color:#fff">
+              <tr>
+                <th>#</th>
+                <th>Exam Name</th>
+                <th>Exam Level</th>
+                <th>Exam Cost</th>
+                <th>Exam purchase date</th>
+                <th>Processes</th>
+              </tr>
+            </thead>
+            <tbody class="font-weight-bold text-dark">
+              <tr *ngIf="userService.InvoicesData.length == 0">
+                <td colspan="6" class="text-danger font-weight-bold">you don't have no invoices yet</td>
+              </tr>
+              <tr *ngFor="let obj of userService.InvoicesData let i = index;">
+                <td>{{i+1}}</td>
+                <td>{{ obj.examName | titlecase }}</td>
+                <td>{{ obj.examLevel }}</td>
+                <td>${{ obj.examCost }}</td>
+                <td>{{ obj.creationDate | date: 'medium' }}</td>
+                <td>
+                  <button (click)="openDetailsDialog(obj.examName,obj.examLevel,obj.examCost,obj.creationDate)"
+                    class="btn btn-warning btn-sm text-white" role="button" aria-pressed="true" title="Details"><i
+                      class="fa fa-eye"></i></button>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
 

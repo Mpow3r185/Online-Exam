@@ -18,7 +18,7 @@ export class CreateCourseComponent implements OnInit {
 
   createForm: FormGroup = new FormGroup({
     courseName: new FormControl('', [Validators.required,Validators.maxLength(30)]),
-    description: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.maxLength(300)),
     status: new FormControl('', Validators.required),
     courseImage: new FormControl()
   })

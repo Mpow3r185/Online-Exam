@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { HomeService } from './home.service';
 import { SpinnerComponent } from 'src/app/spinner/spinner.component';
 import { renderFlagCheckIfStmt } from '@angular/compiler/src/render3/view/template';
+import { Question } from '../admin/admin-exams/create-questions/create-questions.component';
 
 @Injectable({
   providedIn: 'root'
@@ -566,6 +567,16 @@ getAllAccountWithoutAdmin() {
   }, error => {
     this.toastr.error('Unable to connect the server.');
     this.toastr.error(error.message,error.status);
+  });
+}
+
+CreateExamQuestions(body: Question[], exid?: number) {
+  console.log(exid, body);
+  
+  this.http.post(`https://localhost:44342/api/question/CreateExamQuestions/${exid}`, body).subscribe((result) => {
+    this.toastr.success('Questions Successfully Added');
+  }, error => {
+    this.toastr.error('Unable to connect the server.', error.message);
   });
 }
 

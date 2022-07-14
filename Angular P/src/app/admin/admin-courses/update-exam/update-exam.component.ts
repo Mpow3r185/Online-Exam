@@ -46,7 +46,9 @@ export class UpdateExamComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
     let body = this.createForm.value;
-    this.adminService.createExam(body, formData);    
+    console.log(body);
+    
+    this.adminService.updateExam(body, formData);    
   }
 
 }
