@@ -6,7 +6,7 @@
                     <div class="card-icon" style="background-color: #001166;"> 
                         <i class="fas fa-users"></i>
                     </div>
-                    <p class="card-category font-weight-bold" style="font-family: fantasy; color: #001166; font-size: 17px;">No.of Users</p>
+                    <p class="card-category " >No.of Users</p>
                     <h3 class="card-title" style="color: #001166; font-size: 25px; font-weight: bold;">{{ numOfUser | number}}</h3>
                 </div>
                 <div class="card-footer">
@@ -21,7 +21,7 @@
                     <div class="card-icon" style="background-color: #001166;"> 
                         <i class="fa fa-book"></i>
                     </div>
-                    <p class="card-category font-weight-bold" style="color: #001166; font-size: 17px; font-family: fantasy;"> No.of Course</p>
+                    <p class="card-category " > No.of Course</p>
                     <h3 class="card-title" style="color: #001166; font-size: 25px; font-weight: bold;">{{ numOfCourse }}</h3>
                 </div>
                 <div class="card-footer">
@@ -36,7 +36,7 @@
                     <div class="card-icon" style="background-color: #001166;"> 
                         <i class="material-icons">library_books</i>
                     </div>
-                    <p class="card-category font-weight-bold" style="color: #001166; font-size: 17px; font-family: fantasy;"> No.of Exam</p>
+                    <p class="card-category " > No.of Exam</p>
                     <h3 class="card-title" style="color: #001166; font-size: 25px; font-weight: bold;">{{numOfExam}}</h3>
                 </div>
                 <div class="card-footer">
@@ -49,9 +49,9 @@
             <div class="card card-stats" style="background-color: #f9f9f9;">
                 <div class="card-header  card-header-icon">
                     <div class="card-icon" style="background-color: #001166;"> 
-                        <i class="material-icons">library_books</i>
+                        <i class="fa fa-question" aria-hidden="true" style="font-size:50px"></i>
                     </div>
-                    <p class="card-category font-weight-bold" style="color: #001166; font-size: 17px; font-family: fantasy;">No.of Question</p>
+                    <p class="card-category " >No.of Question</p>
                     <h3 class="card-title" style="color: #001166; font-size: 25px; font-weight: bold;">{{numOfUser}}</h3>
                 </div>
                 <div class="card-footer">
@@ -66,28 +66,28 @@
         <div class="col-lg-12 col-md-12 mb-30">
             <div class="card">
                 <div class="card-header card-header-info">
-                    <h4 class="card-title" style="font-family: 'FontAwesome'; font-weight: 600;">Last 5 Processes on system</h4>
+                    <h4 class="card-title" style="font-family: 'FontAwesome'; font-weight: 600;color:#fff;">Last 5 Processes on system</h4>
                 </div>
                 <div class="card-body">
                     <div class="tab nav-border">
                         <ul class="nav nav-tabs py-3" role="tablist">
                              <li class="nav-item">
-                                <button class="nav-link active show btn btn-sm btn-primary" id="home-01-tab" data-toggle="tab" href="#home-01"
+                                <button class="nav-link active show btn btn-sm btn-light" id="home-01-tab" data-toggle="tab" href="#home-01"
                                    role="tab" aria-controls="home-01"
                                    aria-selected="true">User</button>
                             </li>
 
                             <li class="nav-item">
-                                <button class="nav-link btn btn-sm btn-primary" id="home-02-tab" data-toggle="tab" href="#home-02"
+                                <button class="nav-link btn btn-sm btn-light" id="home-02-tab" data-toggle="tab" href="#home-02"
                                    role="tab" aria-controls="home-02"
                                    aria-selected="true">Course</button>
                             </li>
 
 
                             <li class="nav-item">
-                                <button class="nav-link btn btn-sm btn-primary" id="profile-02-tab" data-toggle="tab" href="#profile-02"
+                                <button class="nav-link btn btn-sm btn-light" id="profile-02-tab" data-toggle="tab" href="#profile-02"
                                    role="tab" aria-controls="profile-02"
-                                   aria-selected="false">Exam</button>
+                                   aria-selected="false" >Exam</button>
                             </li>
                         </ul>
                         <div class="tab-content">
@@ -170,6 +170,11 @@
 
 
     <!-- FullCalender Package -->
-    <full-calendar [options]="calendarOptions"></full-calendar>
+    <div class="card calender">
+        
+        <full-calendar [options]="calendarOptions" ></full-calendar>
+    </div>
+    
     <!-- /End FullCalender Package -->
 </div>
+
