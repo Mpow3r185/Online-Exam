@@ -25,7 +25,7 @@
             </thead>
             <tbody class="font-weight-bold text-dark">
               <tr *ngIf="userService.CertificateData.length == 0">
-                <td colspan="6" class="text-danger font-weight-bold">you don't have no Certificates yet</td>
+                <td colspan="6" class="text-danger font-weight-bold">you don't have any Certificates yet</td>
               </tr>
               <tr *ngFor="let obj of userService.CertificateData let i = index;">
                 <td>{{i+1}}</td>
