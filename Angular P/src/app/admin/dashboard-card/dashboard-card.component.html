@@ -95,7 +95,6 @@
                           <table  class="table table-hover table-sm table-bordered p-0" style="width:100%;text-align: center">
                           <thead style="background-color: #001166;">
                             <tr>
-                              <th style="font-weight: bold;color: #fff;">#</th>
                               <th style="font-weight: bold;color: #fff;">Full Name</th>
                               <th style="font-weight: bold;color: #fff;">User Name</th>
                               <th style="font-weight: bold;color: #fff;">Email</th>
@@ -104,7 +103,6 @@
                           </thead>
                           <tbody class="font-weight-bold">
                             <tr *ngFor="let item of lastFiveUser let i = index;" class="text-white">
-                              <td>{{ i+1 }}</td>
                               <td>{{ item.fullname }}</td>
                               <td>{{ item.username }}</td>
                               <td>{{ item.email }}</td>
@@ -118,7 +116,6 @@
                       <table  class="table table-hover table-sm table-bordered p-0" style="width:100%;text-align: center">
                       <thead style="background-color: #001166;">
                         <tr>
-                          <th style="font-weight: bold;color: #fff;">#</th>
                           <th style="font-weight: bold;color: #fff;">Course Name</th>
                           <th style="font-weight: bold;color: #fff;">Description</th>
                           <th style="font-weight: bold;color: #fff;">Status</th>
@@ -126,7 +123,6 @@
                       </thead>
                       <tbody class="font-weight-bold">
                         <tr *ngFor="let course of lastFiveCourse let i = index;">
-                          <td>{{i+1}}</td>
                           <td>{{ course.courseName }}</td>
                           <td>{{ course.description }}</td>
                           <td>{{ course.status }}</td>
@@ -140,7 +136,6 @@
                      <table class="table table-hover table-sm table-bordered p-0" style="width:100%;text-align: center">
                       <thead style="background-color: #001166;">
                         <tr>
-                          <th style="font-weight: bold;color: #fff;">#</th>
                           <th style="font-weight: bold;color: #fff;">Exam Name</th>
                           <th style="font-weight: bold;color: #fff;">Exam Level</th>
                           <th style="font-weight: bold;color: #fff;">Exam Cost</th>
@@ -149,7 +144,6 @@
                       </thead>
                       <tbody class="font-weight-bold">  
                         <tr *ngFor="let item of lastFiveExam let i = index;">
-                          <td>{{i+1}}</td>
                           <td>{{item.title}}</td>
                           <td>{{item.examLevel}}</td>
                           <td>{{item.cost}}</td>
