@@ -1,0 +1,37 @@
+
+
+div#dtTable3_filter.dataTables_filter,
+div#dtTable3_length.dataTables_length,
+div#dtTable3_info.dataTables_info,
+div#dtTable3_paginate.dataTables_paginate.paging_simple_numbers,
+th.detailsHead{
+    display: none !important;
+}
+.card{
+    box-shadow: 0 1px 4px 0 rgb(0 0 0 / 67%) !important;
+   }   
+   .card-title{
+    color:#340101 !important;
+   }
+   p.card-category{
+    color:#051e71 !important;
+    font-size: 16px !important;
+    text-align: center !important;
+   }
+  
+   
+   h3.card-title{
+    text-align: center !important;
+   }
+.plusLogo
+{
+    width:100px;
+    height:110px;
+    background-size: cover;
+    margin-bottom: 15px;
+    background-image: url('../../assets/images/pp/99f9c619-a5a3-46a7-96ba-00e1df6cd1e1_Full Dark Logo V1.1 (1).png');
+}
+div.card-icon{
+    display: none;
+}
+
