@@ -120,12 +120,11 @@ export class UserService {
       .subscribe(
         (result: any) => {
           this.selectedUser = result;
-        },
-        (error) => console.log(error)
-      );
+        });
       },
-      (error) => console.log(error)
-    );
+      (error) =>{
+        this.toastr.error('Unable to connect the server');
+      });
   
   }
 
@@ -138,39 +137,35 @@ export class UserService {
           SpinnerComponent.hide();
         }, 2000);
       },
-      (error) => console.log(error)
-    );
-  }
+      (error) =>{
+        this.toastr.error('Unable to connect the server');
+      });
+    }
+
   editAccount(data: any){
-    // body.imageName = this.displayImage;
-     SpinnerComponent.show();
+    
+    SpinnerComponent.show();
     data.rolename = this.selectedUser.rolename; 
     data.status = this.selectedUser.status; 
     data.username = this.selectedUser.username;
     data.password = this.selectedUser.password;
-     console.log(data);
     this.http.put("https://localhost:44342/api/Account",data).subscribe((data:any)=>{
-         console.log(data);
-         this.toastr.success("Updated successfully");
-         
-     }, err=>{
-       console.log(err.message);
-       SpinnerComponent.hide();
-     })
-     console.log(data);
+    this.toastr.success("Updated successfully");
+    SpinnerComponent.hide();
+    }, err=>{
+       this.toastr.error('Unable to connect the server');
+     });
      
    }
    editAccountWithImage(body: any, img:FormData) {
      SpinnerComponent.show();
        this.http.post('https://localhost:44342/api/Account/Upload', img).subscribe((ResultImage: any) => {
-         console.log(body);
          body.profilePicture = ResultImage.profilePicture;
          body.rolename = this.selectedUser.rolename; 
          body.status = this.selectedUser.status; 
          body.username = this.selectedUser.username;
          body.password = this.selectedUser.password;
          this.http.put('https://localhost:44342/api/Account', body).subscribe((res) => { 
-           console.log(body);
             this.toastr.success("Profile Updated Successfully")
          }, err => {
            this.toastr.error("Unable to connect the server.");
@@ -178,7 +173,6 @@ export class UserService {
          })
          
        }, err => {
-         console.log(err);
          SpinnerComponent.hide();
        })  
    }

@@ -11,9 +11,7 @@ export class ContactUsInfoCardComponent implements OnInit {
   constructor() { }
   
 
-  ngOnInit(): void {
-    console.log(this.contactInfo);
-  }
+  ngOnInit(): void {  }
 
 }
 

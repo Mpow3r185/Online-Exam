@@ -123,7 +123,6 @@ export class CreateQuestionsComponent implements OnInit {
     }
     
     if (type == 'Single' || type == 'Multiple') {
-      console.log(type);
       
       let thereIsCorrectOption: boolean = false;
       options.forEach((element) => {
@@ -147,7 +146,6 @@ export class CreateQuestionsComponent implements OnInit {
     }
     
     this.questions.push(question);
-    console.log(this.questions);
     
     this.toastr.success('The Question Is Saved');
     this.toastr.warning('The question saved on your session, press Save Questions to save them in the server');

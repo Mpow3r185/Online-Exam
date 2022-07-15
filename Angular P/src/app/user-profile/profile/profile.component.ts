@@ -81,11 +81,9 @@ export class ProfileComponent implements OnInit {
   }
  
   editProfile(img:any) {
-    console.log(this.updateform.value);
     if(img.length == 0){
       this.updateform.controls['gender'].setValue(this.previous_data.gender);
       if(this.updateform.valid){
-        console.log(this.updateform.value);
         this.userService.editAccount(this.updateform.value);
         setTimeout(() => {
           window.location.reload();

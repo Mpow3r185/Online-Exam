@@ -42,10 +42,6 @@ export class StudentReportComponent implements OnInit {
    setTimeout(() => {
      SpinnerComponent.hide();
    }, 3500);
-
-   console.log(this.adminService.AccountsData);
-   
-
  }
 
 

@@ -82,7 +82,7 @@ export class AdminService {
     }, error => {
       this.toastr.error('Unable to connect the server.');
       this.toastr.error(error.message,error.status);
-    });
+    });    
   }
 
   /*
@@ -168,7 +168,7 @@ export class AdminService {
   }, error => {
     this.toastr.error('Unable to connect the server.');
     this.toastr.error(error.message,error.status);
-  });
+  });  
 }
 
 
@@ -364,10 +364,10 @@ updateExamWithImage(body: any, img:FormData) {
 // Get All Exams
 async getAllExams(): Promise<void> {
   this.http.get('https://localhost:44342/api/exam').subscribe((result) => {
-    this.exams = result;
+    this.exams = result;    
   }, error => {
     this.toastr.error('Unable to connect server');
-  });
+  });  
 }
 
 DeleteExam(id:number) {
@@ -487,9 +487,9 @@ updateExam(body: any, img: FormData|null) {
   }
 
   // Search Exam
-  async searchExam(body: any) {    
+  async searchExam(body: any) {
     this.http.post('https://localhost:44342/api/exam/searchExam', body).subscribe((result) => {
-      this.exams = result;
+      this.exams = result;      
     });
   }
 
@@ -540,7 +540,6 @@ updateExam(body: any, img: FormData|null) {
         SpinnerComponent.hide();
       }, 3500);
     }, err => {
-      console.log(err.message, err.status);
       SpinnerComponent.hide();
       this.toastr.error('Unable to connect the server');
     })
@@ -570,9 +569,7 @@ getAllAccountWithoutAdmin() {
   });
 }
 
-CreateExamQuestions(body: Question[], exid?: number) {
-  console.log(exid, body);
-  
+CreateExamQuestions(body: Question[], exid?: number) {  
   this.http.post(`https://localhost:44342/api/question/CreateExamQuestions/${exid}`, body).subscribe((result) => {
     this.toastr.success('Questions Successfully Added');
   }, error => {

@@ -20,9 +20,7 @@ export class AdminProfileComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     
-    await this.userService.getUserById();
-   // setTimeout(()=>{console.log(this.homeService.selectedUser);},2000) 
-     
+    await this.userService.getUserById();     
   }
   updateform: FormGroup = new FormGroup({
 
@@ -60,11 +58,9 @@ export class AdminProfileComponent implements OnInit {
   }
 
   editProfile(img:any) {
-    console.log(this.updateform.value);
     if(img.length == 0){
       this.updateform.controls['gender'].setValue(this.previous_data.gender);
       if(this.updateform.valid){
-        console.log(this.updateform.value);
         this.userService.editAccount(this.updateform.value);
         setTimeout(() => {
           window.location.reload();

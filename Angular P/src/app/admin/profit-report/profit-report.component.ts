@@ -38,12 +38,7 @@ export class ProfitReportComponent implements OnInit {
     this.adminService.getProfitReportDetails();
     setTimeout(() => {
       SpinnerComponent.hide();
-    }, 3500);
- 
-    console.log(this.adminService.profitReport);
-    console.log(this.adminService.profitReportDetails);
-    
- 
+    }, 3500);    
   }
  
  

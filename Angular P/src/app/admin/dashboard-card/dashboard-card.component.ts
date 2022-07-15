@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CalendarOptions } from '@fullcalendar/angular';
 import { AdminService } from 'src/app/service/admin.service';
 import { HomeService } from 'src/app/service/home.service';
+import { ExamFilter } from 'src/app/shared/shared/DTO/exam-filter';
 import { SpinnerComponent } from 'src/app/spinner/spinner.component';
 
 @Component({
@@ -13,12 +13,18 @@ export class DashboardCardComponent implements OnInit {
   numOfUser!: number;
   numOfCourse!: number;
   numOfExam!: number;
+  days?: Date[];
+  currentDay: number = new Date().getDate();
 
   lastFiveUser:any;
   lastFiveCourse:any;
   lastFiveExam:any;
 
-  constructor(public homeService: HomeService, public adminService: AdminService) { }
+  constructor(
+    public homeService: HomeService,
+    public adminService: AdminService) { 
+        this.getNumberOfDaysInCurrentMonth();
+    }
 
   ngOnInit(): void {
     SpinnerComponent.show();
@@ -35,21 +41,27 @@ export class DashboardCardComponent implements OnInit {
       this.lastFiveCourse = this.adminService.CoursesData.slice(Math.max(this.numOfCourse - 5, 1));
       this.lastFiveExam = this.adminService.exams.slice(Math.max(this.numOfExam - 5, 1));
 
-    }, 2000);
+    }, 4000);
 
     setTimeout(() => {
       SpinnerComponent.hide();
     }, 3500);
-
-    
     
   }
 
-  calendarOptions: CalendarOptions = {
-    initialView: 'dayGridMonth',
-  };
+  async getNumberOfDaysInCurrentMonth(): Promise<void> {
+    let year: number = new Date().getFullYear();
+    let month: number = new Date().getMonth();
 
- 
+    this.days = Array(new Date(year, month, 0).getDate());
 
-
+    for(let i=0; i<this.days.length; i++) {
+        this.days[i] = new Date(year, month, i+1);
+    }
+  }
 }
+
+function delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+  }
+  

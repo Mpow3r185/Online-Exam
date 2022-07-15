@@ -19,13 +19,6 @@ export class SiteInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.homeService.getDynamicData();
-    // console.log(this.homeService.dynamicData[0]);
-    // console.log(this.homeService.dynamicData);
-    
-    setTimeout(()=>{console.log(this.homeService.dynamicData);},2000) 
-    setTimeout(()=>{console.log(this.homeService.dynamicData[0]);},2000) 
-    setTimeout(()=>{console.log(this.homeService.dynamicData[0].webSiteName);},2000)
-
   }
   
 

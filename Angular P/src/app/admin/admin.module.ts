@@ -33,6 +33,7 @@ import { ProfitReportComponent } from './profit-report/profit-report.component';
 import { AdminQuestionsComponent } from './admin-questions/admin-questions.component';
 import { CreateQuestionComponent } from './admin-questions/create-question/create-question.component';
 import { CreateQuestionsComponent } from './admin-exams/create-questions/create-questions.component';
+import { DayCardComponent } from './dashboard-card/day-card/day-card.component';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -66,6 +67,7 @@ FullCalendarModule.registerPlugins([
     ProfitReportComponent,
     AdminQuestionsComponent,
     CreateQuestionComponent,
+    DayCardComponent,
     
   ],
   imports: [
