@@ -31,7 +31,6 @@
                                             <table id="dtTable1" class="table table-hover table-sm table-bordered p-0" style="width:100%;text-align: center">
                                               <thead class="font-weight-bold" style="background-color: #001166;">
                                                 <tr>
-                                                  <th style="color:#fff; font-weight:bold;">#</th>
                                                   <th style="color:#fff; font-weight:bold;">Title</th>
                                                   <th style="color:#fff; font-weight:bold;">Description</th>
                                                   <th style="color:#fff; font-weight:bold;">Processes</th>
@@ -39,7 +38,6 @@
                                               </thead>
                                               <tbody class="font-weight-bold text-dark">
                                                 <tr *ngFor="let item of homeService.ourServiceData let i = index;">
-                                                  <td style="color:#000; font-weight:bold;">{{i+1}}</td>
                                                   <td style="color:#000; font-weight:bold;">{{ item.title }}</td>
                                                   <td style="color:#000; font-weight:bold;">{{ item.text }}</td>
                                                   <td >
