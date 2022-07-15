@@ -25,6 +25,7 @@ export class AdminService {
   profitReport: any;
   profitReportDetails: any;
   questions: any = [{}];
+Allquestions:any;
 
   constructor(
     private http: HttpClient,
@@ -515,6 +516,13 @@ updateExam(body: any, img: FormData|null) {
   async getAllQuestions(): Promise<void> {
     this.http.get('https://localhost:44342/api/question/GetAllQeustionsDetails').subscribe((result) => {
       this.questions = result;
+    }, error => {
+      this.toastr.error('Unable to connect server');
+    });
+  }
+  async getQuestions(): Promise<void> {
+    this.http.get('https://localhost:44342/api/question').subscribe((result) => {
+      this.Allquestions = result;
     }, error => {
       this.toastr.error('Unable to connect server');
     });
