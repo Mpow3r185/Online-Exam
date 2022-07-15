@@ -25,7 +25,7 @@
             </thead>
             <tbody class="font-weight-bold text-dark">
               <tr *ngIf="userService.InvoicesData.length == 0">
-                <td colspan="6" class="text-danger font-weight-bold">you don't have no invoices yet</td>
+                <td colspan="6" class="text-danger font-weight-bold">you don't have any invoices yet</td>
               </tr>
               <tr *ngFor="let obj of userService.InvoicesData let i = index;">
                 <td>{{i+1}}</td>
