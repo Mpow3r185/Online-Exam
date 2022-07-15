@@ -32,7 +32,6 @@
                               style="width:100%;text-align: center">
                               <thead class="font-weight-bold" style="background-color: #001166; color:#fff">
                                 <tr>
-                                  <th style="color:#fff; font-weight:bold;">#</th>
                                   <th style="color:#fff; font-weight:bold;">Course Name</th>
                                   <th style="color:#fff; font-weight:bold;">Description</th>
                                   <th style="color:#fff; font-weight:bold;">Status</th>
@@ -42,7 +41,6 @@
                               </thead>
                               <tbody class="font-weight-bold text-dark">
                                 <tr *ngFor="let course of adminService.CoursesData let i = index;">
-                                  <td style="color:#000; font-weight:bold;">{{i+1}}</td>
                                   <td style="color:#000; font-weight:bold;">{{ course.courseName }}</td>
                                   <td style="color:#000; font-weight:bold;">{{ course.description }}</td>
                                   <td style="color:#000; font-weight:bold;">{{ course.status }}</td>
