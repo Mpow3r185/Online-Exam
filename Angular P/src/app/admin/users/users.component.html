@@ -23,7 +23,6 @@
                                             <table id="dtTable2" class="table table-hover table-sm table-bordered p-0" style="width:100%;text-align: center">
                                               <thead class="text-white" style="background-color: #001166;">
                                                 <tr>
-                                                    <th>#</th>
                                                   <th style="color:#fff; font-weight: bold;">Full Name</th>
                                                   <th style="color:#fff; font-weight:bold;">User Name</th>
                                                   <th style="color:#fff; font-weight:bold;">Email</th>
@@ -34,7 +33,6 @@
                                               </thead>
                                               <tbody>
                                                 <tr *ngFor="let item of adminService.AccountsData let i = index;">
-                                                  <td style="color:#000; font-weight:bold;">{{i+1}}</td>
                                                   <td style="font-weight: bold; color:#000;">{{ item.fullname }}</td>
                                                   <td style="color:#000; font-weight:bold;">{{ item.username }}</td>
                                                   <td style="color:#000; font-weight:bold;">{{ item.email }}</td>

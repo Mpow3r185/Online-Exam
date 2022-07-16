@@ -8,7 +8,7 @@
 
     <div id="section">
 
-        <svg width="700" height="700" viewBox="0 0 1500 1500" class=" rounded" style="border-style: double;border-width: 5px;border-color: #618597;">
+        <svg width="1000" height="1000" viewBox="0 0 1500 1500" class=" rounded" style="border-style: double;border-width: 5px;border-color: #618597;">
       <defs>
       <!-- Assign space and position for Company Logo -->
       <clipPath id="clip-path">
@@ -16,7 +16,7 @@
       </clipPath>
       <linearGradient id="linear-gradient" x1="0.048" y1="0.5" x2="0.963" y2="0.5" gradientUnits="objectBoundingBox">
           <stop offset="0" stop-color="#000000"/>
-          <stop offset="1" stop-color="#D4AF37"/>
+          <stop offset="1" stop-color="#001166"/>
       </linearGradient>
       <clipPath id="clip-path-5">
           <rect id="Rectangle_79" class="cls-2" width="112" height="109" transform="translate(541 1246)"/>
@@ -76,11 +76,11 @@
       </g>
       <text id="CERTIFICATE" class="cls-10" transform="translate(750 420.162)"><tspan x="0" y="0" dominant-baseline="middle" text-anchor="middle">CERTIFICATE</tspan></text>
       <text id="OF_COMPLETION" class="cls-13" transform="translate(750 515.662)"><tspan x="0" y="0" dominant-baseline="middle" text-anchor="middle">OF COMPLETION</tspan></text>
-      <text id="STUDENT_NAME" class="cls-14" transform="translate(750 671.662)"><tspan x="0" y="0" dominant-baseline="middle" text-anchor="middle">{{ homeService.selectedUser[0].fullname }}</tspan></text>
+      <text id="STUDENT_NAME" class="cls-14 font-weight-bold" transform="translate(750 671.662)"><tspan x="0" y="0" dominant-baseline="middle" text-anchor="middle">{{ homeService.selectedUser[0].fullname }}</tspan></text>
       <text id="HAS_SUCCESSFULLY_COMPLEATED" class="cls-15" transform="translate(750 746)"><tspan x="0" y="0" dominant-baseline="middle" text-anchor="middle">has successfully passed</tspan></text>
       <text id="COURSE_NAME" class="cls-16" transform="translate(750 825.377)"><tspan x="0" y="0" dominant-baseline="middle" text-anchor="middle">{{ CertificateDetails.examName }} held in {{ CertificateDetails.examDate | date}}</tspan></text>
       <text id="course_by:" class="cls-15" transform="translate(750 940)"><tspan x="0" y="0" dominant-baseline="middle" text-anchor="middle">Exam by:</tspan></text>
-      <text id="ORGANIZATION_NAME" class="cls-17" transform="translate(750 990)"><tspan x="0" y="0" dominant-baseline="middle" text-anchor="middle">Plus Exam</tspan></text>
+      <text id="ORGANIZATION_NAME" class="cls-17 font-weight-bold" transform="translate(750 990)"><tspan x="0" y="0" dominant-baseline="middle" text-anchor="middle">Plus Exam</tspan></text>
       <g id="Group_302" transform="translate(580 51)">
           <rect id="Rectangle_74" class="cls-18" width="336" height="96" rx="48" transform="translate(0 1028)"/>
           <text id="PASSED" class="cls-19" transform="translate(170 1080)"><tspan x="0" y="0" dominant-baseline="middle" text-anchor="middle">PASSED</tspan></text>
@@ -113,5 +113,5 @@
 
 
 <mat-dialog-actions align="end">
-    <button class="btn btn-sm btn-success" printSectionId="section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i> Print Invoice</button>
+    <button class="btn btn-sm btn-success" printSectionId="section" [useExistingCss]="true" ngxPrint><i class="fa fa-print"></i> Print CERTIFICATE</button>
 </mat-dialog-actions>

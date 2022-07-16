@@ -13,8 +13,10 @@ export class DashboardCardComponent implements OnInit {
   numOfUser!: number;
   numOfCourse!: number;
   numOfExam!: number;
+  
   days?: Date[];
   currentDay: number = new Date().getDate();
+  numOfQuestion!: number;
 
   lastFiveUser:any;
   lastFiveCourse:any;
@@ -31,11 +33,13 @@ export class DashboardCardComponent implements OnInit {
     this.adminService.getAllCourses();
     this.adminService.getAllAccounts();
     this.adminService.getAllExams();
+ this.adminService.getQuestions();
 
     setTimeout(() => {
       this.numOfUser = this.adminService.AccountsData.length;
       this.numOfCourse = this.adminService.CoursesData.length;
       this.numOfExam = this.adminService.exams.length;
+       this.numOfQuestion = this.adminService.Allquestions.length;
 
       this.lastFiveUser = this.adminService.AccountsData.slice(Math.max(this.numOfUser - 5, 1));
       this.lastFiveCourse = this.adminService.CoursesData.slice(Math.max(this.numOfCourse - 5, 1));
