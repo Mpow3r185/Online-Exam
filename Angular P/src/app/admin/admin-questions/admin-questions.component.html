@@ -20,465 +20,207 @@
                                             <div class="clearfix"></div>
                                         </div>
                                         <div class="x_content">
-                                            <div class="container">
-                                                <div class="row ">
-                                                    <div class="col-m-5 mr-4">
+                                            <div class="row justify-content-start">
 
-                                                        <mat-form-field appearance="fill">
-                                                            <mat-label>Course Name</mat-label>
-                                                            <mat-select>
-                                                                <mat-option>None</mat-option>
-                                                                <mat-option *ngFor="let course of adminService.CoursesData"
-                                                                    [value]="course" (click)="getExamsByCourseId(course.id)">
-                                                                    {{course.courseName | titlecase}}</mat-option>
-                                                            </mat-select>
-                                                        </mat-form-field>
-                                                    </div>
-                                                    <div class="col-m-5 mr-4">
+                                                <!-- Course Drop List -->
+                                                <div class="col-2">
+                                                    <mat-form-field appearance="fill">
+                                                        <mat-label>Course Name</mat-label>
+                                                        <mat-select>
+                                                            <mat-option (click)="getExamsCourse(-1)">None</mat-option>
+                                                            <mat-option *ngFor="let course of adminService.CoursesData"
+                                                                value="{{ course.id }}"
+                                                                (click)="getExamsCourse(course.id)">{{
+                                                                course.courseName | titlecase }}</mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
 
-                                                        <mat-form-field appearance="fill">
-                                                            <mat-label>Exam Name</mat-label>
-                                                            <mat-select>
-                                                                <mat-option>None</mat-option>
-                                                                <mat-option *ngFor="let exam of adminService.exams"
-                                                                    [value]="exam" (click)="getQuestionsByExamId(exam.id)">
-                                                                    {{exam.title|titlecase}}</mat-option>
-                                                            </mat-select>
-                                                        </mat-form-field>
-                                                    </div>
-                                                    
-                                                    <div class="col-m-5 mr-4">
+                                                <!-- Exam Drop List -->
+                                                <div class="col-2">
+                                                    <mat-form-field appearance="fill">
+                                                        <mat-label>Exam Name</mat-label>
+                                                        <mat-select>
+                                                            <mat-option *ngFor="let exam of adminService.exams"
+                                                                value="{{ exam.id }}" (click)="updateExamId(exam.id)">{{
+                                                                exam.title | titlecase }}</mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
 
-                                                        <button class="btn btn-success">Add Question</button>
+                                                <!-- Add Question Button -->
+                                                <div class="col-2">
+                                                    <div class="card-box table-responsive">
+                                                        <p class="text-muted font-13 m-b-30">
+                                                            <button class="btn btn-success btn-md"
+                                                                (click)="moveToCreateExamQuestions()"
+                                                                aria-pressed="true">Add
+                                                                Question</button>
+                                                            <br><br>
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+
+                                        <table class="table text-center" [(ngModel)]="adminService.questionsDetails">
+
+                                            <thead>
+
+                                                <tr>
+                                                    <th>
+                                                        Exam Name
+                                                    </th>
+
+                                                    <th>
+                                                        Question Text
+                                                    </th>
+
+                                                    <th>
+                                                        Type
+                                                    </th>
+
+                                                    <th>
+                                                        Status
+                                                    </th>
+
+                                                    <th>
+                                                        Score
+                                                    </th>
+
+                                                    <!-- Arrow Details -->
+                                                    <th></th>
+
+                                                </tr>
+
+                                            </thead>
+
+                                            <tbody>
+                                                <ng-container
+                                                    *ngFor="let questionExam of adminService.questionsDetails.questionsExamsDTO; let i=index">
 
 
-                                            <!-- <table>
-                                                <th>Question</th>
-                                                <tbody>
-                                                    <mat-accordion class="example-headers-align" multi>
-                                                   
-                                                        <mat-expansion-panel>
-                                                            <mat-expansion-panel-header>
-                                                              <mat-panel-title>
-                                                               Q1  What is the programming language fgii guh ghuktgi gsdihsist gtrhgit ?
-                                                              </mat-panel-title>
-                                                              <div class="mr-4">
-                                                                Score 2 Marks
-                                                              </div>
-                                                            </mat-expansion-panel-header>
-                                                        <div class="row">
-                                                            <div class="col-m-5">
-                                                                Correct answer is : Python Programming Language
-                                                            </div>
-                                                            <div class="col-m-5">
-                                                                Question Type is : Multiple
-                                                            </div>
-                                                            
-                                                        </div>
-                                                           
-                                                        <div class="col-m-5">
-                                                        
-                                                            <mat-form-field appearance="fill">
-                                                                <mat-label>Options</mat-label>
-                                                                <mat-select>
-                                                                    <mat-option>None</mat-option>
-                                                                    <mat-option *ngFor="let state of states" [value]="state">
-                                                                        {{state}}</mat-option>
-                                                                </mat-select>
-                                                            </mat-form-field>
-                                                        </div>
-                                                            
-                                                        
-                                                          </mat-expansion-panel>
-    
-                                                          <mat-expansion-panel>
-                                                            <mat-expansion-panel-header>
-                                                              <mat-panel-title>
-                                                               Q1  What is the programming language fgii guh ghuktgi gsdihsist gtrhgit ?
-                                                              </mat-panel-title>
-                                                             
-                                                            </mat-expansion-panel-header>
-                                                        
-                                                            <mat-form-field appearance="fill">
-                                                              <mat-label>First name</mat-label>
-                                                              <input matInput>
-                                                            </mat-form-field>
-                                                        
-                                                            <mat-form-field appearance="fill">
-                                                              <mat-label>Age</mat-label>
-                                                              <input matInput type="number" min="1">
-                                                            </mat-form-field>
-                                                        
-                                                          </mat-expansion-panel>
-                                                          <mat-expansion-panel>
-                                                            <mat-expansion-panel-header>
-                                                              <mat-panel-title>
-                                                               Q1  What is the programming language fgii guh ghuktgi gsdihsist gtrhgit ?
-                                                              </mat-panel-title>
-                                                             
-                                                            </mat-expansion-panel-header>
-                                                        
-                                                            <mat-form-field appearance="fill">
-                                                              <mat-label>First name</mat-label>
-                                                              <input matInput>
-                                                            </mat-form-field>
-                                                        
-                                                            <mat-form-field appearance="fill">
-                                                              <mat-label>Age</mat-label>
-                                                              <input matInput type="number" min="1">
-                                                            </mat-form-field>
-                                                        
-                                                          </mat-expansion-panel>
-                                                          <mat-expansion-panel>
-                                                            <mat-expansion-panel-header>
-                                                              <mat-panel-title>
-                                                               Q1  What is the programming language fgii guh ghuktgi gsdihsist gtrhgit ?
-                                                              </mat-panel-title>
-                                                             
-                                                            </mat-expansion-panel-header>
-                                                        
-                                                            <mat-form-field appearance="fill">
-                                                              <mat-label>First name</mat-label>
-                                                              <input matInput>
-                                                            </mat-form-field>
-                                                        
-                                                            <mat-form-field appearance="fill">
-                                                              <mat-label>Age</mat-label>
-                                                              <input matInput type="number" min="1">
-                                                            </mat-form-field>
-                                                        
-                                                          </mat-expansion-panel>
-                                                          <mat-expansion-panel>
-                                                            <mat-expansion-panel-header>
-                                                              <mat-panel-title>
-                                                               Q1  What is the programming language fgii guh ghuktgi gsdihsist gtrhgit ?
-                                                              </mat-panel-title>
-                                                             
-                                                            </mat-expansion-panel-header>
-                                                        
-                                                            <mat-form-field appearance="fill">
-                                                              <mat-label>First name</mat-label>
-                                                              <input matInput>
-                                                            </mat-form-field>
-                                                        
-                                                            <mat-form-field appearance="fill">
-                                                              <mat-label>Age</mat-label>
-                                                              <input matInput type="number" min="1">
-                                                            </mat-form-field>
-                                                        
-                                                          </mat-expansion-panel>
-                                                          <mat-expansion-panel>
-                                                            <mat-expansion-panel-header>
-                                                              <mat-panel-title>
-                                                               Q1  What is the programming language fgii guh ghuktgi gsdihsist gtrhgit ?
-                                                              </mat-panel-title>
-                                                             
-                                                            </mat-expansion-panel-header>
-                                                        
-                                                            <mat-form-field appearance="fill">
-                                                              <mat-label>First name</mat-label>
-                                                              <input matInput>
-                                                            </mat-form-field>
-                                                        
-                                                            <mat-form-field appearance="fill">
-                                                              <mat-label>Age</mat-label>
-                                                              <input matInput type="number" min="1">
-                                                            </mat-form-field>
-                                                        
-                                                          </mat-expansion-panel>
-                                                          <mat-expansion-panel>
-                                                            <mat-expansion-panel-header>
-                                                              <mat-panel-title>
-                                                               Q1  What is the programming language fgii guh ghuktgi gsdihsist gtrhgit ?
-                                                              </mat-panel-title>
-                                                             
-                                                            </mat-expansion-panel-header>
-                                                        
-                                                            <mat-form-field appearance="fill">
-                                                              <mat-label>First name</mat-label>
-                                                              <input matInput>
-                                                            </mat-form-field>
-                                                        
-                                                            <mat-form-field appearance="fill">
-                                                              <mat-label>Age</mat-label>
-                                                              <input matInput type="number" min="1">
-                                                            </mat-form-field>
-                                                        
-                                                          </mat-expansion-panel>
-                                                          <mat-expansion-panel>
-                                                            <mat-expansion-panel-header>
-                                                              <mat-panel-title>
-                                                               Q1  What is the programming language fgii guh ghuktgi gsdihsist gtrhgit ?
-                                                              </mat-panel-title>
-                                                             
-                                                            </mat-expansion-panel-header>
-                                                        
-                                                            <mat-form-field appearance="fill">
-                                                              <mat-label>First name</mat-label>
-                                                              <input matInput>
-                                                            </mat-form-field>
-                                                        
-                                                            <mat-form-field appearance="fill">
-                                                              <mat-label>Age</mat-label>
-                                                              <input matInput type="number" min="1">
-                                                            </mat-form-field>
-                                                        
-                                                          </mat-expansion-panel>
-                                                          <mat-expansion-panel>
-                                                            <mat-expansion-panel-header>
-                                                              <mat-panel-title>
-                                                               Q1  What is the programming language fgii guh ghuktgi gsdihsist gtrhgit ?
-                                                              </mat-panel-title>
-                                                             
-                                                            </mat-expansion-panel-header>
-                                                        
-                                                            <mat-form-field appearance="fill">
-                                                              <mat-label>First name</mat-label>
-                                                              <input matInput>
-                                                            </mat-form-field>
-                                                        
-                                                            <mat-form-field appearance="fill">
-                                                              <mat-label>Age</mat-label>
-                                                              <input matInput type="number" min="1">
-                                                            </mat-form-field>
-                                                        
-                                                          </mat-expansion-panel>
-                                                     
-                                                      </mat-accordion>
-                                                </tbody>
-                                                
-                                               </table>
-                                                   -->
+                                                    <tr class="row-element cus-bottom-border" (click)="handleExpand(i)">
+                                                        <!-- Exam Name -->
+                                                        <td>
+                                                            {{ questionExam.title | titlecase }}
+                                                        </td>
 
-                                            <table mat-table [dataSource]="dataSource" multiTemplateDataRows
-                                                class="mat-elevation-z8">
-                                                <ng-container matColumnDef="{{column}}"
-                                                    *ngFor="let column of columnsToDisplay">
-                                                    <th mat-header-cell *matHeaderCellDef > 
+                                                        <!-- Question Text -->
+                                                        <td>
+                                                            {{ questionExam.questionContent }}
+                                                        </td>
 
-                                                      <span *ngIf="column == 'questionContent'" >
-                                                          Question
-                                                      </span>
+                                                        <!-- Type -->
+                                                        <td>
+                                                            {{ questionExam.type }}
+                                                        </td>
 
-                                                      <span *ngIf="column == 'type'">
-                                                          Type
-                                                      </span>
+                                                        <!-- Status -->
+                                                        <td>
+                                                            {{ questionExam.status }}
+                                                        </td>
 
-                                                      <span *ngIf="column == 'status'">
-                                                          Status
-                                                      </span>
+                                                        <!-- End Date -->
+                                                        <td>
+                                                            {{ questionExam.score }}
+                                                        </td>
 
-                                                      <span *ngIf="column == 'score'">
-                                                          Score
-                                                      </span>
+                                                        <!-- Details Arrow -->
+                                                        <td>
+                                                            <button class="btn btn-light px-2">
+                                                                <i class="fa fa-angle-down transition-3"></i>
+                                                            </button>
 
-                                                  </th> 
-                                                  <ng-container mat-cell *matCellDef="let element">
-                                                    <td *ngIf="column == 'questionContent'" style="padding-left: 24px; ">
-                                                        {{ element[column]  }}</td>
+                                                        </td>
+                                                    </tr>
 
-                                                    <td *ngIf="column == 'type'">
-                                                        {{ element[column]  }}</td>
+                                                    <tr class="row-details display-none">
+                                                        <td colspan="8" style="overflow: hidden;">
+                                                            <div class="details-container"
+                                                                style="transform: translateY(-110%); transition: 0.5s;">
+                                                                <div class="container">
 
-                                                    <td *ngIf="column == 'status'">
-                                                        {{ element[column] }}</td>
+                                                                    <div class="row justify-content-start"
+                                                                        style="color: #000">
 
-                                                    <td *ngIf="column == 'score'" style="padding-left: 10px;">
-                                                        {{ element[column]}}</td>
-                                                   
-                                                  </ng-container>
-                                                </ng-container>
-
-                                                <ng-container matColumnDef="expand">
-                                                    <th mat-header-cell *matHeaderCellDef aria-label="row actions">
-                                                        &nbsp;</th>
-
-                                                    <td mat-cell *matCellDef="let element">
-                                                        <button mat-icon-button aria-label="expand row"
-                                                            (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
-                                                            <mat-icon *ngIf="expandedElement !== element">
-                                                                keyboard_arrow_down</mat-icon>
-                                                            <mat-icon *ngIf="expandedElement === element">
-                                                                keyboard_arrow_up</mat-icon>
-                                                        </button>
-                                                    </td>
-                                                </ng-container>
-
-                                                <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
-                                                <ng-container matColumnDef="expandedDetail">
-                                                    <td mat-cell *matCellDef="let element"
-                                                        [attr.colspan]="columnsToDisplayWithExpand.length">
-                                                        <div class="example-element-detail"
-                                                            [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                                                            <div class="container ml-3">
-
-                                                                
-                                                                <div class="row justify-content-between w-100" >
-                                                                    <div class="col-m-6 " >
-                                                                        <div class="row justify-content-between mb-3" >
-                                                                            <div class="col-m-3" 
-                                                                            style="color: #161616;
-                                                                            padding: 10px;
-                                                                            background-color: #adf284a3;
-                                                                            border: #96eb78 solid;">Correct Answer  : </div>
-                                                                            <div class="col-m-3" 
-                                                                            style="padding: 10px;
-                                                                            background-color: #b4cba678;
-                                                                            border: #a9b8ac24 solid;"> {{element.optionContent}}</div>
+                                                                        <!-- Correct Answer Label -->
+                                                                        <div class="col-2 correct-answer-lbl">
+                                                                            Correct Answer :
                                                                         </div>
-                                                                        
-                                                                    </div>
-                                                                    
-                                                                    <div class="col-m-6 " >
-                                                                        <div class="row">
-                                                                            <div class="col-m-2">
-                                                                                <a class="btn btn-info btn-sm" role="button"
-                                                                                (click)="updateQuestion(element)"
-                                                                                    aria-pressed="true" title="Edit"><i
-                                                                                        class="fa fa-edit"></i></a>
-                                                                            </div>
-                                                                            <div class="col-m-2">
-                                                                                <a class="btn btn-danger btn-sm text-white"
-                                                                                role="button" aria-pressed="true"
-                                                                                (click)="deleteQuestion(element)"
-                                                                                title="Delete" style="cursor:pointer;"><i
-                                                                                    class="fa fa-trash"></i></a>
-                                                                            </div>
+
+                                                                        <!-- Correct Answer Value -->
+                                                                        <div
+                                                                            class="col-10 correct-answer-value text-left">
+
+                                                                            <!-- Single -->
+                                                                            <ng-container
+                                                                                *ngIf="questionExam.type == 'Single'">
+                                                                                <ng-container
+                                                                                    *ngFor="let option of questionExam.options">
+
+                                                                                    <ng-container
+                                                                                        *ngIf="option.id == questionExam.correctAnswers[0].questionOptionId">
+                                                                                        {{ option.optionContent }}
+                                                                                    </ng-container>
+
+                                                                                </ng-container>
+                                                                            </ng-container>
+
+                                                                            <!-- Multiple -->
+                                                                            <ng-container
+                                                                                *ngIf="questionExam.type == 'Multiple'">
+                                                                                <ng-container
+                                                                                    *ngFor="let option of questionExam.options; let i=index">
+
+                                                                                    <ng-container
+                                                                                        *ngFor="let correctAnw of questionExam.correctAnswers">
+
+                                                                                        <ng-container
+                                                                                            *ngIf="option.id == correctAnw.questionOptionId">
+                                                                                            {{ counter }}) {{
+                                                                                            option.optionContent }}
+                                                                                            {{ increaseCounter() }}
+                                                                                            <br>
+                                                                                        </ng-container>
+
+                                                                                    </ng-container>
+
+                                                                                </ng-container>
+                                                                            </ng-container>
+                                                                            {{ resetCounter() }}
+
+                                                                            <!-- Fill -->
+                                                                            <ng-container
+                                                                                *ngIf="questionExam.type == 'Fill'">
+
+                                                                                {{
+                                                                                questionExam.options[0].optionContent
+                                                                                }}
+
+                                                                            </ng-container>
+
+
                                                                         </div>
-                                                                        
-                                                                       
+
                                                                     </div>
+
                                                                 </div>
                                                             </div>
-
-                                                        </div>
-                                                    </td>
+                                                        </td>
+                                                    </tr>
                                                 </ng-container>
 
-                                                <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
-                                                <tr mat-row
-                                                    *matRowDef="let element; columns: columnsToDisplayWithExpand;"
-                                                    class="example-element-row"
-                                                    [class.example-expanded-row]="expandedElement === element"
-                                                    (click)="expandedElement = expandedElement === element ? null : element">
-                                                </tr>
-                                                <tr mat-row *matRowDef="let row; columns: ['expandedDetail']"
-                                                    class="example-detail-row"></tr>
-                                            </table>
+                                            </tbody>
 
-                                        </div>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
             </div>
-
         </div>
     </div>
 </div>
-
-
-<!-- Update Question Dialog -->
-<ng-template #callUpdateDialog>
-  <mat-dialog-content class="col-12 m-0 mat-typography" style="width: 600px;">
-      <div class="modal-header mb-3">
-          <h5 style="font-family: 'Cairo', sans-serif; font-weight: bold; color: black;" class="modal-title"
-              id="exampleModalLabel">Update Question</h5>
-          <button type="button" class="close text-danger" mat-button mat-dialog-close="no">
-              <span aria-hidden="true">&times;</span>
-          </button>
-      </div>
-      <form class="example-form" [formGroup]="updateForm">
-
-          <div class="row py-1  mt-2">
-              <div class="col-md-4 mt-2 mt-sm-2 mt-md-0">
-                  <mat-form-field class="example-full-width w-100" appearance="fill">
-                      <mat-label>Question Type</mat-label>
-                      <mat-select formControlName="type" [(ngModel)]="question.type">
-                        <mat-option value="Single">Single</mat-option>
-                        <mat-option value="Multiple">Multiple</mat-option>
-                        <mat-option value="Fill">Fill</mat-option>
-                      </mat-select>
-                      <mat-error *ngIf="updateForm.controls.type.hasError('required')">
-                          This Filed is <strong>required</strong>
-                      </mat-error>
-                  </mat-form-field>
-              </div>
-              
-
-              <div class="col-md-4 mt-2 mt-sm-2 mt-md-0">
-                  <mat-form-field class="example-full-width w-100" appearance="fill">
-                      <mat-label>Status</mat-label>
-                      <mat-select formControlName="status" [(ngModel)]="question.status">
-                          <mat-option value="ENABLE">ENABLE</mat-option>
-                          <mat-option value="DISABLE">DISABLE</mat-option>
-                      </mat-select>
-                      <mat-error *ngIf="updateForm.controls.status.hasError('required')">
-                          This Filed is <strong>required</strong>
-                      </mat-error>
-                  </mat-form-field>
-              </div>
-              <div class="col-md-4 mt-2 mt-sm-2 mt-md-0">
-                <mat-form-field class="example-full-width w-100" appearance="fill">
-                    <mat-label>Score</mat-label>
-                    <input type="number"  matInput formControlName="score"
-                        [(ngModel)]="question.score" />
-                    
-                </mat-form-field>
-               </div>
-          </div>
-          <div class="row py-1">
-            <div class="col-md-12">
-                <mat-form-field class="w-100 example-full-width" appearance="fill">
-                    <mat-label>Question</mat-label>
-                    <input type="text" matInput formControlName="questionContent" [(ngModel)]="question.questionContent">
-                    
-                </mat-form-field>
-            </div>
-        </div>
-        
-        
-        
-      </form>
-
-      <mat-dialog-actions>
-          <button class="btn btn-sm btn-danger" mat-button mat-dialog-close>Cancel</button>
-          <button class="btn btn-sm btn-success" mat-button [mat-dialog-close]="true" [disabled]="!updateForm.valid"
-              (click)="saveQuestion()">Save</button>
-      </mat-dialog-actions>
-
-  </mat-dialog-content>
-</ng-template>
-<!-- /End Update Question Dialog -->
-
-
-<!-- Delete Question Dialog -->
-<ng-template #callDeleteDialog>
-  <div class="modal-header">
-      <h5 style="font-family: 'Cairo', sans-serif; font-weight: bold; color: black;" class="modal-title"
-          id="exampleModalLabel">Deleted Question</h5>
-      <button type="button" class="close text-danger" mat-button mat-dialog-close="no">
-          <span aria-hidden="true">&times;</span>
-      </button>
-  </div>
-  <div class="modal-body py-3">
-      <h5 style="font-family: 'Cairo', sans-serif; color: black; font-weight: bold;">Are you sure you want to delete
-          question and all related data?
-      </h5>
-      <label style="color: #001166; font-weight:bold;">Question : {{question.questionContent}}</label>
-
-  </div>
-  <div class="modal-footer">
-      <button class="btn btn-sm btn-secondary font-weight-bold" at-button mat-dialog-close="no">Close</button>
-      <button class="btn btn-sm btn-danger" mat-button mat-dialog-close="yes"
-          (click)="submitDeleteQuestion(question.id)">Delete</button>
-  </div>
-</ng-template>
-<!-- /End Delete Question Dialog -->

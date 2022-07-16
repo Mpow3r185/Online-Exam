@@ -90,12 +90,18 @@ namespace Tahaluf.PlusExam.Infra.Repository
         // Get All Questions Details 
         public List<QuestionsDetailsDTO> GetAllQeustionsDetails()
         {
-
-            
             IEnumerable<QuestionsDetailsDTO> result = dbContext.Connection.Query<QuestionsDetailsDTO>(
                 "QuestionPackage.GetAllQuestionsDetails",
                 commandType: CommandType.StoredProcedure);
             return result.ToList();
+        }
+
+        // Get Questions And Exams
+        public List<QuestionExamDTO> GetQuestionsAndExams()
+        {
+            return dbContext.Connection.Query<QuestionExamDTO>(
+                "QuestionPackage.GetQuestionsAndExams",
+                commandType: CommandType.StoredProcedure).ToList();
         }
     }
 }

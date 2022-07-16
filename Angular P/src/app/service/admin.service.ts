@@ -1,3 +1,4 @@
+import { QuestionsDetailsDTO } from './../shared/shared/DTO/questions-details';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
@@ -25,7 +26,9 @@ export class AdminService {
   profitReport: any;
   profitReportDetails: any;
   questions: any = [{}];
-Allquestions:any;
+  Allquestions:any;
+  questionsDetails: QuestionsDetailsDTO = new QuestionsDetailsDTO();
+
 
   constructor(
     private http: HttpClient,
@@ -582,6 +585,16 @@ CreateExamQuestions(body: Question[], exid?: number) {
     this.toastr.success('Questions Successfully Added');
   }, error => {
     this.toastr.error('Unable to connect the server.', error.message);
+  });
+}
+
+getQuestionsDetails() {
+  this.http.get('https://localhost:44342/api/question/getQuestionsDetails').subscribe((result: any) => {
+    this.questionsDetails.questionsExamsDTO = result.questionsExams;
+    this.questionsDetails.questionsOptions = result.questionsOptions;
+    this.questionsDetails.correctAnswers = result.correctAnswers;    
+  }, error => {
+    this.toastr.error('Unable to connect the server');
   });
 }
 

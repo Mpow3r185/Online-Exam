@@ -143,5 +143,17 @@ namespace Tahaluf.PlusExam.API.Controllers
         {
             return _questionService.GetAllQeustionsDetails();
         }
+
+        [HttpGet]
+        [Route("GetQuestionsDetails")]
+        public QuestionsDetailsDTO GetQuestionsDetails()
+        {
+            QuestionsDetailsDTO questionsDetailsDTO = new QuestionsDetailsDTO();
+            questionsDetailsDTO.QuestionsExams = _questionService.GetQuestionsAndExams();
+            questionsDetailsDTO.QuestionsOptions = _questionOptionService.GetQuestionsOptions();
+            questionsDetailsDTO.CorrectAnswers = _correctAnswerService.GetCorrectAnswers();
+
+            return questionsDetailsDTO;
+        }
     }
 }
