@@ -1,3 +1,4 @@
+import { AdminQuestionsComponent } from './admin-questions/admin-questions.component';
 import { CreateQuestionsComponent } from './admin-exams/create-questions/create-questions.component';
 import { AdminExamsComponent } from './admin-exams/admin-exams.component';
 import { NgModule, Component } from '@angular/core';
@@ -12,8 +13,6 @@ import { StdReportDetailsComponent } from './student-report/std-report-details/s
 import { AdminServicesComponent } from './admin-services/admin-services.component';
 import { SiteInfoComponent } from './site-info/site-info.component';
 import { ProfitReportComponent } from './profit-report/profit-report.component';
-import { AdminQuestionsComponent } from './admin-questions/admin-questions.component';
-
 
 
 const routes: Routes = [
@@ -66,11 +65,6 @@ const routes: Routes = [
     path: 'profitReport',
     component: ProfitReportComponent,
   },
-  {
-    path: 'questions/:id',
-    component: AdminQuestionsComponent
-  }
-  ,
   {
     path: 'questions',
     component: AdminQuestionsComponent

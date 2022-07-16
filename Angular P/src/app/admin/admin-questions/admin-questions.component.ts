@@ -1,118 +1,116 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import {MatAccordion} from '@angular/material/expansion';
-import {animate, state, style, transition, trigger} from '@angular/animations';
-import { AdminService } from 'src/app/service/admin.service';
-import { SpinnerComponent } from 'src/app/spinner/spinner.component';
-import { MatDialog } from '@angular/material/dialog';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CorrectAnswer } from './../../shared/shared/Data/CorrectAnswer';
+import { QuestionOption } from './../../shared/shared/Data/QuestionOption';
 import { ToastrService } from 'ngx-toastr';
+import { SpinnerComponent } from './../../spinner/spinner.component';
+import { Component, OnInit } from '@angular/core';
+import { AdminService } from 'src/app/service/admin.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-questions',
   templateUrl: './admin-questions.component.html',
-  styleUrls: ['./admin-questions.component.css'],
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ]),
-  ],
+  styleUrls: ['./admin-questions.component.css']
 })
 export class AdminQuestionsComponent implements OnInit {
-  @ViewChild(MatAccordion) accordion: MatAccordion | any;
-  @ViewChild('callUpdateDialog') callUpdateDialog!: TemplateRef<any>;
-  @ViewChild('callDeleteDialog') callDeleteDialog!: TemplateRef<any>;
 
+  selectedExamId: number|null = null;
+  counter: number = 1;
 
-  dataSource :any;
-  question: any = {};
-  oldQuestionData: any = {};
-  oldOptionData:any={};
-  columnsToDisplay = ['questionContent', 'type','status', 'score'];
-  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
-  expandedElement: PeriodicElement | null | undefined;
-  
-
-  constructor(public adminService:AdminService,
-    private dialog: MatDialog, private toastr: ToastrService) { }
+  constructor(
+    public adminService: AdminService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {
+    this.adminService.getQuestionsDetails();
+    this.adminService.getAllCourses();
+  }
 
   async ngOnInit(): Promise<void> {
     SpinnerComponent.show();
-    await this.adminService.getAllCourses();
-    await this.adminService.getAllQuestions();
-    setTimeout(() => {
-      SpinnerComponent.hide();
-    }, 3500);
-    await delay(2000);
-    this.dataSource=this.adminService.questions;
+    await delay(3000);
+
+    for (let questionExam of this.adminService.questionsDetails.questionsExamsDTO) {
+      const qid: number = questionExam.questionId as number;
+          
+      const questionOptions: QuestionOption[] = this.adminService.questionsDetails.questionsOptions.filter((qOp) => qOp.questionId == qid);
+      questionExam.options = questionOptions;
+
+      const correctAnswers: CorrectAnswer[] = this.adminService.questionsDetails.correctAnswers.filter((correctAnw) => (questionOptions.find((a) => a.id == correctAnw.questionOptionId)) ? true : false );
+
+      questionExam.correctAnswers = correctAnswers;          
+    }
+
+    await delay(3000);
+    SpinnerComponent.hide();
+  }
+
+  moveToCreateExamQuestions(): void {
+    if (this.selectedExamId) {
+      this.router.navigate([`/admin/createQuestions/${this.selectedExamId}`]);
+    } else {
+      this.toastr.error('Choose Course And Exam');
+    }
     
   }
 
-  async getExamsByCourseId(id:number): Promise<void>
-  {
-    await this.adminService.getExamsByCourseId(id);
-    await delay(2000);
+  async getExamsCourse(courseId: number): Promise<void> {
+    SpinnerComponent.show();
+
+    this.adminService.getExamsByCourseId(courseId);
+    await delay(500);
+
+    SpinnerComponent.hide();
+  }
+  
+  updateExamId(exid: number): void {
+    this.selectedExamId = exid;
   }
 
-  async getQuestionsByExamId(id:number): Promise<void>
-  {
-    await this.adminService.GetQeustionsDetailsByExamId(id);
-    
-    await delay(2000);
-    this.dataSource=this.adminService.questions;
+
+  currentExpandRowNum: any = null;
+
+  handleExpand(rowNum: any) {
+    if (this.currentExpandRowNum == rowNum) {
+        this.closeExpand(rowNum);
+    } else {
+        if (this.currentExpandRowNum != null) {
+            this.closeExpand(this.currentExpandRowNum);
+        }
+        this.openExpand(rowNum);
+    }
   }
 
-  
+  openExpand(rowNum: any) {
+    document.querySelectorAll('.row-element')[rowNum].classList.add('expanded');
+    document.querySelectorAll('.row-element')[rowNum].classList.remove('cus-bottom-border');
+    document.querySelectorAll('.row-details')[rowNum].classList.remove('display-none');
+    (<HTMLElement>document.querySelectorAll('.row-details')[rowNum]).style.height = `${document.querySelectorAll('.row-details td')[rowNum].clientHeight}px`;
+    (<HTMLElement>document.querySelectorAll('.details-container')[rowNum]).style.transform = 'translateY(0)';
 
-// Delete Question
-deleteQuestion(question: any): void {
-  this.question = question;
-  this.dialog.open(this.callDeleteDialog);
-}
+    this.currentExpandRowNum = rowNum; 
+    console.log(this.adminService.questionsDetails);
+  }
 
-// Submit Delete Question
-async submitDeleteQuestion(qid: number) {    
-  SpinnerComponent.show();
-  
-  this.adminService.DeleteQuestion(qid);  
-  
-  SpinnerComponent.hide();
-  window.location.reload();
-}
-updateQuestion(question: any) { 
-  this.oldQuestionData = question;
-  this.question = {...question};
-  this.dialog.open(this.callUpdateDialog);
-}
+  closeExpand(rowNum: any) {
+    document.querySelectorAll('.row-element')[rowNum].classList.remove('expanded');
+    document.querySelectorAll('.row-element')[rowNum].classList.add('cus-bottom-border');
+    (<HTMLElement>document.querySelectorAll('.row-details')[rowNum]).style.height = '0px';
+    (<HTMLElement>document.querySelectorAll('.details-container')[rowNum]).style.transform = 'translateY(-110%)';
+    document.querySelectorAll('.row-details')[rowNum].classList.add('display-none');
 
-updateForm = new FormGroup({
-  questionContent: new FormControl(''),
-  type: new FormControl(''),
-  score: new FormControl(''),
-  status: new FormControl(''),
-  examId: new FormControl(''),
-  optionContent: new FormControl('')
+    this.currentExpandRowNum = null;
+  }
 
-});
+  resetCounter(): void {
+    this.counter = 1;
+  }
 
-
-saveQuestion() {
-  this.oldQuestionData['questionContent'] = this.question['questionContent'];
-  this.oldQuestionData['type'] = this.question['type'];
-  this.oldQuestionData['status'] = this.question['status'];
-  this.oldQuestionData['score'] = this.question['score'];
-  this.adminService.UpdateQuestion(this.question);
-}
+  increaseCounter(): void {
+    this.counter++;
+  }
 
 }
-export interface PeriodicElement {
-  questionContent: string;
-  type:string;
-  status:string;
-  score: number;
-  optionContent:string;
-}
+
 
 function delay(ms: number) {
   return new Promise( resolve => setTimeout(resolve, ms) );

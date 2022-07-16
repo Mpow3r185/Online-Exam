@@ -28,5 +28,8 @@ namespace Tahaluf.PlusExam.Core.RepositoryInterface
 
         // Get All Questions Details 
         List<QuestionsDetailsDTO> GetAllQeustionsDetails();
+
+        // Get Questions And Exams
+        List<QuestionExamDTO> GetQuestionsAndExams();
     }
 }

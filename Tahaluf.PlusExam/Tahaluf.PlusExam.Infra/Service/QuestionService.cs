@@ -70,5 +70,11 @@ namespace Tahaluf.PlusExam.Infra.Service
         {
             return _questionRepository.GetAllQeustionsDetails();
         }
+
+        // Get Questions And Exams
+        public List<QuestionExamDTO> GetQuestionsAndExams()
+        {
+            return _questionRepository.GetQuestionsAndExams();
+        }
     }
 }
