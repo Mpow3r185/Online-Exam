@@ -62,9 +62,46 @@ h4.card-title{
     background-color: rgb(234, 237, 247) !important;
 }
 
-.calender{
-    padding: 20px;
-    
+i.end {
+    color: red;
 }
 
+i.start {
+    color: green;
+}
 
+i.not-start {
+    color: orange;
+}
+
+div.end {
+    background-color: red;
+}
+
+div.start {
+    background-color: green;
+}
+
+div.not-start {
+    background-color: orange;
+}
+
+.white-color {
+    color: #fff;
+}
+
+div.day-card {
+    border: 1px solid #8c8c8c2b;
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+div.day-card:hover {
+    background-color: #8c8c8c2b;
+}
+
+div.today {
+    background-color: #8c8c8c2b;
+}

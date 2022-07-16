@@ -1,0 +1,15 @@
+div.day-card {
+    border: 1px solid #8c8c8c2b;
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+div.day-card:hover {
+    background-color: #8c8c8c2b;
+}
+
+div.today {
+    background-color: #8c8c8c2b;
+}

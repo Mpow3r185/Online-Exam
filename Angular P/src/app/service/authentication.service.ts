@@ -106,8 +106,7 @@ export class AuthenticationService {
                   this.router.navigate(['/']);
                 }
               }
-            },
-            (error) => console.log(error)
+            }
           );
       },
       error => {
@@ -117,7 +116,6 @@ export class AuthenticationService {
           setTimeout(() => {
             this.toastr.error("These credentials do not match our records.")
           }, 2000);
-          //console.log(error.message,error.status);
       });
   }
   

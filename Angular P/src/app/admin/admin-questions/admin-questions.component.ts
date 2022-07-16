@@ -75,9 +75,7 @@ deleteQuestion(question: any): void {
 async submitDeleteQuestion(qid: number) {    
   SpinnerComponent.show();
   
-  this.adminService.DeleteQuestion(qid);
-  console.log(qid);
-  
+  this.adminService.DeleteQuestion(qid);  
   
   SpinnerComponent.hide();
   window.location.reload();

@@ -1,4 +1,4 @@
---- Start Code
+    --- Start Code
 
 -- Account Test Data
 INSERT INTO Account
@@ -59,7 +59,7 @@ COMMIT;
 
 -- Exam Test Data
 INSERT INTO Exam
-VALUES(200, 300, 'python pasics', 'GFSQWEQR',
+VALUES(200, 300, 'python basics', 'GFSQWEQR',
 'Python Programming Language Basic Exam', 'Beginner',
 50, 35, 35.32, '03-FEB-22', '04-FEB-22', 'HIDE', 'ENABLE'
 , 'python-exam.jpeg', '03-FEB-22');

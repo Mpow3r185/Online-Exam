@@ -24,9 +24,7 @@ export class InvoiceComponent implements OnInit {
 
     setTimeout(() => {
       SpinnerComponent.hide();
-    }, 2000);
-    console.log(this.userService.InvoicesData);
-    
+    }, 2000);    
   }
 
   
