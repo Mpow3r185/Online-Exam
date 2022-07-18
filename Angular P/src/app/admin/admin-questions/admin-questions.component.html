@@ -157,13 +157,8 @@
                                                                             <ng-container
                                                                                 *ngIf="questionExam.type == 'Single'">
                                                                                 <ng-container
-                                                                                    *ngFor="let option of questionExam.options">
-
-                                                                                    <ng-container
-                                                                                        *ngIf="option.id == questionExam.correctAnswers[0].questionOptionId">
-                                                                                        {{ option.optionContent }}
-                                                                                    </ng-container>
-
+                                                                                    *ngFor="let answer of questionExam.correctAnswers">
+                                                                                    {{ answer.correctanswerContent }}
                                                                                 </ng-container>
                                                                             </ng-container>
 
@@ -171,38 +166,45 @@
                                                                             <ng-container
                                                                                 *ngIf="questionExam.type == 'Multiple'">
                                                                                 <ng-container
-                                                                                    *ngFor="let option of questionExam.options; let i=index">
+                                                                                    *ngFor="let answer of questionExam.correctAnswers; let i=index">
 
-                                                                                    <ng-container
-                                                                                        *ngFor="let correctAnw of questionExam.correctAnswers">
-
-                                                                                        <ng-container
-                                                                                            *ngIf="option.id == correctAnw.questionOptionId">
-                                                                                            {{ counter }}) {{
-                                                                                            option.optionContent }}
-                                                                                            {{ increaseCounter() }}
-                                                                                            <br>
-                                                                                        </ng-container>
-
-                                                                                    </ng-container>
+                                                                                    {{ i + 1 }}) {{
+                                                                                    answer.correctanswerContent }}<br>
 
                                                                                 </ng-container>
                                                                             </ng-container>
-                                                                            {{ resetCounter() }}
 
                                                                             <!-- Fill -->
                                                                             <ng-container
                                                                                 *ngIf="questionExam.type == 'Fill'">
 
-                                                                                {{
-                                                                                questionExam.options[0].optionContent
-                                                                                }}
+                                                                                <ng-container
+                                                                                    *ngFor="let answer of questionExam.options">
+                                                                                    {{
+                                                                                    answer.optionContent
+                                                                                    }}
+                                                                                </ng-container>
+
 
                                                                             </ng-container>
 
 
                                                                         </div>
 
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="container my-3">
+                                                                <div class="row justify-content-center">
+                                                                    <!-- Delete -->
+                                                                    <div class="col-4">
+                                                                        <a class="btn btn-danger btn-sm text-white w-25"
+                                                                            role="button" aria-pressed="true"
+                                                                            (click)="deleteQuestion(questionExam)"
+                                                                            title="Delete" style="cursor:pointer;"><i
+                                                                                class="fa fa-trash"></i></a>
                                                                     </div>
 
                                                                 </div>
@@ -224,3 +226,28 @@
         </div>
     </div>
 </div>
+
+
+<!-- Delete Exam Dialog -->
+<ng-template #callDeleteDialog>
+    <div class="modal-header">
+        <h5 style="font-family: 'Cairo', sans-serif; font-weight: bold; color: black;" class="modal-title"
+            id="exampleModalLabel">Delete Question</h5>
+        <button type="button" class="close text-danger" mat-button mat-dialog-close="no">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body py-3">
+        <h5 style="font-family: 'Cairo', sans-serif; color: black; font-weight: bold;">Are you sure you want to delete
+            question and all related data?
+        </h5>
+        <label style="color: #001166; font-weight:bold;">Question Text: {{ selectedQuestionTodDelete.questionContent
+            }}</label>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-sm btn-secondary font-weight-bold" mat-button mat-dialog-close>Close</button>
+        <button class="btn btn-sm btn-danger" mat-button mat-dialog-close>Delete</button>
+    </div>
+</ng-template>
+<!-- /End Delete Exam Dialog -->
