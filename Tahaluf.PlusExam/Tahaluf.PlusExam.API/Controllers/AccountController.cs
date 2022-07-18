@@ -159,7 +159,7 @@ namespace Tahaluf.PlusExam.API.Controllers
             {
                 var image = Request.Form.Files[0];
                 var imageName = Guid.NewGuid() + "_" + image.FileName;
-                var fullPath = Path.Combine("C:\\Users\\Mahmoud Hamarsheh\\Desktop\\PE\\Online-Exam\\Angular P\\src\\assets\\images\\pp", imageName);
+                var fullPath = Path.Combine("C:\\Users\\dabda\\OneDrive\\Desktop\\Online-Exam\\Angular P\\src\\assets\\images\\profile_picture", imageName);
                 using (var stream = new FileStream(fullPath, FileMode.Create))
                 {
                     image.CopyTo(stream);
