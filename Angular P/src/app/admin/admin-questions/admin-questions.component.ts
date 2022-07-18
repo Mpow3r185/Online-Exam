@@ -1,10 +1,13 @@
+import { MatDialog } from '@angular/material/dialog';
 import { CorrectAnswer } from './../../shared/shared/Data/CorrectAnswer';
 import { QuestionOption } from './../../shared/shared/Data/QuestionOption';
 import { ToastrService } from 'ngx-toastr';
 import { SpinnerComponent } from './../../spinner/spinner.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { AdminService } from 'src/app/service/admin.service';
 import { Router } from '@angular/router';
+import { QuestionsDetailsDTO } from 'src/app/shared/shared/DTO/questions-details';
+import { QuestionExamDTO } from 'src/app/shared/shared/DTO/question-exam';
 
 @Component({
   selector: 'app-admin-questions',
@@ -13,13 +16,18 @@ import { Router } from '@angular/router';
 })
 export class AdminQuestionsComponent implements OnInit {
 
+  @ViewChild('callDeleteDialog') callDeleteDialog!: TemplateRef<any>;
+
   selectedExamId: number|null = null;
   counter: number = 1;
+  copy: QuestionsDetailsDTO = new QuestionsDetailsDTO();
+  selectedQuestionTodDelete: any;
 
   constructor(
     public adminService: AdminService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private dialog: MatDialog
   ) {
     this.adminService.getQuestionsDetails();
     this.adminService.getAllCourses();
@@ -35,12 +43,46 @@ export class AdminQuestionsComponent implements OnInit {
       const questionOptions: QuestionOption[] = this.adminService.questionsDetails.questionsOptions.filter((qOp) => qOp.questionId == qid);
       questionExam.options = questionOptions;
 
-      const correctAnswers: CorrectAnswer[] = this.adminService.questionsDetails.correctAnswers.filter((correctAnw) => (questionOptions.find((a) => a.id == correctAnw.questionOptionId)) ? true : false );
+      let correctAnswers: CorrectAnswer[] = [];
+      if (questionExam.type == 'Fill') {
+        correctAnswers.push(questionExam.options[0]);
+      } else {
 
-      questionExam.correctAnswers = correctAnswers;          
+        for (let questionOption of questionOptions) {
+          for (let answer of this.adminService.questionsDetails.correctAnswers) {
+            if (answer.questionOptionId == questionOption.id) {
+              answer.correctanswerContent = questionOption.optionContent;
+              correctAnswers.push(answer)
+            }
+          }
+        }
+      }
+  
+      questionExam.correctAnswers = correctAnswers;
+
+    }
+    
+    await delay(3000);
+
+    for (let questionExam of this.adminService.questionsDetails.questionsExamsDTO) {      
+      const questionExamCopy: QuestionExamDTO = new QuestionExamDTO();
+      questionExamCopy.correctAnswers = questionExam.correctAnswers;
+      questionExamCopy.courseId = questionExam.courseId;
+      questionExamCopy.courseName = questionExam.courseName;
+      questionExamCopy.examId = questionExam.examId;
+      questionExamCopy.options = questionExam.options;
+      questionExamCopy.type = questionExam.type;
+      questionExamCopy.questionContent = questionExam.questionContent;
+      questionExamCopy.score = questionExam.score;
+      questionExamCopy.questionId = questionExam.questionId;
+      questionExamCopy.status = questionExam.status;
+      questionExamCopy.title = questionExam.title;
+      this.copy.questionsExamsDTO.push(questionExamCopy);
     }
 
-    await delay(3000);
+    this.copy.correctAnswers = this.adminService.questionsDetails.correctAnswers;
+    this.copy.questionsOptions = this.adminService.questionsDetails.questionsOptions;    
+  
     SpinnerComponent.hide();
   }
 
@@ -54,16 +96,35 @@ export class AdminQuestionsComponent implements OnInit {
   }
 
   async getExamsCourse(courseId: number): Promise<void> {
+    if (courseId == -1) {
+      this.adminService.questionsDetails.questionsExamsDTO = this.copy.questionsExamsDTO;
+      this.adminService.questionsDetails.correctAnswers = this.copy.correctAnswers;
+      this.adminService.questionsDetails.questionsOptions = this.copy.questionsOptions;
+      return;
+    }
+    
     SpinnerComponent.show();
+    await delay(2000);
 
+    this.adminService.questionsDetails.questionsExamsDTO = this.copy.questionsExamsDTO.filter(questionExam => questionExam.courseId == courseId);
+    this.adminService.questionsDetails.correctAnswers = this.copy.correctAnswers;
+    this.adminService.questionsDetails.questionsOptions = this.copy.questionsOptions;    
+    
     this.adminService.getExamsByCourseId(courseId);
-    await delay(500);
+    
+    await delay(2500);
 
     SpinnerComponent.hide();
   }
   
-  updateExamId(exid: number): void {
+  async updateExamId(exid: number): Promise<void> {
+    SpinnerComponent.show();
+
     this.selectedExamId = exid;
+
+    this.adminService.questionsDetails.questionsExamsDTO = this.copy.questionsExamsDTO.filter((questionExam) => questionExam.examId == exid);
+    await delay(2000);
+    SpinnerComponent.hide();
   }
 
 
@@ -88,7 +149,6 @@ export class AdminQuestionsComponent implements OnInit {
     (<HTMLElement>document.querySelectorAll('.details-container')[rowNum]).style.transform = 'translateY(0)';
 
     this.currentExpandRowNum = rowNum; 
-    console.log(this.adminService.questionsDetails);
   }
 
   closeExpand(rowNum: any) {
@@ -101,12 +161,9 @@ export class AdminQuestionsComponent implements OnInit {
     this.currentExpandRowNum = null;
   }
 
-  resetCounter(): void {
-    this.counter = 1;
-  }
-
-  increaseCounter(): void {
-    this.counter++;
+  deleteQuestion(question: QuestionExamDTO) {
+    this.selectedQuestionTodDelete = question;
+    this.dialog.open(this.callDeleteDialog);
   }
 
 }
