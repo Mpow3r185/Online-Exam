@@ -598,6 +598,14 @@ getQuestionsDetails() {
   });
 }
 
+deleteQuestion(qid: number) {
+  this.http.delete(`https://localhost:44342/api/question/DeleteQuestion/${qid}`).subscribe((result) => {
+    this.toastr.success('Question Deleted Successfully.');
+  }, error => {
+    this.toastr.error('Unable to connect the server');
+  });
+}
+
 }
 
 function delay(ms: number) {
