@@ -243,7 +243,7 @@ export class DayCardComponent implements OnInit {
 
             let now = new Date();
             let endDate = new Date(exam.exam.endDate);
-            let remaining = Math.floor(((endDate.getTime() - now.getTime()) % (1000 * 60 * 60)) / (1000 * 60));
+            let remaining = Math.floor((endDate.getTime() - now.getTime()) / (1000 * 60));
             if (remaining < 0) { remaining = 0; }
 
             remainingValue.innerText = `${remaining} Minutes`;
@@ -264,8 +264,7 @@ export class DayCardComponent implements OnInit {
 
             let startDate = new Date(exam.exam.startDate);
             let endDate = new Date(exam.exam.endDate);
-            let remaining = Math.round((Math.abs(endDate.getTime() - startDate.getDate())) / (1000 * 60))
-            //let remaining = Math.floor(((endDate.getTime() - startDate.getTime()) % (1000 * 60 * 60)) / (1000 * 60));
+            let remaining = Math.floor((endDate.getTime() - startDate.getTime()) / (1000 * 60));
 
             durationValue.innerText = `${remaining} Minutes`;
 
